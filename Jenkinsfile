@@ -22,8 +22,10 @@ pipeline {
 
     stage('deploy ') {
       steps {
-        sh 'docker rm -f birdnoise_$BRANCH_NAME || true'
-        sh 'docker run  -d --name birdnoise_$BRANCH_NAME -p 8090:8080 klucsik.duckdns.org:8081/birdnoise_$BRANCH_NAME:$GIT_COMMIT'
+        sh '''sed -i "s/BRANCHNAME/$BRANCH_NAME/" k8s/test_deployment.yaml 
+sed -i "s/IMAGETAG/klucsik.duckdns.org:8081\\/birdnoise_$BRANCH_NAME:$GIT_COMMIT/" k8s/test_deployment.yaml'''
+        sh 'cat k8s/test_deployment.yaml'
+        sh 'microk8s kubectl apply -f k8s/test_deployment.yaml'
       }
     }
 
