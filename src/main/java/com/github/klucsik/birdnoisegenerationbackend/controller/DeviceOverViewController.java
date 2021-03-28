@@ -22,7 +22,7 @@ public class DeviceOverViewController {
         List<DeviceOverviewDto> responeList = new ArrayList<>();
         responeList.add(new DeviceOverviewDto(
                 1L,
-                "Device1",
+                "DeviceToLovePopó",
                 new BatteryDto(1L,"battery1",3.7,"#008000"),
                 DeviceStatus.WORKING.label
         ));
