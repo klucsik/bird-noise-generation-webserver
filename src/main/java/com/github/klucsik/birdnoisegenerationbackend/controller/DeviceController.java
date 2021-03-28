@@ -24,7 +24,7 @@ public class DeviceController {
     @GetMapping("/reportVoltage")
    public ResponseEntity getDeviceVoltage(@RequestParam(required = true) String deviceId, @RequestParam(required = true) Double batteryVoltage){
        //create and persist the object here
-        DeviceVoltage deviceVoltage = new DeviceVoltage(deviceId,batteryVoltage, LocalDate.now());
+        DeviceVoltage deviceVoltage = new DeviceVoltage(deviceId,batteryVoltage, LocalDate.now());//TODO change it to localdatetime
         deviceVoltageRepository.save(deviceVoltage);
         System.out.println("deviceVoltage saved: " + deviceVoltage.toString());
        return new ResponseEntity(HttpStatus.OK);

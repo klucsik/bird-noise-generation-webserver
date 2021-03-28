@@ -1,9 +1,7 @@
 package com.github.klucsik.birdnoisegenerationbackend.persistence.entity;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +16,7 @@ public class DeviceVoltage {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id; //db will generate this for us
-    private String deviceId; //TODO delete this, and have a relationship on the parent
+    private String deviceId; //TODO add a relationship on the parent
     private Double voltage;
 
     private LocalDate createdAt; //we will set this in the service layer
