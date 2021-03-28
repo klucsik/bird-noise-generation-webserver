@@ -2,7 +2,7 @@ package com.github.klucsik.birdnoisegenerationbackend.controller;
 
 import com.github.klucsik.birdnoisegenerationbackend.dto.BatteryDto;
 import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceOverviewDto;
-import com.github.klucsik.birdnoisegenerationbackend.enums.DeviceStatus;
+import com.github.klucsik.birdnoisegenerationbackend.persistence.enums.DeviceStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

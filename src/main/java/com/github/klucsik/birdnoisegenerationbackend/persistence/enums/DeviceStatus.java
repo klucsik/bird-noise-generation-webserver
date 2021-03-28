@@ -1,4 +1,4 @@
-package com.github.klucsik.birdnoisegenerationbackend.enums;
+package com.github.klucsik.birdnoisegenerationbackend.persistence.enums;
 
 
 public enum DeviceStatus {
