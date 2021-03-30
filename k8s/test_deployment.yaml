@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: birdnoise-BRANCHNAME
+spec:
+  rules:
+    - host: BRANCHNAME.klucsik.duckdns.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: birdnoise-BRANCHNAME
+                port:
+                  number: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birdnoise-BRANCHNAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      branch: BRANCHNAME
+      type: backend
+      service: birdnoise
+  template:
+    metadata:
+      labels:
+        branch: BRANCHNAME
+        type: backend
+        service: birdnoise
+    spec:
+      containers:
+        - name: backend
+          image: IMAGETAG
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: birdnoise-BRANCHNAME
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    branch: BRANCHNAME
+    type: backend
+    service: birdnoise
