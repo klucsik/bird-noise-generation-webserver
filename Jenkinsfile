@@ -30,6 +30,11 @@ cp -i k8s/test_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
         sh '''microk8s kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml
 '''
         sh 'microk8s kubectl rollout status deployment/birdnoise-${BRANCH_NAME_LC}'
+        sh '''
+        curl --location --request POST 'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{"content": "I am pleased to report that I'm deployed the branch: ${BRANCH_NAME_LC} and its available for you at: ${BRANCH_NAME_LC}.klucsik.duckdns.org "}'
+        '''
       }
     }
 
