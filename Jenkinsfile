@@ -29,6 +29,7 @@ cp -i k8s/test_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
         sh 'cat k8s/${BRANCH_NAME_LC}_deployment.yaml'
         sh '''microk8s kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml
 '''
+        sh 'kubectl rollout status deployment/birdnoise-${BRANCH_NAME_LC}'
       }
     }
 
