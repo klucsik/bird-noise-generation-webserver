@@ -43,6 +43,6 @@ cp -i k8s/test_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
                                echo birdnoise_$BRANCH_NAME_LC:$GIT_COMMIT",
                                returnStdout:true
                                ).trim()}"""
-        IMAGEREPO = 'klucsik.duckdns.org:8081'
+        IMAGEREPO = 'klucsik.duckdns.org:5000'
       }
     }
