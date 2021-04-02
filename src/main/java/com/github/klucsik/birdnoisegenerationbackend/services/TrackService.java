@@ -4,7 +4,6 @@ import com.github.klucsik.birdnoisegenerationbackend.dto.TrackDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.TrackMapper;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Track;
 import com.github.klucsik.birdnoisegenerationbackend.repository.TrackRepository;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -27,10 +26,10 @@ private final TrackRepository repository;
     }
 
     //READ
-    public TrackDto getOne(Long id) throws NotFoundException {
+    public TrackDto getOne(Long id){
         Optional<Track> track = repository.findById(id);
         if (track.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("Unable to find resource with id %d!",id));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return TrackMapper.MAPPER.trackToDto(track.get());
     }
@@ -44,6 +43,10 @@ private final TrackRepository repository;
 
     //DELETE
     public  void delete(Long id){
-        repository.deleteById(id); //TODO will this run to an exception if the item is already deleted?
+        Optional<Track> track = repository.findById(id);
+        if (track.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        repository.deleteById(id);
     }
 }
