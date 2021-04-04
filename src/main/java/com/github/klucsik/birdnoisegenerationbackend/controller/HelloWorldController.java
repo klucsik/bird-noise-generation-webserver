@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HelloWorldController {
 
     @GetMapping("/hello")
-    public String hello(@RequestParam(name="name", required = false, defaultValue = "There") String name){
+    public String hello(@RequestParam(name="name", required = false, defaultValue = "Uram") String name){
 
-        return "hello " + name;
+        return "Szia " + name;
     }
 }
