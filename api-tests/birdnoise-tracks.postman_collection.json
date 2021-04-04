@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "df6d9793-947d-4eb9-91fe-321f2c3c20ea",
+		"name": "birdnoise-tracks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"trackNumber\":4,\n    \"name\":\"PM-test created\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/page",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"page"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
