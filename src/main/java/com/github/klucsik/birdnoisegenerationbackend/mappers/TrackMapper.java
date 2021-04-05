@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * A mapper class, which will map dtos to corresponding entities and vice versa, see https://mapstruct.org/
  */
@@ -15,4 +17,7 @@ public interface TrackMapper {
 
     TrackDto trackToDto(Track track);
     Track DtoToTrack(TrackDto dto);
+
+    List<TrackDto> trackListToDtoList(List<Track> trackList);
+
 }
