@@ -8,15 +8,37 @@ pipeline {
     }
 
     stage('containerize') {
-      steps {
-        sh '''docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .
+      parallel {
+        stage('containerize') {
+          steps {
+            sh '''docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .
 '''
+          }
+        }
+
+        stage('containerize FE') {
+          steps {
+            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
+          }
+        }
+
       }
     }
 
     stage('push to registry') {
-      steps {
-        sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
+      parallel {
+        stage('push to registry') {
+          steps {
+            sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
+          }
+        }
+
+        stage('push fe to registry') {
+          steps {
+            sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
+          }
+        }
+
       }
     }
 
@@ -39,19 +61,19 @@ cp -i k8s/test_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
   }
   environment {
     BRANCH_NAME_LC = """${sh(
-                              script: 'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
-                              returnStdout:true
-                              ).trim()}"""
+                                    script: 'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
+                                    returnStdout:true
+                                    ).trim()}"""
       BE_IMAGETAG = """${sh(
-                                                       script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                       echo birdnoise_be_$BRANCH_NAME_LC:$GIT_COMMIT",
-                                                       returnStdout:true
-                                                       ).trim()}"""
-      FE_IMAGETAG = """${sh(
-                                                       script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                       echo birdnoise_fe_$BRANCH_NAME_LC:$GIT_COMMIT",
-                                                       returnStdout:true
-                                                       ).trim()}"""
-        IMAGEREPO = 'klucsik.duckdns.org:5000'
+                                                               script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                               echo birdnoise_be_$BRANCH_NAME_LC:$GIT_COMMIT",
+                                                               returnStdout:true
+                                                               ).trim()}"""
+        FE_IMAGETAG = """${sh(
+                                                                 script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                                 echo birdnoise_fe_$BRANCH_NAME_LC:$GIT_COMMIT",
+                                                                 returnStdout:true
+                                                                 ).trim()}"""
+          IMAGEREPO = 'klucsik.duckdns.org:5000'
+        }
       }
-    }
