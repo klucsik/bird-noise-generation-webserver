@@ -1,22 +1,24 @@
-import logo from './birdlogo.gif';
+
 import './App.css';
+import React,{useState} from 'react';
+import Intro from       './components/Intro/Intro.jsx'  
+import DevicesOverview from './components/DevicesOverview/DevicesOverview.jsx';
 
 function App() {
+ 
+ 
+  const [ intro, setIntro] = useState(true)
+
+ console.log('intro=',intro);
+  
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Bird noise...
-        </p>
-        <a
-          className="App-link"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          BirdBox management...
-        </a>
+          { intro 
+            ? <Intro setIntro={setIntro} />
+            : <DevicesOverview  />
+          }
       </header>
     </div>
   );
