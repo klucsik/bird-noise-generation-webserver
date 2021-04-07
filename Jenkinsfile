@@ -12,18 +12,11 @@ pipeline {
         sh '''docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .
 '''
       }
-      steps {
-         sh '''docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.
-'''
-      }
     }
 
     stage('push to registry') {
       steps {
         sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
-      }
-      steps {
-        sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
       }
     }
 
