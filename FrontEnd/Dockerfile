@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy our node module specification
 COPY package.json package.json
+COPY package-lock.json package-lock.json
 
 
 # install node modules and build assets
