@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: IMAGETAG
+          image: BE_IMAGETAG
 
 ---
 
