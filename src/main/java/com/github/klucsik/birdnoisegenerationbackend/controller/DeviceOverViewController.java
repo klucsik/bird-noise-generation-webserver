@@ -5,12 +5,14 @@ import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceOverviewDto;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.enums.DeviceStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("/devices")
+@RestController()
+@RequestMapping("deviceOverView")
 public class DeviceOverViewController {
 
     //this will be accessible at baseurl/devices/page
