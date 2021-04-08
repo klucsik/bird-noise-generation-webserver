@@ -19,14 +19,14 @@ spec:
             path: "/api"
             backend:
               service:
-                name: birdnoise-be-BRANCHNAME
+                name: birdnoise-be
                 port:
                   number: 80
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: birdnoise-fe-BRANCHNAME
+                name: birdnoise-fe
                 port:
                   number: 80
 
@@ -41,13 +41,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      branch: BRANCHNAME
       type: backend
       service: birdnoise
   template:
     metadata:
       labels:
-        branch: BRANCHNAME
         type: backend
         service: birdnoise
     spec:
@@ -60,15 +58,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  branch: BRANCHNAME
-  name: birdnoise-be-BRANCHNAME
+  name: birdnoise-be
   namespace: BRANCHNAME
 spec:
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    branch: BRANCHNAME
     type: backend
     service: birdnoise
 
@@ -83,29 +79,25 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      branch: BRANCHNAME
       type: frontend
       service: birdnoise
   template:
     metadata:
       labels:
-        branch: BRANCHNAME
         type: frontend
         service: birdnoise
     spec:
       containers:
         - name: frontend
           image: FE_IMAGETAG
-          env:
-            - name: BACKEND_URL
-              value: birdnoise-be
+
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: birdnoise-fe-BRANCHNAME
+  name: birdnoise-fe
   namespace: BRANCHNAME
 spec:
   ports:
