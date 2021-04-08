@@ -44,31 +44,30 @@ function DevicesOverview() {
     ]
   ); */
 
+  let  extBACKEND_URL  =  process.env.REACT_APP_BACKEND_URL  || "http://be-fe-kozos-deploy.klucsik.duckdns.org";
 const [ data,      setData      ]  = useState(  []   ) // [] or [{},{},{}] or  null
 const [ loading,   setLoading   ]  = useState( false )
-const [ tmp,       setTmp       ]  = useState( false )
+//const [ BACKEND_URL,  setBACKEND_URL  ]  = useState( extBACKEND_URL )
+
+if (process.env.NODE_ENV !== 'production') {
+  console.log('No production')//, process.env.REACT_APP_BACKEND_URL , process.env.development.REACT_APP_BACKEND_URL );
+ // setBACKEND_URL(BACKEND_URL)
+}
 
 
-
-
-let  BACKEND_URL  =  window._env_.BACKEND_URL || "http://be-fe-kozos-deploy.klucsik.duckdns.org";
 useEffect( ()=> {
   setData([])       // hogy törlődjenek az előző keresési eredmények uj load-nál....
   setLoading(true)  // hogy mutassuk a loadingMask-ot
   
-
-  console.log('BACKEND_URL=',BACKEND_URL );
-    BACKEND_URL=BACKEND_URL+"/api/deviceOverView/page"
-    console.log('full url of resource',BACKEND_URL );
- fetch( BACKEND_URL )
+let fetchURL  =  extBACKEND_URL + '/api/deviceOverView/page';
+console.log('fetch from :',fetchURL);
+ fetch( fetchURL )
       .then    ( resp     => resp.json() )
       .then    ( adat     => setData    ( adat  ) )
       .catch   ( error    => {setData    ( null  ); console.log('fetch error=',error);} )
       .finally ( respons  => setLoading ( false ) );
 
- // setShowResults();
-  setTmp(false);
-},[tmp])
+}, [] )
 
 
 
@@ -101,8 +100,9 @@ const columns = [{
     return (
         
         <div className="deviceOverView">
+          {process.env.NODE_ENV } {process.env.REACT_APP_BACKEND_URL} 
             { !data
-                 ? <h3>Opps, error fethcing data from: {BACKEND_URL}</h3>
+                 ? <h3>Opps, error fethcing data from: {extBACKEND_URL}</h3>
                  : loading
                      ? <LoadingMask />
                      : <BootstrapTable keyField='id' data={ data } columns={ columns }

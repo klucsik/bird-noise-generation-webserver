@@ -17,7 +17,7 @@ function Intro({setIntro}) {
           Bird noise...
         </p>
         <a className="App-link"
-            href='#'      
+            href={window.location+'#'}      
             rel="noopener noreferrer"
             onClick={ () => (setIntro(false))}
         >
