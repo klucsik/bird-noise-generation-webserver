@@ -8,28 +8,51 @@ pipeline {
     }
 
     stage('containerize') {
-      steps {
-        sh '''docker build -t ${IMAGEREPO}/${IMAGETAG} .
+      parallel {
+        stage('containerize') {
+          steps {
+            sh '''docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .
 '''
+          }
+        }
+
+        stage('containerize FE') {
+          steps {
+            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
+          }
+        }
+
       }
     }
 
     stage('push to registry') {
-      steps {
-        sh 'docker push ${IMAGEREPO}/${IMAGETAG}'
+      parallel {
+        stage('push to registry') {
+          steps {
+            sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
+          }
+        }
+
+        stage('push fe to registry') {
+          steps {
+            sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
+          }
+        }
+
       }
     }
 
     stage('deploy ') {
       steps {
-        sh '''sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/test_deployment.yaml
-sed -i "s/IMAGETAG/${IMAGEREPO}\\/${IMAGETAG}/" k8s/test_deployment.yaml
-cp -i k8s/test_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
+        sh '''sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/birdnoise_deployment.yaml
+sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/birdnoise_deployment.yaml
+sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/birdnoise_deployment.yaml
+cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
 '''
         sh 'cat k8s/${BRANCH_NAME_LC}_deployment.yaml'
         sh '''microk8s kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml
 '''
-        sh 'microk8s kubectl rollout status deployment/birdnoise-${BRANCH_NAME_LC}'
+        sh 'microk8s kubectl rollout status deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
         sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that Im deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.klucsik.duckdns.org "}\'
         '''
       }
@@ -38,14 +61,19 @@ cp -i k8s/test_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
   }
   environment {
     BRANCH_NAME_LC = """${sh(
-                              script: 'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
-                              returnStdout:true
-                              ).trim()}"""
-      IMAGETAG = """${sh(
-                                                       script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                       echo birdnoise_$BRANCH_NAME_LC:$GIT_COMMIT",
-                                                       returnStdout:true
-                                                       ).trim()}"""
-        IMAGEREPO = 'klucsik.duckdns.org:5000'
+                                    script: 'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
+                                    returnStdout:true
+                                    ).trim()}"""
+      BE_IMAGETAG = """${sh(
+                                                               script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                               echo birdnoise_be_$BRANCH_NAME_LC:$GIT_COMMIT",
+                                                               returnStdout:true
+                                                               ).trim()}"""
+        FE_IMAGETAG = """${sh(
+                                                                 script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                                 echo birdnoise_fe_$BRANCH_NAME_LC:$GIT_COMMIT",
+                                                                 returnStdout:true
+                                                                 ).trim()}"""
+          IMAGEREPO = 'klucsik.duckdns.org:5000'
+        }
       }
-    }
