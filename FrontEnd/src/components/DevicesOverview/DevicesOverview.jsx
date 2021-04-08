@@ -44,7 +44,9 @@ function DevicesOverview() {
     ]
   ); */
 
-  let  extBACKEND_URL  =  process.env.REACT_APP_BACKEND_URL  || "http://be-fe-kozos-deploy.klucsik.duckdns.org";
+  let  extBACKEND_URL  =  process.env.REACT_APP_BACKEND_URL || window.location.href.replace(/#/g,'');// || "http://be-fe-kozos-deploy.klucsik.duckdns.org";
+  console.log('extBACKEND_UR=',extBACKEND_URL.replace(/\/#/g,'').replace(/\/\//g,'') );
+  extBACKEND_URL=  typeof(extBACKEND_URL)=== 'undefined' ? extBACKEND_URL.replace(/#/g,'') : extBACKEND_URL
 const [ data,      setData      ]  = useState(  []   ) // [] or [{},{},{}] or  null
 const [ loading,   setLoading   ]  = useState( false )
 //const [ BACKEND_URL,  setBACKEND_URL  ]  = useState( extBACKEND_URL )
