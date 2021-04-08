@@ -22,6 +22,9 @@ RUN npm run build
 # Choose NGINX as our base Docker image
 FROM nginx:alpine
 
+# Default port exposure
+EXPOSE 80
+
 # Set working directory to nginx asset directory
 WORKDIR /usr/share/nginx/html
 
@@ -31,5 +34,15 @@ RUN rm -rf *
 # Copy static assets from builder stage
 COPY --from=builder /app/build .
 
-# Entry point when Docker container has started
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+#copy env variable setting script
+COPY ./env.sh .
+COPY .env .
+
+# Make our shell script executable
+RUN chmod +x env.sh
+
+
+
+
+# Entry point when Docker container has started, wich will wet the env variables on startup
+CMD ["/bin/sh", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]

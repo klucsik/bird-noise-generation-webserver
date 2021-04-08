@@ -51,14 +51,15 @@ const [ tmp,       setTmp       ]  = useState( false )
 
 
 
-let  BACKEND_URL  =  process.env.BACKEND_URL || "http://be-fe-kozos-deploy.klucsik.duckdns.org/api/deviceOverView/page";
+let  BACKEND_URL  =  window._env_.BACKEND_URL || "http://be-fe-kozos-deploy.klucsik.duckdns.org";
 useEffect( ()=> {
   setData([])       // hogy törlődjenek az előző keresési eredmények uj load-nál....
   setLoading(true)  // hogy mutassuk a loadingMask-ot
   
 
   console.log('BACKEND_URL=',BACKEND_URL );
-
+    BACKEND_URL=BACKEND_URL+"/api/deviceOverView/page"
+    console.log('full url of resource',BACKEND_URL );
  fetch( BACKEND_URL )
       .then    ( resp     => resp.json() )
       .then    ( adat     => setData    ( adat  ) )
