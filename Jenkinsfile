@@ -5,6 +5,9 @@ pipeline {
     stage('build images') {
       parallel {
         stage('backend') {
+          when{
+            changeset "src/main/**"
+          }
           steps {
             sh 'mvn -B -DskipTests clean package'
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .'
@@ -13,6 +16,9 @@ pipeline {
         }
 
         stage('frontend') {
+                    when{
+            changeset "FrontEnd/**"
+          }
           steps {
             sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
             sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
