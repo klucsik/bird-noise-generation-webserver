@@ -28,7 +28,7 @@ private final TrackRepository repository;
     //READ
     public TrackDto getOne(Long id){
         Optional<Track> track = repository.findById(id);
-        if (track.isEmpty()){
+        if (track.isEmpty()){ //this is a guard clause, its a good way to put validation in the front of the method. makes it faster to execute when running in an inavlid input
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return TrackMapper.MAPPER.trackToDto(track.get());
