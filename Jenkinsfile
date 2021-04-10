@@ -6,8 +6,13 @@ pipeline {
       parallel {
         stage('backend') {
           when{
-            changeset "src/main/**"
-          }
+            anyOf{
+                changeset "src/main/**"
+                expression { image_id = sh (script: "docker images -q ${IMAGEREPO}/${BE_IMAGETAG}", returnStdout: true).trim()
+                             if (image_id.isEmpty()) return true }
+                }
+            }
+          
           steps {
             sh 'mvn -B -DskipTests clean package'
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .'
@@ -17,9 +22,13 @@ pipeline {
         }
 
         stage('frontend') {
-                    when{
-            changeset "FrontEnd/**"
-          }
+          when{
+            anyOf{
+                changeset "FrontEnd/**"
+                expression { image_id = sh (script: "docker images -q ${IMAGEREPO}/${FE_IMAGETAG}", returnStdout: true).trim()
+                             if (image_id.isEmpty()) return true }
+                }
+            }
           steps {
             sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
             sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
