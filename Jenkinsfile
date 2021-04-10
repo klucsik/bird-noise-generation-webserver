@@ -1,46 +1,27 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
-      steps {
-        sh 'mvn -B -DskipTests clean package'
-      }
-    }
 
-    stage('containerize') {
+    stage('build images') {
       parallel {
-        stage('containerize') {
+        stage('backend') {
           steps {
-            sh '''docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .
-'''
-          }
-        }
-
-        stage('containerize FE') {
-          steps {
-            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
-          }
-        }
-
-      }
-    }
-
-    stage('push to registry') {
-      parallel {
-        stage('push to registry') {
-          steps {
+            sh 'mvn -B -DskipTests clean package'
+            sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
           }
         }
 
-        stage('push fe to registry') {
+        stage('frontend') {
           steps {
+            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
             sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
           }
         }
 
       }
     }
+
 
     stage('deploy ') {
       steps {
@@ -66,12 +47,12 @@ cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
                                     ).trim()}"""
       BE_IMAGETAG = """${sh(
                                                                script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                               echo birdnoise_be_$BRANCH_NAME_LC:$GIT_COMMIT",
+                                                               echo birdnoise_be_$BRANCH_NAME_LC",
                                                                returnStdout:true
                                                                ).trim()}"""
         FE_IMAGETAG = """${sh(
                                                                  script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                                 echo birdnoise_fe_$BRANCH_NAME_LC:$GIT_COMMIT",
+                                                                 echo birdnoise_fe_$BRANCH_NAME_LC",
                                                                  returnStdout:true
                                                                  ).trim()}"""
           IMAGEREPO = 'klucsik.duckdns.org:5000'
