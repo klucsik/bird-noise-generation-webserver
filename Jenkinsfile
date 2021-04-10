@@ -6,7 +6,11 @@ pipeline {
       parallel {
         stage('backend') {
           when{
-            changeset "src/main/**"
+            anyOf{
+                changeset "src/main/**",
+                expression { env.KUBECTL_NS == null }
+                }
+            }
           }
           steps {
             sh 'mvn -B -DskipTests clean package'
@@ -62,6 +66,11 @@ cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
         FE_IMAGETAG = """${sh(
                                                                  script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
                                                                  echo birdnoise_fe_$BRANCH_NAME_LC",
+                                                                 returnStdout:true
+                                                                 ).trim()}"""
+        KUBECTL_NS = """${sh(
+                                                                 script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                                 microk8s kubectl get $BRANCHNAME_LC --ignore-not-found",
                                                                  returnStdout:true
                                                                  ).trim()}"""
           IMAGEREPO = 'klucsik.duckdns.org:5000'
