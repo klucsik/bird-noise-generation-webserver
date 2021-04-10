@@ -70,7 +70,7 @@ cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
                                                                  ).trim()}"""
         KUBECTL_NS = """${sh(
                                                                  script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                                 microk8s kubectl get $BRANCHNAME_LC --ignore-not-found",
+                                                                 microk8s kubectl get ns $BRANCH_NAME_LC --ignore-not-found",
                                                                  returnStdout:true
                                                                  ).trim()}"""
           IMAGEREPO = 'klucsik.duckdns.org:5000'
