@@ -7,7 +7,7 @@ pipeline {
         stage('backend') {
           when{
             anyOf{
-                changeset "src/main/**",
+                changeset "src/main/**"
                 expression { env.KUBECTL_NS == null }
                 }
             }
