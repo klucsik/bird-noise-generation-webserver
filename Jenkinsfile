@@ -8,7 +8,7 @@ pipeline {
           when{
             anyOf{
                 changeset "src/main/**"
-                expression { env.KUBECTL_NS == null }
+                expression { env.KUBECTL_NS == "" }
                 }
             }
           
