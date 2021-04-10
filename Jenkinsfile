@@ -11,7 +11,7 @@ pipeline {
                 expression { env.KUBECTL_NS == null }
                 }
             }
-          }
+          
           steps {
             sh 'mvn -B -DskipTests clean package'
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .'
