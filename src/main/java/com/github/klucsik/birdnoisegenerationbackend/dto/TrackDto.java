@@ -10,4 +10,10 @@ public class TrackDto {
     private Integer trackNumber;
     private String name;
     private Integer length;
+
+   public TrackDto(Integer trackNumber,String name,Integer length){
+        this.trackNumber=trackNumber;
+        this.name=name;
+        this.length=length;
+    }
 }

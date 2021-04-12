@@ -12,4 +12,10 @@ public class PlayUnitDto {
     private Integer minPause;
     private Integer maxPause;
     private List<TrackDto> trackList;
+
+    public PlayUnitDto(Integer minPause,Integer maxPause,List<TrackDto> trackList){
+        this.minPause=minPause;
+        this.maxPause=maxPause;
+        this.trackList=trackList;
+    }
 }
