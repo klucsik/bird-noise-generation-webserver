@@ -1,3 +1,4 @@
+* TECHNICAL FEATURE: Added swagger ui for api documentation
 * FEATURE: PlayParams BE
 * FEATURE: PlayUnit BE
 * FEATURE: Tracks BE 
