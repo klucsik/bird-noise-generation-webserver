@@ -58,6 +58,8 @@ spec:
           env:
             - name: REDEPLOY_FLAG
               value: "BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
+            - name: DB_URL
+              value: birdnoise-svc-db:5432
           livenessProbe:
             httpGet:
               path: /api/actuator/health/liveness
@@ -130,3 +132,46 @@ spec:
   selector:
     type: frontend
     service: birdnoise
+
+---
+#db
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birdnoise-db
+  namespace: BRANCHNAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: database
+      service: birdnoise
+  template:
+    metadata:
+      labels:
+        type: database
+        service: birdnoise
+    spec:
+      containers:
+        - name: database
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "mysecretpassword"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: birdnoise-svc-db
+  namespace: BRANCHNAME
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    type: database
+    service: birdnoise
+
+---
