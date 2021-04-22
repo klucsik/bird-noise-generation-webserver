@@ -60,6 +60,27 @@ spec:
               value: "BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
             - name: DB_URL
               value: birdnoise-svc-db:5432
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf  # name of configMap
+                  key: host
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: name
+            - name: POSTGRES_USER  # Setting Database username from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials # Secret Name
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD # Setting Database password from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_password
+
           livenessProbe:
             httpGet:
               path: /api/actuator/health/liveness
@@ -135,6 +156,7 @@ spec:
 
 ---
 #db
+#TODO: What if we would use only one db pod for all the instances with different db names?
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -153,13 +175,39 @@ spec:
         service: birdnoise
     spec:
       containers:
-        - name: database
-          image: postgres
+        - name: postgres
+          image: postgres:10.4
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
           env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_user
             - name: POSTGRES_PASSWORD
-              value: "mysecretpassword"
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_password
+            - name: POSTGRES_DB # Setting Database Name from a 'ConfigMap'
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: name
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb #TODO vhange this to NFS
+          emptyDir: {}
+
+
 
 ---
+
+
 
 apiVersion: v1
 kind: Service
@@ -175,3 +223,26 @@ spec:
     service: birdnoise
 
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-conf
+  namespace: BRANCHNAME
+  labels:
+    type: database
+    service: birdnoise
+data:
+  host: birdnoise-svc-db #The db service name
+  name: birdnoisedb
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-credentials
+  namespace: BRANCHNAME
+data:
+  postgres_user: cG9zdGdyZXM= #TODO aurogenerate secrests with https://github.com/mittwald/kubernetes-secret-generator
+  postgres_password: cG9zdGdyZXM=
+
