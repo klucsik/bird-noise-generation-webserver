@@ -1,47 +1,2320 @@
 {
 	"info": {
-		"_postman_id": "33e1c3ad-b335-4470-a40b-de6cc83c93fc",
+		"_postman_id": "5378cd69-ffdd-4a5d-b99b-ab66c1c20db0",
 		"name": "birdnoise-playUnits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "create",
+			"name": "U_TRLIST_1",
+			"item": [
+				{
+					"name": "create_different_tracks_1_26",
+					"item": [
+						{
+							"name": "create track_1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_1\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 11,\n    \"name\": \"playUnit_testhez_track1\",\n    \"length\": 120\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_2\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 12,\n    \"name\": \"playUnit_testhez_track2\",\n    \"length\": 666\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_3\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 13,\n    \"name\": \"playUnit_testhez_track3\",\n    \"length\": 1266\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_4\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 14,\n    \"name\": \"playUnit_testhez_track4\",\n    \"length\": 1266\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_5",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_5\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 15,\n    \"name\": \"playUnit_testhez_track5\",\n    \"length\": 1266\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_6",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_6\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 16,\n    \"name\": \"playUnit_testhez_track6\",\n    \"length\": 66\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_7",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_7\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 17,\n    \"name\": \"playUnit_testhez_track7\",\n    \"length\": 16\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_8",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_8\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 18,\n    \"name\": \"playUnit_testhez_track8\",\n    \"length\": 126\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_9",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_9\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 19,\n    \"name\": \"playUnit_testhez_track9\",\n    \"length\": 34\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_10",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_10\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 20,\n    \"name\": \"playUnit_testhez_track10\",\n    \"length\": 261\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_11",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_11\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 21,\n    \"name\": \"playUnit_testhez_track11\",\n    \"length\": 1266\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_12",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_12\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 22,\n    \"name\": \"playUnit_testhez_track12\",\n    \"length\": 1266\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_13",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_13\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 23,\n    \"name\": \"playUnit_testhez_track13\",\n    \"length\": 55\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_14",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_14\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 24,\n    \"name\": \"playUnit_testhez_track14\",\n    \"length\": 13\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_15",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_15\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 25,\n    \"name\": \"playUnit_testhez_track15\",\n    \"length\": 87\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_16",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_16\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 26,\n    \"name\": \"playUnit_testhez_track16\",\n    \"length\": 44\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_17",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_17\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 27,\n    \"name\": \"playUnit_testhez_track17\",\n    \"length\": 12\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_18",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_18\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 28,\n    \"name\": \"playUnit_testhez_track18\",\n    \"length\": 94\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_19",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_19\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 29,\n    \"name\": \"playUnit_testhez_track19\",\n    \"length\": 294\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_20",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_20\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 30,\n    \"name\": \"playUnit_testhez_track20\",\n    \"length\": 319\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_21",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_21\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 31,\n    \"name\": \"playUnit_testhez_track21\",\n    \"length\": 446\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_22",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_22\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 32,\n    \"name\": \"playUnit_testhez_track22\",\n    \"length\": 636\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_23",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_23\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 33,\n    \"name\": \"playUnit_testhez_track23\",\n    \"length\": 62\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_24",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_24\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 34,\n    \"name\": \"playUnit_testhez_track24\",\n    \"length\": 523\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_25",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_25\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 35,\n    \"name\": \"playUnit_testhez_track25\",\n    \"length\": 45\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_26",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_26\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 36,\n    \"name\": \"playUnit_testhez_track26\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "createplayUnits with 3 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(3);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createplayUnits with 0 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.greaterThan(0);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel ami nem lehet nagyonb\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createplayUnits with 1 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(1);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}}        \n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createplayUnits with 25 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(25);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}},\n        {\"id\":{{letrehozott_track_4}}},\n        {\"id\":{{letrehozott_track_5}}},\n        {\"id\":{{letrehozott_track_6}}},\n        {\"id\":{{letrehozott_track_7}}},\n        {\"id\":{{letrehozott_track_8}}},\n        {\"id\":{{letrehozott_track_9}}},\n        {\"id\":{{letrehozott_track_10}}},\n        {\"id\":{{letrehozott_track_11}}},\n        {\"id\":{{letrehozott_track_12}}},\n        {\"id\":{{letrehozott_track_13}}},\n        {\"id\":{{letrehozott_track_14}}},\n        {\"id\":{{letrehozott_track_15}}},\n        {\"id\":{{letrehozott_track_16}}},\n        {\"id\":{{letrehozott_track_17}}},\n        {\"id\":{{letrehozott_track_18}}},\n        {\"id\":{{letrehozott_track_19}}},\n        {\"id\":{{letrehozott_track_20}}},\n        {\"id\":{{letrehozott_track_21}}},\n        {\"id\":{{letrehozott_track_22}}},\n        {\"id\":{{letrehozott_track_23}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createplayUnits with 26 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(25);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":2,\n    \"maxPause\": 150,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}},\n        {\"id\":{{letrehozott_track_4}}},\n        {\"id\":{{letrehozott_track_5}}},\n        {\"id\":{{letrehozott_track_6}}},\n        {\"id\":{{letrehozott_track_7}}},\n        {\"id\":{{letrehozott_track_8}}},\n        {\"id\":{{letrehozott_track_9}}},\n        {\"id\":{{letrehozott_track_10}}},\n        {\"id\":{{letrehozott_track_11}}},\n        {\"id\":{{letrehozott_track_12}}},\n        {\"id\":{{letrehozott_track_13}}},\n        {\"id\":{{letrehozott_track_14}}},\n        {\"id\":{{letrehozott_track_15}}},\n        {\"id\":{{letrehozott_track_16}}},\n        {\"id\":{{letrehozott_track_17}}},\n        {\"id\":{{letrehozott_track_18}}},\n        {\"id\":{{letrehozott_track_19}}},\n        {\"id\":{{letrehozott_track_20}}},\n        {\"id\":{{letrehozott_track_21}}},\n        {\"id\":{{letrehozott_track_22}}},\n        {\"id\":{{letrehozott_track_23}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Boundary value analysis\nA playUnit 1-25 számú track-et tartalmazhat.\nHozzunk létre 26 tracket.\nTeszt: 0, 1, 25. 26 track behívására.",
 			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
 				{
 					"listen": "test",
 					"script": {
+						"type": "text/javascript",
 						"exec": [
 							""
-						],
-						"type": "text/javascript"
+						]
 					}
+				}
+			]
+		},
+		{
+			"name": "U_TRLIST_2",
+			"item": [
+				{
+					"name": "create & delete tracks",
+					"item": [
+						{
+							"name": "create track_1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_1\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 11,\n    \"name\": \"playUnit_testhez_track1\",\n    \"length\": 120\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_25",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_25\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 35,\n    \"name\": \"playUnit_testhez_track25\",\n    \"length\": 45\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_26",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_26\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 36,\n    \"name\": \"playUnit_testhez_track26\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_27",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_27\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 37,\n    \"name\": \"playUnit_testhez_track27\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete track_27",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/{{letrehozott_track_27}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"{{letrehozott_track_27}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create playUnits with 1  unreacheble track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_27}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playUnits with 3 real and 1  unreacheble track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}},\n        {\"id\":{{letrehozott_track_27}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playUnits with 3 real tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(3);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
 				}
 			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":1},\n        {\"id\":2}\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"description": "Annak ellenőrzése, hogy nem létező track-kelnem lehet létrehozni playUnit-ot. \nLétrehozunk 4 tracket\nUtolsót töröljük, hogy biztosan tudjuk, hogy nem létező. \n1. próbáljunk egyetlen nem létező track-kel playUnit-ot létrehozni.\n2. A playUnit-ba próbáljuk behívni mind a 4 track-et, egy törölve van 3 létezik.\n\nExpected result:\n404 Not Found"
+		},
+		{
+			"name": "U_TRLIST_3",
+			"item": [
+				{
+					"name": "create tracks",
+					"item": [
+						{
+							"name": "create track_1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_1\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 11,\n    \"name\": \"playUnit_testhez_track1\",\n    \"length\": 120\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_24",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_24\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 34,\n    \"name\": \"playUnit_testhez_track24\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_25",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_25\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 35,\n    \"name\": \"playUnit_testhez_track25\",\n    \"length\": 45\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_26",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_26\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 36,\n    \"name\": \"playUnit_testhez_track26\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/playUnit/save",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"playUnit",
-						"save"
 					]
+				},
+				{
+					"name": "create playUnits with 4 tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(4);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_playUnit_1\",jsonData.id)\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track_24",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_24}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_24}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByID Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"var trackNo = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
+									"    pm.expect(trackNo.length).to.equal(4);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/{{letrehozott_playUnit_1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"{{letrehozott_playUnit_1}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"description": "Annak ellenőrzése, hogy playUnit-ban bevont track nem törölhető."
 		},
 		{
 			"name": "update",
@@ -71,7 +2344,135 @@
 			"response": []
 		},
 		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const createRequest1 = { \r",
+							"    url: 'http://dev.klucsik.duckdns.org/api/track/save', \r",
+							"    method: 'post', \r",
+							"    header: {\r",
+							"        'content-type' : 'application/json' \r",
+							"    },\r",
+							"    body: { \r",
+							"        mode : 'raw', \r",
+							"        raw : JSON.stringify({ \r",
+							"            \"id\": 12,\r",
+							"            \"trackNumber\": 1,\r",
+							"            \"name\": \"PM-test_unit_1\",\r",
+							"            \"length\": 666\r",
+							"\r",
+							"            }) \r",
+							"}};\r",
+							"\r",
+							"pm.sendRequest(createRequest1, function (err, res) {\r",
+							"    console.log(res);\r",
+							"}); \r",
+							"\r",
+							"\r",
+							"const createRequest2 = { \r",
+							"    url: 'http://dev.klucsik.duckdns.org/api/track/save', \r",
+							"    method: 'post', \r",
+							"    header: { \r",
+							"        'content-type' : 'application/json' \r",
+							"    }, \r",
+							"    body: { \r",
+							"        mode : 'raw', \r",
+							"        raw : JSON.stringify({ \r",
+							"            \"id\": 13,\r",
+							"            \"trackNumber\": 1,\r",
+							"            \"name\": \"PM-test_unit_1\",\r",
+							"            \"length\": 666\r",
+							"\r",
+							"            }) \r",
+							"}};\r",
+							"\r",
+							"pm.sendRequest(createRequest2, function (err, res) {\r",
+							"    console.log(res);\r",
+							"}); \r",
+							"\r",
+							"const createRequest3 = { \r",
+							"    url: 'http://dev.klucsik.duckdns.org/api/track/save', \r",
+							"    method: 'post', \r",
+							"    header: { \r",
+							"        'content-type' : 'application/json' \r",
+							"    }, \r",
+							"    body: { \r",
+							"        mode : 'raw', \r",
+							"        raw : JSON.stringify({ \r",
+							"            \"id\": 14,\r",
+							"            \"trackNumber\": 1,\r",
+							"            \"name\": \"PM-test_unit_1\",\r",
+							"            \"length\": 666\r",
+							"\r",
+							"            }) \r",
+							"}};\r",
+							" \r",
+							"pm.sendRequest(createRequest3, function (err, res) {\r",
+							"    console.log(res);\r",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":12},\n        {\"id\":13},\n        {\"id\":14}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/playUnit/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"playUnit",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -88,13 +2489,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseurl}}/playUnit/2",
+					"raw": "{{baseurl}}/playUnit/15",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
 						"playUnit",
-						"2"
+						"15"
 					]
 				}
 			},
@@ -137,7 +2538,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"raw": "{\n    \"id\": 10,\n    \"trackNumber\": 10,\n    \"name\": \"pre scriptben létrehozott név - June 1st 2021, 10:25:10 pm\",\n    \"length\": 666\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -145,13 +2546,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseurl}}/playUnit/2",
+					"raw": "{{baseurl}}/playUnit/15",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
 						"playUnit",
-						"2"
+						"15"
 					]
 				}
 			},
@@ -176,6 +2577,136 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": ""
+		},
+		{
+			"key": "sajat_nev",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track2",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_1",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_2",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_3",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_10",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_23",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_4",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_5",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_6",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_7",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_8",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_9",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_11",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_12",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_13",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_14",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_15",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_16",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_17",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_18",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_19",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_20",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_21",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_22",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_24",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_25",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_26",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_27",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_playUnit_1",
+			"value": ""
 		}
 	]
 }
