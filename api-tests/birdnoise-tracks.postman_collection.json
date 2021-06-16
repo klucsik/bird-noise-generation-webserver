@@ -1,161 +1,1807 @@
 {
 	"info": {
-		"_postman_id": "df6d9793-947d-4eb9-91fe-321f2c3c20ea",
+		"_postman_id": "d07ce980-e4b0-4077-bc3b-7a53a6b79590",
 		"name": "birdnoise-tracks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "create",
-			"event": [
+			"name": "T_NUM_1",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
+					"name": "create track with trackNumber.value=0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_1\",jsonData.id)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":0,\n    \"name\":\"trackNumber=0\",\n    \"length\": 123\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with trackNumber.value=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"trackNumber=1\");\r",
+									"    pm.expect(jsonData.length).to.eql(234);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_2\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":1,\n    \"name\":\"trackNumber=1\",\n    \"length\": 234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with trackNumber.value=255",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"trackNumber=255\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":255,\n    \"name\":\"trackNumber=255\",\n    \"length\": 125\n}\n\nvar jsonData = pm.response.json();\npm.collectionVariables.set(\"letrehozott_track_T_NUM_1_3\",jsonData.id)",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with trackNumber.value=256",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_4\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":256,\n    \"name\":\"trackNumber=256\",\n    \"length\": 666\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trackNumber.value=0 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NUM_1_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trackNumber.value=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_2}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NUM_1_2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trackNumber.value=255 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_3}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NUM_1_3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trackNumber.value=256 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_4}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NUM_1_4}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"trackNumber\":4,\n    \"name\":\"PM-test created\",\n    \"length\": 666\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/track/save",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"track",
-						"save"
-					]
-				}
-			},
-			"response": []
+			"description": "Annak tesztelése, hogy a trackek-ben a trackNumber értéke 1-255 lehet.\n\nhatárérték tesztelés: 0, 1, 255, 256\n\nTeszt után töröljük a létrehozott trackek-et, hogy ne okozzanak később gondot."
 		},
 		{
-			"name": "update",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":2,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "T_NUM_2",
+			"item": [
+				{
+					"name": "create track with string:letters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/track/save",
-					"host": [
-						"{{baseurl}}"
 					],
-					"path": [
-						"track",
-						"save"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":\"The\",\n    \"name\":\"trackNumber=string_letter\",\n    \"length\": 1234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with string:extra character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":\"#&@\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\": 1234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with string:stringify number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":\"122\",\n    \"name\":\"trackNumber=string_stringify number\",\n    \"length\": 111\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"description": "Annak ellenőrzése, hogy a trackNumver csak számot fogad el értékként.\n\nVizsgáljuk:\ntrackNUmber=betű\ntrackNUmber=extra karakter\ntrackNUmber=stringként megadott szám"
 		},
 		{
-			"name": "getByID",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "T_NUM_3",
+			"item": [
+				{
+					"name": "create track with trackNumber=200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"trackNumber=255\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(255);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_3_1\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/track/2",
-					"host": [
-						"{{baseurl}}"
 					],
-					"path": [
-						"track",
-						"2"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":200,\n    \"name\":\"trackNumber=200\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track again with trackNumber=200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});  \r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_3_2\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":200,\n    \"name\":\"trackNumber=200 and it is not work\",\n    \"length\": 125\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trackNumber=200 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_3_1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NUM_3_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trackNumber=200_2 track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_3_2}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NUM_3_2}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"description": "Annak ellenőrzése, hogy nem lehet 2x ugyanolyan trackNumber-ú track-et létrehozni\n\nTeszt végrehajtása után töröljük a létrehozott track-(ek)-et, hogy ne okozzanak később gondot."
 		},
 		{
-			"name": "getPage",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "T_NAME_1",
+			"item": [
+				{
+					"name": "create track with name.length=0character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_1\",jsonData.id)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/track/page",
-					"host": [
-						"{{baseurl}}"
 					],
-					"path": [
-						"track",
-						"page"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":201,\n    \"name\":\"\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name.length=1character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"a\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(202);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_2\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":202,\n    \"name\":\"a\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name.length=255character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"aelejehilkjfghbiuasrhbaakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgrtzuiakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgkhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgvege\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(203);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_3\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":203,\n    \"name\":\"elejehilkjfghbiuasrhbaakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgrtzuiakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgkhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgvege\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name.length=256character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_4\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":204,\n    \"name\":\"elejehilkjfghbqiuasrhbaakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgrtzuiakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgkhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgvege\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track name.length=0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_1_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track name.length=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_2}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_1_2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track name.length=255",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_3}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_1_3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track name.length=256",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_4}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_1_4}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"description": "Track név hosszának ellenőrzése határérték elem zéssel.\nÉrtékek: 0, 1, 255, 256\n\nA tesztek után a létrehozott trackeket töröljük, hogy később ne okozzanak gondot."
 		},
 		{
-			"name": "delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "T_NAME_2",
+			"item": [
+				{
+					"name": "create track with name:  Unique name for track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Unique name for track\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(205);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_2_1\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/track/2",
-					"host": [
-						"{{baseurl}}"
 					],
-					"path": [
-						"track",
-						"2"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":205,\n    \"name\":\"Unique name for track\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track again  with name:  Unique name for track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_2_2\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"Unique name for track\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track with name:  Unique name for track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_2_1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_2_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track with name:  Unique name for track created again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_2_2}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_2_2}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"description": "Annak ellenőrzése, hogy a track name UNIQUE.\n\nA létrehozott trackeket töröljük, hogy később ne okozzanak gondot."
+		},
+		{
+			"name": "T_NAME_3",
+			"item": [
+				{
+					"name": "create track with name: with special characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"<>#&@{}<äđ[]$ßŁłÄÍ×÷;>\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(206);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_1\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"<>#&@{}<äđ[]$ßŁłÄÍ×÷;>\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: with space included",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"title with space included\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(207);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_2\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":207,\n    \"name\":\"title with space included\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: with lower- and uppercase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Title with lowercase and UPPERCASE\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(208);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_3\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":208,\n    \"name\":\"Title with lowercase and UPPERCASE\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: with numbers only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"0123456789\");\r",
+									"    pm.expect(jsonData.length).to.eql(125);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(209);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_4\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"0123456789\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track with name:  with special characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_3_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track with name:  with space included",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_2}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_3_2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track with name:  with lower and uppercase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_3}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_3_3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete track with name:  with numbers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_4}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track_T_NAME_3_4}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Annak tesztelése, hogy milyen karakterek adhatók meg name-ént.\n\n1. speciális karakterek\n2. space included\n3. uppercase and lowercase\n4. numbers\n\n\nA létrehozott trackek a tesztvégén törlésre kerülnek, hogy később, ne okozzanak gondot."
+		}
+	],
+	"variable": [
+		{
+			"key": "sajat_nev",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track",
+			"value": ""
 		}
 	]
 }
