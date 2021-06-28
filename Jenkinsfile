@@ -67,6 +67,10 @@ cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
         sh 'sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
+        sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
+        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
+        sh 'newman run api-tests/birdnoise-playParams.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
+        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
       }
     }
 
