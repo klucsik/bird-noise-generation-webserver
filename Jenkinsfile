@@ -47,10 +47,11 @@ pipeline {
 
     stage('deploy ') {
       steps {
-        sh '''sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/birdnoise_deployment.yaml
-sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/birdnoise_deployment.yaml
-sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/birdnoise_deployment.yaml
-cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
+        sh '''
+        cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
+        sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/${BRANCH_NAME_LC}_deployment.yaml
+        sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_deployment.yaml
+        sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_deployment.yaml
 '''
         sh 'cat k8s/${BRANCH_NAME_LC}_deployment.yaml'
         sh 'kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml'
