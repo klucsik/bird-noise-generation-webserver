@@ -12,6 +12,7 @@ public class PlayParam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Integer vol; //volume
     @ManyToMany
     private Map<Integer,PlayUnit> playUnits;
 }

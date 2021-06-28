@@ -10,7 +10,7 @@ import java.util.Map;
 public class PlayParamDto {
     private Long id;
     private String name;
-    private Map<Integer,PlayUnitDto> playUnits;
-
+    private Integer vol; //volume
+    private Map<Integer, PlayUnitDto> playUnits; //hour-playUnit pairs
 
 }

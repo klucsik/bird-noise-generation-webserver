@@ -67,9 +67,8 @@ public class PlayParamService {
         //When
         Map<Integer, PlayUnitDto> playUnits = new HashMap<>();
         playUnits.put(1, playUnitDto);
-        PlayParamDto playParamDto = new PlayParamDto(-1L, "Teszt PlayParams 1", playUnits);
-        PlayParamDto savedPlayParamDto = save(playParamDto);
-        return savedPlayParamDto;
+        PlayParamDto playParamDto = new PlayParamDto(-1L, "Teszt PlayParams 1", 11,playUnits);
+        return save(playParamDto);
     }
 
 }

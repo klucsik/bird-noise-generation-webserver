@@ -27,7 +27,7 @@ class PlayParamServiceTest {
         //When
         Map<Integer,PlayUnitDto> playUnits = new HashMap<>();
         playUnits.put(1,playUnitDto);
-        PlayParamDto playParamDto = new PlayParamDto(-1L,"Teszt PlayParams 1",playUnits);
+        PlayParamDto playParamDto = new PlayParamDto(-1L,"Teszt PlayParams 1",11, playUnits);
        PlayParamDto savedPlayParamDto = playParamService.save(playParamDto);
         //Then
        assert savedPlayParamDto.getId() > 0;
