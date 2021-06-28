@@ -53,8 +53,7 @@ sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/birdnoise_deployment.y
 cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
 '''
         sh 'cat k8s/${BRANCH_NAME_LC}_deployment.yaml'
-        sh '''kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml
-'''
+        sh 'kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
         sh 'kubectl rollout status deployment/birdnoise-fe --namespace=${BRANCH_NAME_LC}'
         sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that Im deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.klucsik.duckdns.org "}\'
@@ -64,13 +63,22 @@ cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
 
     stage('api-tests') {
       steps {
-        sh 'sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
+        sh 'cp k8s/birdnoise_deployment.yaml k8s/birdnoise_test_deployment.yaml'
+        sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" k8s/birdnoise_test_deployment.yaml'
+        sh 'cat k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
+        sh 'kubectl apply -f k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
+        sh 'kubectl rollout status deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
+        sh 'kubectl rollout status deployment/birdnoise-fe --namespace=test-${BRANCH_NAME_LC}'
+
+        sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
-        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
+        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
         sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
-        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
+        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
         sh 'newman run api-tests/birdnoise-playParams.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
-        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
+        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
+
+        sh 'kubectl delete ns test-${BRANCH_NAME_LC}'
       }
     }
 
