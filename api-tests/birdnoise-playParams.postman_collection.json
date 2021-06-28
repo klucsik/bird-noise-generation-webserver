@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "35a0a1d7-b0fb-4614-b788-59c00c3dd5e5",
+		"_postman_id": "97e7a5a9-0366-4bf3-8b77-dc15f1d6d7be",
 		"name": "birdnoise-playParams",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,7 +23,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Krumpli\",\n    \"playUnits\":{\n        \"1\":{\"id\":1}\n    }\n        \n    \n}",
+					"raw": "{\n    \"name\":\"Krumpli\",\n    \"vol\":15,\n    \"playUnits\":{\n        \"1\":{\"id\":1}\n    }\n        \n    \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,7 +50,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":1,\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":2},\n        {\"id\":1}\n    ]\n}",
+					"raw": "{\n    \"id\":1,\n    \"vol\":16,\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":2},\n        {\"id\":1}\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,13 +88,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseurl}}/playParam/2",
+					"raw": "{{baseurl}}/playParam/1",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
 						"playParam",
-						"2"
+						"1"
 					]
 				}
 			},
