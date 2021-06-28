@@ -63,8 +63,8 @@ cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
 
     stage('api-tests') {
       steps {
-        sh 'cp k8s/birdnoise_deployment.yaml k8s/birdnoise_test_deployment.yaml'
-        sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" k8s/birdnoise_test_deployment.yaml'
+        sh 'cp k8s/birdnoise_deployment.yaml k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
+        sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
         sh 'cat k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
         sh 'kubectl apply -f k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
