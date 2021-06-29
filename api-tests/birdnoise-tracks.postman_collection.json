@@ -305,7 +305,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":\"The\",\n    \"name\":\"trackNumber=string_letter\",\n    \"length\": 1234\n}",
+							"raw": "{\n    \"trackNumber\":\"The\",\n    \"name\":\"trackNumber=string_letter\",\n    \"length\":1234\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -354,7 +354,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":\"_.,'-\"/*-+=@#{}<>[]/\\\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\": 1234\n}",
+							"raw": "{\n    \"trackNumber\":\"_.,'-\"/*-+=@#{}<>[]/\\\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\":1234\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -403,7 +403,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":\"$€¢£¥₽₩₪฿₫₴₹\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\": 1234\n}",
+							"raw": "{\n    \"trackNumber\":\"$€¢£¥₽₩₪฿₫₴₹\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\":1234\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -453,7 +453,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":\"122\",\n    \"name\":\"trackNumber=string_stringify number\",\n    \"length\": 111\n}",
+							"raw": "{\n    \"trackNumber\":\"122\",\n    \"name\":\"trackNumber=string_stringify number\",\n    \"length\":111\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1860,6 +1860,209 @@
 				}
 			],
 			"description": "A track hosszának ellenörzése határérték elemzéssel. \nValid: 1-1800 sec\n\nEllenőrzés: -1, 0, 1, 1800, 1801"
+		},
+		{
+			"name": "T_LEN_2",
+			"item": [
+				{
+					"name": "create track length with string:letters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":21,\n    \"name\":\"track length=string_letter\",\n    \"length\":\"The\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track length  with string:extra character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":22,\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\":\"_.,'-/*-+=@#{}<>[]/\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track length with string:currencies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":23,\n    \"name\":\"track length=string_extra character\",\n    \"length\":\"$€¢£¥₽₩₪฿₫₴₹\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track length with string:stringify number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":24,\n    \"name\":\"track length=string_stringify number\",\n    \"length\":\"11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Annak ellenőrzése, hogy nem lehte megadni csak számot a length -nél."
 		},
 		{
 			"name": "alap folyamat",
