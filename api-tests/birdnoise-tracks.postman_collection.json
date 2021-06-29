@@ -285,8 +285,7 @@
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									""
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -335,8 +334,7 @@
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									""
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -356,7 +354,56 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":\"#&@\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\": 1234\n}",
+							"raw": "{\n    \"trackNumber\":\"_.,'-\"/*-+=@#{}<>[]/\\\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\": 1234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with string:currencies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":\"$€¢£¥₽₩₪฿₫₴₹\",\n    \"name\":\"trackNumber=string_extra character\",\n    \"length\": 1234\n}",
 							"options": {
 								"raw": {
 									"language": "json"
