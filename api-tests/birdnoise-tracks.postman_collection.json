@@ -9,20 +9,66 @@
 			"name": "T_NUM_1",
 			"item": [
 				{
+					"name": "create track with trackNumber.value=-1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":-1,\n    \"name\":\"trackNumber=-1\",\n    \"length\": 123\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create track with trackNumber.value=0",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 500\", function () {\r",
-									"    pm.response.to.have.status(500);\r",
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
 									"});\r",
 									"\r",
-									"\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_1\",jsonData.id)\r",
 									""
 								],
 								"type": "text/javascript"
@@ -78,12 +124,8 @@
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"trackNumber=1\");\r",
-									"    pm.expect(jsonData.length).to.eql(234);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(1);\r",
-									"});\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_2\",jsonData.id)"
+									"   });\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -138,8 +180,6 @@
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"trackNumber=255\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(200);\r",
 									"});\r",
 									""
 								],
@@ -161,7 +201,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":255,\n    \"name\":\"trackNumber=255\",\n    \"length\": 125\n}\n\nvar jsonData = pm.response.json();\npm.collectionVariables.set(\"letrehozott_track_T_NUM_1_3\",jsonData.id)",
+							"raw": "{\n    \"trackNumber\":255,\n    \"name\":\"trackNumber=255\",\n    \"length\": 125\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -188,13 +228,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 500\", function () {\r",
-									"    pm.response.to.have.status(500);\r",
-									"});\r",
-									"\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_4\",jsonData.id)"
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -233,169 +269,9 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "delete trackNumber.value=0 track",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_1}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NUM_1_1}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete trackNumber.value=1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_2}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NUM_1_2}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete trackNumber.value=255 track",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_3}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NUM_1_3}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete trackNumber.value=256 track",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NUM_1_4}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NUM_1_4}}"
-							]
-						}
-					},
-					"response": []
 				}
 			],
-			"description": "Annak tesztelése, hogy a trackek-ben a trackNumber értéke 1-255 lehet.\n\nhatárérték tesztelés: 0, 1, 255, 256\n\nTeszt után töröljük a létrehozott trackek-et, hogy ne okozzanak később gondot."
+			"description": "Annak tesztelése, hogy a trackek-ben a trackNumber értéke 1-255 lehet.\n\nhatárérték tesztelés: -1, 0, 1, 255, 256"
 		},
 		{
 			"name": "T_NUM_2",
@@ -2198,6 +2074,10 @@
 		},
 		{
 			"key": "letrehozott_track",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_T_NUM_1_1",
 			"value": ""
 		}
 	]
