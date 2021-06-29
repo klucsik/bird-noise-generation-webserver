@@ -2146,7 +2146,7 @@
 									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (4)\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_playUnit_1\",jsonData.id)\r",
+									"pm.collectionVariables.set(\"letrehozott_playUnit_id_1\",jsonData.id)\r",
 									"\r",
 									"\r",
 									"\r",
@@ -2259,13 +2259,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/playUnit/{{letrehozott_playUnit_1}}",
+							"raw": "{{baseurl}}/playUnit/{{letrehozott_playUnit_id_1}}",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"playUnit",
-								"{{letrehozott_playUnit_1}}"
+								"{{letrehozott_playUnit_id_1}}"
 							]
 						}
 					},
@@ -2273,6 +2273,304 @@
 				}
 			],
 			"description": "Annak ellenőrzése, hogy playUnit-ban szereplő track nem törölhető.\n\nLétrehozunk Trackeket. Csinálunk egy 4-es PlayUnitot. Megpróbáljuk törölni az egyik tracket. Ellenőrizük, hogy  4 elemű maradt a PlayUnit."
+		},
+		{
+			"name": "U_TRLIST_4",
+			"item": [
+				{
+					"name": "create tracks",
+					"item": [
+						{
+							"name": "create track_47",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_47\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 47,\n    \"name\": \"playUnit_testhez_track_47\",\n    \"length\": 455\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_48",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_48\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 48,\n    \"name\": \"playUnit_testhez_track_48\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_49",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_49\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 49,\n    \"name\": \"playUnit_testhez_track_49\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create playUnits with same tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_47}}},\n        {\"id\":{{letrehozott_track_47}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playUnits with 3 tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var trackID = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(3);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_playUnit_id_11\",jsonData.id)\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_47}}},\n        {\"id\": {{letrehozott_track_48}}},\n        {\"id\": {{letrehozott_track_49}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update playUnits with 2 same tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
+									"});\r",
+									"\r",
+									"var trackID = pm.response.json().trackList; \r",
+									"\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(3);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"\r",
+									"//lehet így megkérdezni, hogy maradt-e a három track ami eredetileg volt? "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_11}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n         {\"id\":{{letrehozott_track_48}}},\n        {\"id\":{{letrehozott_track_48}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "update",
@@ -2656,6 +2954,26 @@
 		},
 		{
 			"key": "letrehozott_playUnit_1",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_47",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_48",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_playUnit_id_1",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_playUnit_id_11",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_49",
 			"value": ""
 		}
 	]
