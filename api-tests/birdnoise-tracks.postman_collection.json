@@ -930,7 +930,7 @@
 			"name": "T_NAME_3",
 			"item": [
 				{
-					"name": "create track with name: with special characters",
+					"name": "create track with name: hungarian characters",
 					"event": [
 						{
 							"listen": "test",
@@ -943,13 +943,9 @@
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.name).to.eql(\"<>#&@{}<äđ[]$ßŁłÄÍ×÷;>\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(206);\r",
+									"    pm.expect(jsonData.name).to.eql(\"árvíztűrőtükörfúrógép\");\r",
 									"});\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_1\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -969,7 +965,175 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"<>#&@{}<äđ[]$ßŁłÄÍ×÷;>\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"árvíztűrőtükörfúrógép\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: hungarian upper case characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"ÁRVÍZTŰRŐTÜKÖRFÚRÓGÉP\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"ÁRVÍZTŰRŐTÜKÖRFÚRÓGÉP\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: with special characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"_.,'-*-+=@#{}<>[]/\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"_.,'-*-+=@#{}<>[]/\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: with currencies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"$€¢£¥₽₩₪฿₫₴₹\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"$€¢£¥₽₩₪฿₫₴₹\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1000,16 +1164,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"title with space included\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(207);\r",
 									"});\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_2\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1050,6 +1209,106 @@
 					"response": []
 				},
 				{
+					"name": "create track with name: start with space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":207,\n    \"name\":\" titlestartwithspace\",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create track with name: end with space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":207,\n    \"name\":\"titleendwithspace \",\n    \"length\": 125\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create track with name: with lower- and uppercase",
 					"event": [
 						{
@@ -1064,12 +1323,8 @@
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"Title with lowercase and UPPERCASE\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(208);\r",
 									"});\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_3\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1124,12 +1379,8 @@
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"0123456789\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(209);\r",
 									"});\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_3_4\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1170,7 +1421,7 @@
 					"response": []
 				},
 				{
-					"name": "delete track with name:  with special characters",
+					"name": "create track with name: with emojies",
 					"event": [
 						{
 							"listen": "test",
@@ -1178,18 +1429,34 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"☺️🥰😭🎓😁😊😮😀😁😂🤣😍\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"☺️🥰😭🎓😁😊😮😀😁😂🤣😍\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1197,20 +1464,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_1}}",
+							"raw": "{{baseurl}}/track/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"track",
-								"{{letrehozott_track_T_NAME_3_1}}"
+								"save"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete track with name:  with space included",
+					"name": "create track with name: with Czech characters",
 					"event": [
 						{
 							"listen": "test",
@@ -1218,18 +1485,34 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"ýžčáďéěíňóřšťúůýž€áčďéěíňóřšťúů\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"ýžčáďéěíňóřšťúůýž€áčďéěíňóřšťúů\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1237,20 +1520,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_2}}",
+							"raw": "{{baseurl}}/track/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"track",
-								"{{letrehozott_track_T_NAME_3_2}}"
+								"save"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete track with name:  with lower and uppercase",
+					"name": "create track with name: with Geraman characters",
 					"event": [
 						{
 							"listen": "test",
@@ -1258,18 +1541,34 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"ÄäÖöÜüẞß\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"ÄäÖöÜüẞß\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1277,20 +1576,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_3}}",
+							"raw": "{{baseurl}}/track/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"track",
-								"{{letrehozott_track_T_NAME_3_3}}"
+								"save"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete track with name:  with numbers",
+					"name": "create track with name: with Franch characters",
 					"event": [
 						{
 							"listen": "test",
@@ -1298,18 +1597,34 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"ùûüÿàâæçéèêëïîôœÙÛÜŸÀÂÆÇÉÈÊËÏÎÔŒ\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"ùûüÿàâæçéèêëïîôœÙÛÜŸÀÂÆÇÉÈÊËÏÎÔŒ\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1317,20 +1632,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_3_4}}",
+							"raw": "{{baseurl}}/track/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"track",
-								"{{letrehozott_track_T_NAME_3_4}}"
+								"save"
 							]
 						}
 					},
 					"response": []
 				}
 			],
-			"description": "Annak tesztelése, hogy milyen karakterek adhatók meg name-ént.\n\n1. speciális karakterek\n2. space included\n3. uppercase and lowercase\n4. numbers\n\n\nA létrehozott trackek a tesztvégén törlésre kerülnek, hogy később, ne okozzanak gondot."
+			"description": "Annak tesztelése, hogy milyen karakterek adhatók meg name-ént.\n\n1. ékezetes betűk\n2. speciális karakterek\n3. currencies\n4. space included\n5. start with space\n6. end with space\n7. uppercase and lowercase\n8. numbers\n9. emojies\n10. Czech characters\n11. German Characters\n12. France characters"
 		},
 		{
 			"name": "alap folyamat",
@@ -1791,6 +2106,10 @@
 		},
 		{
 			"key": "letrehozott_track_T_NAME_1_3",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_T_NAME_3_1",
 			"value": ""
 		}
 	]
