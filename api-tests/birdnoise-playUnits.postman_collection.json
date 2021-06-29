@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5378cd69-ffdd-4a5d-b99b-ab66c1c20db0",
+		"_postman_id": "98cf30a1-d42a-4698-95cb-2cfae093c9bc",
 		"name": "birdnoise-playUnits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1298,14 +1298,10 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"var trackID = pm.response.json().trackList; \r",
 									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
-									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.equal(3);\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(3);\r",
 									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
 									"\r",
 									""
@@ -1346,19 +1342,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
-									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
-									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.greaterThan(0);\r",
-									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel ami nem lehet nagyonb\r",
 									"\r",
 									""
 								],
@@ -1402,15 +1389,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"var trackID = pm.response.json().trackList; \r",
 									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
-									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.equal(1);\r",
-									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(1);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (1)\r",
 									"\r",
 									""
 								],
@@ -1454,15 +1437,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"var trackID = pm.response.json().trackList; \r",
 									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
-									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.equal(25);\r",
-									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(25);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (25)\r",
 									"\r",
 									""
 								],
@@ -1506,17 +1485,14 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
 									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
+									"var trackID = pm.response.json().trackList; \r",
 									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.equal(25);\r",
-									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(25);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (25)\r",
 									"\r",
-									""
+									"//kérdés, hogy mi az elvárt viselkedés. Itt most a 25-nél levágja és azzal hozza létre a Playlistet az elvárt viselkedés."
 								],
 								"type": "text/javascript"
 							}
@@ -1812,10 +1788,6 @@
 									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
-									"\r",
 									"\r",
 									"\r",
 									"\r",
@@ -1862,9 +1834,6 @@
 									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
 									"\r",
 									"\r",
 									"\r",
@@ -1910,9 +1879,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
 									"\r",
 									"var trackNo = pm.response.json().trackList; \r",
 									"\r",
@@ -2580,14 +2546,6 @@
 		}
 	],
 	"variable": [
-		{
-			"key": "baseurl",
-			"value": ""
-		},
-		{
-			"key": "sajat_nev",
-			"value": ""
-		},
 		{
 			"key": "letrehozott_track",
 			"value": ""
