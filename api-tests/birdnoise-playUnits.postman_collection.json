@@ -1959,7 +1959,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"trackNumber\": 11,\n    \"name\": \"playUnit_testhez_track1\",\n    \"length\": 120\n}",
+									"raw": "{\n    \"trackNumber\": 1,\n    \"name\": \"playUnit_testhez_track_1\",\n    \"length\": 120\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2008,7 +2008,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"trackNumber\": 34,\n    \"name\": \"playUnit_testhez_track24\",\n    \"length\": 122\n}",
+									"raw": "{\n    \"trackNumber\": 24,\n    \"name\": \"playUnit_testhez_track_24\",\n    \"length\": 122\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2057,7 +2057,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"trackNumber\": 35,\n    \"name\": \"playUnit_testhez_track25\",\n    \"length\": 45\n}",
+									"raw": "{\n    \"trackNumber\": 25,\n    \"name\": \"playUnit_testhez_track_25\",\n    \"length\": 45\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2106,7 +2106,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"trackNumber\": 36,\n    \"name\": \"playUnit_testhez_track26\",\n    \"length\": 122\n}",
+									"raw": "{\n    \"trackNumber\": 36,\n    \"name\": \"playUnit_testhez_track_26\",\n    \"length\": 122\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2139,15 +2139,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"var trackID = pm.response.json().trackList; \r",
 									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
-									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.equal(4);\r",
-									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(4);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (4)\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
 									"pm.collectionVariables.set(\"letrehozott_playUnit_1\",jsonData.id)\r",
@@ -2236,15 +2232,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"var trackID = pm.response.json().trackList; \r",
 									"\r",
-									"var trackNo = pm.response.json().trackList; \r",
-									"\r",
-									"pm.test('Number of track in playUnit = ' + trackNo.length, function () {\r",
-									"    pm.expect(trackNo.length).to.equal(4);\r",
-									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (3)\r",
+									"pm.test('Number of tracks in playUnit = ' + trackID.length, function () {\r",
+									"    pm.expect(trackID.length).to.equal(4);\r",
+									"});     // ellenőrzi a hosszát és összehasonlítja a várt értékkel (4)\r",
 									""
 								],
 								"type": "text/javascript"
@@ -2280,7 +2272,7 @@
 					"response": []
 				}
 			],
-			"description": "Annak ellenőrzése, hogy playUnit-ban bevont track nem törölhető."
+			"description": "Annak ellenőrzése, hogy playUnit-ban szereplő track nem törölhető.\n\nLétrehozunk Trackeket. Csinálunk egy 4-es PlayUnitot. Megpróbáljuk törölni az egyik tracket. Ellenőrizük, hogy  4 elemű maradt a PlayUnit."
 		},
 		{
 			"name": "update",
