@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d07ce980-e4b0-4077-bc3b-7a53a6b79590",
+		"_postman_id": "5834bb91-c979-4fd8-8164-451736e4d644",
 		"name": "birdnoise-tracks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -19,7 +19,6 @@
 									"    pm.response.to.have.status(500);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
@@ -135,7 +134,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -194,7 +192,6 @@
 									"    pm.response.to.have.status(500);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"var jsonData = pm.response.json();\r",
 									"pm.collectionVariables.set(\"letrehozott_track_T_NUM_1_4\",jsonData.id)"
@@ -570,7 +567,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -769,7 +765,6 @@
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"var jsonData = pm.response.json();\r",
 									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_1\",jsonData.id)\r",
@@ -824,7 +819,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -885,7 +879,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -946,7 +939,6 @@
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
@@ -1167,7 +1159,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -1228,7 +1219,6 @@
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
@@ -1369,7 +1359,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -1430,7 +1419,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -1491,7 +1479,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -1552,7 +1539,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -1764,6 +1750,445 @@
 				}
 			],
 			"description": "Annak tesztelése, hogy milyen karakterek adhatók meg name-ént.\n\n1. speciális karakterek\n2. space included\n3. uppercase and lowercase\n4. numbers\n\n\nA létrehozott trackek a tesztvégén törlésre kerülnek, hogy később, ne okozzanak gondot."
+		},
+		{
+			"name": "alap folyamat",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"sajat_nev\"));\r",
+									"    pm.expect(jsonData.length).to.eql(666);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(10);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"letrehozott_track\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment'); //importálom a momentjs könyvtárat hogy lejebb használni tudjam a moment() függvényt\r",
+									"//A formázási lehetőségek a momentjs oldalán: https://momentjs.com/ \r",
+									"\r",
+									"pm.collectionVariables.set(\"sajat_nev\", \"pre scriptben létrehozott név - \" \r",
+									"+ moment().format('MMMM Do YYYY, h:mm:ss a')); //A formázási lehetőségek a momentjs oldalán: https://momentjs.com/ \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"trackNumber\":10,\n    \"name\":\"{{sajat_nev}}\",\n    \"length\": 666\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":12,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update ellenőrzése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"sajat_nev\"));\r",
+									"    pm.expect(jsonData.length).to.eql(667);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(10);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "törlés ellenőrzése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"sajat_nev\"));\r",
+									"    pm.expect(jsonData.length).to.eql(667);\r",
+									"    pm.expect(jsonData.trackNumber).to.eql(10);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/track/{{letrehozott_track}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"track",
+								"{{letrehozott_track}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"trackNumber\":4,\n    \"name\":\"PM-test created\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "dev.klucsik.duckdns.org/api/track/page",
+					"host": [
+						"dev",
+						"klucsik",
+						"duckdns",
+						"org"
+					],
+					"path": [
+						"api",
+						"track",
+						"page"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/track/2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"track",
+						"2"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
