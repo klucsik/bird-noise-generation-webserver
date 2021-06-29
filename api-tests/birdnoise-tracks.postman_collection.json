@@ -831,12 +831,8 @@
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"Unique name for track\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(205);\r",
 									"});\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_2_1\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -883,14 +879,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
 									"});\r",
 									"\r",
-									"\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_2_2\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -929,89 +922,9 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "delete track with name:  Unique name for track",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_2_1}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NAME_2_1}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete track with name:  Unique name for track created again",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_2_2}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NAME_2_2}}"
-							]
-						}
-					},
-					"response": []
 				}
 			],
-			"description": "Annak ellenőrzése, hogy a track name UNIQUE.\n\nA létrehozott trackeket töröljük, hogy később ne okozzanak gondot."
+			"description": "Annak ellenőrzése, hogy a track name UNIQUE."
 		},
 		{
 			"name": "T_NAME_3",
