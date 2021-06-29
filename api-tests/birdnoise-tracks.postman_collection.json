@@ -598,13 +598,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
 									"});\r",
 									"\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_1\",jsonData.id)\r",
 									""
 								],
 								"type": "text/javascript"
@@ -660,8 +657,6 @@
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"a\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(202);\r",
 									"});\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
@@ -719,9 +714,7 @@
 									"\r",
 									"pm.test(\"Értékek megegyeznek a beküldöttel\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.name).to.eql(\"aelejehilkjfghbiuasrhbaakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgrtzuiakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgkhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgvege\");\r",
-									"    pm.expect(jsonData.length).to.eql(125);\r",
-									"    pm.expect(jsonData.trackNumber).to.eql(203);\r",
+									"    pm.expect(jsonData.name).to.eql(\"ketszazotvenotkarakterqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjkcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqjklyxcvbnmqwqwertzuihjklyxcvbnertssvege\");\r",
 									"});\r",
 									"\r",
 									"var jsonData = pm.response.json();\r",
@@ -745,7 +738,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":203,\n    \"name\":\"elejehilkjfghbiuasrhbaakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgrtzuiakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgkhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgvege\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":203,\n    \"name\":\"ketszazotvenotkarakterqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjkcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqjklyxcvbnmqwqwertzuihjklyxcvbnertssvege\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -772,14 +765,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Successful status code is 400 or above 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.above(399);\r",
 									"});\r",
 									"\r",
 									"\r",
-									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"letrehozott_track_T_NAME_1_4\",jsonData.id)"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -799,7 +790,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":204,\n    \"name\":\"elejehilkjfghbqiuasrhbaakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgrtzuiakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgkhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgakhsbglkargiuhasfkvbksrtgvege\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":204,\n    \"name\":\"ketszazotvenhatkarakterqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqwertzuiopasdfghjkcvbnmqwqwertzuiopasdfghjklyxcvbnmqwqjklyxcvbnmqwqwertzuihjklyxcvbnertssvege\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -818,169 +809,9 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "delete track name.length=0",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_1}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NAME_1_1}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete track name.length=1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_2}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NAME_1_2}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete track name.length=255",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_3}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NAME_1_3}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete track name.length=256",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/track/{{letrehozott_track_T_NAME_1_4}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"track",
-								"{{letrehozott_track_T_NAME_1_4}}"
-							]
-						}
-					},
-					"response": []
 				}
 			],
-			"description": "Track név hosszának ellenőrzése határérték elem zéssel.\nÉrtékek: 0, 1, 255, 256\n\nA tesztek után a létrehozott trackeket töröljük, hogy később ne okozzanak gondot."
+			"description": "Track név hosszának ellenőrzése határérték elemzéssel.\nÉrtékek: 0, 1, 255, 256 hosszúságú stringek"
 		},
 		{
 			"name": "T_NAME_2",
@@ -2039,6 +1870,14 @@
 		},
 		{
 			"key": "letrehozott_track_T_NUM_1_1",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_T_NAME_1_2",
+			"value": ""
+		},
+		{
+			"key": "letrehozott_track_T_NAME_1_3",
 			"value": ""
 		}
 	]
