@@ -8,13 +8,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DeviceDto {
     private Long id;
+    private String deviceId;
     private String name;
     private String location;
     private DeviceStatus status;
-
-    public DeviceDto(String name, String location, DeviceStatus status){
-        this.name = name;
-        this.location = location;
-        this.status = status;
-    }
 }

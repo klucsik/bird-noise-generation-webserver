@@ -16,6 +16,7 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String deviceId;
     private String name;
     private String location;
     private DeviceStatus status;
