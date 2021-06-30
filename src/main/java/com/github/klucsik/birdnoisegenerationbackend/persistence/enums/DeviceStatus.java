@@ -2,8 +2,11 @@ package com.github.klucsik.birdnoisegenerationbackend.persistence.enums;
 
 
 public enum DeviceStatus {
-    WORKING("Working"),
-    NOT_RESPONDING("Not Responding");
+    OK("Ok"),
+    NOT_RESPONDING("Not Responding"),
+    UPDATING("Updating"),
+    NEW("New"),
+    UNREGISTERED("Unregistered");
 
     public final String label;
 

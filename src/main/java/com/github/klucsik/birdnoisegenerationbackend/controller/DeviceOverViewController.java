@@ -28,13 +28,13 @@ public class DeviceOverViewController {
                 1L,
                 "DeviceToLovePopó",
                 new BatteryDto(1L,"battery1",3.7,"#008000"),
-                DeviceStatus.WORKING.label
+                DeviceStatus.OK.label
         ));
         responeList.add(new DeviceOverviewDto(
                 2L,
                 "Device2",
                 new BatteryDto(1L,"battery2",3.6,"#FF0000"),
-                DeviceStatus.WORKING.label
+                DeviceStatus.OK.label
         ));
         responeList.add(new DeviceOverviewDto(
                 3L,
