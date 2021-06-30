@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: registry
+  namespace: container-registry
+spec:
+  rules:
+    - host: registry.klucsik.duckdns.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: registry
+                port:
+                  number: 32000
