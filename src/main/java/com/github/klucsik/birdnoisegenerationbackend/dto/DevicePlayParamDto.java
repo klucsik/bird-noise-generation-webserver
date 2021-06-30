@@ -3,14 +3,12 @@ package com.github.klucsik.birdnoisegenerationbackend.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Map;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class PlayParamDto {
-    private Long id;
-    private String name;
+public class DevicePlayParamDto {
+    private Long paramVersion;
     private Integer vol; //volume
-    private Map<Integer, PlayUnitDto> playUnits; //hour-playUnit pairs
-
+    private List<DevicePlayUnitDto> playParams; //hour-playUnit pairs
 }

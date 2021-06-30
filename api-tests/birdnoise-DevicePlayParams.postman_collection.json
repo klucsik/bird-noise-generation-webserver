@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "42d586e8-2e07-43df-81a7-3ff49753dbff",
+		"name": "birdnoise-DevicePlayParams",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getByID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/devicePlayParam/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"devicePlayParam",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
