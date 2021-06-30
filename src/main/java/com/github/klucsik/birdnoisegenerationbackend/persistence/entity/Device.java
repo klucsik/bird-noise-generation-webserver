@@ -20,9 +20,5 @@ public class Device {
     private String location;
     private DeviceStatus status;
 
-    public Device(String name,String location,DeviceStatus status){
-        this.name = name;
-        this.location = location;
-        this.status = status;
-    }
+
 }
