@@ -3997,6 +3997,853 @@
 			]
 		},
 		{
+			"name": "U_MAXPAUSE_1",
+			"item": [
+				{
+					"name": "create tracks",
+					"item": [
+						{
+							"name": "create track_60",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_60\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 60,\n    \"name\": \"playUnit_testhez_track_60\",\n    \"length\": 455\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_61",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_61\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 61,\n    \"name\": \"playUnit_testhez_track_61\",\n    \"length\":122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_62",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_62\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 62,\n    \"name\": \"playUnit_testhez_track_62\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create playunit maxPause=-1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": -1,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Length of minPause\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   \r",
+									"    pm.expect(jsonData.minPause).to.eql(0);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 0,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Length of minPause\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   \r",
+									"    pm.expect(jsonData.maxPause).to.eql(1);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 1,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=3600",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Length of minPause\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   \r",
+									"    pm.expect(jsonData.maxPause).to.eql(3600);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 36,\n    \"maxPause\": 3600,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=3601",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 361,\n    \"maxPause\": 3601,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=\"\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 45,\n    \"maxPause\": \"\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A maximum pause határérték tesztelése.\n\nÉrtékek:\n-1, 0, 1, 3600, 3601, üres"
+		},
+		{
+			"name": "U_MAXPAUSE_2",
+			"item": [
+				{
+					"name": "create tracks",
+					"item": [
+						{
+							"name": "create track_60",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_60\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 60,\n    \"name\": \"playUnit_testhez_track_60\",\n    \"length\": 455\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_61",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_61\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 61,\n    \"name\": \"playUnit_testhez_track_61\",\n    \"length\":122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create track_62",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"letrehozott_track_62\",jsonData.id)\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackNumber\": 62,\n    \"name\": \"playUnit_testhez_track_62\",\n    \"length\": 122\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/track/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"track",
+										"save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create playunit maxPause=special characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 54,\n    \"maxPause\": \"_.,'-*-+=@#{}<>[]/\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=string-letters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 99,\n    \"maxPause\": \"teniszütő\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=currencies Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 56,\n    \"maxPause\": \"$€¢£¥₽₩₪฿₫₴₹\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create playunit maxPause=stringify number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPause\": 78,\n    \"maxPause\": \"15\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/playUnit/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"playUnit",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "update",
 			"request": {
 				"method": "POST",
