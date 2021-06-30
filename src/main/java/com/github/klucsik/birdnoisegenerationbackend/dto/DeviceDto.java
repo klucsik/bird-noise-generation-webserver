@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DeviceDto {
     private Long id;
-    private String deviceId;
+    private String chipId;
     private String name;
     private String location;
     private DeviceStatus status;
