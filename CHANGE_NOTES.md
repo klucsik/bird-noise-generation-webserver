@@ -1,3 +1,4 @@
+* FEATURE: Created device voltage BE part, and reportvoltage endpoint for devices
 * TECHNICAL_FEATURE: Run api tests in jenkins
 * TECHNICAL FEATURE: Added trimmed and Unique custom validators
 * FEATURE: Added validation for tracks
