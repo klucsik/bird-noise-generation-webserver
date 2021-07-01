@@ -16,13 +16,10 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String chipId;
     private String name;
     private String location;
     private DeviceStatus status;
 
-    public Device(String name,String location,DeviceStatus status){
-        this.name = name;
-        this.location = location;
-        this.status = status;
-    }
+
 }
