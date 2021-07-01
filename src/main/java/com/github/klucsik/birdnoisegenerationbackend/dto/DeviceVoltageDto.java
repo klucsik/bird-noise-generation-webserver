@@ -5,11 +5,9 @@ import jdk.dynalink.linker.LinkerServices;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Data
@@ -17,8 +15,7 @@ import java.util.List;
 public class DeviceVoltageDto {
     private Long id;
     private Float voltage;
+    private DeviceDto deviceDto;
 
-    @ManyToMany
-    private List<DeviceDto> chipDto;
     private LocalDate createdAt;
 }

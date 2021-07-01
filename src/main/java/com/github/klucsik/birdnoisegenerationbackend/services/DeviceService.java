@@ -38,6 +38,10 @@ public class DeviceService {
         return repository.findAll().stream().map(DeviceMapper.MAPPER::devicetoDto).collect(Collectors.toList()); //I dont even wanna know what is this
     }
 
+    public DeviceDto findByChipId(String chipId) {
+        return DeviceMapper.MAPPER.devicetoDto(repository.findByChipId(chipId));
+    }
+
     //Delete
     public void delete(Long id) {
         Optional<Device> device = repository.findById(id);
@@ -46,4 +50,5 @@ public class DeviceService {
         }
         repository.deleteById(id);
     }
+
 }
