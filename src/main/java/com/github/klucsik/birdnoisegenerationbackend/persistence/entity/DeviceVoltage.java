@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @NoArgsConstructor
@@ -18,5 +19,6 @@ public class DeviceVoltage {
     private Device device;
 
     private LocalDate createdAt; //we will set this in the service layer
+    private LocalTime createdTime;
 
 }
