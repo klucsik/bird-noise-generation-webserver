@@ -1,5 +1,4 @@
-* FEATURE: Created device voltage BE part, and reportvoltage endpoint for devices
-
+* FEATURE: Created device voltage BE part, and report voltage endpoint for devices
 * FEATURE: Device BE
 * TECHNICAL FEATURE: Added swagger ui for api documentation
 * FEATURE: PlayParams BE
