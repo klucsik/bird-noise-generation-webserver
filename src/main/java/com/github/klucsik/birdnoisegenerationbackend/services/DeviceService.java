@@ -39,7 +39,11 @@ public class DeviceService {
     }
 
     public DeviceDto findByChipId(String chipId) {
-        return DeviceMapper.MAPPER.devicetoDto(repository.findByChipId(chipId));
+        Device device = repository.findByChipId(chipId);
+        if (device == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return DeviceMapper.MAPPER.devicetoDto(device);
     }
 
     //Delete
