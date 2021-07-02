@@ -7,10 +7,7 @@ import com.github.klucsik.birdnoisegenerationbackend.services.DeviceVoltageServi
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,7 @@ import java.util.List;
 public class DeviceVoltageReadController {
     private final DeviceVoltageService service;
 
+    //read
     @GetMapping("/readAll")
     public ResponseEntity<List<DeviceVoltageDto>> readAll() {
         return new ResponseEntity<>(service.readAll(), HttpStatus.OK);
@@ -28,5 +26,12 @@ public class DeviceVoltageReadController {
     @GetMapping("/readByChipId")
     public ResponseEntity<List<DeviceVoltageDto>> readAllByChipId(@RequestParam String chipId) {
         return new ResponseEntity<>(service.readAllByChipId(chipId), HttpStatus.OK);
+    }
+
+    //delete
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DeviceVoltageDto> delete(@PathVariable Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
