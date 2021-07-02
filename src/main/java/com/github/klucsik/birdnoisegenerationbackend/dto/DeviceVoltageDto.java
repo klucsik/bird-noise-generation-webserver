@@ -15,7 +15,7 @@ import java.util.List;
 public class DeviceVoltageDto {
     private Long id;
     private Float voltage;
-    private DeviceDto deviceDto;
+    private DeviceDto device;
 
     private LocalDate createdAt;
 }
