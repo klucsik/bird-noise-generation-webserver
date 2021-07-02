@@ -7,11 +7,14 @@ import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Device;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.DeviceVoltage;
 import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceVoltageRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,5 +44,14 @@ public class DeviceVoltageService {
         Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
 
         return repository.findAllByDevice(device).stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
+    }
+
+    //delete
+    public void delete(Long id) {
+        Optional<DeviceVoltage> deviceVoltage = repository.findById(id);
+        if (deviceVoltage.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        repository.deleteById(id);
     }
 }
