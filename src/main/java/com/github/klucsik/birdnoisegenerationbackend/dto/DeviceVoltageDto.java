@@ -13,6 +13,6 @@ public class DeviceVoltageDto {
     private Float voltage;
     private DeviceDto device;
 
-    private LocalDate createdAt;
+    private LocalDate createdAt; //a createdTimenak ezt is tartalmaznia kéne. Egy fieldben legyen a teljes dátum (használhatsz formattereket: https://www.geeksforgeeks.org/localtime-format-method-in-java-with-examples/#:~:text=The%20format()%20method%20of,passed%20formatter%20to%20a%20string.)
     private LocalTime createdTime;
 }
