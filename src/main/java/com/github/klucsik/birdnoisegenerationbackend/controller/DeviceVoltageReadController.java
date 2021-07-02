@@ -18,7 +18,7 @@ public class DeviceVoltageReadController {
     private final DeviceVoltageService service;
 
     //read
-    @GetMapping("/readAll")
+    @GetMapping("/readAll") //TODO ezt én eddig pagenek hívtam, kérlek csináljuk konzisztensre
     public ResponseEntity<List<DeviceVoltageDto>> readAll() {
         return new ResponseEntity<>(service.readAll(), HttpStatus.OK);
     }

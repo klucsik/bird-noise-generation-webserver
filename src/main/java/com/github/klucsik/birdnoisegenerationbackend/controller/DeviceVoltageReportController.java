@@ -17,8 +17,8 @@ public class DeviceVoltageReportController {
     private final DeviceVoltageService service;
 
     @PostMapping("/save")
-    public ResponseEntity<DeviceVoltageDto> saveDeviceVolt(@RequestParam(required = true) String chipId, @RequestParam(required = true) Float voltage) {
-        return new ResponseEntity<>(service.save(chipId, voltage), HttpStatus.OK);
+    public ResponseEntity<DeviceVoltageDto> saveDeviceVolt(@RequestParam() String chipId, @RequestParam() Float voltage) {
+        return new ResponseEntity<>(service.save(chipId, voltage), HttpStatus.OK); //TODO csak egy record IDt küldjünk vissza (Long)
     }
 
 }
