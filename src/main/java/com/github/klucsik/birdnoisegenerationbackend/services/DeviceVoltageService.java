@@ -3,6 +3,7 @@ package com.github.klucsik.birdnoisegenerationbackend.services;
 import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceVoltageDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceMapper;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceVoltageMapper;
+import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Device;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.DeviceVoltage;
 import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceVoltageRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,9 @@ public class DeviceVoltageService {
         return repository.findAll().stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
     }
 
+    public List<DeviceVoltageDto> readAllByChipId(String chipId) {
+        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
 
-
+        return repository.findAllByDevice(device).stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
+    }
 }
