@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cde19815-fa0b-4ad0-8a91-84e651705c61",
+		"_postman_id": "22860497-827a-47de-883f-c200080e44c1",
 		"name": "birdnoise-tracks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -430,8 +430,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									""
 								],
@@ -1019,7 +1019,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"ÁRVÍZTŰRŐTÜKÖRFÚRÓGÉP\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":216,\n    \"name\":\"ÁRVÍZTŰRŐTÜKÖRFÚRÓGÉP\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1075,7 +1075,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"_.,'-*-+=@#{}<>[]/\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":226,\n    \"name\":\"_.,'-*-+=@#{}<>[]/\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1131,7 +1131,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":206,\n    \"name\":\"$€¢£¥₽₩₪฿₫₴₹\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":236,\n    \"name\":\"$€¢£¥₽₩₪฿₫₴₹\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1236,7 +1236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":207,\n    \"name\":\" titlestartwithspace\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":217,\n    \"name\":\" titlestartwithspace\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1286,7 +1286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":207,\n    \"name\":\"titleendwithspace \",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":227,\n    \"name\":\"titleendwithspace \",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1454,7 +1454,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"☺️🥰😭🎓😁😊😮😀😁😂🤣😍\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":219,\n    \"name\":\"☺️🥰😭🎓😁😊😮😀😁😂🤣😍\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1510,7 +1510,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"ýžčáďéěíňóřšťúůýž€áčďéěíňóřšťúů\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":229,\n    \"name\":\"ýžčáďéěíňóřšťúůýž€áčďéěíňóřšťúů\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1566,7 +1566,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"ÄäÖöÜüẞß\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":239,\n    \"name\":\"ÄäÖöÜüẞß\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1587,7 +1587,7 @@
 					"response": []
 				},
 				{
-					"name": "create track with name: with Franch characters",
+					"name": "create track with name: with French characters",
 					"event": [
 						{
 							"listen": "test",
@@ -1622,7 +1622,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"trackNumber\":209,\n    \"name\":\"ùûüÿàâæçéèêëïîôœÙÛÜŸÀÂÆÇÉÈÊËÏÎÔŒ\",\n    \"length\": 125\n}",
+							"raw": "{\n    \"trackNumber\":249,\n    \"name\":\"ùûüÿàâæçéèêëïîôœÙÛÜŸÀÂÆÇÉÈÊËÏÎÔŒ\",\n    \"length\": 125\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2068,8 +2068,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									""
 								],
