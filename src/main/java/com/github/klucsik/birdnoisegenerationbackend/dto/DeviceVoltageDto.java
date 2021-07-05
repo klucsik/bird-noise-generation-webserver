@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -13,6 +14,5 @@ public class DeviceVoltageDto {
     private Float voltage;
     private DeviceDto device;
 
-    private LocalDate createdAt;
-    private LocalTime createdTime;
+    private LocalDateTime createdAt;
 }
