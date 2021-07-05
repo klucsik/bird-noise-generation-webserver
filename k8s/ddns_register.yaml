@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: update-ddns
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: hello
+              image: busybox
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - echo url="https://www.duckdns.org/update?domains=klucsik&token=PLACE_TOKEN_HERE&ip=" | curl -k -o ~/duckdns/duck.log -K -
+          restartPolicy: OnFailure
