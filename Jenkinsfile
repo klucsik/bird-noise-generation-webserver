@@ -73,7 +73,6 @@ pipeline {
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
         sh 'kubectl rollout status deployment/birdnoise-fe --namespace=test-${BRANCH_NAME_LC}'
         sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
-        sleep 20
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
         sh 'kubectl delete ns test-${BRANCH_NAME_LC}'
@@ -83,19 +82,19 @@ pipeline {
   }
   environment {
     BRANCH_NAME_LC = """${sh(
-                                                script: 'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
-                                                returnStdout:true
-                                                ).trim()}"""
+                                                      script: 'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
+                                                      returnStdout:true
+                                                      ).trim()}"""
       BE_IMAGETAG = """${sh(
-                                                                               script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                                               echo birdnoise_be_$BRANCH_NAME_LC",
-                                                                               returnStdout:true
-                                                                               ).trim()}"""
+                                                                                       script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                                                       echo birdnoise_be_$BRANCH_NAME_LC",
+                                                                                       returnStdout:true
+                                                                                       ).trim()}"""
         FE_IMAGETAG = """${sh(
-                                                                                     script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
-                                                                                     echo birdnoise_fe_$BRANCH_NAME_LC",
-                                                                                     returnStdout:true
-                                                                                     ).trim()}"""
+                                                                                               script: "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') \
+                                                                                               echo birdnoise_fe_$BRANCH_NAME_LC",
+                                                                                               returnStdout:true
+                                                                                               ).trim()}"""
           IMAGEREPO = 'klucsik.duckdns.org:5000'
         }
       }
