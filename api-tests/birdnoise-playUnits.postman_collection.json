@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "98cf30a1-d42a-4698-95cb-2cfae093c9bc",
+		"_postman_id": "2867bcdb-d677-417d-9612-1ced26827b84",
 		"name": "birdnoise-playUnits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -3897,8 +3897,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Length of minPause\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   \r",
+									"    pm.expect(jsonData.minPause).to.eql(12);\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -4796,8 +4802,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Length of maxPause\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"   \r",
+									"    pm.expect(jsonData.maxPause).to.eql(15);\r",
 									"});\r",
 									"\r",
 									"\r",
