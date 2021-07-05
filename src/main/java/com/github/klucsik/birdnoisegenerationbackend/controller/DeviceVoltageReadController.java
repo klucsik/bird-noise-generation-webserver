@@ -18,9 +18,9 @@ public class DeviceVoltageReadController {
     private final DeviceVoltageService service;
 
     //read
-    @GetMapping("/readAll")
+    @GetMapping("/page") //TODO ezt én eddig pagenek hívtam, kérlek csináljuk konzisztensre
     public ResponseEntity<List<DeviceVoltageDto>> readAll() {
-        return new ResponseEntity<>(service.readAll(), HttpStatus.OK);
+        return new ResponseEntity<>(service.page(), HttpStatus.OK);
     }
 
     @GetMapping("/readByChipId")
@@ -30,8 +30,7 @@ public class DeviceVoltageReadController {
 
     //delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<DeviceVoltageDto> delete(@PathVariable Long id) {
-        service.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

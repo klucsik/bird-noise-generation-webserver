@@ -17,7 +17,7 @@ public class DeviceVoltageReportController {
     private final DeviceVoltageService service;
 
     @GetMapping("/save")
-    public ResponseEntity<DeviceVoltageDto> saveDeviceVolt(@RequestParam String chipId, @RequestParam Float voltage) {
+    public ResponseEntity<Long> saveDeviceVolt(@RequestParam String chipId, @RequestParam Float voltage) {
         return new ResponseEntity<>(service.save(chipId, voltage), HttpStatus.OK);
     }
 

@@ -25,18 +25,18 @@ public class DeviceVoltageService {
     private final DeviceService deviceService;
 
     //Save because there is only one Service and to Controllers
-    public DeviceVoltageDto save(String chipId, Float voltage) {
+    public Long save(String chipId, Float voltage) {
         DeviceVoltage deviceVoltage = new DeviceVoltage();
 
         deviceVoltage.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId)));
         deviceVoltage.setVoltage(voltage);
         deviceVoltage.setCreatedAt(LocalDateTime.now());
-
-        return DeviceVoltageMapper.MAPPER.deviceVolttoDto(repository.save(deviceVoltage));
+        repository.save(deviceVoltage);
+        return deviceVoltage.getId();
     }
 
     //Read
-    public List<DeviceVoltageDto> readAll() {
+    public List<DeviceVoltageDto> page() {
         return repository.findAll().stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
     }
 
@@ -47,11 +47,12 @@ public class DeviceVoltageService {
     }
 
     //delete
-    public void delete(Long id) {
+    public String delete(Long id) {
         Optional<DeviceVoltage> deviceVoltage = repository.findById(id);
         if (deviceVoltage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         repository.deleteById(id);
+        return "The delete was successful";
     }
 }
