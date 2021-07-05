@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,13 +19,13 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TrackService implements FieldValueExists {
-private final TrackRepository repository;
+    private final TrackRepository repository;
 
 
     //CREATE & UPDATE
-    public TrackDto save(TrackDto dto){
-            @Valid Track track = TrackMapper.MAPPER.DtoToTrack(dto);
-            return TrackMapper.MAPPER.trackToDto(repository.save(track));
+    public TrackDto save(TrackDto dto) {
+        @Valid Track track = TrackMapper.MAPPER.DtoToTrack(dto);
+        return TrackMapper.MAPPER.trackToDto(repository.save(track));
     }
 
     //READ
@@ -53,8 +55,7 @@ private final TrackRepository repository;
 
 
     /**
-     *
-     * @param value The value to check for
+     * @param value     The value to check for
      * @param fieldName The name of the field for which to check if the value exists
      * @return true if fieldname is unique
      */
@@ -65,7 +66,7 @@ private final TrackRepository repository;
             return false;
         }
 
-        switch (fieldName){
+        switch (fieldName) {
             case "trackNumber":
                 return this.repository.existsByTrackNumber((Integer) value);
 

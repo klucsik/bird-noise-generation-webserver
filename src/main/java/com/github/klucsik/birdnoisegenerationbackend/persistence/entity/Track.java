@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoisegenerationbackend.persistence.entity;
 
+import com.github.klucsik.birdnoisegenerationbackend.validators.Trimmed;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
@@ -24,6 +25,7 @@ public class Track {
 
     @Size(max = 255)
     @NotBlank(message = "Name is mandatory")
+    @Trimmed
     @Column(unique = true)
     private String name;
 

@@ -1,6 +1,7 @@
 package com.github.klucsik.birdnoisegenerationbackend.dto;
 
 import com.github.klucsik.birdnoisegenerationbackend.services.TrackService;
+import com.github.klucsik.birdnoisegenerationbackend.validators.Trimmed;
 import com.github.klucsik.birdnoisegenerationbackend.validators.Unique;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,19 +24,20 @@ public class TrackDto {
     @Unique(service = TrackService.class, fieldName = "trackNumber", message = "Track number must be unique!")
     private Integer trackNumber;
 
-    @Size(max=255)
+    @Size(max = 255)
+    @Trimmed
     @NotBlank(message = "Name is mandatory")
     @Unique(service = TrackService.class, fieldName = "name", message = "Track name must be unique!")
 
     private String name;
 
-    @Range(min = 1,max = 1800)
+    @Range(min = 1, max = 1800)
     @NotNull(message = "Length is mandatory")
     private Integer length;
 
-   public TrackDto(Integer trackNumber,String name,Integer length){
-        this.trackNumber=trackNumber;
-        this.name=name;
-        this.length=length;
+    public TrackDto(Integer trackNumber, String name, Integer length) {
+        this.trackNumber = trackNumber;
+        this.name = name;
+        this.length = length;
     }
 }
