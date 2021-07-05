@@ -24,22 +24,19 @@ public class DeviceVoltageService {
     private final DeviceVoltageRepository repository;
     private final DeviceService deviceService;
 
-    //Save because there is only one Service and two Controllers
-    public DeviceVoltageDto save(String chipId, Float voltage) {
+    //Save because there is only one Service and to Controllers
+    public Long save(String chipId, Float voltage) {
         DeviceVoltage deviceVoltage = new DeviceVoltage();
-
-        //TODO ha nincs még ilyen device, hozzunk létre egyet unregistered státusszal. (legyen a DeviceServiceben egy method hogy createUnregistered, mert ezt több helyről is meg kell majd hívni)
 
         deviceVoltage.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId)));
         deviceVoltage.setVoltage(voltage);
         deviceVoltage.setCreatedAt(LocalDateTime.now());
-
-        return DeviceVoltageMapper.MAPPER.deviceVolttoDto(repository.save(deviceVoltage));
+        repository.save(deviceVoltage);
+        return deviceVoltage.getId();
     }
 
-    //TODO egy olyan method ami {id} path varaible alapján visszaad egy recordot (getOne)
     //Read
-    public List<DeviceVoltageDto> readAll() {
+    public List<DeviceVoltageDto> page() {
         return repository.findAll().stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
     }
 
@@ -50,13 +47,12 @@ public class DeviceVoltageService {
     }
 
     //delete
-    public void delete(Long id) {
+    public String delete(Long id) {
         Optional<DeviceVoltage> deviceVoltage = repository.findById(id);
         if (deviceVoltage.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND); //TODO: Az összes ilyenhez  kéne írni  szép hibaüznetet mint a palyunit delete methodjánál.
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         repository.deleteById(id);
+        return "The delete was successful";
     }
-
-    //TODO deleteAllByChipId()
 }
