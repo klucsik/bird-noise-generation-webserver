@@ -5055,23 +5055,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/playUnit/save?minPauseRandom={{minPauseRandom}}&maxPauseRandom={{maxPauseRandom}}",
+							"raw": "{{baseurl}}/playUnit/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"playUnit",
 								"save"
-							],
-							"query": [
-								{
-									"key": "minPauseRandom",
-									"value": "{{minPauseRandom}}"
-								},
-								{
-									"key": "maxPauseRandom",
-									"value": "{{maxPauseRandom}}"
-								}
 							]
 						}
 					},
@@ -5117,19 +5107,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/playUnit/save?PauseRandom={{PauseRandom}}",
+							"raw": "{{baseurl}}/playUnit/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"playUnit",
 								"save"
-							],
-							"query": [
-								{
-									"key": "PauseRandom",
-									"value": "{{PauseRandom}}"
-								}
 							]
 						}
 					},
@@ -5177,23 +5161,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/playUnit/save?minPauseRandom={{minPauseRandom}}&maxPauseRandom={{maxPauseRandom}}",
+							"raw": "{{baseurl}}/playUnit/save",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"playUnit",
 								"save"
-							],
-							"query": [
-								{
-									"key": "minPauseRandom",
-									"value": "{{minPauseRandom}}"
-								},
-								{
-									"key": "maxPauseRandom",
-									"value": "{{maxPauseRandom}}"
-								}
 							]
 						}
 					},
