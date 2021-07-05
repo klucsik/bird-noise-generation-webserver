@@ -36,9 +36,4 @@ public class DeviceController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping("/reply")
-    public ResponseEntity<String> reply() {
-        return new ResponseEntity<>("The delete was successful!", HttpStatus.OK);
-    }
 }

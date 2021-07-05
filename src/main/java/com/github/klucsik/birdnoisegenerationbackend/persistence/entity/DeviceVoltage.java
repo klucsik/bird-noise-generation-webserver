@@ -19,8 +19,7 @@ public class DeviceVoltage {
     @ManyToOne
     private Device device;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    private String formated = createdAt.format(formatter);
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
 }
