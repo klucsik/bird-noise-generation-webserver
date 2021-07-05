@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +32,7 @@ public class DeviceVoltageService {
 
         deviceVoltage.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId)));
         deviceVoltage.setVoltage(voltage);
-        deviceVoltage.setCreatedAt(LocalDate.now());
-        deviceVoltage.setCreatedTime(LocalTime.now());
+        deviceVoltage.setCreatedAt(LocalDateTime.now());
 
         return DeviceVoltageMapper.MAPPER.deviceVolttoDto(repository.save(deviceVoltage));
     }

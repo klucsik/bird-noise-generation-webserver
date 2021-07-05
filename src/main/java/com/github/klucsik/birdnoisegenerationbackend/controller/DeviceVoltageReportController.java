@@ -5,7 +5,7 @@ import com.github.klucsik.birdnoisegenerationbackend.services.DeviceVoltageServi
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeviceVoltageReportController {
     private final DeviceVoltageService service;
 
-    @PostMapping("/save")
-    public ResponseEntity<DeviceVoltageDto> saveDeviceVolt(@RequestParam() String chipId, @RequestParam() Float voltage) {
-        return new ResponseEntity<>(service.save(chipId, voltage), HttpStatus.OK); //TODO csak egy record IDt küldjünk vissza (Long)
+    @GetMapping("/save")
+    public ResponseEntity<DeviceVoltageDto> saveDeviceVolt(@RequestParam String chipId, @RequestParam Float voltage) {
+        return new ResponseEntity<>(service.save(chipId, voltage), HttpStatus.OK);
     }
 
 }
