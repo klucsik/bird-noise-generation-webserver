@@ -1,3 +1,6 @@
+* TECHNICAL FEATURE: Added trimmed and Unique custom validators
+* FEATURE: Added validation for tracks
+* TECHNICAL FEATURE: Added validation dependencies
 * FEATURE: Device BE
 * TECHNICAL FEATURE: Added swagger ui for api documentation
 * FEATURE: PlayParams BE
