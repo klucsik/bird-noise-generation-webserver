@@ -25,6 +25,7 @@ public class DeviceService {
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
+
     //Read
     public DeviceDto GetById(Long id) {
         Optional<Device> device = repository.findById(id);
@@ -48,10 +49,7 @@ public class DeviceService {
 
     //Delete
     public void delete(Long id) {
-        Optional<Device> device = repository.findById(id);
-        if (device.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        Device device = repository.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("There is no device with id: %d", id)));
         repository.deleteById(id);
     }
 

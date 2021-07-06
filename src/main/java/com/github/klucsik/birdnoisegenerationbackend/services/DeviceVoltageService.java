@@ -28,12 +28,14 @@ public class DeviceVoltageService {
     public Long save(String chipId, Float voltage) {
         DeviceVoltage deviceVoltage = new DeviceVoltage();
 
+        //TODO ha nincs még ilyen device, hozzunk létre egyet unregistered státusszal. (legyen a DeviceServiceben egy method hogy createUnregistered, mert ezt több helyről is meg kell majd hívni)
         deviceVoltage.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId)));
         deviceVoltage.setVoltage(voltage);
         deviceVoltage.setCreatedAt(LocalDateTime.now());
         repository.save(deviceVoltage);
         return deviceVoltage.getId();
     }
+
 
     //Read
     public List<DeviceVoltageDto> page() {
@@ -46,13 +48,17 @@ public class DeviceVoltageService {
         return repository.findAllByDevice(device).stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
     }
 
+    public DeviceVoltageDto getOne(Long id) {
+        return DeviceVoltageMapper.MAPPER.deviceVolttoDto(repository.getOne(id));
+    }
+
+
     //delete
     public String delete(Long id) {
-        Optional<DeviceVoltage> deviceVoltage = repository.findById(id);
-        if (deviceVoltage.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        DeviceVoltage deviceVoltage = repository.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("There is no voltage report with id: %d", id)));
         repository.deleteById(id);
         return "The delete was successful";
     }
+
+    //TODO deleteAllByChipId()
 }

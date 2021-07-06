@@ -28,6 +28,11 @@ public class DeviceVoltageReadController {
         return new ResponseEntity<>(service.readAllByChipId(chipId), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DeviceVoltageDto> getOne(@PathVariable Long id) {
+        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+    }
+
     //delete
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
