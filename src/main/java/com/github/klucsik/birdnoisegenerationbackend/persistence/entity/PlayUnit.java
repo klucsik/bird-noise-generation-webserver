@@ -16,10 +16,10 @@ public class PlayUnit {
     private Long id;
 
     @NotNull(message = "minPause is mandatory") //Validations always should be the same as on Dto
-    @Range(min = 1, max = 3600)
+    @Range(min = 0, max = 3600)
     private Integer minPause;
     @NotNull(message = "maxPause is mandatory") //Validations always should be the same as on Dto
-    @Range(min = 1, max = 3600)
+    @Range(min = 0, max = 3600)
     private Integer maxPause;
     @Size(min=1,max=25)
     @ManyToMany
