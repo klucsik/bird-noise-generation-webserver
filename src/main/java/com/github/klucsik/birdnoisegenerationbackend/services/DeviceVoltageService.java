@@ -11,11 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,10 +52,18 @@ public class DeviceVoltageService {
 
     //delete
     public String delete(Long id) {
-        DeviceVoltage deviceVoltage = repository.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("There is no voltage report with id: %d", id)));
+        repository.existsById(id);
+        if (!repository.existsById(id)) {
+            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no voltage report with id: %d", id));
+        }
         repository.deleteById(id);
         return "The delete was successful";
     }
 
-    //TODO deleteAllByChipId()
+    public String deleteAllByChipId(String chipId) {
+        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
+        List<DeviceVoltage> list = repository.findAllByDevice(device);
+        repository.deleteAll(list);
+        return "Deleted " + list.size() + " deviceVoltages";
+    }
 }

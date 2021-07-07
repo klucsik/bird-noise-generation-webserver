@@ -38,4 +38,9 @@ public class DeviceVoltageReadController {
     public ResponseEntity<String> delete(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteByChipId")
+    public ResponseEntity<String> deleteAllByChipId(@RequestParam String chipId) {
+        return new ResponseEntity<>(service.deleteAllByChipId(chipId), HttpStatus.OK);
+    }
 }

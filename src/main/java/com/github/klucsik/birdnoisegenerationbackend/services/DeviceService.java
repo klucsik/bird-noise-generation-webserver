@@ -42,7 +42,7 @@ public class DeviceService {
     public DeviceDto findByChipId(String chipId) {
         Device device = repository.findByChipId(chipId);
         if (device == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no device found with %s chipId", chipId));
         }
         return DeviceMapper.MAPPER.devicetoDto(device);
     }
