@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoisegenerationbackend.services;
 
+import com.github.klucsik.birdnoisegenerationbackend.dto.BaseResponseDto;
 import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceVoltageDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceMapper;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceVoltageMapper;
@@ -51,19 +52,19 @@ public class DeviceVoltageService {
 
 
     //delete
-    public String delete(Long id) {
+    public BaseResponseDto delete(Long id) {
         repository.existsById(id);
         if (!repository.existsById(id)) {
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no voltage report with id: %d", id));
         }
         repository.deleteById(id);
-        return "The delete was successful";
+        return new BaseResponseDto(String.format("Deleted DeviceVoltage whit %d id", id));
     }
 
-    public String deleteAllByChipId(String chipId) {
+    public BaseResponseDto deleteAllByChipId(String chipId) {
         Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
         List<DeviceVoltage> list = repository.findAllByDevice(device);
         repository.deleteAll(list);
-        return "Deleted " + list.size() + " deviceVoltages";
+        return new BaseResponseDto(String.format("Deleted %d DeviceVoltage", list.size()));
     }
 }

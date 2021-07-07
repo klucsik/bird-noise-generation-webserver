@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoisegenerationbackend.controller;
 
+import com.github.klucsik.birdnoisegenerationbackend.dto.BaseResponseDto;
 import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceDto;
 import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceVoltageDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceVoltageMapper;
@@ -35,12 +36,12 @@ public class DeviceVoltageReadController {
 
     //delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<BaseResponseDto> delete(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteByChipId")
-    public ResponseEntity<String> deleteAllByChipId(@RequestParam String chipId) {
+    public ResponseEntity<BaseResponseDto> deleteAllByChipId(@RequestParam String chipId) {
         return new ResponseEntity<>(service.deleteAllByChipId(chipId), HttpStatus.OK);
     }
 }
