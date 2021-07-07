@@ -1,4 +1,4 @@
-package com.github.klucsik.birdnoisegenerationbackend.validators;
+package com.github.klucsik.birdnoisegenerationbackend.validators.annotations;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
