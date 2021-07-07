@@ -5,18 +5,20 @@ import com.github.klucsik.birdnoisegenerationbackend.services.PlayUnitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/playUnit")
 @RequiredArgsConstructor
-public class PlayUnitController {
+public class PlayUnitController extends  BaseController{
     private final PlayUnitService service;
 
     @PostMapping("/save")
-    public ResponseEntity<PlayUnitDto> saveTrack(@RequestBody PlayUnitDto dto){
+    public ResponseEntity<PlayUnitDto> saveTrack(@Valid @RequestBody PlayUnitDto dto) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
     }
 

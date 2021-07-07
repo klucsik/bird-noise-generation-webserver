@@ -1,3 +1,4 @@
+* FEATURE: Add validation for playUnits
 * TECHNICAL_FEATURE: Run api tests in jenkins
 * TECHNICAL FEATURE: Added trimmed and Unique custom validators
 * FEATURE: Added validation for tracks
