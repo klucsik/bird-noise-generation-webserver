@@ -3,6 +3,7 @@ package com.github.klucsik.birdnoisegenerationbackend.services;
 import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceMapper;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Device;
+import com.github.klucsik.birdnoisegenerationbackend.persistence.enums.DeviceStatus;
 import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,15 @@ public class DeviceService {
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
+    public Device createUnregistered(String chipId) {
+        Device device = new Device();
+        device.setStatus(DeviceStatus.UNREGISTERED);
+        device.setChipId(chipId);
+        device.setLocation(null);
+        device.setName(null);
+        return repository.save(device);
+    }
+
 
     //Read
     public DeviceDto GetById(Long id) {
@@ -42,7 +52,9 @@ public class DeviceService {
     public DeviceDto findByChipId(String chipId) {
         Device device = repository.findByChipId(chipId);
         if (device == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no device found with %s chipId", chipId));
+            createUnregistered(chipId);
+            device = repository.findByChipId(chipId);
+            return DeviceMapper.MAPPER.devicetoDto(device);
         }
         return DeviceMapper.MAPPER.devicetoDto(device);
     }
