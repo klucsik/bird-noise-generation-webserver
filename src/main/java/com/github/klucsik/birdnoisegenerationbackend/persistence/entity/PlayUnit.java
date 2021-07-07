@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
@@ -20,6 +21,7 @@ public class PlayUnit {
     @NotNull(message = "maxPause is mandatory") //Validations always should be the same as on Dto
     @Range(min = 1, max = 3600)
     private Integer maxPause;
+    @Size(min=1,max=25)
     @ManyToMany
     private List<Track> trackList;
 }

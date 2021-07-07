@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * A base validation class which handles the validation excpetion throwing, and summing the annotation validations and custom validations.
- * Usage: Extend it, run custom validation logic in a validate( Object target) function, collect the errors in a list,
+ * Usage: Run custom validation logic in a validate( Object target) function, collect the errors in a list,
  * then call validateAnnotations(target,errorList). Don't need to return anything.
  */
 @Component

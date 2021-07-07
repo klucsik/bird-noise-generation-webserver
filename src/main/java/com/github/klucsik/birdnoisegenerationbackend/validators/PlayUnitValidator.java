@@ -2,9 +2,9 @@ package com.github.klucsik.birdnoisegenerationbackend.validators;
 
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.PlayUnit;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Track;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.ArrayList;
@@ -13,13 +13,10 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-public class PlayUnitValidator extends BaseValidator{
+@RequiredArgsConstructor
+public class PlayUnitValidator{
+    private final BaseValidator baseValidator;
 
-    BaseValidator baseValidator;
-
-    public PlayUnitValidator(Validator validator) {
-        super(validator);
-    }
 
     public void validate (PlayUnit playUnit) throws MethodArgumentNotValidException {
         List<FieldError> errors = new ArrayList<>();
