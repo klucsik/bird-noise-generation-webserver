@@ -28,7 +28,6 @@ public class TrackDto {
     @Trimmed
     @NotBlank(message = "Name is mandatory")
     @Unique(service = TrackService.class, fieldName = "name", message = "Track name must be unique!")
-
     private String name;
 
     @Range(min = 1, max = 1800)

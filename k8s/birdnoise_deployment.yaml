@@ -70,6 +70,13 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 10
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "500m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
 ---
 
 apiVersion: v1
@@ -111,7 +118,13 @@ spec:
           env:
             - name: REDEPLOY_FLAG
               value: "FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
-
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "500m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
 
 ---
 
