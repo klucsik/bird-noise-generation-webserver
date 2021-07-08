@@ -26,13 +26,11 @@ public class DeviceService {
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
-    public Device createUnregistered(String chipId) {
-        Device device = new Device();
+    public DeviceDto createUnregistered(String chipId) {
+        DeviceDto device = new DeviceDto();
         device.setStatus(DeviceStatus.UNREGISTERED);
         device.setChipId(chipId);
-        device.setLocation(null);
-        device.setName(null);
-        return repository.save(device);
+        return save(device); //We call the already used save emthod, so we won't do the same thing in to functions.
     }
 
 
@@ -51,11 +49,6 @@ public class DeviceService {
 
     public DeviceDto findByChipId(String chipId) {
         Device device = repository.findByChipId(chipId);
-        if (device == null) {
-            createUnregistered(chipId);
-            device = repository.findByChipId(chipId);
-            return DeviceMapper.MAPPER.devicetoDto(device);
-        }
         return DeviceMapper.MAPPER.devicetoDto(device);
     }
 
