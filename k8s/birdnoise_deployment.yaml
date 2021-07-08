@@ -72,10 +72,10 @@ spec:
             failureThreshold: 10
           resources:
             requests:
-              memory: "200Mi"
-              cpu: "500m"
+              memory: "400Mi"
+              cpu: "600m"
             limits:
-              memory: "350Mi"
+              memory: "500Mi"
               cpu: "1"
 ---
 
