@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8e9da849-0f28-4186-99bf-40820f56e825",
+		"_postman_id": "76cb5603-622b-49af-9d15-8c97915b3966",
 		"name": "birdnoise-deviceVoltage",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,10 +8,10 @@
 		{
 			"name": "create",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseurl}}/deviceVoltage/save?chipId=12345&voltage=3.6",
+					"raw": "{{baseurl}}/deviceVoltage/save?chipId=12345&voltage=3.7",
 					"host": [
 						"{{baseurl}}"
 					],
@@ -26,7 +26,7 @@
 						},
 						{
 							"key": "voltage",
-							"value": "3.6"
+							"value": "3.7"
 						}
 					]
 				}
@@ -57,7 +57,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseurl}}/deviceVoltage//readByChipId?chipId=12345",
+					"raw": "{{baseurl}}/deviceVoltage//readByChipId?chipId=123456",
 					"host": [
 						"{{baseurl}}"
 					],
@@ -69,7 +69,7 @@
 					"query": [
 						{
 							"key": "chipId",
-							"value": "12345"
+							"value": "123456"
 						}
 					]
 				}

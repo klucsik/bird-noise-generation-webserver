@@ -61,7 +61,7 @@ public class DeviceVoltageService {
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no voltage report with id: %d", id));
         }
         repository.deleteById(id);
-        return new BaseResponseDto(String.format("Deleted DeviceVoltage whith id: %d", id));
+        return new BaseResponseDto(String.format("Deleted DeviceVoltage with id: %d", id));
     }
 
     public BaseResponseDto deleteAllByChipId(String chipId) {
