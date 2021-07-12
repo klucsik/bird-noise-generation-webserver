@@ -1,8 +1,8 @@
 package com.github.klucsik.birdnoisegenerationbackend.dto;
 
 import com.github.klucsik.birdnoisegenerationbackend.services.TrackService;
-import com.github.klucsik.birdnoisegenerationbackend.validators.Trimmed;
-import com.github.klucsik.birdnoisegenerationbackend.validators.Unique;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.Trimmed;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.Unique;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;

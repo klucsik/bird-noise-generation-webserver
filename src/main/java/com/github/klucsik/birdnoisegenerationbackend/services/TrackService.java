@@ -4,7 +4,7 @@ import com.github.klucsik.birdnoisegenerationbackend.dto.TrackDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.TrackMapper;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Track;
 import com.github.klucsik.birdnoisegenerationbackend.repository.TrackRepository;
-import com.github.klucsik.birdnoisegenerationbackend.validators.FieldValueExists;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.FieldValueExists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

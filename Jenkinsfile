@@ -76,6 +76,8 @@ pipeline {
         sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
+        sh 'kubectl rollout status deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
+        sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'kubectl delete ns test-${BRANCH_NAME_LC}'
       }
     }
