@@ -1,6 +1,6 @@
 package com.github.klucsik.birdnoisegenerationbackend.persistence.entity;
 
-import com.github.klucsik.birdnoisegenerationbackend.validators.Trimmed;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.Trimmed;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;

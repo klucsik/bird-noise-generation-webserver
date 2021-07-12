@@ -1,4 +1,4 @@
-package com.github.klucsik.birdnoisegenerationbackend.validators;
+package com.github.klucsik.birdnoisegenerationbackend.validators.annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

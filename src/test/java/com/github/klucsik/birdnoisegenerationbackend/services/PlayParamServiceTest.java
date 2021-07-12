@@ -6,6 +6,7 @@ import com.github.klucsik.birdnoisegenerationbackend.dto.TrackDto;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.PlayUnit;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ class PlayParamServiceTest {
     private final PlayUnitService playUnitService;
     private final PlayParamService playParamService;
     @Test
-    void save() {
+    void save() throws MethodArgumentNotValidException {
         //Given
         TrackDto track1Dto = trackService.save(new TrackDto(1,"Teszt track 1",210));
         List<TrackDto> trackDtoList = new ArrayList<>();
