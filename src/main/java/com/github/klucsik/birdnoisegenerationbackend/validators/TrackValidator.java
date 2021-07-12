@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +15,17 @@ import java.util.List;
 public class TrackValidator {
     private final BaseValidator baseValidator;
     private final TrackRepository repository;
-    public void validate ( Track track) throws MethodArgumentNotValidException {
+
+    public void validate(Track track) throws MethodArgumentNotValidException {
         List<FieldError> errors = new ArrayList<>();
 
-        if(repository.existsByName(track.getName())){errors.add(new FieldError("Track","name","Name must be unique!"));}
-        if(repository.existsByTrackNumber(track.getTrackNumber())){errors.add(new FieldError("Track","trackNumber","Track number must be unique!"));}
-        baseValidator.validateAnnotations(track,errors);
+        if (repository.existsByName(track.getName())) {
+            errors.add(new FieldError("Track", "name", "Name must be unique!"));
+        }
+        if (repository.existsByTrackNumber(track.getTrackNumber())) {
+            errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
+        }
+
+        baseValidator.validateAnnotations(track, errors);
     }
 }
