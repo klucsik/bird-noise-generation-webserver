@@ -5,6 +5,7 @@ import com.github.klucsik.birdnoisegenerationbackend.services.TrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,7 +18,7 @@ public class TrackController extends BaseController {
     private final TrackService service;
 
     @PostMapping("/save")
-    public ResponseEntity<TrackDto> saveTrack(@Valid @RequestBody TrackDto dto) {
+    public ResponseEntity<TrackDto> saveTrack(@RequestBody TrackDto dto) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
     }
 

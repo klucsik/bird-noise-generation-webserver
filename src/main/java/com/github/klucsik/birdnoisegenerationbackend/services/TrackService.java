@@ -4,13 +4,13 @@ import com.github.klucsik.birdnoisegenerationbackend.dto.TrackDto;
 import com.github.klucsik.birdnoisegenerationbackend.mappers.TrackMapper;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Track;
 import com.github.klucsik.birdnoisegenerationbackend.repository.TrackRepository;
-import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.FieldValueExists;
+import com.github.klucsik.birdnoisegenerationbackend.validators.TrackValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
@@ -18,13 +18,14 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class TrackService implements FieldValueExists {
+public class TrackService{
     private final TrackRepository repository;
-
+    private final TrackValidator validator;
 
     //CREATE & UPDATE
-    public TrackDto save(TrackDto dto) {
-        @Valid Track track = TrackMapper.MAPPER.DtoToTrack(dto);
+    public TrackDto save(TrackDto dto) throws MethodArgumentNotValidException {
+        Track track = TrackMapper.MAPPER.DtoToTrack(dto);
+        validator.validate(track);
         return TrackMapper.MAPPER.trackToDto(repository.save(track));
     }
 
@@ -51,33 +52,6 @@ public class TrackService implements FieldValueExists {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         repository.deleteById(id);
-    }
-
-
-    /**
-     * @param value     The value to check for
-     * @param fieldName The name of the field for which to check if the value exists
-     * @return true if fieldname is unique
-     */
-    @Override
-    public boolean fieldValueExists(Object value, @NotNull String fieldName) throws UnsupportedOperationException {
-
-        if (value == null) {
-            return false;
-        }
-
-        switch (fieldName) {
-            case "trackNumber":
-                return this.repository.existsByTrackNumber((Integer) value);
-
-            case "name":
-                return this.repository.existsByName(value.toString());
-
-            default:
-                throw new UnsupportedOperationException("Field name not supported");
-        }
-
-
     }
 
 }
