@@ -6,9 +6,11 @@ import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.PlayUnit
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Track;
 import com.github.klucsik.birdnoisegenerationbackend.repository.PlayUnitRepository;
 import com.github.klucsik.birdnoisegenerationbackend.repository.TrackRepository;
+import com.github.klucsik.birdnoisegenerationbackend.validators.PlayUnitValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -20,10 +22,13 @@ import java.util.stream.Collectors;
 public class PlayUnitService {
     private final PlayUnitRepository repository;
     private final TrackRepository trackRepository;
+    private final PlayUnitValidator validator;
 
-
-    public PlayUnitDto save(PlayUnitDto dto){
+    public PlayUnitDto save(PlayUnitDto dto) throws MethodArgumentNotValidException {
         PlayUnit playUnit = PlayUnitMapper.MAPPER.DtoToPlayUnit(dto);
+
+        validator.validate(playUnit); //We only need to call the validator here.
+
         //we expect to get the ids of the tracks, we find the tracks from the ids, and set them for the new entity. We wont accept nonexisting track-ids.
         List<Track> trackListFromDto = playUnit.getTrackList().stream().map(dtoTrack -> trackRepository.findById(dtoTrack.getId()).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("There is no track with id: %d", dtoTrack.getId())))).collect(Collectors.toList()); //FIXME: isn't this should be done on the dto tracklist?
         playUnit.setTrackList(trackListFromDto);

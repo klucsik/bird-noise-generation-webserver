@@ -3,17 +3,26 @@ kind: CronJob
 metadata:
   name: update-ddns
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "*/10 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-            - name: hello
+            - name: update-ddns
               image: curlimages/curl
               imagePullPolicy: IfNotPresent
               command:
                 - /bin/sh
                 - -c
                 - echo url="https://www.duckdns.org/update?domains=klucsik&token=db7cb8ef-b5a6-475e-adf3-dfe7c2e534ef&ip=" | curl -k -K -
-          restartPolicy: OnFailure
+              resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "128Mi"
+                  cpu: "500m"
+          restartPolicy: Never
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3

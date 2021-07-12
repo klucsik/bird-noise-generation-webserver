@@ -12,9 +12,6 @@ import java.util.Map;
 
 public class BaseController {
 
-    //TODO: Decide the format, how shall we send back the errors. Just this Map, or make messages for toasts aswell?
-    //TODO Maybe we can make a baseResponseEntity with a message field and an errors field
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public BaseResponseDto handleValidationExceptions(

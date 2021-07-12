@@ -11,6 +11,7 @@ import com.github.klucsik.birdnoisegenerationbackend.repository.PlayUnitReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
@@ -59,7 +60,7 @@ public class PlayParamService {
         repository.deleteById(id);
     }
 
-    public PlayParamDto getMock() {
+    public PlayParamDto getMock() throws MethodArgumentNotValidException {
         TrackDto track1Dto = trackService.save(new TrackDto(1, "Teszt track 1", 210));
         List<TrackDto> trackDtoList = new ArrayList<>();
         trackDtoList.add(track1Dto);

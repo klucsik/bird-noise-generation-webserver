@@ -1,8 +1,8 @@
 package com.github.klucsik.birdnoisegenerationbackend.dto;
 
 import com.github.klucsik.birdnoisegenerationbackend.services.TrackService;
-import com.github.klucsik.birdnoisegenerationbackend.validators.Trimmed;
-import com.github.klucsik.birdnoisegenerationbackend.validators.Unique;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.Trimmed;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.Unique;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
@@ -28,7 +28,6 @@ public class TrackDto {
     @Trimmed
     @NotBlank(message = "Name is mandatory")
     @Unique(service = TrackService.class, fieldName = "name", message = "Track name must be unique!")
-
     private String name;
 
     @Range(min = 1, max = 1800)

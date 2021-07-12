@@ -1,9 +1,8 @@
-package com.github.klucsik.birdnoisegenerationbackend.validators;
+package com.github.klucsik.birdnoisegenerationbackend.validators.annotations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
-import java.lang.reflect.Method;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
