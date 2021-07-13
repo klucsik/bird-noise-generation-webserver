@@ -17,7 +17,7 @@ pipeline {
           }
           steps {
             sh 'mvn -B -DskipTests clean package install'
-            sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} .'
+            sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
             sh 'sed -i "s/BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
@@ -37,7 +37,7 @@ pipeline {
           }
           steps {
             sh 'mvn -B -DskipTests clean package install'
-            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} FrontEnd/.'
+            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} frontend/.'
             sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
             sh 'sed -i "s/FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
