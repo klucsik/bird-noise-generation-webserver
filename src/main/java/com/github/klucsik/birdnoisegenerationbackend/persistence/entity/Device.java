@@ -26,7 +26,7 @@ public class Device {
     @Size(max = 250)
     private String name;
 
-
+    @Size(max = 250)
     private String location;
 
     @NotNull(message = "Status is mandatory")

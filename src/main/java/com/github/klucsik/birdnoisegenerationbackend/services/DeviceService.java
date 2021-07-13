@@ -30,7 +30,7 @@ public class DeviceService {
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
-    public DeviceDto createUnregistered(String chipId) {
+    public DeviceDto createUnregistered(String chipId) throws MethodArgumentNotValidException {
         DeviceDto device = new DeviceDto();
         device.setStatus(DeviceStatus.UNREGISTERED);
         device.setChipId(chipId);
@@ -59,8 +59,8 @@ public class DeviceService {
     //Delete
     public void delete(Long id) {
         Device device = repository.findById(id).orElseThrow(
-                () ->  new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,String.format("There is no device with id: %d", id)));
+                () -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, String.format("There is no device with id: %d", id)));
         repository.deleteById(id);
     }
 
