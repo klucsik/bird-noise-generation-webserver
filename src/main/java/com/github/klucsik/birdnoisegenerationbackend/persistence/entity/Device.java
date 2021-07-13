@@ -1,6 +1,7 @@
 package com.github.klucsik.birdnoisegenerationbackend.persistence.entity;
 
 import com.github.klucsik.birdnoisegenerationbackend.persistence.enums.DeviceStatus;
+import com.github.klucsik.birdnoisegenerationbackend.validators.annotations.Unique;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
