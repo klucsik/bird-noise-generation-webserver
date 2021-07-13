@@ -2,6 +2,12 @@ pipeline {
   agent any
   stages {
     stage ('build deps'){
+        when {
+            anyOf {
+            changeset 'backend/backendclient/src/main/**'
+            }
+
+        }
         steps {
             sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
         }
@@ -11,7 +17,7 @@ pipeline {
         stage('backend') {
           when {
             anyOf {
-              changeset 'backend/src/main/**'
+              changeset 'backend/backendserver/src/main/**'
               expression {
                 image_id = sh (script: "docker images -q ${IMAGEREPO}/${BE_IMAGETAG}", returnStdout: true).trim()
                 if (image_id.isEmpty()) return true
@@ -22,7 +28,7 @@ pipeline {
           }
           steps {
             sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
-            sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/.'
+            sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/backendserver/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
             sh 'sed -i "s/BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
