@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage ('build deps'){
+        steps {
+            sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
+        }
+    }
     stage('build images') {
       parallel {
         stage('backend') {
@@ -16,7 +21,7 @@ pipeline {
 
           }
           steps {
-            sh 'mvn -B -DskipTests clean package install'
+            sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
             sh 'sed -i "s/BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
@@ -36,7 +41,7 @@ pipeline {
 
           }
           steps {
-            sh 'mvn -B -DskipTests clean package install'
+            sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
             sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} frontend/.'
             sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
             sh 'sed -i "s/FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
