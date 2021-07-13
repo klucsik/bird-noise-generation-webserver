@@ -1,6 +1,5 @@
 package com.github.klucsik.birdnoisegenerationbackend.controller;
 
-import com.github.klucsik.birdnoisegenerationbackend.dto.DeviceVoltageDto;
 import com.github.klucsik.birdnoisegenerationbackend.services.DeviceVoltageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/deviceVoltage")
 @RequiredArgsConstructor
-public class DeviceVoltageReportController {
+public class DeviceVoltageReportController extends BaseController {
     private final DeviceVoltageService service;
 
     @GetMapping("/save")
