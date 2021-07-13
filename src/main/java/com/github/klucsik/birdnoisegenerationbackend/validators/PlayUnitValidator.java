@@ -33,6 +33,6 @@ public class PlayUnitValidator{
             }
         });
 
-        baseValidator.validateAnnotations(playUnit,errors);
+        baseValidator.validateAnnotations(playUnit,errors, "PlayUnit");
     }
 }

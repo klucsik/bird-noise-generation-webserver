@@ -5,6 +5,7 @@ import com.github.klucsik.birdnoisegenerationbackend.services.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class DeviceController {
     private final DeviceService service;
 
     @PostMapping("/save")
-    public ResponseEntity<DeviceDto> saveDevice(@RequestBody DeviceDto dto) {
+    public ResponseEntity<DeviceDto> saveDevice(@RequestBody DeviceDto dto) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
     }
 
