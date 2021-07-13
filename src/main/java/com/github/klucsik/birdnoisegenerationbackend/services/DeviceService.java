@@ -30,7 +30,7 @@ public class DeviceService {
         DeviceDto device = new DeviceDto();
         device.setStatus(DeviceStatus.UNREGISTERED);
         device.setChipId(chipId);
-        return save(device); //We call the already used save emthod, so we won't do the same thing in to functions.
+        return save(device);
     }
 
 
@@ -44,7 +44,7 @@ public class DeviceService {
     }
 
     public List<DeviceDto> getAll() {
-        return repository.findAll().stream().map(DeviceMapper.MAPPER::devicetoDto).collect(Collectors.toList()); //I dont even wanna know what is this
+        return repository.findAll().stream().map(DeviceMapper.MAPPER::devicetoDto).collect(Collectors.toList());
     }
 
     public DeviceDto findByChipId(String chipId) {
@@ -54,7 +54,9 @@ public class DeviceService {
 
     //Delete
     public void delete(Long id) {
-        Device device = repository.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("There is no device with id: %d", id)));
+        Device device = repository.findById(id).orElseThrow(
+                () ->  new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,String.format("There is no device with id: %d", id)));
         repository.deleteById(id);
     }
 
