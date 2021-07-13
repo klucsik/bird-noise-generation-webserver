@@ -1,3 +1,4 @@
+* FEATURE: Created device voltage BE part, and report voltage endpoint for devices
 * FEATURE: Add validation for playUnits
 * TECHNICAL_FEATURE: Run api tests in jenkins
 * TECHNICAL FEATURE: Added trimmed and Unique custom validators

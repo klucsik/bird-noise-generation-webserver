@@ -2,29 +2,24 @@ package com.github.klucsik.birdnoisegenerationbackend.persistence.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @NoArgsConstructor
 @Data
 public class DeviceVoltage {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //db will generate this for us
-    private String deviceId; //TODO add a relationship on the parent
-    private Double voltage;
+    private Float voltage;
+    @ManyToOne
+    private Device device;
 
-    private LocalDate createdAt; //we will set this in the service layer
-
-    public DeviceVoltage(String deviceId, Double voltage, LocalDate createdAt){
-        this.deviceId=deviceId;
-        this.voltage=voltage;
-        this.createdAt=createdAt;
-    }
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
 }

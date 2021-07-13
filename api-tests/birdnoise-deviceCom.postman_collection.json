@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "574710ce-1bb7-486c-b9f8-082fcd516e44",
+		"name": "birdnoise-deviceCom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"device\",\r\n    \"chipId\": \"12345\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/device/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"device",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"device\",\r\n    \"chipId\": \"12345\",\r\n    \"location\": \"testerzone2\",\r\n    \"status\": \"OK\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/device/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"device",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSingleByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/device/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"device",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/device/page",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"device",
+						"page"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/device/2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"device",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "8e9da849-0f28-4186-99bf-40820f56e825",
+		"name": "birdnoise-deviceVoltage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/deviceVoltage/save?chipId=12345&voltage=3.6",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceVoltage",
+						"save"
+					],
+					"query": [
+						{
+							"key": "chipId",
+							"value": "12345"
+						},
+						{
+							"key": "voltage",
+							"value": "3.6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/deviceVoltage/page",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceVoltage",
+						"page"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "readAllByChipId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/deviceVoltage//readByChipId?chipId=12345",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceVoltage",
+						"",
+						"readByChipId"
+					],
+					"query": [
+						{
+							"key": "chipId",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSingleByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/deviceVoltage/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceVoltage",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/deviceVoltage/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceVoltage",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAllByChipId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/deviceVoltage/deleteByChipId?chipId=12345",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceVoltage",
+						"deleteByChipId"
+					],
+					"query": [
+						{
+							"key": "chipId",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
