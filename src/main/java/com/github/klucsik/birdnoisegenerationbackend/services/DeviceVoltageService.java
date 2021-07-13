@@ -10,6 +10,7 @@ import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceVoltageRep
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ public class DeviceVoltageService {
     private final DeviceService deviceService;
 
     //Save because there is only one Service and to Controllers
-    public Long save(String chipId, Float voltage) {
+    public Long save(String chipId, Float voltage) throws MethodArgumentNotValidException {
         DeviceVoltage deviceVoltage = new DeviceVoltage();
 
         Device device =DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
