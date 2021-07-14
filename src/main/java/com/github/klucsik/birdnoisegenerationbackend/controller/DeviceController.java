@@ -20,7 +20,7 @@ public class DeviceController extends BaseController {
     private final DeviceService service;
 
     @PostMapping("/save")
-    public ResponseEntity<DeviceDto> saveDevice(@Valid @RequestBody DeviceDto dto) throws MethodArgumentNotValidException {
+    public ResponseEntity<DeviceDto> saveDevice(@RequestBody DeviceDto dto) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
     }
 
