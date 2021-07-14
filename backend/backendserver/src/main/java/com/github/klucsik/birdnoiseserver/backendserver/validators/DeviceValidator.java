@@ -19,11 +19,11 @@ public class DeviceValidator {
     public void validate(Device device) throws MethodArgumentNotValidException {
         List<FieldError> errors = new ArrayList<>();
 
-        if (repository.existsByChipId(device.getChipId())) {
-            errors.add(new FieldError("Device", "chipId", "ChipId must be unique"));
+        if (repository.existsByChipId(device.getChipId()) & device.getId() == null) {
+            errors.add(new FieldError("Devcie", "chipId", "ChipId must be unique"));
         }
 
-        if (repository.existsByName(device.getName())) {
+        if (repository.existsByName(device.getName()) & device.getId() == null) {
             errors.add(new FieldError("Device", "name", "Name must be unique"));
         }
 
