@@ -26,9 +26,9 @@ public class BaseValidator {
      * @param target The class we want to run annotated validations on. Usually an Entity.
      * @param customValidationErrors A list of field errors which produced by custom validations.
      */
-    public void validateAnnotations(Object target, List<FieldError> customValidationErrors) throws MethodArgumentNotValidException {
+    public void validateAnnotations(Object target, List<FieldError> customValidationErrors, String objectName) throws MethodArgumentNotValidException {
 
-        BeanPropertyBindingResult result = new BeanPropertyBindingResult(target, "playUnit");
+        BeanPropertyBindingResult result = new BeanPropertyBindingResult(target, objectName);
 
         validator.validate(target,result );
         // validation goes here

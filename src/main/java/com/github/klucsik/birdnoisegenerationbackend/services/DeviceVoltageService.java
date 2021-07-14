@@ -7,9 +7,11 @@ import com.github.klucsik.birdnoisegenerationbackend.mappers.DeviceVoltageMapper
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Device;
 import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.DeviceVoltage;
 import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceVoltageRepository;
+import com.github.klucsik.birdnoisegenerationbackend.validators.DeviceVoltageValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -21,18 +23,23 @@ import java.util.stream.Collectors;
 public class DeviceVoltageService {
     private final DeviceVoltageRepository repository;
     private final DeviceService deviceService;
+    private final DeviceVoltageValidator validator;
 
     //Save because there is only one Service and to Controllers
-    public Long save(String chipId, Float voltage) {
+    public Long save(String chipId, Float voltage) throws MethodArgumentNotValidException {
         DeviceVoltage deviceVoltage = new DeviceVoltage();
 
+        deviceVoltage.setVoltage(voltage);
+        validator.validate(deviceVoltage);
         Device device =DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
         if (device == null){
             device = DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId));
         }
         deviceVoltage.setDevice(device);
-        deviceVoltage.setVoltage(voltage);
         deviceVoltage.setCreatedAt(LocalDateTime.now());
+
+
+
         repository.save(deviceVoltage);
         return deviceVoltage.getId();
     }
