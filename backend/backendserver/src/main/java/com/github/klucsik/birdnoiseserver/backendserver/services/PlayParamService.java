@@ -8,6 +8,7 @@ import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayP
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayUnit;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.PlayParamRepository;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.PlayUnitRepository;
+import com.github.klucsik.birdnoiseserver.backendserver.validators.PlayParamValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,12 @@ import java.util.stream.Collectors;
 public class PlayParamService {
     private final PlayParamRepository repository;
     private final PlayUnitRepository playUnitRepository;
+    private final PlayParamValidator validator;
 
     private final TrackService trackService; //DELETEME
     private final PlayUnitService playUnitService; //DELETEME
 
-    public PlayParamDto save(PlayParamDto dto) {
+    public PlayParamDto save(PlayParamDto dto) throws MethodArgumentNotValidException {
         PlayParam playParam = PlayParamMapper.MAPPER.dtoToPlayParam(dto);
         Map<Integer, PlayUnit> playUnits = new HashMap<>();
         dto.getPlayUnits().forEach(
@@ -38,6 +40,7 @@ public class PlayParamService {
                 }
         );
         playParam.setPlayUnits(playUnits);
+        validator.validate(playParam);
         return PlayParamMapper.MAPPER.playParamtoDto(repository.save(playParam));
     }
 
