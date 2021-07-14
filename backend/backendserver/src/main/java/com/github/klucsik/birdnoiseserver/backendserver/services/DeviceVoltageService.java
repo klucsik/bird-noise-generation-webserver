@@ -1,6 +1,5 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
-
 import com.github.klucsik.birdnoiseserver.backendclient.dto.BaseResponseDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceVoltageDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
@@ -8,6 +7,7 @@ import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceVoltageMap
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceVoltage;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceVoltageRepository;
+import com.github.klucsik.birdnoiseserver.backendserver.validators.DeviceVoltageValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -31,13 +31,12 @@ public class DeviceVoltageService {
 
         deviceVoltage.setVoltage(voltage);
         validator.validate(deviceVoltage);
-        Device device =DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
-        if (device == null){
+        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
+        if (device == null) {
             device = DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId));
         }
         deviceVoltage.setDevice(device);
         deviceVoltage.setCreatedAt(LocalDateTime.now());
-
 
 
         repository.save(deviceVoltage);
@@ -65,7 +64,7 @@ public class DeviceVoltageService {
     public BaseResponseDto delete(Long id) {
         repository.existsById(id);
         if (!repository.existsById(id)) {
-            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no voltage report with id: %d", id));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no voltage report with id: %d", id));
         }
         repository.deleteById(id);
         return new BaseResponseDto(String.format("Deleted DeviceVoltage with id: %d", id));

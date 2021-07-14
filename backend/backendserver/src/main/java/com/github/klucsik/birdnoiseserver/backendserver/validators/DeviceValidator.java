@@ -1,7 +1,7 @@
-package com.github.klucsik.birdnoisegenerationbackend.validators;
+package com.github.klucsik.birdnoiseserver.backendserver.validators;
 
-import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.Device;
-import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceRepository;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
+import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;

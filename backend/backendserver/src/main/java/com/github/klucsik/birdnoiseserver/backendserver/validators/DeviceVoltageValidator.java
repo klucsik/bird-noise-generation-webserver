@@ -1,7 +1,7 @@
-package com.github.klucsik.birdnoisegenerationbackend.validators;
+package com.github.klucsik.birdnoiseserver.backendserver.validators;
 
-import com.github.klucsik.birdnoisegenerationbackend.persistence.entity.DeviceVoltage;
-import com.github.klucsik.birdnoisegenerationbackend.repository.DeviceVoltageRepository;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceVoltage;
+import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceVoltageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;

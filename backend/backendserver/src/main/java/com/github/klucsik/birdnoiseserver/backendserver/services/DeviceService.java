@@ -1,10 +1,11 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceStatus;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
-import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceStatus;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
+import com.github.klucsik.birdnoiseserver.backendserver.validators.DeviceValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class DeviceService {
     }
 
     public DeviceDto createUnregistered(String chipId) throws MethodArgumentNotValidException {
-    //FIXME: This throws a validation error on name on the second newly registered device
+        //FIXME: This throws a validation error on name on the second newly registered device
         DeviceDto device = new DeviceDto();
         device.setStatus(DeviceStatus.UNREGISTERED);
         device.setChipId(chipId);
