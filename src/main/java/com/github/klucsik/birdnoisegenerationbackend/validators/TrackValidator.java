@@ -26,6 +26,6 @@ public class TrackValidator {
             errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
         }
 
-        baseValidator.validateAnnotations(track, errors);
+        baseValidator.validateAnnotations(track, errors, "Track");
     }
 }
