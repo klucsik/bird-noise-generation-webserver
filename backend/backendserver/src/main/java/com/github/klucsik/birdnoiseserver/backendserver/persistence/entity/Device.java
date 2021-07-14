@@ -24,7 +24,6 @@ public class Device {
 
     @Column(unique = true)
     @Size(max = 250)
-    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Size(max = 250)
