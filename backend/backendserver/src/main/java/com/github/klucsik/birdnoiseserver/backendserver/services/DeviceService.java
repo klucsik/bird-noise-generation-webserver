@@ -31,7 +31,6 @@ public class DeviceService {
     }
 
     public DeviceDto createUnregistered(String chipId) throws MethodArgumentNotValidException {
-        //FIXME: This throws a validation error on name on the second newly registered device
         DeviceDto device = new DeviceDto();
         device.setStatus(DeviceStatus.UNREGISTERED);
         device.setChipId(chipId);
