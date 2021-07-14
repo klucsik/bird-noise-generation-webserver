@@ -1,18 +1,325 @@
 {
 	"info": {
-		"_postman_id": "574710ce-1bb7-486c-b9f8-082fcd516e44",
+		"_postman_id": "01ddfbd5-e150-4711-ba59-752467b94684",
 		"name": "birdnoise-deviceCom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+			"name": "validations",
+			"item": [
+				{
+					"name": "uniqueness",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"uniqueTest_1_name\",\r\n    \"chipId\": \"uniqueTest_1_chipId\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/device/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"device",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "name duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validation error\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.contains(\"Validation error!\");",
+											"});",
+											"",
+											"pm.test(\"contains invalid field as text\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"name\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"uniqueTest_1_name\",\r\n    \"chipId\": \"uniqueTest_2_chipId\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/device/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"device",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "chipId duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validation error\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.contains(\"Validation error!\");",
+											"});",
+											"",
+											"pm.test(\"contains invalid field as text\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"chipId\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"uniqueTest_2_name\",\r\n    \"chipId\": \"uniqueTest_1_chipId\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/device/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"device",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "both duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validation error\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.contains(\"Validation error!\");",
+											"});",
+											"",
+											"pm.test(\"contains invalid field as text\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"chipId\");",
+											"});",
+											"",
+											"pm.test(\"contains invalid field as text\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"name\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"uniqueTest_1_name\",\r\n    \"chipId\": \"uniqueTest_1_chipId\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/device/save",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"device",
+										"save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "chipid mandatory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Validation error\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.contains(\"Validation error!\");",
+									"});",
+									"",
+									"pm.test(\"contains invalid field as text\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"chipId\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"chipId\": \"\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/device/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"device",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "status mandatory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"chipId\": \"123\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/device/save",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"device",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"letrehozott_device_1\",jsonData.id)",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"device\",\r\n    \"chipId\": \"12345\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
+					"raw": "{\r\n    \"name\": \"device_to_create\",\r\n    \"chipId\": \"device_to_create_12345\",\r\n    \"location\": \"testerzone1\",\r\n    \"status\": \"OK\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,12 +341,25 @@
 		},
 		{
 			"name": "update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"device\",\r\n    \"chipId\": \"12345\",\r\n    \"location\": \"testerzone2\",\r\n    \"status\": \"OK\"\r\n}",
+					"raw": "{\r\n    \"id\": {{letrehozott_device_1}},\r\n    \"name\": \"device_to_create_updated\",\r\n    \"chipId\": \"device_to_create_12345_updated\",\r\n    \"location\": \"testerzone2\",\r\n    \"status\": \"OK\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,17 +381,30 @@
 		},
 		{
 			"name": "GetSingleByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseurl}}/device/1",
+					"raw": "{{baseurl}}/device/{{letrehozott_device_1}}",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
 						"device",
-						"1"
+						"{{letrehozott_device_1}}"
 					]
 				}
 			},
@@ -79,6 +412,19 @@
 		},
 		{
 			"name": "GetPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -97,21 +443,60 @@
 		},
 		{
 			"name": "delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseurl}}/device/2",
+					"raw": "{{baseurl}}/device/{{letrehozott_device_1}}",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
 						"device",
-						"2"
+						"{{letrehozott_device_1}}"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "letrehozott_device_1",
+			"value": ""
 		}
 	]
 }
