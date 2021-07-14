@@ -20,7 +20,7 @@ public class Track {
 
     @NotNull(message = "Tracknumber is mandatory") //Validations always should be the same as on Dto
     @Range(min = 1, max = 255)
-    @Column(unique = true) //this is validated at the Unique annotation, but here lets have the DB enforce it
+    @Column(unique = true) //this is validated at the TrackValidator, but here lets have the DB enforce it
     private Integer trackNumber; //the track on the devices sd card is only identified with a number
 
     @Size(max = 255)
