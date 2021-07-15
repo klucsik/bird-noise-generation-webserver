@@ -10,9 +10,11 @@ kind: Ingress
 metadata:
   name: birdnoise-BRANCHNAME-duckdns
   namespace: BRANCHNAME
+  annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   rules:
-    - host: BRANCHNAME.klucsik.duckdns.org
+    - host: www.BRANCHNAME.klucsik.duckdns.org
       http:
         paths:
           - pathType: Prefix
@@ -35,9 +37,11 @@ kind: Ingress
 metadata:
   name: birdnoise-BRANCHNAME-fun
   namespace: BRANCHNAME
+  annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   rules:
-    - host: BRANCHNAME.klucsik.fun
+    - host: www.BRANCHNAME.klucsik.fun
       http:
         paths:
           - pathType: Prefix
