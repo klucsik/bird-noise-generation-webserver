@@ -15,7 +15,8 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - echo url="https://www.duckdns.org/update?domains=klucsik&token=db7cb8ef-b5a6-475e-adf3-dfe7c2e534ef&ip=" | curl -k -K -
+                - echo url="https://www.duckdns.org/update?domains=klucsik&token=TOKEN&ip=" | curl -k -K -
+                - echo url="https://dynamicdns.park-your-domain.com/update?host=*&domain=klucsik.fun&password=TOKEN" | curl -k -K -
               resources:
                 requests:
                   memory: "64Mi"

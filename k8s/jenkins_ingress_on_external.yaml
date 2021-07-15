@@ -8,11 +8,35 @@ metadata:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: jenkins
+  name: jenkins-duckdns
   namespace: jenkins
+  annotations:
+    # if the user goes to jenkins.klucsik.duckdns.org, they will be redirected to www.jenkins.klucsik.duckdns.org
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   rules:
-    - host: jenkins.klucsik.duckdns.org
+    - host: www.jenkins.klucsik.duckdns.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: jenkins-external-ip
+                port:
+                  number: 80
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jenkins-fun
+  namespace: jenkins
+  annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  rules:
+    - host: www.jenkins.klucsik.fun
       http:
         paths:
           - pathType: Prefix
