@@ -76,16 +76,14 @@ pipeline {
 
     stage('api-tests') {
       steps {
-        sh 'cp k8s/birdnoise_deployment.yaml k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'cat k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'kubectl apply -f k8s/test-${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
+        sh 'cp k8s/apitest_deployment.yaml k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
+        sh 'sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
+        sh 'sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
+        sh 'sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
+        sh 'cat k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
+        sh 'kubectl apply -f k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
-        sh 'kubectl rollout status deployment/birdnoise-fe --namespace=test-${BRANCH_NAME_LC}'
-        sh 'sed -i "s/BRANCHNAME/test-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
+        sh 'sed -i "s/BRANCHNAME/apitest-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'kubectl rollout restart deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=test-${BRANCH_NAME_LC}'
