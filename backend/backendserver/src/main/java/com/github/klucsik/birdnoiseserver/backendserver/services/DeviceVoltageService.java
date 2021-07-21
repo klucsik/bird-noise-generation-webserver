@@ -33,7 +33,7 @@ public class DeviceVoltageService {
         validator.validate(deviceVoltage);
         Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
         if (device == null) {
-            device = DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId));
+            device = DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId)); //FIXME when it creates an unregistered Device than give a generated name
         }
         deviceVoltage.setDevice(device);
         deviceVoltage.setCreatedAt(LocalDateTime.now());
