@@ -30,7 +30,7 @@ public class Device {
     private String location;
 
     @NotNull(message = "Status is mandatory")
-    private DeviceStatus status; //TODO if there is no status do smth
+    private DeviceStatus status; //TODO if there is no status do smth what is a custom error
 
 
 }

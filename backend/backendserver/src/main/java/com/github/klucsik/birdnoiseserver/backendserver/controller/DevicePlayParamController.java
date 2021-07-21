@@ -21,5 +21,7 @@ public class DevicePlayParamController {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }
 
+    //TODO érkezik chipId and paramVersion Request param-ba vissza DevicePlayParamDto
+
 
 }
