@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashMap;
 import java.util.Map;
 
 @Entity
@@ -19,10 +20,10 @@ public class PlayParam {
     @Size(max = 255, message = "Name must be less characters than 255")
     private String name;
 
-    @Range(min = 0, max = 15, message = "Volume must be between 0 and 15")
+    @Range(min = 1, max = 30, message = "Volume must be between 1 and 30")
     @NotNull(message = "Volume cant be null")
     private Integer vol; //volume
 
     @ManyToMany
-    private Map<Integer,PlayUnit> playUnits;
+    private Map<Integer, PlayUnit> playUnits;
 }
