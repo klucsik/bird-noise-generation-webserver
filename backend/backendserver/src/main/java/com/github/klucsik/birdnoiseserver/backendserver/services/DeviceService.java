@@ -26,7 +26,8 @@ public class DeviceService {
     //Save
     public DeviceDto save(DeviceDto dto) throws MethodArgumentNotValidException {
         Device device = DeviceMapper.MAPPER.Dtotodevice(dto);
-        validator.validate(device);
+        if (device.getId() != null) {validator.validateUpdate(device);}
+        if (device.getId() == null) {validator.validate(device);}
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
