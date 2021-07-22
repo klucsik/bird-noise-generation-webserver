@@ -22,21 +22,26 @@ public class PlayParamValidator {
         List<FieldError> errors = new ArrayList<>();
 
         if (repository.existsByName(playParam.getName())) {
-            errors.add(new FieldError("PlayParam", "Name", "Name must be unique"));
+            PlayParam existingPlayParam = repository.findByName(playParam.getName());
+            if (playParam.getId() != null && existingPlayParam.getId() != playParam.getId()) {
+                errors.add(new FieldError("PlayParam", "Name", "Name must be unique"));
+            }
+            else if (playParam.getId() == null) {
+                errors.add(new FieldError("PlayParam", "Name", "Name must be unique"));
+            }
         }
 
-
-        playParam.getPlayUnits().forEach( (hour, playUnit) -> {//FIXME there are problems at update
+        playParam.getPlayUnits().forEach( (hour, playUnit) -> {
                     if (hour <= 0 || hour >= 25) {
                         errors.add(new FieldError("PlayParam", "Hour", "Hour must be between 0 and 24"));
 
                         Set<Integer> hourSet = new HashSet<>();
-                        if (!hourSet.add(hour)) { //FIXME there are problems at update
+                        if (!hourSet.add(hour)) {
                             errors.add(new FieldError("PlayParam", "Hour", "Hour must be unique"));
                         }
 
                     }
-                });
+        });
 
         baseValidator.validateAnnotations(playParam, errors, "PlayParam");
     }
