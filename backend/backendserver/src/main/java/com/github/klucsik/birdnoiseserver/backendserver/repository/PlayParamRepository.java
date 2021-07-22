@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlayParamRepository extends JpaRepository<PlayParam,Long> {
     boolean existsByName(String name);
+
+    PlayParam findByName(String name);
 }
