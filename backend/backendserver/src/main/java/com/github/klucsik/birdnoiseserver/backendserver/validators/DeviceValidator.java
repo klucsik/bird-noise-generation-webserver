@@ -34,7 +34,7 @@ public class DeviceValidator {
         List<FieldError> errors = new ArrayList<>();
         Device existingDevice = repository.findByChipId(device.getChipId());
 
-        if (existingDevice.getChipId() == device.getChipId() && existingDevice.getId() == device.getId()) {
+        if (existingDevice.getChipId() == device.getChipId() && existingDevice.getId() != device.getId()) {
             errors.add(new FieldError("Device", "chipId", "ChipId must be unique"));
         }
 
