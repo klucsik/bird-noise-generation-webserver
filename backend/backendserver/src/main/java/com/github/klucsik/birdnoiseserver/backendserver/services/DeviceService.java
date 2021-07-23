@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,20 +25,38 @@ import java.util.stream.Collectors;
 public class DeviceService {
     private final DeviceRepository repository;
     private final DeviceValidator validator;
+    private Set<Integer> autoNumSet = new HashSet<>();
 
 
     //Save
     public DeviceDto save(DeviceDto dto) throws MethodArgumentNotValidException {
         Device device = DeviceMapper.MAPPER.Dtotodevice(dto);
-        if (device.getId() != null) {validator.validateUpdate(device);}
-        if (device.getId() == null) {validator.validate(device);}
+        if (device.getId() != null) {
+            validator.validateUpdate(device);
+        }
+        if (device.getId() == null) {
+            validator.validate(device);
+        }
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
     public DeviceDto createUnregistered(String chipId) throws MethodArgumentNotValidException {
+        Integer generatedNum = autoNumSet.size();
         DeviceDto device = new DeviceDto();
+
+        if (!autoNumSet.add(generatedNum)) {
+            generatedNum += 1;
+        }
+
         device.setStatus(DeviceStatus.UNREGISTERED);
         device.setChipId(chipId);
+        device.setName(
+                "Date generated: " + LocalDateTime.now() + ", " +
+                        "chipId: " + chipId + ", " +
+                        "GeneratedNum: " + generatedNum
+        );
+
+
         return save(device);
     }
 
