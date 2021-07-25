@@ -1,0 +1,53 @@
+:root {
+    --menu-text-color: #ffebdc;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.bird {
+    position: absolute;
+}
+
+.menu-layout {
+    max-width: 260px;
+}
+
+.main-menu {
+    background-color: #298BA0;
+    color: var(--menu-text-color);
+}
+
+.hamburger-menu {
+    align-self: center;
+    cursor: pointer;
+}
+
+.menu-item a span{
+    color: var(--menu-text-color);
+    font-variant: small-caps;
+}
+
+.hamburger-menu
+.menu-icon a{
+    fill: var(--menu-text-color);
+}
+
+.menu-height {
+    min-height: 100vh;
+}
+
+.info-card {
+    height: 250px;
+    width: 250px;
+    background-color: var(--menu-text-color);
+    box-shadow: 10px 10px #e3d1c3;
+}
+
+.row,
+.col-md-2,
+.col-md-10 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
