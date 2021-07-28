@@ -1,7 +1,36 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: update-ddns
+  name: update-duckdns
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: update-duckdns
+              image: curlimages/curl
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - echo url="https://www.duckdns.org/update?domains=klucsik&token=TOKEN&ip=" | curl -k -K -
+              resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "128Mi"
+                  cpu: "500m"
+          restartPolicy: Never
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: update-namecheap-ddns
 spec:
   schedule: "*/10 * * * *"
   jobTemplate:
@@ -9,13 +38,12 @@ spec:
       template:
         spec:
           containers:
-            - name: update-ddns
+            - name: update-namecheap-ddns
               image: curlimages/curl
               imagePullPolicy: IfNotPresent
               command:
                 - /bin/sh
                 - -c
-                - echo url="https://www.duckdns.org/update?domains=klucsik&token=TOKEN&ip=" | curl -k -K -
                 - echo url="https://dynamicdns.park-your-domain.com/update?host=*&domain=klucsik.fun&password=TOKEN" | curl -k -K -
               resources:
                 requests:
