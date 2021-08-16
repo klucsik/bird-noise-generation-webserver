@@ -24,14 +24,13 @@ public class Device {
 
     @Column(unique = true)
     @Size(max = 250)
-    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Size(max = 250)
     private String location;
 
     @NotNull(message = "Status is mandatory")
-    private DeviceStatus status; //TODO if there is no status do smth
+    private DeviceStatus status; //TODO if there is no status do smth what is a custom error
 
 
 }

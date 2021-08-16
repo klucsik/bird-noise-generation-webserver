@@ -26,6 +26,24 @@ public class DeviceValidator {
         if (repository.existsByName(device.getName())) {
             errors.add(new FieldError("Device", "name", "Name must be unique"));
         }
+
         baseValidator.validateAnnotations(device, errors, "Device");
+    }
+
+    public void validateUpdate(Device device) throws MethodArgumentNotValidException {
+        List<FieldError> errors = new ArrayList<>();
+        Device existingDevice = repository.findByChipId(device.getChipId());
+
+        if (existingDevice.getChipId() == device.getChipId() && existingDevice.getId() != device.getId()) {
+            errors.add(new FieldError("Device", "chipId", "ChipId must be unique"));
+        }
+
+        existingDevice = repository.findByChipId(device.getChipId());
+
+        if (existingDevice.getName() == device.getName() && existingDevice.getId() != device.getId()) {
+            errors.add(new FieldError("Device", "name", "Name must be unique"));
+        }
+
+        baseValidator.validateAnnotations(device, errors, "DeviceUpdate");
     }
 }
