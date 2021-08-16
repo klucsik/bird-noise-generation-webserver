@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+<!--    <p>Hi there, Here comes the dashboard, with nice cards like:-->
+<!--        Dying devices, Dying batteries, OK devices, not ok devices.-->
+<!--        Also we should list the device page here.-->
+<!--    </p>-->
+    <!--  ide jönnek a kártyák-->
+    <div class="row d-flex justify-content-around mb-5">
+        <div th:insert="fragments/_card" class="m-2 info-card"></div>
+        <div th:insert="fragments/_card" class="m-2 info-card"></div>
+        <div th:insert="fragments/_card" class="m-2 info-card"></div>
+        <div th:insert="fragments/_card" class="m-2 info-card"></div>
+    </div>
+    <!--  ide jön a táblázat-->
+    <div class="row ">
+        <div class="container m-5" style="background-color: #ffebdc;box-shadow: 10px 10px #e3d1c3;">
+            <table id="taskBasket" class="display table table-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>position</th>
+                    <th>salary</th>
+                    <th>start_date</th>
+                    <th>office</th>
+                    <th>extn</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+        const dataExample = [
+            {
+                "name": "Tiger Nixon",
+                "position": "System Architect",
+                "salary": "$3,120",
+                "start_date": "2011/04/25",
+                "office": "Edinburgh",
+                "extn": "5421"
+            },
+            {
+                "name": "Garrett Winters",
+                "position": "Director",
+                "salary": "$5,300",
+                "start_date": "2011/07/25",
+                "office": "Edinburgh",
+                "extn": "8422"
+            }
+        ];
+
+
+    $('#taskBasket').DataTable({
+        data: dataExample,
+        // select: true,
+        language: {
+            url: "dataTables/dataTables-translation.json"
+        },
+        columns: [
+            {data: 'name'},
+            {data: 'position'},
+            {data: 'salary'},
+            {data: 'start_date'},
+            {data: 'office'},
+            {data: 'extn'},
+        ]
+    });
+
+    /*]]>*/
+</script>
+
+</body>
+</html>
