@@ -38,8 +38,4 @@ public class DevicePlayParamController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    //TODO érkezik chipId and paramVersion Request param-ba vissza DevicePlayParamDto
-
-
 }

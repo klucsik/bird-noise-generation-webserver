@@ -13,6 +13,7 @@ import com.github.klucsik.birdnoiseserver.backendserver.repository.PlayParamRepo
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -47,8 +48,9 @@ public class DevicePlayParamSelectorService {
 
 
             default:
-                return null; //TODO raise expection coze something is fucky here, lets send up the list for debugging, also it should be validated
-        }
+                throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conficting playParams: %s", devicePlayParams));
+                //TODO also it should be validated        }
 
+        }
     }
 }
