@@ -1,14 +1,16 @@
 package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamSlimDto;
+import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.services.DevicePlayParamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/devicePlayParam")
@@ -16,9 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class DevicePlayParamController {
     private final DevicePlayParamService service;
 
+    @PostMapping("/save")
+    public ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto) {
+        return new ResponseEntity<>(service.save(devicePlayParamDto), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<DevicePlayParamDto> getOne(@PathVariable Long id) {
-        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+    public ResponseEntity<DevicePlayParamDto> getById(@PathVariable Long id) {
+        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<List<DevicePlayParamDto>> page() {
+        return new ResponseEntity<>(service.getPage(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DevicePlayParamDto> delete(@PathVariable Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //TODO érkezik chipId and paramVersion Request param-ba vissza DevicePlayParamDto

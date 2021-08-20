@@ -1,14 +1,19 @@
 package com.github.klucsik.birdnoiseserver.backendclient.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 public class DevicePlayParamDto {
-    private Long paramVersion;
-    private Integer vol; //volume
-    private List<DevicePlayUnitDto> playParams; //hour-playUnit pairs
+    private Long id;
+
+    private DeviceDto device;
+
+    private PlayParamDto playParam;
+
+    private LocalDateTime startTime;
+    private LocalDateTime stopTime;
 }
