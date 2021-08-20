@@ -120,6 +120,6 @@ pipeline {
                             "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') echo birdnoise_fe_$BRANCH_NAME_LC",
                           returnStdout:true
                           ).trim()}"""
-    IMAGEREPO = 'klucsik.duckdns.org:5000'
+    IMAGEREPO = 'www.registry.klucsik.fun'
         }
       }
