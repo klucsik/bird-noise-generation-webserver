@@ -17,7 +17,7 @@ public interface TrackConnector {
 
 
     @GetMapping("/{id}")
-    ResponseEntity<TrackDto> getOne(Long id);
+    ResponseEntity<TrackDto> getOne(@RequestParam Long id);
 
 
     @GetMapping("/page")
