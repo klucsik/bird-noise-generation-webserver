@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "playUnit", url = "${BACKEND_URL}/playUnit")
+@FeignClient(name = "templates/playUnit", url = "${BACKEND_URL}/playUnit")
 public interface PlayUnitConnector {
     @PostMapping("/save")
     ResponseEntity<PlayUnitDto> saveTrack(PlayUnitDto dto);
