@@ -12,12 +12,58 @@
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
         <div class="row justify-content-center">
-        CONTENT GOES BRRR
+            <div class="button-primary">
+                <a href='/track/new'>Create new track</a>
+            </div>
+            <div class="mt-5 table-custom-style">
+                <table id="trackTable" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>trackname</th>
+                        <th>tracknumber</th>
+                        <th>tracklength</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 <div th:insert="fragments/_foot_includes"></div>
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var tableData = /*[[${trackDtoList}]]*/;
+    console.log(tableData);
+
+    $('#trackTable').DataTable({
+        data: tableData,
+        // select: true,
+        columns: [
+            {data: 'id'},
+            {data: 'name'},
+            {data: 'trackNumber'},
+            {data: 'length'}, //TODO: use mask to write an 's' after the length
+            {data: 'id',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<span><a href='/track/"+oData.id+"'><span>edit</span></a></span> <span><a href='/track/"+oData.id+"/delete'><span>delete</span></a></span>");
+
+                },
+                searchable: false
+            }
+        ]
+    });
+
+    /*]]>*/
+</script>
+
+
+
+
 
 
 </body>
