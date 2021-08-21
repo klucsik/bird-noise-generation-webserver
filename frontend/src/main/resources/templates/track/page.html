@@ -3,7 +3,7 @@
 <head>
     <title>Tracks</title>
 
-    <div th:insert="fragments/_header_includes"></div>
+    <div th:insert="fragments/_header_includes"></div> <!--TODO: make this beautiful -->
 
 </head>
 <body>
@@ -12,6 +12,7 @@
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
         <div class="row justify-content-center">
+            <div th:insert="fragments/_messages"></div>
             <div class="button-primary">
                 <a href='/track/new'>Create new track</a>
             </div>
