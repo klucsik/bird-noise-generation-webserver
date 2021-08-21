@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Create playUnit</title>
+
+    <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-1" th:insert="fragments/_menu"></div>
+    <div class="col-sm-11">
+        <div class="row justify-content-center">
+            <div th:insert="fragments/_messages"></div>
+            <form class="row g-1" th:action="@{new}" method="post" th:object="${playUnitDto}">
+                <div class="row fs-1 p-3">Create new playUnit</div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="minPause" >minPause</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="number"  id="minPause"
+                               th:field="*{minPause}" required>
+                    </div>
+
+                    <div class="col-4">
+                        <label for="maxPause" >MaxPause</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="number"  id="maxPause"
+                               th:field="*{maxPause}" required>
+                    </div>
+
+                    <!--<div class="col-4">
+                    <label for="trackList" >trackList</label>
+                  </div>
+                    <div class="col-8">
+                        <input type="number"  id="trackList"
+                               th:field="*{trackList}" required>
+                    </div>-->
+                    <div class="row justify-content-sm-center">
+                        <div class="d-grid col-3">
+                            <button type="submit" class="btn btn-sm btn-primary">Save playUnit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+
+</body>
+</html>
