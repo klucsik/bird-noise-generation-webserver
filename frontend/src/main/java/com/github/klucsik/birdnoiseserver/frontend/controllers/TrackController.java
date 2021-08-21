@@ -20,7 +20,7 @@ public class TrackController {
     public String getPage(Model model) {
         List<TrackDto> trackDtoList = connector.getPage().getBody();
         model.addAttribute("trackDtoList",trackDtoList);
-        return "trackpage";
+        return "track/page";
     }
 
 }
