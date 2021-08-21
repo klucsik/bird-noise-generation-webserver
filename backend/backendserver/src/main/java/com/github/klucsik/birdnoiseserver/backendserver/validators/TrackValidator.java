@@ -20,6 +20,8 @@ public class TrackValidator {
         List<FieldError> errors = new ArrayList<>();
 
         if (repository.existsByName(track.getName())) {
+            Track existingTrack = repository.getByName(track.getName());
+
             errors.add(new FieldError("Track", "name", "Name must be unique!"));
         }
         if (repository.existsByTrackNumber(track.getTrackNumber())) {
