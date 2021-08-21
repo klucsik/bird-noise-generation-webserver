@@ -1,3 +1,4 @@
+* FEATURE: Device updating its playparams BE part
 * TECHNICAL_FEATURE: registry got a hostname on registry.klucsik.fun and changes for new infra
 * FEATURE: Created device voltage BE part, and report voltage endpoint for devices
 * FEATURE: Add validation for playUnits
