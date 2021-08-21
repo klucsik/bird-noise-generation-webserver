@@ -9,4 +9,8 @@ import java.util.List;
 
 public interface DevicePlayParamRepository extends JpaRepository<DevicePlayParam, Long> {
     List<DevicePlayParam> getAllByDevice(Device device);
+
+    DevicePlayParam getByDevice(Device device);
+
+    boolean existsByDevice(Device device);
 }

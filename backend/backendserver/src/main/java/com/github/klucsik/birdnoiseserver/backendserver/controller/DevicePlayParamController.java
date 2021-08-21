@@ -8,6 +8,7 @@ import com.github.klucsik.birdnoiseserver.backendserver.services.DevicePlayParam
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/devicePlayParam")
 @RequiredArgsConstructor
-public class DevicePlayParamController {
+public class DevicePlayParamController extends BaseController {
     private final DevicePlayParamService service;
 
     @PostMapping("/save")
-    public ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto) {
+    public ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto)
+            throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(devicePlayParamDto), HttpStatus.OK);
     }
 

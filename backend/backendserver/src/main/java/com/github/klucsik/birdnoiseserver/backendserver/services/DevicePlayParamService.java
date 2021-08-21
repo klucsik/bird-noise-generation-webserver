@@ -1,19 +1,15 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamSlimDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamSlimMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DevicePlayParamRepository;
-import com.github.klucsik.birdnoiseserver.backendserver.repository.PlayParamRepository;
+import com.github.klucsik.birdnoiseserver.backendserver.validators.DevicePlayParamValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +20,9 @@ public class DevicePlayParamService {
     private final PlayParamService playParamService;
     private final DeviceService deviceService;
     private final DevicePlayParamRepository repository;
+    private final DevicePlayParamValidator validator;
 
-    public DevicePlayParamDto save(DevicePlayParamDto devicePlayParamDto) {
+    public DevicePlayParamDto save(DevicePlayParamDto devicePlayParamDto) throws MethodArgumentNotValidException {
         DevicePlayParam devicePlayParam = DevicePlayParamMapper.MAPPER.dtoToDevicePLayParam(devicePlayParamDto);
 
         devicePlayParam.setDevice(
@@ -37,6 +34,8 @@ public class DevicePlayParamService {
                 PlayParamMapper.MAPPER.dtoToPlayParam(
                         playParamService.getOne(
                                 devicePlayParam.getPlayParam().getId())));
+
+        validator.validate(devicePlayParam);
 
         return DevicePlayParamMapper.MAPPER.devicePlayParamToDto(repository.save(devicePlayParam));
     }

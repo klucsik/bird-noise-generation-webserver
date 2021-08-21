@@ -32,14 +32,20 @@ public class DevicePlayParamSelectorService {
         List<DevicePlayParam> devicePlayParams = repository.getAllByDevice(device);
 
 
-        devicePlayParams = devicePlayParams.stream().filter(devicePlayParam -> devicePlayParam.getStopTime().isAfter(LocalDateTime.now())).collect(Collectors.toList());
+        devicePlayParams = devicePlayParams.stream().filter(
+                devicePlayParam -> devicePlayParam.getStopTime().isAfter(
+                        LocalDateTime.now())).collect(Collectors.toList());
 
-        devicePlayParams = devicePlayParams.stream().filter(devicePlayParam -> devicePlayParam.getStartTime().isBefore(LocalDateTime.now())).collect(Collectors.toList());
+        devicePlayParams = devicePlayParams.stream().filter(
+                devicePlayParam -> devicePlayParam.getStartTime().isBefore(
+                        LocalDateTime.now())).collect(Collectors.toList());
 
         switch (devicePlayParams.size()) {
             case 1:
-                PlayParamDto playParamDto = PlayParamMapper.MAPPER.playParamtoDto(playParamRepository.getOne(paramVersion));
-                DevicePlayParamSlimDto dto = DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(playParamDto);
+                PlayParamDto playParamDto = PlayParamMapper.MAPPER.playParamtoDto(
+                        playParamRepository.getOne(paramVersion));
+                DevicePlayParamSlimDto dto = DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(
+                        playParamDto);
                 return dto;
 
 
@@ -49,7 +55,6 @@ public class DevicePlayParamSelectorService {
 
             default:
                 throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conficting playParams: %s", devicePlayParams));
-                //TODO also it should be validated        }
 
         }
     }
