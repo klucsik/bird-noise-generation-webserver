@@ -6,6 +6,7 @@ metadata:
   namespace: container-registry
   annotations:
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 1g
 spec:
   rules:
     - host: www.registry.klucsik.fun

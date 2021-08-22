@@ -32,10 +32,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <dependency>
-            <groupId>nz.net.ultraq.thymeleaf</groupId>
-            <artifactId>thymeleaf-layout-dialect</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>nz.net.ultraq.thymeleaf</groupId>-->
+<!--            <artifactId>thymeleaf-layout-dialect</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -72,6 +72,21 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables</artifactId>
+            <version>1.10.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.6.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -97,6 +112,37 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>nl.geodienstencentrum.maven</groupId>
+                <artifactId>sass-maven-plugin</artifactId>
+                <version>3.7.2</version>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>update-stylesheets</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>update-stylesheets</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <source>
+                                <directory>${basedir}/src/main/sass</directory>
+                            </source>
+                            <destination>${project.build.directory}/classes/static/styles/css</destination>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>
