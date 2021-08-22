@@ -31,6 +31,7 @@ public class PlayUnitValidator{
                         String.format("TrackId %d is in the list more than one time!",track.getId())));
             }
         });
+        //TODO if used in playParam than cant delete yeahhhhh
 
         baseValidator.validateAnnotations(playUnit,errors, "PlayUnit");
     }
