@@ -21,7 +21,7 @@ public class PlayParam {
     private String name;
 
     @Range(min = 1, max = 30, message = "Volume must be between 1 and 30")
-    @NotNull(message = "Volume cant be null")
+    @NotNull(message = "Volume can't be null")
     private Integer vol; //volume
 
     @ManyToMany
