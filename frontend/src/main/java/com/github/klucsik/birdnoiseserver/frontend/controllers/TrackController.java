@@ -3,7 +3,6 @@ package com.github.klucsik.birdnoiseserver.frontend.controllers;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.TrackDto;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.TrackConnector;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ public class TrackController {
 
         model.addAttribute("trackDto", new TrackDto());
         model.addAttribute("title","New track");
-        return "track/new";
+        return "/track/save";
     }
 
     @GetMapping("/{id}")
@@ -37,7 +36,7 @@ public class TrackController {
 
         model.addAttribute("trackDto", connector.getOne(id).getBody());
         model.addAttribute("title","Edit track");
-        return "track/new";
+        return "/track/save";
     }
 
     @PostMapping("/save")
@@ -53,7 +52,7 @@ public class TrackController {
             if(model.getAttribute("title") == "Edit track"){
                 return String.format("redirect:/track/%d",trackDto.getId());
             }
-            return "redirect:/track/new";
+            return "redirect:/track/save";
         }
     }
 
