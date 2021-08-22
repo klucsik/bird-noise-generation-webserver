@@ -29,6 +29,7 @@ public class PlayUnitController {
     public String newPlayUnitForm(Model model){
 
         model.addAttribute("playUnitDto", new PlayUnitDto());
+        model.addAttribute("title", "New PlayUnit");
         return "playUnit/new";
     }
 
