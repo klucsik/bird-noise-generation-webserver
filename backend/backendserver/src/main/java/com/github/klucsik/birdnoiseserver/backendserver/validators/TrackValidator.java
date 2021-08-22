@@ -20,10 +20,17 @@ public class TrackValidator {
         List<FieldError> errors = new ArrayList<>();
 
         if (repository.existsByName(track.getName())) {
-            errors.add(new FieldError("Track", "name", "Name must be unique!"));
+            Track existingTrack = repository.findByName(track.getName());
+            if (track.getId() != null && existingTrack.getId() != track.getId()) {
+                errors.add(new FieldError("Track", "name", "Name must be unique!"));
+            }
         }
+
         if (repository.existsByTrackNumber(track.getTrackNumber())) {
-            errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
+            Track existingTrack = repository.findByTrackNumber(track.getTrackNumber());
+            if (track.getId() != null && existingTrack.getId() != track.getId()) {
+                errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
+            }
         }
 
         baseValidator.validateAnnotations(track, errors, "Track");
