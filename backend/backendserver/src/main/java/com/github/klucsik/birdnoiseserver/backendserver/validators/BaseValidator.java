@@ -35,4 +35,6 @@ public class BaseValidator {
         customValidationErrors.forEach(result::addError);
         if (result.hasErrors()){throw new MethodArgumentNotValidException(null,result);}
     }
+
+    //TODO delete validate
 }

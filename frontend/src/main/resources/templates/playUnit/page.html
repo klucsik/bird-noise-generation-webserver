@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PlayUnit</title>
+
+    <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-1" th:insert="fragments/_menu"></div>
+    <div class="col-sm-11">
+        <div class="row justify-content-center">
+            <div th:insert="fragments/_messages"></div>
+            <a href='/playUnit/new'>Create new playUnit</a>
+        </div>
+        <div class="mt-5 table-custom-style">
+            <table id="playUnitTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>minPause</th>
+                    <th>maxPause</th>
+                    <th>trackList</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var tableData = /*[[${PlayUnitDtoList}]]*/;
+    console.log(tableData);
+
+    $('#playUnitTable').DataTable({
+        data: tableData,
+        // select: true,
+        columns: [
+            {data: 'id'},
+            {data: 'minPause'},
+            {data: 'maxPause'},
+            {data: 'trackList',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("["+ oData.trackList.map(track =>  track.trackNumber) + "]");
+                }
+            },
+            {data: 'id',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<span><a href='/playUnit/"+oData.id+"'><span>edit</span></a></span> <span><a href='/playUnit/"+oData.id+"/delete'><span>delete</span></a></span>");
+
+                },
+                searchable: false
+            }
+        ]
+    });
+
+    /*]]>*/
+</script>
+</body>
+</html>

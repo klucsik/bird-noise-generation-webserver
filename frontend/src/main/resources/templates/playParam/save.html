@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Edit playParam</title>
+
+    <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-1" th:insert="fragments/_menu"></div>
+    <div class="col-sm-11">
+        <div class="row justify-content-center">
+            <div th:insert="fragments/_messages"></div>
+            <form class="row g-1" th:action="@{save}" method="post" th:object="${playParamDto}">
+                <div class="row fs-1 p-3">Create new playParam</div>
+                <div class="row">
+                    <div>
+                        <input type="hidden"  id="id"
+                               th:field="*{id}" readonly>
+                    </div>
+                    <div class="col-4">
+                        <label for="name" >name</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text"  id="name"
+                               th:field="*{name}" required>
+                    </div>
+
+                    <div class="col-4">
+                        <label for="vol" >volume</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="number"  id="vol"
+                               th:field="*{vol}" required>
+                    </div>
+
+                    <!--<div class="col-4">
+                    <label for="playUnit" >playUnit</label>
+                  </div>
+                    <div class="col-8">
+                        <input type="PlayUnit"  id="playUnit"
+                               th:field="*{playUnit}" required>
+                    </div>-->
+                    <div class="row justify-content-sm-center">
+                        <div class="d-grid col-3">
+                            <button type="submit" class="btn btn-sm btn-primary">Save playParam</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+
+</body>
+</html>

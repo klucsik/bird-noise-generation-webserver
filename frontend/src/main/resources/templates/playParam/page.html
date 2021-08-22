@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PlayParam</title>
+
+    <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-1" th:insert="fragments/_menu"></div>
+    <div class="col-sm-11">
+        <div class="row justify-content-center">
+            <a href='/playParam/new'>Create new playParam</a>
+        </div>
+        <div class="mt-5 table-custom-style">
+            <table id="playParamTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>vol</th>
+                    <th>playUnits</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var tableData = /*[[${playParamDtoList}]]*/;
+    console.log(tableData);
+
+    $('#playParamTable').DataTable({
+        data: tableData,
+        // select: true,
+        columns: [
+            {data: 'id'},
+            {data: 'name'},
+            {data: 'vol'},
+            {data: 'playUnits'},
+            {data: 'id',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<span><a href='/playParam/"+oData.id+"'><span>edit</span></a></span> <span><a href='/playParam/"+oData.id+"/delete'><span>delete</span></a></span>");
+
+                },
+                searchable: false
+            }
+        ]
+    });
+</script>
+</body>
+</html>

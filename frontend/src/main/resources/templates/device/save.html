@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Modify Device</title>
+
+    <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-1" th:insert="fragments/_menu"></div>
+    <div class="col-sm-11">
+        <div class="row justify-content-center">
+            <div th:insert="fragments/_messages"></div>
+            <form class="row g-1" th:action="@{save}" method="post" th:object="${deviceDto}">
+                <div class="row fs-1 p-3" th:text="${title}"></div>
+                <div class="row">
+                    <div>
+                        <input type="hidden"  id="id"
+                               th:field="*{id}" readonly>
+                    </div>
+
+                    <div class="col-4">
+                        <label for="name" >Name</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text"  id="name"
+                               th:field="*{name}" required>
+                    </div>
+
+                    <div class="col-4">
+                        <label for="chipId" >chipId</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text"  id="chipId"
+                               th:field="*{chipId}" required>
+                    </div>
+
+                    <div class="col-4">
+                        <label for="location" >location</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text"  id="location"
+                               th:field="*{location}" required>
+                    </div>
+                    <div class="row justify-content-sm-center">
+                        <div class="d-grid col-3">
+                            <button type="submit" class="btn btn-sm btn-primary">Save device</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+
+</body>
+</html>

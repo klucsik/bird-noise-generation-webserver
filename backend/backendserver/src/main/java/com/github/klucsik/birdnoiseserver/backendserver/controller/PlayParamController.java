@@ -37,9 +37,4 @@ public class PlayParamController extends BaseController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping("/mock")
-    public ResponseEntity<PlayParamDto> getMock() throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(service.getMock(), HttpStatus.OK);
-    }
 }
