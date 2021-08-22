@@ -24,6 +24,6 @@ public interface TrackConnector {
      ResponseEntity<List<TrackDto>> getPage();
 
     @DeleteMapping("/{id}")
-    ResponseEntity<TrackDto> delete(Long id);
+    ResponseEntity<TrackDto> delete(@RequestParam Long id);
 
 }

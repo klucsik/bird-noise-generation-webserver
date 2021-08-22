@@ -44,13 +44,29 @@ public class TrackController {
     public String saveTrack(@ModelAttribute TrackDto trackDto, Model model, RedirectAttributes attributes){
         try {
             TrackDto savedDto = connector.saveTrack(trackDto).getBody();
-            attributes.addFlashAttribute("message", String.format(" successful save with id %d",savedDto.getId()));
+            attributes.addFlashAttribute("message", String.format("Successful save with id %d",savedDto.getId()));
             return "redirect:/track/page";
         } catch (Exception e){
             e.printStackTrace();
             attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+
+            if(model.getAttribute("title") == "Edit track"){
+                return String.format("redirect:/track/%d",trackDto.getId());
+            }
             return "redirect:/track/new";
         }
     }
 
+    @GetMapping("{id}/delete")
+    public String deleteTrack(@PathVariable Long id, Model model, RedirectAttributes attributes){
+        try {
+            connector.delete(id);
+            attributes.addFlashAttribute("message",("Successful delete"));
+            return "redirect:/track/page";
+        } catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+            return "redirect:/track/page";
+        }
+    }
 }
