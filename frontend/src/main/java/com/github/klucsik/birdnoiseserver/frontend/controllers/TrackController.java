@@ -49,7 +49,7 @@ public class TrackController {
             e.printStackTrace();
             attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
 
-            if(model.getAttribute("title") == "Edit track"){
+            if(trackDto.getId() != null){
                 return String.format("redirect:/track/%d",trackDto.getId());
             }
             return "redirect:/track/save";

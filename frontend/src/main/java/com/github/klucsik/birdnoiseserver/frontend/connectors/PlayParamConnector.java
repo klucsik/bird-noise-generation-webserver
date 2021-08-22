@@ -13,11 +13,11 @@ public interface PlayParamConnector {
     ResponseEntity<PlayParamDto> saveTrack(PlayParamDto dto);
 
     @GetMapping("/{id}")
-    ResponseEntity<PlayParamDto> getOne(Long id);
+    ResponseEntity<PlayParamDto> getOne(@PathVariable Long id);
 
     @GetMapping("/page")
     ResponseEntity<List<PlayParamDto>> getPage();
 
     @DeleteMapping("/{id}")
-    ResponseEntity<PlayParamDto> deleteOne(Long id);
+    ResponseEntity<PlayParamDto> deleteOne(@PathVariable Long id);
 }

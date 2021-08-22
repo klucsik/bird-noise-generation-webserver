@@ -5,6 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -15,12 +16,12 @@ public interface DeviceConnector {
     ResponseEntity<DeviceDto> save(DeviceDto dto);
 
     @GetMapping("/{id}")
-    ResponseEntity<DeviceDto> getById(Long id);
+    ResponseEntity<DeviceDto> getById(@PathVariable Long id);
 
     @GetMapping("/page")
     ResponseEntity<List<DeviceDto>> getPage();
 
     @DeleteMapping("/{id}")
-    ResponseEntity<DeviceDto> delete(Long id);
+    ResponseEntity<DeviceDto> delete(@PathVariable Long id);
 
 }

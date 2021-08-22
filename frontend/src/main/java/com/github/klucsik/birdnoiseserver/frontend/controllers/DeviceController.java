@@ -1,7 +1,6 @@
 package com.github.klucsik.birdnoiseserver.frontend.controllers;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.TrackDto;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.DeviceConnector;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,11 +23,28 @@ public class DeviceController {
         return "device/page";
     }
 
-    @GetMapping("/new")
-    public String newDeviceForm(Model model){
+    @GetMapping("/{id}")
+    public String editDeviceForm(@PathVariable Long id, Model model){
 
-        model.addAttribute("deviceDto", new DeviceDto());
-        model.addAttribute("title","New device");
-        return "device/new";
+        model.addAttribute("deviceDto", connector.getById(id).getBody());
+        model.addAttribute("title","Edit device");
+        return "device/save";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute DeviceDto deviceDto, Model model, RedirectAttributes attributes){
+        try {
+            DeviceDto savedDto = connector.save(deviceDto).getBody();
+            attributes.addFlashAttribute("message", String.format("Successful save with id %d",savedDto.getId()));
+            return "redirect:/device/page";
+        } catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+
+            if(deviceDto.getId() != null){
+                return String.format("redirect:/device/%d",deviceDto.getId());
+            }
+            return "redirect:/device/save";
+        }
     }
 }

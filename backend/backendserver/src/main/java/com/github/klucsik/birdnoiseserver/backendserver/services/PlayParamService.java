@@ -62,17 +62,4 @@ public class PlayParamService {
         PlayParam playParam = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no playParam with id: %d", id)));
         repository.deleteById(id);
     }
-
-    public PlayParamDto getMock() throws MethodArgumentNotValidException {
-        TrackDto track1Dto = trackService.save(new TrackDto(1, "Teszt track 1", 210));
-        List<TrackDto> trackDtoList = new ArrayList<>();
-        trackDtoList.add(track1Dto);
-        PlayUnitDto playUnitDto = playUnitService.save(new PlayUnitDto(10, 15, trackDtoList));
-        //When
-        Map<Integer, PlayUnitDto> playUnits = new HashMap<>();
-        playUnits.put(1, playUnitDto);
-        PlayParamDto playParamDto = new PlayParamDto(-1L, "Teszt PlayParams 1", 11, playUnits);
-        return save(playParamDto);
-    }
-
 }

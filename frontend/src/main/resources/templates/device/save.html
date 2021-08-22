@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create/Modify Device</title>
 
@@ -16,11 +16,8 @@
             <form class="row g-1" th:action="@{save}" method="post" th:object="${deviceDto}">
                 <div class="row fs-1 p-3" th:text="${title}"></div>
                 <div class="row">
-                    <div class="col-4">
-                        <label for="id" >Id</label>
-                    </div>
-                    <div class="col-8">
-                        <input type="text"  id="id"
+                    <div>
+                        <input type="hidden"  id="id"
                                th:field="*{id}" readonly>
                     </div>
 
@@ -41,22 +38,15 @@
                     </div>
 
                     <div class="col-4">
-                        <label for="location" >Location</label>
+                        <label for="location" >location</label>
                     </div>
                     <div class="col-8">
                         <input type="text"  id="location"
                                th:field="*{location}" required>
                     </div>
-                    <div class="col-4">
-                        <label for="status" >Status</label>
-                    </div>
-                    <div class="col-8">
-                        <input type="text"  id="status"
-                               th:field="*{status}" disabled>
-                    </div>
                     <div class="row justify-content-sm-center">
                         <div class="d-grid col-3">
-                            <button type="submit" class="btn btn-sm btn-primary">Save track</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Save device</button>
                         </div>
                     </div>
                 </div>

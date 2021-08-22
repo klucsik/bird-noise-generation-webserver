@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create playParam</title>
+    <title>Create/Edit playParam</title>
 
     <div th:insert="fragments/_header_includes"></div>
 
@@ -13,15 +13,18 @@
     <div class="col-sm-11">
         <div class="row justify-content-center">
             <div th:insert="fragments/_messages"></div>
-            <form class="row g-1" th:action="@{new}" method="post" th:object="${playParamDto}">
+            <form class="row g-1" th:action="@{save}" method="post" th:object="${playParamDto}">
                 <div class="row fs-1 p-3">Create new playParam</div>
                 <div class="row">
-
+                    <div>
+                        <input type="hidden"  id="id"
+                               th:field="*{id}" readonly>
+                    </div>
                     <div class="col-4">
                         <label for="name" >name</label>
                     </div>
                     <div class="col-8">
-                        <input type="string"  id="name"
+                        <input type="text"  id="name"
                                th:field="*{name}" required>
                     </div>
 

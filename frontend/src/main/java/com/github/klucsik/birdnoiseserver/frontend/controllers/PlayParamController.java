@@ -1,8 +1,6 @@
 package com.github.klucsik.birdnoiseserver.frontend.controllers;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayUnitDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.TrackDto;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.PlayParamConnector;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -30,10 +28,18 @@ public class PlayParamController {
 
         model.addAttribute("playParamDto", new PlayParamDto());
         model.addAttribute("title", "New PlayParam");
-        return "playParam/new";
+        return "playParam/save";
     }
 
-    @PostMapping("/new")
+    @GetMapping("/{id}")
+    public String editPlayParamFrom(@PathVariable Long id, Model model){
+
+        model.addAttribute("playParamDto", connector.getOne(id).getBody());
+        model.addAttribute("title", "Edit title");
+        return "playParam/save";
+    }
+
+    @PostMapping("/save")
     public String save(@ModelAttribute PlayParamDto playParamDto,Model model, RedirectAttributes attributes) {
         try {
             PlayParamDto savedDto = connector.saveTrack(playParamDto).getBody();
@@ -42,7 +48,10 @@ public class PlayParamController {
         } catch (Exception e){
             e.printStackTrace();
             attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
-            return "redirect:/playParam/new";
+            if(playParamDto.getId() != null){
+                return String.format("redirect:/track/%d",playParamDto.getId());
+            }
+            return "redirect:/playParam/save";
         }
     }
 }

@@ -16,7 +16,7 @@
             <form class="row g-1" th:action="@{save}" method="post" th:object="${trackDto}">
                 <div class="row fs-1 p-3" th:text="${title}"></div>
                 <div class="row">
-                    <div >
+                    <div>
                         <input type="hidden"  id="id"
                                th:field="*{id}" readonly>
                     </div>
