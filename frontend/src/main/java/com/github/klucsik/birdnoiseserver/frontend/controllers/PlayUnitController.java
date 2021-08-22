@@ -69,4 +69,17 @@ public class PlayUnitController {
             return "redirect:/playUnit/save";
         }
     }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, Model model, RedirectAttributes attributes) {
+        try {
+            connector.delete(id);
+            attributes.addFlashAttribute("message", ("Successful delete"));
+            return "redirect:/playUnit/page";
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("errorMessage", "error:" + e.getMessage());
+            return "redirect:/playUnit/page";
+        }
+    }
 }
