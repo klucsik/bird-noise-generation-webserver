@@ -29,4 +29,4 @@ public class DevicePlayParam {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH")
     private LocalDateTime stopTime;
-}
+} //TODO deployedTime and undeployedTime

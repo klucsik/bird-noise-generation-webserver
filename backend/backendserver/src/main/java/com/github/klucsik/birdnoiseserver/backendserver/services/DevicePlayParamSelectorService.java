@@ -29,32 +29,32 @@ public class DevicePlayParamSelectorService {
 
     public DevicePlayParamSlimDto selectSlimPlayParam(String chipId, Long paramVersion) {
         Device device = deviceRepository.findByChipId(chipId);
-        List<DevicePlayParam> devicePlayParams = repository.getAllByDevice(device);
+        List<DevicePlayParam> playParamsForDevice = repository.getAllByDevice(device);
 
 
-        devicePlayParams = devicePlayParams.stream().filter(
+        playParamsForDevice = playParamsForDevice.stream().filter(
                 devicePlayParam -> devicePlayParam.getStopTime().isAfter(
                         LocalDateTime.now())).collect(Collectors.toList());
 
-        devicePlayParams = devicePlayParams.stream().filter(
+        playParamsForDevice = playParamsForDevice.stream().filter(
                 devicePlayParam -> devicePlayParam.getStartTime().isBefore(
                         LocalDateTime.now())).collect(Collectors.toList());
 
-        switch (devicePlayParams.size()) {
+        switch (playParamsForDevice.size()) {
             case 1:
-                PlayParamDto playParamDto = PlayParamMapper.MAPPER.playParamtoDto(
-                        playParamRepository.getOne(paramVersion));
-                DevicePlayParamSlimDto dto = DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(
-                        playParamDto);
-                return dto;
-
+                if (paramVersion == playParamsForDevice.get(0).getPlayParam().getId()) {
+                    return null;
+                }
+                else {
+                    PlayParamDto dto = PlayParamMapper.MAPPER.playParamtoDto(playParamsForDevice.get(0).getPlayParam());
+                    return DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(dto);
+                }
 
             case 0:
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
-
             default:
-                throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conficting playParams: %s", devicePlayParams));
+                throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conficting playParams: %s", playParamsForDevice));
 
         }
     }

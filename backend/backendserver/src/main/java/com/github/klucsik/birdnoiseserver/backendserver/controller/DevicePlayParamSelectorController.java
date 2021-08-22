@@ -15,6 +15,7 @@ private final DevicePlayParamSelectorService service;
 
     @GetMapping("/selectSlimPlayParam")
     public ResponseEntity<DevicePlayParamSlimDto> selectSlimPlayParam(@RequestParam String chipId,@RequestParam Long paramVersion) {
+        //TODO add deployedTIme (and undeployed too somewhere)
         return new ResponseEntity<>(service.selectSlimPlayParam(chipId, paramVersion), HttpStatus.OK);
     }
 }
