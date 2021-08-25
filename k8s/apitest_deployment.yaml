@@ -12,7 +12,7 @@ metadata:
   namespace: apitest-BRANCHNAME
 spec:
   rules:
-    - host: apitest-BRANCHNAME.klucsik.duckdns.org
+    - host: apitest-BRANCHNAME.klucsik.fun
       http:
         paths:
           - pathType: Prefix
