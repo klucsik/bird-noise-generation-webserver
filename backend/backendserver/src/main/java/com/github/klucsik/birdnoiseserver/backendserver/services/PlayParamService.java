@@ -1,8 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayUnitDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.TrackDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayUnit;
@@ -33,10 +31,7 @@ public class PlayParamService {
         Map<Integer, PlayUnit> playUnits = new HashMap<>();
         dto.getPlayUnits().forEach(
                 (hour, playUnitDto) -> {
-                    if (!playUnitRepository.existsById(playUnitDto.getId())) {
-                        throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no PlayUnit with id: %d", playUnitDto.getId()));
-                    }
-                    playUnits.put(hour, playUnitRepository.getOne(playUnitDto.getId()));
+                    playUnits.put(hour, playUnitRepository.findById(playUnitDto.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no PlayUnit with id: %d", playUnitDto.getId()))));
                 }
         );
         playParam.setPlayUnits(playUnits);
