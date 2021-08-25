@@ -36,13 +36,29 @@
                                th:field="*{vol}" required>
                     </div>
 
-                    <!--<div class="col-4">
-                    <label for="playUnit" >playUnit</label>
+                    <div class="col-4">
+                    <label for="playUnits" >playUnits</label>
                   </div>
-                    <div class="col-8">
-                        <input type="PlayUnit"  id="playUnit"
-                               th:field="*{playUnit}" required>
+<!--                    <div class="col-8" th:each="i : ${#numbers.sequence(1,24)}" id="playUnits">
+                        <label th:text="${i}"></label>
+                        <select th:field="*{playUnits[__${i}__]}" required>
+                            <option value=null> &#45;&#45; </option>
+                            <option th:each="playUnit : ${playUnitList}"
+                                    th:value="${playUnit.id}"
+                                    th:text="${playUnit.id}"
+                            ></option>
+                        </select>
                     </div>-->
+                    <div class="col-8" th:each="playUnit, itemStat : *{playUnits}" id="playUnits">
+                    <label th:text="${itemStat.index}"></label>
+                    <select th:field="*{playUnits[__${itemStat.index}__]}" >
+                        <option value=""> -- </option>
+                        <option th:each="optionPlayUnit : ${playUnitList}"
+                                th:value="${optionPlayUnit.id}"
+                                th:text="${optionPlayUnit.id}"
+                        ></option>
+                    </select>
+                </div>
                     <div class="row justify-content-sm-center">
                         <div class="d-grid col-3">
                             <button type="submit" class="btn btn-sm btn-primary">Save playParam</button>

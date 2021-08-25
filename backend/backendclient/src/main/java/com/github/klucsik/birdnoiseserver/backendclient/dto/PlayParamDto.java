@@ -8,6 +8,7 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class PlayParamDto {
     private Long id;
     private String name;
