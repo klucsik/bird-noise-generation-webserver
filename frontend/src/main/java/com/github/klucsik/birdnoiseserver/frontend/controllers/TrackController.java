@@ -50,7 +50,7 @@ public class TrackController {
             attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
 
             if(trackDto.getId() != null){
-                return String.format("redirect:/track/%d",trackDto.getId());
+                return String.format("redirect:/track/%d", trackDto.getId());
             }
             return "redirect:/track/save";
         }

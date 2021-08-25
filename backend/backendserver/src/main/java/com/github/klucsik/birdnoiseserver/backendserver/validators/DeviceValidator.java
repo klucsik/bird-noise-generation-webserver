@@ -24,12 +24,22 @@ public class DeviceValidator {
             if (device.getId() != null && existingDevice.getId() != device.getId()) {
                 errors.add(new FieldError("Device", "chipId", "ChipId must be unique"));
             }
+
+            if (device.getId() == null) {
+                errors.add(new FieldError("Device", "chipId", "ChipId must be unique!"));
+            }
         }
 
         if (repository.existsByName(device.getName())) {
             Device existingDevice = repository.findByName(device.getName());
-            if (device.getId() != null && existingDevice.getId() != device.getId())
-            errors.add(new FieldError("Device", "name", "Name must be unique"));
+            if (device.getId() != null && existingDevice.getId() != device.getId()) {
+                errors.add(new FieldError("Device", "name", "Name must be unique"));
+            }
+            if (device.getId() == null) {
+                errors.add(new FieldError("Device", "name", "Name must be unique!"));
+            }
+
+
         }
 
         baseValidator.validateAnnotations(device, errors, "Device");

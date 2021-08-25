@@ -24,11 +24,17 @@ public class TrackValidator {
             if (track.getId() != null && existingTrack.getId() != track.getId()) {
                 errors.add(new FieldError("Track", "name", "Name must be unique!"));
             }
+            if (track.getId() == null) {
+                errors.add(new FieldError("Track", "name", "Name must be unique!"));
+            }
         }
 
         if (repository.existsByTrackNumber(track.getTrackNumber())) {
             Track existingTrack = repository.findByTrackNumber(track.getTrackNumber());
             if (track.getId() != null && existingTrack.getId() != track.getId()) {
+                errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
+            }
+            if (track.getId() == null) {
                 errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
             }
         }
