@@ -18,7 +18,7 @@ public class PlayUnitController extends BaseController {
     private final PlayUnitService service;
 
     @PostMapping("/save")
-    public ResponseEntity<PlayUnitDto> saveTrack(@Valid @RequestBody PlayUnitDto dto) throws MethodArgumentNotValidException {
+    public ResponseEntity<PlayUnitDto> save(@Valid @RequestBody PlayUnitDto dto) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
     }
 
