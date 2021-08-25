@@ -39,6 +39,7 @@ public class PlayUnitController {
     @GetMapping("/{id}")
     public String editPlayUnitForm(@PathVariable Long id, Model model) {
         PlayUnitDto playUnitDto = connector.getOne(id).getBody();
+        model.addAttribute("trackList", trackConnector.getPage().getBody());
         model.addAttribute("playUnitDto", playUnitDto);
         model.addAttribute("title", "Edit playUnit");
         return "/playUnit/save";
@@ -57,7 +58,7 @@ public class PlayUnitController {
             );
             mappedPlayUnitDto.setTrackList(trackList);
             PlayUnitDto savedDto = connector.saveTrack(mappedPlayUnitDto).getBody();
-            attributes.addFlashAttribute("message", String.format(" successful save whit id %d", savedDto.getId()));
+            attributes.addFlashAttribute("message", String.format(" successful save whith id %d", savedDto.getId()));
             return "redirect:/playUnit/page";
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +67,8 @@ public class PlayUnitController {
             if (stupidPlayUnitDto.getId() != null) {
                 return String.format("redirect:/playUnit/%d", stupidPlayUnitDto.getId());
             }
-            return "redirect:/playUnit/save";
+            //TODO prefill with the failed data
+            return "redirect:/playUnit/new";
         }
     }
 

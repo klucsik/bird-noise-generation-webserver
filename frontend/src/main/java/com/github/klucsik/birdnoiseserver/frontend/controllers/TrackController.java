@@ -52,7 +52,8 @@ public class TrackController {
             if(trackDto.getId() != null){
                 return String.format("redirect:/track/%d", trackDto.getId());
             }
-            return "redirect:/track/save";
+            //TODO prefill with the failed data
+            return "redirect:/track/new";
         }
     }
 
