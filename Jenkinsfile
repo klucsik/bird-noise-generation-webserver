@@ -84,6 +84,7 @@ pipeline {
         sh 'kubectl apply -f k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=apitest-${BRANCH_NAME_LC}'
         sh 'sed -i "s/BRANCHNAME/apitest-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
+        sh 'cat api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'kubectl rollout restart deployment/birdnoise-be --namespace=apitest-${BRANCH_NAME_LC}'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=apitest-${BRANCH_NAME_LC}'
