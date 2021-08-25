@@ -10,7 +10,7 @@ import java.util.List;
 @FeignClient(name = "playParam", url = "${BACKEND_URL}/playParam")
 public interface PlayParamConnector {
     @PostMapping("/save")
-    ResponseEntity<PlayParamDto> saveTrack(PlayParamDto dto);
+    ResponseEntity<PlayParamDto> save(PlayParamDto dto);
 
     @GetMapping("/{id}")
     ResponseEntity<PlayParamDto> getOne(@PathVariable Long id);
