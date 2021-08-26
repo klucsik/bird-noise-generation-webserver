@@ -28,9 +28,14 @@ body {
     width: -webkit-fill-available;
 }
 
+.stripe {
+    border-bottom: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);
+}
+
 .menu-item a {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-items: center;
 }
@@ -41,11 +46,14 @@ body {
     font-size: 0.875rem;
 }
 
+.menu-item a div:last-child {
+    margin-left: 0.5rem;
+}
+
 .hamburger-menu svg,
 .menu-icon svg {
     fill: whitesmoke;
-    width: 40px;
-    height: 40px;
+    width: 20px;
 }
 
 .menu-height {
@@ -55,8 +63,8 @@ body {
 .info-card {
     height: 13rem;
     width: 14rem;
-    background-color: var(--menu-text-color);
-    box-shadow: 10px 10px #e3d1c3;
+    background-color: #FCFBF8;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
     margin-top: 20px !important;
     margin-bottom: 30px !important;
 }
@@ -67,6 +75,8 @@ body {
 
 .row,
 .col-sm-1,
+.col-sm-2,
+.col-sm-10,
 .col-sm-11 {
     margin: 0 !important;
     padding-left: 0 !important;
@@ -111,3 +121,17 @@ select[name=taskBasket_length] {
     filter: brightness(0.9);
     color: whitesmoke !important;
 }
+
+/*.tree {*/
+/*    margin-left: -5px;*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*}*/
+
+/*.bush {*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*    margin-bottom: -4px;*/
+/*    margin-left: -4px;*/
+/*    z-index: 10;*/
+/*}*/
