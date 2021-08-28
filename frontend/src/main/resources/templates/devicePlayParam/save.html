@@ -36,26 +36,27 @@
           </div>
           <div class="col-8">
             <select type="number"  id="playParam" th:field="*{playParam}" required>
+              <option value="">--</option>
               <option th:each="playParam : ${playParamList}"
-                      th:value="${playParam.getId()}"
+                      th:value="${playParam}"
                       th:text="${#strings.concat(playParam.getId(),' - ',playParam.getName()) }"
               ></option>
             </select>
           </div>
 
           <div class="col-4">
-            <label for="startTime" >StartTime</label>
+            <label for="startTime" >StartTime (format: yyyy-MM-dd HH)</label>
           </div>
           <div class="col-8">
-            <input type="datetime-local"  id="startTime"
+            <input type="text"  id="startTime"
                    th:field="*{startTime}" required>
           </div>
 
           <div class="col-4">
-            <label for="stopTime" >stopTime</label>
+            <label for="stopTime" >stopTime (format: yyyy-MM-dd HH)</label>
           </div>
           <div class="col-8">
-            <input type="datetime-local"  id="stopTime"
+            <input type="text"  id="stopTime"
                    th:field="*{stopTime}" required>
           </div>
 

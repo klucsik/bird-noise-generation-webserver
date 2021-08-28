@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RequestMapping("/devicePlayParam")
@@ -45,6 +46,7 @@ public class DevicePlayParamController {
 
     @GetMapping("/{id}")
     public String editDevicePlayParamForm(@PathVariable Long id, Model model) {
+        model.addAttribute("playParamList", playParamConnector.getPage().getBody());
         model.addAttribute("devicePlayParamDto", connector.getById(id).getBody()); //TODO make getOnes consistent pls
         model.addAttribute("title", "Edit devicePlayParam");
         return "/devicePlayParam/save";
@@ -54,8 +56,9 @@ public class DevicePlayParamController {
     public String save(@ModelAttribute FrontEndDevicePlayParamDto frontEndDevicePlayParamDto, RedirectAttributes attributes) {
         try {
             DevicePlayParamDto mappedDto = new DevicePlayParamDto();
-            mappedDto.setStartTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStartTime()));
-            mappedDto.setStopTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStopTime()));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+            mappedDto.setStartTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStartTime(),formatter));
+            mappedDto.setStopTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStopTime(),formatter));
             mappedDto.setDevice(deviceConnector.getById(frontEndDevicePlayParamDto.getDevice()).getBody());
             mappedDto.setPlayParam(playParamConnector.getOne(frontEndDevicePlayParamDto.getPlayParam()).getBody());
             DevicePlayParamDto savedDto = connector.save(mappedDto).getBody();
