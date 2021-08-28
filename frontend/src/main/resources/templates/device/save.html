@@ -44,6 +44,12 @@
                         <input type="text"  id="location"
                                th:field="*{location}" required>
                     </div>
+
+                    <div>
+                        <input type="hidden" id="status"
+                        th:field="*{status}" readonly>
+                    </div>
+
                     <div class="row justify-content-sm-center">
                         <div class="d-grid col-3">
                             <button type="submit" class="btn btn-sm btn-primary">Save device</button>

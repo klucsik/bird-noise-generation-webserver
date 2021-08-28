@@ -47,4 +47,17 @@ public class DeviceController {
             return "redirect:/device/save";
         }
     }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes attributes) {
+        try {
+            connector.delete(id);
+            attributes.addFlashAttribute("message",("Successful delete"));
+            return "redirect:/";
+        }catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("error:", e);
+            return "redirect:/";
+        }
+    }
 }
