@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "22860497-827a-47de-883f-c200080e44c1",
+		"_postman_id": "296fb36b-beea-412a-8b5d-d6dd43918b92",
 		"name": "birdnoise-tracks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2505,15 +2505,11 @@
 					}
 				},
 				"url": {
-					"raw": "dev.klucsik.duckdns.org/api/track/page",
+					"raw": "{{baseurl}}/track/page",
 					"host": [
-						"dev",
-						"klucsik",
-						"duckdns",
-						"org"
+						"{{baseurl}}"
 					],
 					"path": [
-						"api",
 						"track",
 						"page"
 					]
