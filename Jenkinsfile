@@ -2,12 +2,6 @@ pipeline {
   agent any
   stages {
     stage ('build deps'){
-        when {
-            anyOf {
-            changeset 'backend/backendclient/src/main/**'
-            }
-
-        }
         steps {
             sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
         }
