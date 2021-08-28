@@ -19,4 +19,8 @@ public class TrackDto {
         this.name = name;
         this.length = length;
     }
+    @Override
+    public String toString(){
+        return id.toString(); //Dont touch dis, or the frontend edit form will not preselect the tracks :D
+    }
 }
