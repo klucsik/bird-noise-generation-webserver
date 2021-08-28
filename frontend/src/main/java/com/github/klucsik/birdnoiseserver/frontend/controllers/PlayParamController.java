@@ -34,7 +34,7 @@ public class PlayParamController {
         model.addAttribute("playUnitList", playUnitConnector.getPage().getBody());
         PlayParamDto playParamDto =new PlayParamDto();
         Map<Integer, PlayUnitDto> playUnits = new HashMap<>();
-        for (int i = 1; i < 24; i++) {
+        for (int i = 1; i < 25; i++) {
             playUnits.put(i,new PlayUnitDto());
         }
         playParamDto.setPlayUnits(playUnits);
@@ -46,7 +46,15 @@ public class PlayParamController {
     @GetMapping("/{id}")
     public String editPlayParamFrom(@PathVariable Long id, Model model){
         model.addAttribute("playUnitList", playUnitConnector.getPage().getBody());
-        model.addAttribute("playParamDto", connector.getOne(id).getBody());
+        PlayParamDto playParamDto =connector.getOne(id).getBody();
+        Map<Integer, PlayUnitDto> playUnits = playParamDto.getPlayUnits();
+        for (int i = 1; i < 25; i++) {
+            if(!playUnits.containsKey(i)) {
+                playUnits.put(i, new PlayUnitDto());
+            }
+        }
+        playParamDto.setPlayUnits(playUnits);
+        model.addAttribute("playParamDto", playParamDto);
         model.addAttribute("title", "Edit title");
         return "playParam/save";
     }

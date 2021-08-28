@@ -11,6 +11,6 @@ public class FrontEndPlayParamDto {
     private Long id;
     private String name;
     private Integer vol; //volume
-    private Map<Integer,Long> playUnits;
+    private Map<Integer, Long> playUnits;
 
 }
