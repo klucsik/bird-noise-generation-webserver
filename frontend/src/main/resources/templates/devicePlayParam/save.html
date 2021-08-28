@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create/Modify devicePlayParam</title>
+
+  <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+  <div class="col-sm-1" th:insert="fragments/_menu"></div>
+  <div class="col-sm-11">
+    <div class="row justify-content-center">
+      <div th:insert="fragments/_messages"></div>
+      <form class="row g-1" th:action="@{save}" method="post" th:object="${devicePlayParamDto}">
+        <div class="row fs-1 p-3" th:text="${title}"></div>
+        <div class="row">
+          <div>
+            <input type="hidden"  id="id"
+                   th:field="*{id}" readonly>
+          </div>
+
+          <div class="col-4">
+            <label for="playParam" >PlayParam</label>
+          </div>
+          <div class="col-8">
+            <input type="text"  id="playParam"
+                   th:field="*{playParam}" required>
+          </div>
+
+          <div class="col-4">
+            <label for="startTime" >StartTime</label>
+          </div>
+          <div class="col-8">
+            <input type="number"  id="startTime"
+                   th:field="*{startTime}" required>
+          </div>
+
+          <div class="col-4">
+            <label for="stopTime" >stopTime</label>
+          </div>
+          <div class="col-8">
+            <input type="number"  id="stopTime"
+                   th:field="*{stopTime}" required>
+          </div>
+          <div class="row justify-content-sm-center">
+            <div class="d-grid col-3">
+              <button type="submit" class="btn btn-sm btn-primary">Save devicePlayParam</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+
+</body>
+</html>

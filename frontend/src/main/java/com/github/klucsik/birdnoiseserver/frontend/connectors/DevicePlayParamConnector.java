@@ -10,7 +10,7 @@ import java.util.List;
 @FeignClient(name = "devicePlayParam", url = "${BACKEND_URL}/devicePlayParam")
 public interface DevicePlayParamConnector {
     @PostMapping("/save")
-    ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto);
+    ResponseEntity<DevicePlayParamDto> save(DevicePlayParamDto devicePlayParamDto);
 
     @GetMapping("/{id}")
     ResponseEntity<DevicePlayParamDto> getById(@PathVariable Long id);
