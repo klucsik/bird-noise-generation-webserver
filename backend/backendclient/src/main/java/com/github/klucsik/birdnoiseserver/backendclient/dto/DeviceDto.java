@@ -12,4 +12,13 @@ public class DeviceDto {
     private String name;
     private String location;
     private DeviceStatus status;
+
+    @Override
+    public String toString(){
+        if(id != null) {
+            return id.toString(); //Dont touch dis, or the frontend edit form will not preselect the tracks :D
+        } else {
+            return null;
+        }
+    }
 }

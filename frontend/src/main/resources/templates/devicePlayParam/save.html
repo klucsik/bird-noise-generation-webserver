@@ -35,8 +35,12 @@
             <label for="playParam" >PlayParam</label>
           </div>
           <div class="col-8">
-            <input type="text"  id="playParam"
-                   th:field="*{playParam}" required>
+            <select type="number"  id="playParam" th:field="*{playParam}" required>
+              <option th:each="playParam : ${playParamList}"
+                      th:value="${playParam.getId()}"
+                      th:text="${#strings.concat(playParam.getId(),' - ',playParam.getName()) }"
+              ></option>
+            </select>
           </div>
 
           <div class="col-4">
@@ -54,6 +58,7 @@
             <input type="datetime-local"  id="stopTime"
                    th:field="*{stopTime}" required>
           </div>
+
           <div class="row justify-content-sm-center">
             <div class="d-grid col-3">
               <button type="submit" class="btn btn-sm btn-primary">Save devicePlayParam</button>
