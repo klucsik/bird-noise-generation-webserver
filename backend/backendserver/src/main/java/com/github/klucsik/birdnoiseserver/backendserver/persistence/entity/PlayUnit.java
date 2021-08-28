@@ -18,9 +18,9 @@ public class PlayUnit {
     private Long id;
 
     @Size(max = 255)
-   // @NotBlank(message = "Name is mandatory") //TODO this should be uncommented, but the api tests need a big rewrite for that
+    @NotBlank(message = "Name is mandatory")
    // @Trimmed //TODO this is broken maybe becouse of the toString
-   // @Column(unique = true) //TODO this should be uncommented, but the api tests need a big rewrite for that
+    @Column(unique = true)
     private String name;
 
     @NotNull(message = "minPause is mandatory") //Validations always should be the same as on Dto

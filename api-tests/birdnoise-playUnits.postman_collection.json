@@ -1337,7 +1337,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 3 track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1380,7 +1380,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": []\n}",
+							"raw": "{\n    \"name\":\"playUnit with 0 track\",\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1428,7 +1428,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}}        \n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 1 track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}}        \n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1476,7 +1476,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}},\n        {\"id\":{{letrehozott_track_4}}},\n        {\"id\":{{letrehozott_track_5}}},\n        {\"id\":{{letrehozott_track_6}}},\n        {\"id\":{{letrehozott_track_7}}},\n        {\"id\":{{letrehozott_track_8}}},\n        {\"id\":{{letrehozott_track_9}}},\n        {\"id\":{{letrehozott_track_10}}},\n        {\"id\":{{letrehozott_track_11}}},\n        {\"id\":{{letrehozott_track_12}}},\n        {\"id\":{{letrehozott_track_13}}},\n        {\"id\":{{letrehozott_track_14}}},\n        {\"id\":{{letrehozott_track_15}}},\n        {\"id\":{{letrehozott_track_16}}},\n        {\"id\":{{letrehozott_track_17}}},\n        {\"id\":{{letrehozott_track_18}}},\n        {\"id\":{{letrehozott_track_19}}},\n        {\"id\":{{letrehozott_track_20}}},\n        {\"id\":{{letrehozott_track_21}}},\n        {\"id\":{{letrehozott_track_22}}},\n        {\"id\":{{letrehozott_track_23}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 25 track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}},\n        {\"id\":{{letrehozott_track_4}}},\n        {\"id\":{{letrehozott_track_5}}},\n        {\"id\":{{letrehozott_track_6}}},\n        {\"id\":{{letrehozott_track_7}}},\n        {\"id\":{{letrehozott_track_8}}},\n        {\"id\":{{letrehozott_track_9}}},\n        {\"id\":{{letrehozott_track_10}}},\n        {\"id\":{{letrehozott_track_11}}},\n        {\"id\":{{letrehozott_track_12}}},\n        {\"id\":{{letrehozott_track_13}}},\n        {\"id\":{{letrehozott_track_14}}},\n        {\"id\":{{letrehozott_track_15}}},\n        {\"id\":{{letrehozott_track_16}}},\n        {\"id\":{{letrehozott_track_17}}},\n        {\"id\":{{letrehozott_track_18}}},\n        {\"id\":{{letrehozott_track_19}}},\n        {\"id\":{{letrehozott_track_20}}},\n        {\"id\":{{letrehozott_track_21}}},\n        {\"id\":{{letrehozott_track_22}}},\n        {\"id\":{{letrehozott_track_23}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1517,7 +1517,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":2,\n    \"maxPause\": 150,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}},\n        {\"id\":{{letrehozott_track_4}}},\n        {\"id\":{{letrehozott_track_5}}},\n        {\"id\":{{letrehozott_track_6}}},\n        {\"id\":{{letrehozott_track_7}}},\n        {\"id\":{{letrehozott_track_8}}},\n        {\"id\":{{letrehozott_track_9}}},\n        {\"id\":{{letrehozott_track_10}}},\n        {\"id\":{{letrehozott_track_11}}},\n        {\"id\":{{letrehozott_track_12}}},\n        {\"id\":{{letrehozott_track_13}}},\n        {\"id\":{{letrehozott_track_14}}},\n        {\"id\":{{letrehozott_track_15}}},\n        {\"id\":{{letrehozott_track_16}}},\n        {\"id\":{{letrehozott_track_17}}},\n        {\"id\":{{letrehozott_track_18}}},\n        {\"id\":{{letrehozott_track_19}}},\n        {\"id\":{{letrehozott_track_20}}},\n        {\"id\":{{letrehozott_track_21}}},\n        {\"id\":{{letrehozott_track_22}}},\n        {\"id\":{{letrehozott_track_23}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 26 track\",\n    \"minPause\":2,\n    \"maxPause\": 150,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_2}}},\n        {\"id\":{{letrehozott_track_3}}},\n        {\"id\":{{letrehozott_track_4}}},\n        {\"id\":{{letrehozott_track_5}}},\n        {\"id\":{{letrehozott_track_6}}},\n        {\"id\":{{letrehozott_track_7}}},\n        {\"id\":{{letrehozott_track_8}}},\n        {\"id\":{{letrehozott_track_9}}},\n        {\"id\":{{letrehozott_track_10}}},\n        {\"id\":{{letrehozott_track_11}}},\n        {\"id\":{{letrehozott_track_12}}},\n        {\"id\":{{letrehozott_track_13}}},\n        {\"id\":{{letrehozott_track_14}}},\n        {\"id\":{{letrehozott_track_15}}},\n        {\"id\":{{letrehozott_track_16}}},\n        {\"id\":{{letrehozott_track_17}}},\n        {\"id\":{{letrehozott_track_18}}},\n        {\"id\":{{letrehozott_track_19}}},\n        {\"id\":{{letrehozott_track_20}}},\n        {\"id\":{{letrehozott_track_21}}},\n        {\"id\":{{letrehozott_track_22}}},\n        {\"id\":{{letrehozott_track_23}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1670,7 +1670,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_27}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 1 unreachable track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_27}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1715,7 +1715,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}},\n        {\"id\":{{letrehozott_track_27}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 3 real, 1 unreachable track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}},\n        {\"id\":1234}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1768,7 +1768,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 3 real track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1827,7 +1827,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 4 track\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_1}}},\n        {\"id\":{{letrehozott_track_24}}},\n        {\"id\":{{letrehozott_track_25}}},\n        {\"id\":{{letrehozott_track_26}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2116,7 +2116,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_47}}},\n        {\"id\":{{letrehozott_track_47}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with same tracks\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":{{letrehozott_track_47}}},\n        {\"id\":{{letrehozott_track_47}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2169,7 +2169,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_47}}},\n        {\"id\": {{letrehozott_track_48}}},\n        {\"id\": {{letrehozott_track_49}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 3 track U_TRLIST_4\",\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_47}}},\n        {\"id\": {{letrehozott_track_48}}},\n        {\"id\": {{letrehozott_track_49}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2210,7 +2210,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_11}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n         {\"id\":{{letrehozott_track_48}}},\n        {\"id\":{{letrehozott_track_48}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 2 same track\",\n    \"id\":{{letrehozott_playUnit_id_11}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n         {\"id\":{{letrehozott_track_48}}},\n        {\"id\":{{letrehozott_track_48}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2519,7 +2519,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with 2 track U_TRLIST_5\",\n    \"minPause\": 10,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2565,7 +2565,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}},\n        {\"id\": {{letrehozott_track_52}}}\n    ]\n}\n",
+							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"name\":\"playUnit with 2 track U_TRLIST_5 updated\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}},\n        {\"id\": {{letrehozott_track_52}}}\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2611,7 +2611,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}},\n        {\"id\": {{letrehozott_track_52}}},\n        {\"id\": {{letrehozott_track_53}}},\n        {\"id\": {{letrehozott_track_54}}}\n    ]\n}\n",
+							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"name\":\"playUnit with 2 track U_TRLIST_5 updated\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}},\n        {\"id\": {{letrehozott_track_52}}},\n        {\"id\": {{letrehozott_track_53}}},\n        {\"id\": {{letrehozott_track_54}}}\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2657,7 +2657,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}},\n        {\"id\": {{letrehozott_track_52}}},\n        {\"id\": {{letrehozott_track_53}}}\n    ]\n}\n",
+							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"name\":\"playUnit with 2 track U_TRLIST_5 updated\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}},\n        {\"id\": {{letrehozott_track_52}}},\n        {\"id\": {{letrehozott_track_53}}}\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2703,7 +2703,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}}\n    ]\n}\n",
+							"raw": "{\n    \"id\":{{letrehozott_playUnit_id_12}},\n    \"name\":\"playUnit with 2 track U_TRLIST_5 updated\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\": {{letrehozott_track_50}}},\n        {\"id\": {{letrehozott_track_51}}}\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2995,7 +2995,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": -1,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{    \n    \"name\":\"playUnit with minpause=-1\",\n    \"minPause\": -1,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3051,7 +3051,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 0,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with minpause=0\",\n    \"minPause\": 0,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3107,7 +3107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 1,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with minpause=1\",\n    \"minPause\": 1,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3163,7 +3163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 3600,\n    \"maxPause\": 3600,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with minpause=3600\",\n    \"minPause\": 3600,\n    \"maxPause\": 3600,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3215,7 +3215,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 3601,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit with minpause=3601\",\n    \"minPause\": 3601,\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3267,7 +3267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\":\"\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n        \"name\":\"playUnit with minpause=''\",\n    \"minPause\":\"\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3325,7 +3325,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": \"_.,'-*-+=@#{}<>[]/\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit which should not exist {{$timestamp}}\",\n    \"minPause\": \"_.,'-*-+=@#{}<>[]/\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3377,7 +3377,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": \"The\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit which should not exist {{$timestamp}}\",\n    \"minPause\": \"The\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3435,7 +3435,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": \"12\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit  {{$timestamp}}\",\n    \"minPause\": \"12\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3487,7 +3487,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": \"$€¢£¥₽₩₪฿₫₴₹\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit which should not exist {{$timestamp}}\",\n    \"minPause\": \"$€¢£¥₽₩₪฿₫₴₹\",\n    \"maxPause\": 15,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3544,7 +3544,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 10,\n    \"maxPause\": -1,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit which should not exist {{$timestamp}}\",\n    \"minPause\": 10,\n    \"maxPause\": -1,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3600,7 +3600,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 0,\n    \"maxPause\": 0,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 0,\n    \"maxPause\": 0,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3659,7 +3659,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 1,\n    \"maxPause\": 1,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}\n",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 1,\n    \"maxPause\": 1,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3715,7 +3715,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 36,\n    \"maxPause\": 3600,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 36,\n    \"maxPause\": 3600,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3767,7 +3767,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 361,\n    \"maxPause\": 3601,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 361,\n    \"maxPause\": 3601,\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3819,7 +3819,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 45,\n    \"maxPause\": \"\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 45,\n    \"maxPause\": \"\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3877,7 +3877,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 54,\n    \"maxPause\": \"_.,'-*-+=@#{}<>[]/\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 54,\n    \"maxPause\": \"_.,'-*-+=@#{}<>[]/\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3929,7 +3929,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 99,\n    \"maxPause\": \"teniszütő\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 99,\n    \"maxPause\": \"teniszütő\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3981,7 +3981,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 56,\n    \"maxPause\": \"$€¢£¥₽₩₪฿₫₴₹\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 56,\n    \"maxPause\": \"$€¢£¥₽₩₪฿₫₴₹\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4039,7 +4039,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": 11,\n    \"maxPause\": \"15\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\": 11,\n    \"maxPause\": \"15\",\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4098,7 +4098,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": {{minPauseRandom}},\n    \"maxPause\": {{maxPauseRandom}},\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit create playunit minPause<maxPause {{$timestamp}}\",\n    \"minPause\": {{minPauseRandom}},\n    \"maxPause\": {{maxPauseRandom}},\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4150,7 +4150,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": {{PauseRandom}},\n    \"maxPause\": {{PauseRandom}},\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit create playunit minPause=maxPause {{$timestamp}}\",\n    \"minPause\": {{PauseRandom}},\n    \"maxPause\": {{PauseRandom}},\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4171,7 +4171,7 @@
 					"response": []
 				},
 				{
-					"name": "create playunit minPause<maxPause Copy",
+					"name": "create playunit minPause>maxPause",
 					"event": [
 						{
 							"listen": "test",
@@ -4204,7 +4204,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"minPause\": {{minPauseRandom}},\n    \"maxPause\": {{maxPauseRandom}},\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
+							"raw": "{\n    \"name\":\"playUnit create playunit minPause>maxPause {{$timestamp}}\",\n    \"minPause\": {{minPauseRandom}},\n    \"maxPause\": {{maxPauseRandom}},\n    \"trackList\": [\n        {\"id\": {{letrehozott_track_60}}},\n        {\"id\": {{letrehozott_track_61}}},\n        {\"id\": {{letrehozott_track_62}}}\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4225,33 +4225,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "update",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":1,\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":2},\n        {\"id\":1}\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/playUnit/save",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"playUnit",
-						"save"
-					]
-				}
-			},
-			"response": []
 		},
 		{
 			"name": "create",
@@ -4281,7 +4254,34 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":12},\n        {\"id\":13},\n        {\"id\":14}\n    ]\n}",
+					"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":12},\n        {\"id\":13},\n        {\"id\":14}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/playUnit/save",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"playUnit",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"playUnit {{$timestamp}}\",\n    \"id\":1,\n    \"minPause\":10,\n    \"maxPause\": 15,\n    \"trackList\":[\n        {\"id\":2},\n        {\"id\":1}\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"

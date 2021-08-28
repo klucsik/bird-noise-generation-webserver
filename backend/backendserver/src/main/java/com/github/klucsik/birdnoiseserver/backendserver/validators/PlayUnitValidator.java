@@ -22,13 +22,12 @@ public class PlayUnitValidator{
     public void validate (PlayUnit playUnit) throws MethodArgumentNotValidException {
         List<FieldError> errors = new ArrayList<>();
 
-      /*  if (repository.existsByName(playUnit.getName())) {
+        if (repository.existsByName(playUnit.getName())) {
             PlayUnit existingPlayUnit = repository.findByName(playUnit.getName());
             if (playUnit.getId() == null || existingPlayUnit.getId() != playUnit.getId()) {
                 errors.add(new FieldError("PlayUnit", "name", "Name must be unique!"));
             }
-        }*/ //TODO this should be uncommented, but the api tests need a big rewrite for that
-
+        }
         if (playUnit.getMinPause() != null && playUnit.getMaxPause() != null  && playUnit.getMinPause() > playUnit.getMaxPause()){
             errors.add(new FieldError("playUnit", "minPause",
                     "Minpause needs to be smaller or equal than maxpause!"));
