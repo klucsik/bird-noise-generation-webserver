@@ -15,11 +15,11 @@
             <div th:insert="fragments/_messages"></div>
             <form class="row g-1" th:action="@{save}" method="post" th:object="${playParamDto}">
                 <div class="row fs-1 p-3">Create new playParam</div>
+                <div>
+                    <input type="hidden"  id="id"
+                           th:field="*{id}" readonly>
+                </div>
                 <div class="row">
-                    <div>
-                        <input type="hidden"  id="id"
-                               th:field="*{id}" readonly>
-                    </div>
                     <div class="col-4">
                         <label for="name" >name</label>
                     </div>
@@ -45,7 +45,7 @@
                         <option value=""> -- </option>
                         <option th:each="optionPlayUnit : ${playUnitList}"
                                 th:value="${optionPlayUnit}"
-                                th:text="${optionPlayUnit.getId()}"
+                                th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackList() ) }"
                         ></option>
                     </select>
                 </div>
