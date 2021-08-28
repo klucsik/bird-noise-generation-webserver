@@ -4,4 +4,7 @@ import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayU
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlayUnitRepository extends JpaRepository<PlayUnit, Long> {
+    PlayUnit findByName(String name);
+
+    Boolean existsByName(String name);
 }

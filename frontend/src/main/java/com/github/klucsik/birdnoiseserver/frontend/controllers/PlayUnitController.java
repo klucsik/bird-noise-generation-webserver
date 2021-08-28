@@ -50,6 +50,7 @@ public class PlayUnitController {
         try {
             PlayUnitDto mappedPlayUnitDto = new PlayUnitDto(); //TODO: make this somewhat less ugly
             mappedPlayUnitDto.setId(stupidPlayUnitDto.getId());
+            mappedPlayUnitDto.setName(stupidPlayUnitDto.getName());
             mappedPlayUnitDto.setMinPause(stupidPlayUnitDto.getMinPause());
             mappedPlayUnitDto.setMaxPause(stupidPlayUnitDto.getMaxPause());
             List<TrackDto> trackList = new ArrayList<>();
