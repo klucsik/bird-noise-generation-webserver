@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamSlimDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
@@ -28,6 +29,11 @@ public class DevicePlayParamController extends BaseController {
     @GetMapping("/{id}")
     public ResponseEntity<DevicePlayParamDto> getById(@PathVariable Long id) {
         return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllByDevice")
+    public ResponseEntity<List<DevicePlayParamDto>> getAllByDevice(@RequestParam String chipId) {
+        return new ResponseEntity<>(service.getAllByDevice(chipId), HttpStatus.OK);
     }
 
     @GetMapping("/page")
