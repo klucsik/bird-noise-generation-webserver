@@ -47,8 +47,8 @@ public class DevicePlayParamService {
         return DevicePlayParamMapper.MAPPER.devicePlayParamToDto(devicePlayParam);
     }
 
-    public List<DevicePlayParamDto> getAllByDevice(String chipId) {
-        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
+    public List<DevicePlayParamDto> getAllByDevice(Long id) {
+        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.GetById(id));
         return repository.getAllByDevice(device).stream().map(DevicePlayParamMapper.MAPPER::devicePlayParamToDto).collect(Collectors.toList());
     }
 

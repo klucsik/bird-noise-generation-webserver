@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div th:insert="fragments/_messages"></div>
             <div class="button-primary">
-                <a href='/devicePlayParam/new'>Create new devicePlayParam</a>
+                <a th:href='${#strings.concat("/devicePlayParam/new?id=", deviceId)}' >Create new devicePlayParam</a>
             </div>
             <div class="mt-5 table-custom-style">
                 <table id="devicePlayParamTable" class="table table-striped">

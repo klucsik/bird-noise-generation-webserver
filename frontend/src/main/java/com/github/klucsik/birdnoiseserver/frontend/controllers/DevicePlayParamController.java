@@ -1,7 +1,9 @@
 package com.github.klucsik.birdnoiseserver.frontend.controllers;
 
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.TrackDto;
+import com.github.klucsik.birdnoiseserver.frontend.connectors.DeviceConnector;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.DevicePlayParamConnector;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,18 +18,24 @@ import java.util.List;
 @Controller
 public class DevicePlayParamController {
     private final DevicePlayParamConnector connector;
+    private final DeviceConnector deviceConnector;
 
     @GetMapping("/page")
-    public String getAllByChipId(Model model,@RequestParam String chipId) {
-        List<DevicePlayParamDto> devicePlayParamDtos = connector.getAllByDevice(chipId).getBody();
+    public String getAllById(Model model,@RequestParam Long id) {
+        List<DevicePlayParamDto> devicePlayParamDtos = connector.getAllByDevice(id).getBody();
         model.addAttribute("devicePlayParamDtos", devicePlayParamDtos);
+        model.addAttribute("deviceId", id);
         return "DevicePlayParam/page";
     }
 
     @GetMapping("/new")
-    public String newDevicePlayParamForm(Model model){
+    public String newDevicePlayParamForm(@RequestParam Long id, Model model){
+        DeviceDto deviceDto = deviceConnector.getById(id).getBody();
 
-        model.addAttribute("devicePlayParamDto", new DevicePlayParamDto());
+        DevicePlayParamDto devicePlayParamDto = new DevicePlayParamDto();
+        devicePlayParamDto.setDevice(deviceDto);
+
+        model.addAttribute("devicePlayParamDto", devicePlayParamDto);
         model.addAttribute("title","New devicePlayParam");
         return "/devicePlayParam/save";
     }

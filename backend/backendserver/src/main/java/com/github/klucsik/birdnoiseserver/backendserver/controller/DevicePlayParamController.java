@@ -32,8 +32,8 @@ public class DevicePlayParamController extends BaseController {
     }
 
     @GetMapping("/getAllByDevice")
-    public ResponseEntity<List<DevicePlayParamDto>> getAllByDevice(@RequestParam String chipId) {
-        return new ResponseEntity<>(service.getAllByDevice(chipId), HttpStatus.OK);
+    public ResponseEntity<List<DevicePlayParamDto>> getAllByDevice(@RequestParam Long id) {
+        return new ResponseEntity<>(service.getAllByDevice(id), HttpStatus.OK);
     }
 
     @GetMapping("/page")
