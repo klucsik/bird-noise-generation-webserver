@@ -21,6 +21,10 @@ public class TrackDto {
     }
     @Override
     public String toString(){
-        return id.toString(); //Dont touch dis, or the frontend edit form will not preselect the tracks :D
+        if(id != null) {
+            return id.toString(); //Dont touch dis, or the frontend edit form will not preselect the tracks :D
+        } else {
+            return null;
+        }
     }
 }
