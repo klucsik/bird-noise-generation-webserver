@@ -68,7 +68,7 @@ metadata:
   namespace: jenkins
 subsets:
 - addresses:
-  - ip: 192.168.2.102
+  - ip: 192.168.2.101
   ports:
   - name: jenkins-app
     port: 8080
