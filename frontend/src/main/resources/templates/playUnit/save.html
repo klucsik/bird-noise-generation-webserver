@@ -41,10 +41,10 @@
                     <div class="col-8">
                         <select type="number"  id="trackList" th:field="*{trackList}" required multiple>
                             <option th:each="track : ${trackList}"
-                            th:value="${track.id}"
-                            th:text="${#strings.concat(track.trackNumber,' - ',track.name) }"
+                                    th:value="${track}"
+                                    th:text="${#strings.concat(track.trackNumber,' - ',track.name) }"
                             ></option>
-                        </select>
+                        </select> 
                     </div>
                     <div class="row justify-content-sm-center">
                         <div class="d-grid col-3">
