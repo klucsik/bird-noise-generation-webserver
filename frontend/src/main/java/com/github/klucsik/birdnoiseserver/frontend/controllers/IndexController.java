@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping("/")
     public String getPage(Model model) {
-        return "index";
+        return "redirect:/device/page";
     }
 }
