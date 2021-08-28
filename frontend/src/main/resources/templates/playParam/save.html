@@ -39,23 +39,13 @@
                     <div class="col-4">
                     <label for="playUnits" >playUnits</label>
                   </div>
-<!--                    <div class="col-8" th:each="i : ${#numbers.sequence(1,24)}" id="playUnits">
-                        <label th:text="${i}"></label>
-                        <select th:field="*{playUnits[__${i}__]}" required>
-                            <option value=null> &#45;&#45; </option>
-                            <option th:each="playUnit : ${playUnitList}"
-                                    th:value="${playUnit.id}"
-                                    th:text="${playUnit.id}"
-                            ></option>
-                        </select>
-                    </div>-->
-                    <div class="col-8" th:each="playUnit, itemStat : *{playUnits}" id="playUnits">
-                    <label th:text="${itemStat.index}"></label>
-                    <select th:field="*{playUnits[__${itemStat.index}__]}" >
+                    <div class="col-8" th:each="playUnit : *{playUnits}" id="playUnits">
+                    <label th:text="${playUnit.getKey()}"></label>
+                    <select th:field="*{playUnits[__${playUnit.getKey()}__]}" >
                         <option value=""> -- </option>
                         <option th:each="optionPlayUnit : ${playUnitList}"
-                                th:value="${optionPlayUnit.id}"
-                                th:text="${optionPlayUnit.id}"
+                                th:value="${optionPlayUnit}"
+                                th:text="${optionPlayUnit.getId()}"
                         ></option>
                     </select>
                 </div>

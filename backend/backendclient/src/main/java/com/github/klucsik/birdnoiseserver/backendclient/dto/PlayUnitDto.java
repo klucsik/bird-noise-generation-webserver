@@ -18,4 +18,15 @@ public class PlayUnitDto {
         this.maxPause=maxPause;
         this.trackList=trackList;
     }
+
+    @Override
+    public String toString(){
+        if (id != null) { //Dont touch dis, or the frontend edit form will not preselect the playUnits :D
+            return id.toString();
+        }
+        else {
+            return null;
+        }
+
+    }
 }
