@@ -24,6 +24,7 @@ public class PlayUnitValidator{
             errors.add(new FieldError("playUnit", "minPause",
                     "Minpause needs to be smaller or equal than maxpause!"));
         }
+
         Set<Track> trackSet = new HashSet<>();
         playUnit.getTrackList().forEach(track -> {
             if(!trackSet.add(track)){
