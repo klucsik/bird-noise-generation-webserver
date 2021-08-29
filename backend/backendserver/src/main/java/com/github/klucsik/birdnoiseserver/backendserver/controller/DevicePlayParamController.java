@@ -24,7 +24,8 @@ public class DevicePlayParamController extends BaseController {
     public ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto)
             throws MethodArgumentNotValidException {
         DevicePlayParam saved = service.save(DevicePlayParamMapper.MAPPER.dtoToDevicePLayParam(devicePlayParamDto));
-        return new ResponseEntity<>(DevicePlayParamMapper.MAPPER.devicePlayParamToDto(saved), HttpStatus.OK); //TODO: make a mapping in the controller everywhere
+        DevicePlayParamDto savedDto = DevicePlayParamMapper.MAPPER.devicePlayParamToDto(saved);
+        return new ResponseEntity<>(savedDto, HttpStatus.OK); //TODO: make a mapping in the controller everywhere
     }
 
     @GetMapping("/{id}")
@@ -46,5 +47,20 @@ public class DevicePlayParamController extends BaseController {
     public ResponseEntity<DevicePlayParamDto> delete(@PathVariable Long id) {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/setToDeployable")
+    public ResponseEntity<String> setToDeployable(@RequestParam Long playParamId) {
+        return new ResponseEntity<>(service.setToDeployable(playParamId), HttpStatus.OK);
+    }
+
+    @GetMapping("/setToDraft")
+    public ResponseEntity<String> setToDraft(@RequestParam Long playParamId) {
+        return new ResponseEntity<>(service.setToDraft(playParamId), HttpStatus.OK);
+    }
+
+    @GetMapping("/setToDeleted")
+    public ResponseEntity<String> setToDeleted(@RequestParam Long playParamId) {
+        return new ResponseEntity<>(service.setToDeleted(playParamId), HttpStatus.OK);
     }
 }

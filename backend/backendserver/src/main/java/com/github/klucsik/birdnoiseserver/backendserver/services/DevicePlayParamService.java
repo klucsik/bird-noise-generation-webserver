@@ -2,11 +2,13 @@ package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DPPStatus;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DevicePlayParamRepository;
 import com.github.klucsik.birdnoiseserver.backendserver.validators.DevicePlayParamValidator;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +29,6 @@ public class DevicePlayParamService {
     public DevicePlayParam save(DevicePlayParam devicePlayParam) throws MethodArgumentNotValidException {
 
         devicePlayParam.setDevice(deviceService.GetById(devicePlayParam.getDevice().getId()));
-
         devicePlayParam.setPlayParam(playParamService.getOne(devicePlayParam.getPlayParam().getId()));
 
         validator.validate(devicePlayParam);
@@ -42,7 +43,7 @@ public class DevicePlayParamService {
 
     public List<DevicePlayParam> getAllByDevice(Long id) {
         Device device = deviceService.GetById(id);
-        return repository.getAllByDevice(device).stream().collect(Collectors.toList());
+        return repository.findByDeviceAndStatusNot(device, DPPStatus.DELETED).stream().collect(Collectors.toList());
     }
 
     public List<DevicePlayParam> getPage() {
@@ -51,5 +52,26 @@ public class DevicePlayParamService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    public String setToDeployable(Long playParamId) {
+        PlayParam playParam = playParamService.getOne(playParamId);
+        DevicePlayParam devicePlayParam = repository.findByPlayParam(playParam);
+        devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
+        return "Set status to Deployable";
+    }
+
+    public String setToDraft(Long playParamId) {
+        PlayParam playParam = playParamService.getOne(playParamId);
+        DevicePlayParam devicePlayParam = repository.findByPlayParam(playParam);
+        devicePlayParam.setStatus(DPPStatus.DRAFT);
+        return "Set status to Draft";
+    }
+
+    public String setToDeleted(Long playParamId) {
+        PlayParam playParam = playParamService.getOne(playParamId);
+        DevicePlayParam devicePlayParam = repository.findByPlayParam(playParam);
+        devicePlayParam.setStatus(DPPStatus.DELETED);
+        return "Set status to Deleted";
     }
 }
