@@ -47,9 +47,11 @@ public class PlayParamController {
     public String editPlayParamFrom(@PathVariable Long id, Model model){
         model.addAttribute("playUnitList", playUnitConnector.getPage().getBody());
         PlayParamDto playParamDto =connector.getOne(id).getBody();
-        Map<Integer, PlayUnitDto> playUnits = playParamDto.getPlayUnits();
+        Map<Integer, PlayUnitDto> playUnits = new HashMap<>();
         for (int i = 1; i < 25; i++) {
-            if(!playUnits.containsKey(i)) {
+            if(playParamDto.getPlayUnits().containsKey(i)) {
+                playUnits.put(i,playParamDto.getPlayUnits().get(i));
+            } else {
                 playUnits.put(i, new PlayUnitDto());
             }
         }
@@ -60,9 +62,11 @@ public class PlayParamController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute FrontEndPlayParamDto frontEndDto, Model model, RedirectAttributes attributes) {
+    public String save(@ModelAttribute FrontEndPlayParamDto frontEndDto, RedirectAttributes attributes) {
         try {
             PlayParamDto mappedDto = new PlayParamDto();
+
+            //Mapping
             mappedDto.setId(frontEndDto.getId());
             mappedDto.setName(frontEndDto.getName());
             mappedDto.setVol(frontEndDto.getVol());
@@ -73,6 +77,7 @@ public class PlayParamController {
                 }
             });
             mappedDto.setPlayUnits(playUnits);
+
             PlayParamDto savedDto = connector.save(mappedDto).getBody();
             attributes.addFlashAttribute("message", String.format(" successful save with id %d",savedDto.getId()));
             return "redirect:/playParam/page";
@@ -82,8 +87,21 @@ public class PlayParamController {
             if(frontEndDto.getId() != null){
                 return String.format("redirect:/track/%d",frontEndDto.getId());
             }
-            //TODO:send back the data to fill out the page
             return "redirect:/playParam/new";
         }
     }
+
+    @GetMapping("{id}/delete")
+    public String deleteTrack(@PathVariable Long id, Model model, RedirectAttributes attributes){
+        try {
+            connector.delete(id);
+            attributes.addFlashAttribute("message",("Successful delete"));
+            return "redirect:/playParam/page";
+        } catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+            return "redirect:/playParam/page";
+        }
+    }
+
 }
