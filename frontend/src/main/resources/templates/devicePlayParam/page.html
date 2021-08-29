@@ -24,6 +24,7 @@
                         <th>playParam</th>
                         <th>startTime</th>
                         <th>stopTime</th>
+                        <th>status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -50,9 +51,14 @@
                     }},
                 {data: 'startTime'},
                 {data: 'stopTime'},
+                {data: 'status'},
                 {data: 'id',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> <span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>");
+                        $(nTd).html("" +
+                            "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " +
+                            "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" +
+                            "<span><a href='/devicePlayParam/setDeployable?playParamId=" + oData.playParam.id + "'>Change to deployable</a></span>" //TODO Make devicePlayParam status frontend part
+                        );
 
                     },
                     searchable: false

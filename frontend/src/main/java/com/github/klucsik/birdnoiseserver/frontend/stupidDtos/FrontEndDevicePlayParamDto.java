@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.frontend.stupidDtos;
 
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DPPStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,4 +12,5 @@ public class FrontEndDevicePlayParamDto {
     private Long device;
     private String startTime;
     private String stopTime;
+    private DPPStatus status;
 }
