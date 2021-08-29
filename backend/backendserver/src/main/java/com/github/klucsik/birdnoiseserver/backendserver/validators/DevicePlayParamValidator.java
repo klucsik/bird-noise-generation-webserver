@@ -34,8 +34,8 @@ public class DevicePlayParamValidator {
             ) {
                 errors.add(new FieldError(
                         "DevicePlayParam", "Device",
-                        String.format("Device with id: %s already has a playParam in this time period(from: %s till: %s)",
-                                devicePlayParam.getDevice().getId(), devicePlayParam.getStartTime(), devicePlayParam.getStopTime())));
+                        String.format("Device with id: %s already has a playParam in this time period(from: %s till: %s). It's id is: %d",
+                                devicePlayParam.getDevice().getId(), devicePlayParam.getStartTime(), devicePlayParam.getStopTime(),savedDevicePlayParam.getId())));
             }
         });
 
