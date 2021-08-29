@@ -57,12 +57,17 @@ public class DevicePlayParamController {
         try {
             DevicePlayParamDto mappedDto = new DevicePlayParamDto();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+
+            //Mapping by hand
+            mappedDto.setId(frontEndDevicePlayParamDto.getId());
             mappedDto.setStartTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStartTime(),formatter));
             mappedDto.setStopTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStopTime(),formatter));
             mappedDto.setDevice(deviceConnector.getById(frontEndDevicePlayParamDto.getDevice()).getBody());
             mappedDto.setPlayParam(playParamConnector.getOne(frontEndDevicePlayParamDto.getPlayParam()).getBody());
-            DevicePlayParamDto savedDto = connector.save(mappedDto).getBody();
+
+            DevicePlayParamDto savedDto = connector.save(mappedDto).getBody(); //save
             attributes.addFlashAttribute("message", String.format("Successful save with id %d", savedDto.getId()));
+
             return String.format("redirect:/devicePlayParam/page?id=%d", savedDto.getDevice().getId());
         } catch (Exception e) {
             e.printStackTrace();
