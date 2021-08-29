@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendserver.validators;
 
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DPPStatus;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DevicePlayParamRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class DevicePlayParamValidator {
 
     public void validate(DevicePlayParam devicePlayParam) throws MethodArgumentNotValidException {
         List<FieldError> errors = new ArrayList<>();
-        List<DevicePlayParam> allSavedDPP = repository.getAllByDevice(devicePlayParam.getDevice());
+        List<DevicePlayParam> allSavedDPP = repository.findByDeviceAndStatusNot(devicePlayParam.getDevice(), DPPStatus.DELETED);
 
         allSavedDPP.forEach(savedDevicePlayParam -> {
             if (devicePlayParam.getId() != null & savedDevicePlayParam.getId() == devicePlayParam.getId()) {

@@ -2,6 +2,7 @@ package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamSlimDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DPPStatus;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamSlimMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
@@ -29,7 +30,7 @@ public class DevicePlayParamSelectorService {
 
     public DevicePlayParamSlimDto selectSlimPlayParam(String chipId, Long paramVersion) {
         Device device = deviceRepository.findByChipId(chipId);
-        List<DevicePlayParam> playParamsForDevice = repository.getAllByDevice(device);
+        List<DevicePlayParam> playParamsForDevice = repository.findByDeviceAndStatusNotAndStatusNot(device, DPPStatus.DELETED, DPPStatus.DRAFT);
 
 
         playParamsForDevice = playParamsForDevice.stream().filter(
@@ -43,19 +44,35 @@ public class DevicePlayParamSelectorService {
         switch (playParamsForDevice.size()) {
             case 1:
                 if (paramVersion == playParamsForDevice.get(0).getPlayParam().getId()) {
-                    return null;
+                    //current playPAram is on the device
+                    if (playParamsForDevice.get(0).getStatus() == DPPStatus.DEPLOYING) {
+                        //successfully deployed change status
+                        playParamsForDevice.get(0).setStatus(DPPStatus.DEPLOYED);
+                        return null; //because its the same on the device and on the server
+                    }
+                    else {
+                        playParamsForDevice.get(0).setStatus(DPPStatus.DEPLOYED); //Because the playParam on the device is good
+                        return null;                                              //TODO: but send a warn! log
+                    }
                 }
                 else {
-                    PlayParamDto dto = PlayParamMapper.MAPPER.playParamtoDto(playParamsForDevice.get(0).getPlayParam());
-                    return DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(dto);
+                    PlayParam oldPlayParam = playParamRepository.getOne(paramVersion);
+                    DevicePlayParam oldDPP = repository.findByPlayParam(oldPlayParam);
+                    oldDPP.setStatus(DPPStatus.UNDEPLOYING);
+
+                    PlayParam newPlayParam = playParamsForDevice.get(0).getPlayParam();
+                    DevicePlayParam newDPP = repository.findByPlayParam(newPlayParam);
+                    newDPP.setStatus(DPPStatus.DEPLOYING);
+                    return DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(PlayParamMapper.MAPPER.playParamtoDto(newPlayParam));
                 }
 
             case 0:
+                //TODO: Log, Rohan calls for aid, there is no playPAram
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
             default:
+                //never ever
                 throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conficting playParams: %s", playParamsForDevice));
-
         }
     }
 }
