@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class StupidPlayUnitDto {
     private Long id;
+    private String name;
     private Integer minPause;
     private Integer maxPause;
     private List<Long> trackList; //stupid thymeleaf
