@@ -8,7 +8,7 @@ import com.github.klucsik.birdnoiseserver.frontend.connectors.DevicePlayParamCon
 import com.github.klucsik.birdnoiseserver.frontend.connectors.PlayParamConnector;
 import com.github.klucsik.birdnoiseserver.frontend.stupidDtos.FrontEndDevicePlayParamDto;
 import lombok.RequiredArgsConstructor;
-import org.bouncycastle.math.raw.Mod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -99,29 +99,9 @@ public class DevicePlayParamController {
     }
 
     @GetMapping("/setToDeployable")
-    public String setToDeployable(@RequestParam Long DPPId, RedirectAttributes attributes) {
-        String answer = connector.setToDeployable(DPPId).getBody();
-        attributes.addFlashAttribute("message", String.format("On Device Play Param whit id: %d, %s", DPPId, answer));
-        DeviceDto deviceDto = connector.findDeviceByDPPId(Long.parseLong(DPPId.toString())).getBody();
-        String s = deviceDto.getId().toString();
-        return String.format("redirect:/devicePlayParam/page?id=%s", s);
-    }
-
-    @GetMapping("/setToDraft")
-    public String setToDraft(@RequestParam Long DPPId, RedirectAttributes attributes) {
-        String answer = connector.setToDraft(DPPId).getBody();
-        attributes.addFlashAttribute("message", String.format("On Device Play Param whit id: %d, %s", DPPId, answer));
-        DeviceDto deviceDto = connector.findDeviceByDPPId(Long.parseLong(DPPId.toString())).getBody();
-        String s = deviceDto.getId().toString();
-        return String.format("redirect:/devicePlayParam/page?id=%s", s);
-    }
-
-    @GetMapping("/setToDeleted")
-    public String setToDeleted(@RequestParam Long DPPId, RedirectAttributes attributes) {
-        String answer = connector.setToDeleted(DPPId).getBody();
-        attributes.addFlashAttribute("message", String.format("On Device Play Param whit id: %d, %s", DPPId, answer));
-        DeviceDto deviceDto = connector.findDeviceByDPPId(Long.parseLong(DPPId.toString())).getBody();
-        String s = deviceDto.getId().toString();
-        return String.format("redirect:/devicePlayParam/page?id=%s", s);
+    public String setToDeployable(@RequestParam Long playParamId, RedirectAttributes attributes) {
+        String answear = connector.setToDeployable(playParamId).getBody();
+        attributes.addFlashAttribute("message: ", answear);
+        return "devicePlayParam/page";
     }
 }
