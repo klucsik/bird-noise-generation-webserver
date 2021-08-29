@@ -39,6 +39,7 @@
                     <div class="col-4">
                     <label for="playUnits" >playUnits</label>
                   </div>
+                    <div class="col-4"></div> <!--Big frontend hack for more consistent view-->
                     <div class="col-8" th:each="playUnit : *{playUnits}" id="playUnits">
                     <label th:text="${playUnit.getKey()}"></label>
                     <select th:field="*{playUnits[__${playUnit.getKey()}__]}" >
