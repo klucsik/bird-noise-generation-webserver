@@ -24,36 +24,29 @@ public class DevicePlayParamService {
     private final DevicePlayParamRepository repository;
     private final DevicePlayParamValidator validator;
 
-    public DevicePlayParamDto save(DevicePlayParamDto devicePlayParamDto) throws MethodArgumentNotValidException {
-        DevicePlayParam devicePlayParam = DevicePlayParamMapper.MAPPER.dtoToDevicePLayParam(devicePlayParamDto);
+    public DevicePlayParam save(DevicePlayParam devicePlayParam) throws MethodArgumentNotValidException {
 
-        devicePlayParam.setDevice(
-                DeviceMapper.MAPPER.Dtotodevice(
-                        deviceService.GetById(
-                                devicePlayParam.getDevice().getId())));
+        devicePlayParam.setDevice(deviceService.GetById(devicePlayParam.getDevice().getId()));
 
-        devicePlayParam.setPlayParam(
-                PlayParamMapper.MAPPER.dtoToPlayParam(
-                        playParamService.getOne(
-                                devicePlayParam.getPlayParam().getId())));
+        devicePlayParam.setPlayParam(playParamService.getOne(devicePlayParam.getPlayParam().getId()));
 
         validator.validate(devicePlayParam);
 
-        return DevicePlayParamMapper.MAPPER.devicePlayParamToDto(repository.save(devicePlayParam));
+        return repository.save(devicePlayParam);
     }
 
-    public DevicePlayParamDto getById(Long id) {
+    public DevicePlayParam getById(Long id) {
         DevicePlayParam devicePlayParam = repository.getOne(id);
-        return DevicePlayParamMapper.MAPPER.devicePlayParamToDto(devicePlayParam);
+        return devicePlayParam;
     }
 
-    public List<DevicePlayParamDto> getAllByDevice(Long id) {
-        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.GetById(id));
-        return repository.getAllByDevice(device).stream().map(DevicePlayParamMapper.MAPPER::devicePlayParamToDto).collect(Collectors.toList());
+    public List<DevicePlayParam> getAllByDevice(Long id) {
+        Device device = deviceService.GetById(id);
+        return repository.getAllByDevice(device).stream().collect(Collectors.toList());
     }
 
-    public List<DevicePlayParamDto> getPage() {
-        return repository.findAll().stream().map(DevicePlayParamMapper.MAPPER::devicePlayParamToDto).collect(Collectors.toList());
+    public List<DevicePlayParam> getPage() {
+        return repository.findAll().stream().collect(Collectors.toList());
     }
 
     public void delete(Long id) {

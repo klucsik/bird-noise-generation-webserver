@@ -26,31 +26,28 @@ public class PlayParamService {
     private final TrackService trackService; //DELETEME
     private final PlayUnitService playUnitService; //DELETEME
 
-    public PlayParamDto save(PlayParamDto dto) throws MethodArgumentNotValidException {
-        PlayParam playParam = PlayParamMapper.MAPPER.dtoToPlayParam(dto);
+    public PlayParam save(PlayParam playParam) throws MethodArgumentNotValidException {
         Map<Integer, PlayUnit> playUnits = new HashMap<>();
-        dto.getPlayUnits().forEach(
+        playParam.getPlayUnits().forEach(
                 (hour, playUnitDto) -> {
                     playUnits.put(hour, playUnitRepository.findById(playUnitDto.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no PlayUnit with id: %d", playUnitDto.getId()))));
                 }
         );
         playParam.setPlayUnits(playUnits);
         validator.validate(playParam);
-        return PlayParamMapper.MAPPER.playParamtoDto(repository.save(playParam));
+        return repository.save(playParam);
     }
 
-    public PlayParamDto getOne(Long id) {
+    public PlayParam getOne(Long id) {
         Optional<PlayParam> playParam = repository.findById(id);
         if (playParam.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return PlayParamMapper.MAPPER.playParamtoDto(playParam.get());
+        return playParam.get();
     }
 
-    public List<PlayParamDto> getAll() {
-        return repository.findAll().stream()
-                .map(PlayParamMapper.MAPPER::playParamtoDto)
-                .collect(Collectors.toList());
+    public List<PlayParam> getAll() {
+        return repository.findAll().stream().collect(Collectors.toList());
     }
 
     public void delete(Long id) {

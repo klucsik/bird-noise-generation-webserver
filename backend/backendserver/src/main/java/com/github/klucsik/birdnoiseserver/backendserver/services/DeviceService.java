@@ -28,53 +28,52 @@ public class DeviceService {
 
 
     //Save
-    public DeviceDto save(DeviceDto dto) throws MethodArgumentNotValidException {
-        Device device = DeviceMapper.MAPPER.Dtotodevice(dto);
+    public Device save(Device device) throws MethodArgumentNotValidException {
         validator.validate(device);
-        return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
+        return repository.save(device);
     }
 
-    public DeviceDto findByChipIdOrCreateUnregistered(String chipId) throws MethodArgumentNotValidException {
+    public Device findByChipIdOrCreateUnregistered(String chipId) throws MethodArgumentNotValidException {
 
-        DeviceDto deviceDto = findByChipId(chipId);
+        Device device = findByChipId(chipId);
 
-        if (deviceDto == null) {
+        if (device == null) {
             int generatedNum = autoNumSet.size();
-            deviceDto = new DeviceDto();
+            device = new Device();
 
             if (!autoNumSet.add(generatedNum)) {
                 generatedNum += 1;
             }
 
-            deviceDto.setStatus(DeviceStatus.UNREGISTERED);
-            deviceDto.setChipId(chipId);
-            deviceDto.setName(
+            device.setStatus(DeviceStatus.UNREGISTERED);
+            device.setChipId(chipId);
+            device.setName(
                     "Date generated: " + LocalDateTime.now() + ", " +
                             "chipId: " + chipId + ", " +
                             "GeneratedNum: " + generatedNum
             );
         }
 
-        return save(deviceDto);
+        return save(device);
     }
 
 
     //Read
-    public DeviceDto GetById(Long id) {
+    public Device GetById(Long id) {
         Optional<Device> device = repository.findById(id);
         if (device.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return DeviceMapper.MAPPER.devicetoDto(device.get());
+        return device.get();
     }
 
-    public List<DeviceDto> getAll() {
-        return repository.findAll().stream().map(DeviceMapper.MAPPER::devicetoDto).collect(Collectors.toList());
+    public List<Device> getAll() {
+        return repository.findAll().stream().collect(Collectors.toList());
     }
 
-    public DeviceDto findByChipId(String chipId) {
+    public Device findByChipId(String chipId) {
         Device device = repository.findByChipId(chipId);
-        return DeviceMapper.MAPPER.devicetoDto(device);
+        return device;
     }
 
     //Delete

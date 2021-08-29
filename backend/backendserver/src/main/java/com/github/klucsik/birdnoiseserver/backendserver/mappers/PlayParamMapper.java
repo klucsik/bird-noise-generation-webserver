@@ -5,6 +5,8 @@ import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayP
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface PlayParamMapper {
     PlayParamMapper MAPPER = Mappers.getMapper(PlayParamMapper.class);
@@ -12,4 +14,6 @@ public interface PlayParamMapper {
     PlayParamDto playParamtoDto(PlayParam playParam);
 
     PlayParam dtoToPlayParam(PlayParamDto dto);
+
+    List<PlayParamDto> playParamListToDto(List<PlayParam> playParams);
 }

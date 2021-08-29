@@ -1,6 +1,10 @@
 package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
+import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
+import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.services.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,17 +24,18 @@ public class DeviceController extends BaseController {
 
     @PostMapping("/save")
     public ResponseEntity<DeviceDto> saveDevice(@RequestBody DeviceDto dto) throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
+        Device saved = service.save(DeviceMapper.MAPPER.Dtotodevice(dto));
+        return new ResponseEntity<>(DeviceMapper.MAPPER.devicetoDto(saved), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DeviceDto> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(service.GetById(id), HttpStatus.OK);
+        return new ResponseEntity<>(DeviceMapper.MAPPER.devicetoDto(service.GetById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/page")
     public ResponseEntity<List<DeviceDto>> getPage() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(DeviceMapper.MAPPER.deviceListToDo(service.getAll()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

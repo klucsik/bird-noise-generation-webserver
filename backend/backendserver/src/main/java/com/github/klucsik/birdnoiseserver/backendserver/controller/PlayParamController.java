@@ -1,6 +1,8 @@
 package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
+import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.services.PlayParamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,17 +20,18 @@ public class PlayParamController extends BaseController {
 
     @PostMapping("/save")
     public ResponseEntity<PlayParamDto> save(@RequestBody PlayParamDto dto) throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
+        PlayParam saved = service.save(PlayParamMapper.MAPPER.dtoToPlayParam(dto));
+        return new ResponseEntity<>(PlayParamMapper.MAPPER.playParamtoDto(saved), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PlayParamDto> getOne(@PathVariable Long id) {
-        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+        return new ResponseEntity<>(PlayParamMapper.MAPPER.playParamtoDto(service.getOne(id)), HttpStatus.OK);
     }
 
     @GetMapping("/page")
     public ResponseEntity<List<PlayParamDto>> getPage() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(PlayParamMapper.MAPPER.playParamListToDto(service.getAll()), HttpStatus.OK);
     }
 
 

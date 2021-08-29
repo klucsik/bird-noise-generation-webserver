@@ -23,22 +23,23 @@ public class DevicePlayParamController extends BaseController {
     @PostMapping("/save")
     public ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto)
             throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(service.save(devicePlayParamDto), HttpStatus.OK);
+        DevicePlayParam saved = service.save(DevicePlayParamMapper.MAPPER.dtoToDevicePLayParam(devicePlayParamDto));
+        return new ResponseEntity<>(DevicePlayParamMapper.MAPPER.devicePlayParamToDto(saved), HttpStatus.OK); //TODO: make a mapping in the controller everywhere
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DevicePlayParamDto> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+        return new ResponseEntity<>(DevicePlayParamMapper.MAPPER.devicePlayParamToDto(service.getById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/getAllByDevice")
     public ResponseEntity<List<DevicePlayParamDto>> getAllByDevice(@RequestParam Long id) {
-        return new ResponseEntity<>(service.getAllByDevice(id), HttpStatus.OK);
+        return new ResponseEntity<>(DevicePlayParamMapper.MAPPER.devicePlayParamListToDto(service.getAllByDevice(id)), HttpStatus.OK);
     }
 
     @GetMapping("/page")
     public ResponseEntity<List<DevicePlayParamDto>> page() {
-        return new ResponseEntity<>(service.getPage(), HttpStatus.OK);
+        return new ResponseEntity<>(DevicePlayParamMapper.MAPPER.devicePlayParamListToDto(service.getPage()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
