@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>backendclient</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.5</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <java.version>11</java.version>

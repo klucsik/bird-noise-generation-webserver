@@ -46,7 +46,9 @@
       {data: 'status'},
       {data: 'id',
         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-          $(nTd).html("<span><a href='/device/"+oData.id+"'><span>edit</span></a></span> <span><a href='/device/"+oData.id+"/delete'><span>delete</span></a></span>");
+          $(nTd).html("<span><a href='/device/"+oData.id+"'><span>edit </span></a></span>" +
+                  "<span><a href='/device/"+oData.id+"/delete'><span>delete </span></a></span>" +
+                  "<span><a href='/devicePlayParam" +"/page?id=" +oData.id +"'> <span>PlayParam</span> </a> </span>");
 
         },
         searchable: false

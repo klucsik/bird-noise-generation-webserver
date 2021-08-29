@@ -1,9 +1,11 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DevicePlayParamRepository;
 import com.github.klucsik.birdnoiseserver.backendserver.validators.DevicePlayParamValidator;
@@ -43,6 +45,11 @@ public class DevicePlayParamService {
     public DevicePlayParamDto getById(Long id) {
         DevicePlayParam devicePlayParam = repository.getOne(id);
         return DevicePlayParamMapper.MAPPER.devicePlayParamToDto(devicePlayParam);
+    }
+
+    public List<DevicePlayParamDto> getAllByDevice(Long id) {
+        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.GetById(id));
+        return repository.getAllByDevice(device).stream().map(DevicePlayParamMapper.MAPPER::devicePlayParamToDto).collect(Collectors.toList());
     }
 
     public List<DevicePlayParamDto> getPage() {
