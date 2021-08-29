@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendclient.dto;
 
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DPPStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,4 +21,6 @@ public class DevicePlayParamDto {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH")
     private LocalDateTime stopTime;
+
+    private DPPStatus status;
 }
