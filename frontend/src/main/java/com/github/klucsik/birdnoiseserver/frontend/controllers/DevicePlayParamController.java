@@ -2,11 +2,14 @@ package com.github.klucsik.birdnoiseserver.frontend.controllers;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DPPStatus;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.DeviceConnector;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.DevicePlayParamConnector;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.PlayParamConnector;
 import com.github.klucsik.birdnoiseserver.frontend.stupidDtos.FrontEndDevicePlayParamDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +63,7 @@ public class DevicePlayParamController {
 
             //Mapping by hand
             mappedDto.setId(frontEndDevicePlayParamDto.getId());
+            mappedDto.setStatus(DPPStatus.DRAFT);
             mappedDto.setStartTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStartTime(),formatter));
             mappedDto.setStopTime(LocalDateTime.parse(frontEndDevicePlayParamDto.getStopTime(),formatter));
             mappedDto.setDevice(deviceConnector.getById(frontEndDevicePlayParamDto.getDevice()).getBody());
@@ -92,5 +96,12 @@ public class DevicePlayParamController {
             attributes.addFlashAttribute(e.getMessage());
             return String.format("redirect:/devicePlayParam/page?id=%d", devicePlayParamDto.getDevice().getId());
         }
+    }
+
+    @GetMapping("/setToDeployable")
+    public String setToDeployable(@RequestParam Long playParamId, RedirectAttributes attributes) {
+        String answear = connector.setToDeployable(playParamId).getBody();
+        attributes.addFlashAttribute("message: ", answear);
+        return "devicePlayParam/page";
     }
 }
