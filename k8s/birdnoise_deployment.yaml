@@ -4,34 +4,6 @@ metadata:
   name: BRANCHNAME
 
 ---
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: birdnoise-BRANCHNAME-duckdns
-  namespace: BRANCHNAME
-  annotations:
-    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
-spec:
-  rules:
-    - host: www.BRANCHNAME.klucsik.duckdns.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/api"
-            backend:
-              service:
-                name: birdnoise-svc-be
-                port:
-                  number: 80
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: birdnoise-svc-fe
-                port:
-                  number: 80
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -41,7 +13,7 @@ metadata:
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   rules:
-    - host: www.BRANCHNAME.klucsik.fun
+    - host: www.BRANCHNAME.birdnoise.klucsik.fun
       http:
         paths:
           - pathType: Prefix
