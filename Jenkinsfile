@@ -1,9 +1,17 @@
 pipeline {
-  agent any
+  agent{
+      kubernetes{
+        yamlFile 'k8s/agents/maven-and-docker.yaml'
+        //idleMinutes 5 // how long the pod will live after no jobs have run on it
+        defaultContainer 'docker'  // define a default container if more than a few stages use it, will default to jnlp container
+      }
+  }
   stages {
     stage ('build deps'){
         steps {
-            sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
+            container('maven'){
+                sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
+            }
         }
     }
     stage('build images') {
@@ -23,6 +31,9 @@ pipeline {
           steps {
             sh 'cp backend/backendserver/src/main/resources/prod_properties backend/backendserver/src/main/resources/application.properties' //use psql server
             sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
+            container('maven'){
+                sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
+            }
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/backendserver/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
             sh 'sed -i "s/BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
@@ -43,8 +54,8 @@ pipeline {
           }
           steps {
             sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
-            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} frontend/.'
-            sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
+                sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} frontend/.'
+                sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
             sh 'sed -i "s/FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
         }
