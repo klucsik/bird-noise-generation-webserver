@@ -1,57 +1,121 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- side bar -->
-<div class="h-100 main-menu" style="position: relative" id="main-menu">
-    <div class="nav d-flex align-items-start flex-column menu-height justify-items-center">
-        <div style="margin-left: -5px; position: fixed; top: 8px; z-index: 10">
-            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div class="h-100 main-menu" id="wide-menu">
+    <div class="nav d-flex align-items-start flex-column menu-height justify-items-center" id="opened-menu">
+        <div class="tree-container">
             <div th:insert="fragments/svgs/tree"></div>
 
         </div>
 
-        <div class="hamburger-menu" onclick="closeMenu()" style="z-index: 11; padding-top: 5rem">
+        <div class="hamburger-menu" onclick="changeMenu()">
             <div th:insert="fragments/svgs/hamburger-menu-icon"></div>
         </div>
-        <div class="menu-item stripe" style="padding-top: 12rem">
-            <a class="nav-link menu-icon" th:href="@{/playParam/page}" title="PlayParams">
-                <div>
-                    <div th:insert="fragments/svgs/play-params-icon"></div>
-                </div>
-                <div>Play params</div>
-            </a>
+        <div class="menu-item-container">
+            <div class="menu-item stripe first-item">
+                <a class="nav-link menu-icon" th:href="@{/playParam/page}" title="PlayParams">
+                    <div id="play-params-icon">
+                        <div th:insert="fragments/svgs/play-params-icon"></div>
+                    </div>
+                    <div id="play-params">Play params</div>
+                </a>
+            </div>
+            <div class="menu-item stripe">
+                <a class="nav-link menu-icon" th:href="@{/playUnit/page}" title="PlayUnits">
+                    <div id="play-units-icon">
+                        <div th:insert="fragments/svgs/play-unit-icon"></div>
+                    </div>
+                    <div id="play-units">Play units</div>
+                </a>
+            </div>
+            <div class="menu-item stripe">
+                <a class="nav-link menu-icon" th:href="@{/track/page}" title="PlayParams">
+                    <div id="tracks-icon">
+                        <div th:insert="fragments/svgs/track-icon"></div>
+                    </div>
+                    <div id="tracks">Tracks</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a class="nav-link menu-icon" th:href="@{/device/page}" title="PlayParams">
+                    <div id="devices-icon">
+                        <div th:insert="fragments/svgs/device-icon"></div>
+                    </div>
+                    <div id="devices">Devices</div>
+                </a>
+            </div>
         </div>
-        <div class="menu-item stripe">
-            <a class="nav-link menu-icon" th:href="@{/playUnit/page}" title="PlayUnits">
-                <div>
-                    <div th:insert="fragments/svgs/play-unit-icon"></div>
-                </div>
-                <div>Play units</div>
-            </a>
-        </div>
-        <div class="menu-item stripe">
-            <a class="nav-link menu-icon" th:href="@{/track/page}" title="PlayParams">
-                <div>
-                    <div th:insert="fragments/svgs/track-icon"></div>
-                </div>
-                <div>Tracks</div>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a class="nav-link menu-icon" th:href="@{/device/page}" title="PlayParams">
-                <div>
-                    <div th:insert="fragments/svgs/device-icon"></div>
-                </div>
-                <div>Devices</div>
-            </a>
+        <div class="mt-auto version-container" id="version">
+            <span>verzió: 0.0.1 21.07.21.</span>
         </div>
 
-        <div class="mt-auto" style="z-index: 11; padding-left: 1rem">
-            <p>verzió: 0.0.1 21.07.21.</p>
-        </div>
 
-        <div style=" position: fixed; bottom: 0;  margin-bottom: -4px; margin-left: -4px; z-index: 10;">
+        <div class="bush-container">
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
             <div th:insert="fragments/svgs/bush"></div>
         </div>
 
     </div>
 </div>
+
+
+<div class="h-100 w-50 main-menu" id="narrow-menu">
+    <div class="nav d-flex align-items-start flex-column menu-height justify-items-center">
+        <div class="hamburger-menu" onclick="changeMenu()">
+            <div th:insert="fragments/svgs/hamburger-menu-icon"></div>
+        </div>
+        <div class="menu-item-container">
+            <div class="menu-item stripe">
+                <a class="narrow-menu-icon" th:href="@{/playParam/page}" title="PlayParams">
+                    <div>
+                        <div th:insert="fragments/svgs/play-params-icon"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="menu-item stripe">
+                <a class="narrow-menu-icon" th:href="@{/playUnit/page}" title="PlayUnits">
+                    <div>
+                        <div th:insert="fragments/svgs/play-unit-icon"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="menu-item stripe">
+                <a class="narrow-menu-icon" th:href="@{/track/page}" title="PlayParams">
+                    <div>
+                        <div th:insert="fragments/svgs/track-icon"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a class="narrow-menu-icon" th:href="@{/device/page}" title="PlayParams">
+                    <div>
+                        <div th:insert="fragments/svgs/device-icon"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    const changeMenu = () => {
+        $("#wide-menu").toggle(500);
+        $("#narrow-menu").toggle(500);
+    };
+
+    $("a.nav-link.menu-icon").hover(
+        function () {
+            $(this).addClass("svg-hover")
+        },
+        function () {
+            $(this).removeClass("svg-hover")
+        }
+    )
+
+
+    /*]]>*/
+</script>
