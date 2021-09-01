@@ -109,15 +109,19 @@ pipeline {
         sh 'sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/test_deployment.yaml'
         sh 'sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/test_deployment.yaml'
         sh 'cat k8s/test_deployment.yaml'
+        container(name: 'kubectl') {
         sh 'kubectl apply -f k8s/test_deployment.yaml'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=birdnoise-${TEST_BRANCNAME}'
+        }
         sh 'sed -i "s/BRANCHNAME/${TEST_BRANCNAME}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'cat api-tests/birdnoise-BE-remote.postman_environment.json'
+        container(name: 'newman') {
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'newman run api-tests/birdnoise-deviceLog.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'newman run api-tests/birdnoise-deviceCom.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'newman run api-tests/birdnoise-deviceVoltage.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
+      }
       }
     }
   }
@@ -165,11 +169,15 @@ pipeline {
           }
 
       failure {
-        sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
+        container(name: 'kubectl') {
+            sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
+        }
       }
 
       success {
-        sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am pleased to report that the pipeline on branch ** \'${BRANCH_NAME_LC}\'** was a great success, everything is green!"}\''''
+        container(name: 'kubectl') {
+            sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am pleased to report that the pipeline on branch ** \'${BRANCH_NAME_LC}\'** was a great success, everything is green!"}\''''
+        }
       }
   }
 }
