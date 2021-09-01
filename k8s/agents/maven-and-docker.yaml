@@ -18,10 +18,14 @@ spec:
     - name: docker
       image: docker:20.10.8
       command: ["tail", "-f", "/dev/null"]
-      imagePullPolicy: Always
       volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock # We use the k8s host docker engine
+
+    - name: kubectl
+      image: www.registry.klucsik.fun/kubectl
+      command: [ "tail", "-f", "/dev/null" ]
+
   volumes:
     - name: docker
       hostPath:
