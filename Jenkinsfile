@@ -53,9 +53,11 @@ pipeline {
 
           }
           steps {
-            sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
-                sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} frontend/.'
-                sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
+            container('maven'){
+                sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
+            }
+            sh 'docker build -t ${IMAGEREPO}/${FE_IMAGETAG} frontend/.'
+            sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
             sh 'sed -i "s/FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
         }
