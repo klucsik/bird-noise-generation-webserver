@@ -1,19 +1,33 @@
 pipeline {
   agent {
     kubernetes {
-      yamlFile 'k8s/agents/maven-and-docker.yaml'
+      yamlFile 'k8s/agents/jenkins-agent-allinone.yaml'
       defaultContainer 'docker'
     }
-
   }
-  stages {
-    stage('build deps') {
-      steps {
-        container(name: 'maven') {
-          sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
-        }
 
-      }
+  stages {
+    stage('build dependencies') {
+        parallel {
+            stage('dtos'){
+                steps {
+                    container(name: 'maven') {
+                        sh 'mvn -B -DskipTests -f backend/backendclient/pom.xml clean package install'
+                    }
+                }
+            }
+            stage('kubectl container'){
+                when {
+                    expression {
+                        image_id = sh (script: "docker images -q ${IMAGEREPO}/kubectl", returnStdout: true).trim()
+                        if (image_id.isEmpty()) return true
+                    }
+                }
+                steps {
+                    sh 'docker build -t ${IMAGEREPO}/kubectl k8s/agents/kubectl/.'
+                }
+            }
+        }
     }
 
     stage('build images') {
@@ -32,10 +46,10 @@ pipeline {
           }
           steps {
             sh 'cp backend/backendserver/src/main/resources/prod_properties backend/backendserver/src/main/resources/application.properties' //use psql server
-            sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
             container(name:'maven'){
-                sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
-            }
+               sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
+
+                }
 
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/backendserver/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
@@ -150,15 +164,12 @@ pipeline {
             }
           }
 
-          failure {
-            sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\'
-              '''
-          }
-
-          success {
-            sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am pleased to report that the pipeline on branch ** \'${BRANCH_NAME_LC}\'** was a great success, everything is green!"}\'
-              '''
-          }
-
-        }
+      failure {
+        sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
       }
+
+      success {
+        sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am pleased to report that the pipeline on branch ** \'${BRANCH_NAME_LC}\'** was a great success, everything is green!"}\''''
+      }
+  }
+}
