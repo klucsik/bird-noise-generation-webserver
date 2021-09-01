@@ -115,17 +115,17 @@ pipeline {
   environment {
     BRANCH_NAME_LC = """${sh(
                              script:
-                                'echo $BRANCH_NAME | sed -e \'s/\\(.*\\)/\\L\\1/\'',
+                                "echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'",
                              returnStdout:true
                              ).trim()}"""
     BE_IMAGETAG = """${sh(
                           script:
-                            "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') echo birdnoise_be_$BRANCH_NAME_LC",
+                            "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo birdnoise_be_$BRANCH_NAME_LC",
                           returnStdout:true
                           ).trim()}"""
     FE_IMAGETAG = """${sh(
                           script:
-                            "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') echo birdnoise_fe_$BRANCH_NAME_LC",
+                            "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo birdnoise_fe_$BRANCH_NAME_LC",
                           returnStdout:true
                           ).trim()}"""
     TEST_BRANCNAME = """${sh(
