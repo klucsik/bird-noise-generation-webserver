@@ -4,14 +4,10 @@
     <div class="nav d-flex align-items-start flex-column menu-height justify-items-center" id="opened-menu">
         <div class="tree-container">
             <div th:insert="fragments/svgs/tree"></div>
-
         </div>
 
-        <div class="hamburger-menu" onclick="changeMenu()">
-            <div th:insert="fragments/svgs/hamburger-menu-icon"></div>
-        </div>
         <div class="menu-item-container">
-            <div class="menu-item first-item">
+            <div class="menu-item stripe first-item">
                 <a class="nav-link menu-icon" th:href="@{/device/page}" title="PlayParams">
                     <div id="devices-icon">
                         <div th:insert="fragments/svgs/device-icon"></div>
@@ -35,7 +31,7 @@
                     <div id="play-units">Play units</div>
                 </a>
             </div>
-            <div class="menu-item stripe">
+            <div class="menu-item">
                 <a class="nav-link menu-icon" th:href="@{/track/page}" title="PlayParams">
                     <div id="tracks-icon">
                         <div th:insert="fragments/svgs/track-icon"></div>
@@ -44,10 +40,10 @@
                 </a>
             </div>
         </div>
-        <div class="mt-auto  ms-4">
-            <p><b>1.0.1</b><br>
-                2021.08.29.</p>
-            <a href="mailto:klucsik.krisztian@gmail.com">support</a>
+        <div class="mt-auto ms-4 version-container d-flex flex-column" >
+            <div>1.0.1</div>
+            <div>2021.08.29.</div>
+            <div><a href="mailto:klucsik.krisztian@gmail.com">support</a></div>
         </div>
 
 
@@ -59,55 +55,9 @@
     </div>
 </div>
 
-
-<div class="h-100 w-50 main-menu" id="narrow-menu">
-    <div class="nav d-flex align-items-start flex-column menu-height justify-items-center">
-        <div class="hamburger-menu" onclick="changeMenu()">
-            <div th:insert="fragments/svgs/hamburger-menu-icon"></div>
-        </div>
-        <div class="menu-item-container">
-            <div class="menu-item stripe">
-                <a class="narrow-menu-icon" th:href="@{/playParam/page}" title="PlayParams">
-                    <div>
-                        <div th:insert="fragments/svgs/play-params-icon"></div>
-                    </div>
-                </a>
-            </div>
-            <div class="menu-item stripe">
-                <a class="narrow-menu-icon" th:href="@{/playUnit/page}" title="PlayUnits">
-                    <div>
-                        <div th:insert="fragments/svgs/play-unit-icon"></div>
-                    </div>
-                </a>
-            </div>
-            <div class="menu-item stripe">
-                <a class="narrow-menu-icon" th:href="@{/track/page}" title="PlayParams">
-                    <div>
-                        <div th:insert="fragments/svgs/track-icon"></div>
-                    </div>
-                </a>
-            </div>
-            <div class="menu-item">
-                <a class="narrow-menu-icon" th:href="@{/device/page}" title="PlayParams">
-                    <div>
-                        <div th:insert="fragments/svgs/device-icon"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-
-    </div>
-</div>
-
-
 <script th:inline="javascript">
     /*<![CDATA[*/
 
-    const changeMenu = () => {
-        $("#wide-menu").toggle(500);
-        $("#narrow-menu").toggle(500);
-    };
 
     $("a.nav-link.menu-icon").hover(
         function () {
@@ -117,7 +67,6 @@
             $(this).removeClass("svg-hover")
         }
     )
-
 
     /*]]>*/
 </script>
