@@ -50,9 +50,9 @@ body {
 }
 
 .stripe {
-    /*border-bottom: 3px solid;*/
-    /*border-image-slice: 1;*/
-    /*border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);*/
+    border-bottom: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);
 }
 
 .menu-item a {
@@ -165,6 +165,11 @@ a.nav-link.menu-icon:hover {
 
 .card-container {
     margint-top: 2rem;
+}
+
+
+#taskBasket {
+    width: fit-content;
 }
 
 #taskBasket_wrapper {

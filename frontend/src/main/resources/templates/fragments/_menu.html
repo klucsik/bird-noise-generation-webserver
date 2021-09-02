@@ -11,7 +11,15 @@
             <div th:insert="fragments/svgs/hamburger-menu-icon"></div>
         </div>
         <div class="menu-item-container">
-            <div class="menu-item stripe first-item">
+            <div class="menu-item first-item">
+                <a class="nav-link menu-icon" th:href="@{/device/page}" title="PlayParams">
+                    <div id="devices-icon">
+                        <div th:insert="fragments/svgs/device-icon"></div>
+                    </div>
+                    <div id="devices">Devices</div>
+                </a>
+            </div>
+            <div class="menu-item stripe">
                 <a class="nav-link menu-icon" th:href="@{/playParam/page}" title="PlayParams">
                     <div id="play-params-icon">
                         <div th:insert="fragments/svgs/play-params-icon"></div>
@@ -35,17 +43,11 @@
                     <div id="tracks">Tracks</div>
                 </a>
             </div>
-            <div class="menu-item">
-                <a class="nav-link menu-icon" th:href="@{/device/page}" title="PlayParams">
-                    <div id="devices-icon">
-                        <div th:insert="fragments/svgs/device-icon"></div>
-                    </div>
-                    <div id="devices">Devices</div>
-                </a>
-            </div>
         </div>
-        <div class="mt-auto version-container" id="version">
-            <span>verzió: 0.0.1 21.07.21.</span>
+        <div class="mt-auto  ms-4">
+            <p><b>1.0.1</b><br>
+                2021.08.29.</p>
+            <a href="mailto:klucsik.krisztian@gmail.com">support</a>
         </div>
 
 
