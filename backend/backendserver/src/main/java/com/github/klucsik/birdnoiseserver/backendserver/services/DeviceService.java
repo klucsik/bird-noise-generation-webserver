@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -36,23 +35,27 @@ public class DeviceService {
     }
 
     public DeviceDto createUnregistered(String chipId) throws MethodArgumentNotValidException {
-        Integer generatedNum = autoNumSet.size();
-        DeviceDto device = new DeviceDto();
 
-        if (!autoNumSet.add(generatedNum)) {
-            generatedNum += 1;
+        DeviceDto deviceDto = findByChipId(chipId);
+
+        if (deviceDto == null) {
+            int generatedNum = autoNumSet.size();
+            deviceDto = new DeviceDto();
+
+            if (!autoNumSet.add(generatedNum)) {
+                generatedNum += 1;
+            }
+
+            deviceDto.setStatus(DeviceStatus.UNREGISTERED);
+            deviceDto.setChipId(chipId);
+            deviceDto.setName(
+                    "Date generated: " + LocalDateTime.now() + ", " +
+                            "chipId: " + chipId + ", " +
+                            "GeneratedNum: " + generatedNum
+            );
         }
 
-        device.setStatus(DeviceStatus.UNREGISTERED);
-        device.setChipId(chipId);
-        device.setName(
-                "Date generated: " + LocalDateTime.now() + ", " +
-                        "chipId: " + chipId + ", " +
-                        "GeneratedNum: " + generatedNum
-        );
-
-
-        return save(device);
+        return save(deviceDto);
     }
 
 

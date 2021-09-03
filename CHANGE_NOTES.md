@@ -1,3 +1,5 @@
+FEATURE: Added logging to devices
+
 # Version 1.0.0
 * FEATURE: Added Frontend
 * FEATURE: Track length for devices
