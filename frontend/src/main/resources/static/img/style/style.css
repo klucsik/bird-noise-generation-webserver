@@ -17,46 +17,20 @@ body {
 .main-menu {
     background-color: #298BA0;
     color: var(--menu-text-color);
-    position: relative;
 }
 
 .hamburger-menu {
     align-self: center;
     cursor: pointer;
-    z-index: 11;
-    padding-top: 5rem;
-    position: fixed
-}
-
-.tree-container {
-    margin-left: -5px;
-    position: fixed;
-    top: 8px;
-    z-index: 10
-}
-
-.menu-item-container {
-    position: fixed;
-    width: min-content;
-    top: 5rem
-}
-
-.first-item {
-    padding-top: 12rem
 }
 
 .menu-item {
     width: -webkit-fill-available;
 }
 
-.stripe {
-    border-bottom: 3px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);
-}
-
 .menu-item a {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-items: center;
 }
@@ -67,82 +41,11 @@ body {
     font-size: 0.875rem;
 }
 
-.menu-icon div:last-child {
-    margin-left: 0.5rem;
-}
-
-.version-container {
-    z-index: 12;
-    position: fixed;
-    bottom: 8.8rem;
-}
-
-.version-container div,
-.version-container a {
-    font-size: .8rem
-}
-
-.version-container a {
-    color: var(--menu-text-color);
-    text-decoration: none;
-}
-
-.version-container a:hover {
-    filter: brightness(0.8);
-    text-decoration: none;
-}
-
-.bush-container {
-    position: fixed;
-    bottom: 0;
-    margin-bottom: -4px;
-    margin-left: -4px;
-    z-index: 10;
-}
-
-#narrow-menu {
-    position: relative;
-    display: none;
-}
-
-#narrow-menu div div.hamburger-menu {
-    z-index: 11;
-    padding-top: 5rem;
-    position: fixed
-}
-
-#narrow-menu div div.hamburger-menu div {
-    transform: rotate(180deg)
-}
-
-#narrow-menu div div.menu-item-container {
-    position: fixed;
-    width: min-content;
-    top: 14rem
-}
-
-
-.narrow-menu-icon:hover,
-a.nav-link.menu-icon:hover {
-    background: linear-gradient(90deg, #084957 4%, transparent 4%, rgba(8, 73, 87, 0.12) 50%, transparent 100%)
-}
-
-
 .hamburger-menu svg,
 .menu-icon svg {
     fill: whitesmoke;
-    width: 20px;
-}
-
-.narrow-menu-icon {
-    padding: .5rem 1rem;
-}
-
-/*to do itt jártam*/
-
-.narrow-menu-icon svg {
-    fill: whitesmoke;
-    width: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 .menu-height {
@@ -152,8 +55,8 @@ a.nav-link.menu-icon:hover {
 .info-card {
     height: 13rem;
     width: 14rem;
-    background-color: #FCFBF8;
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
+    background-color: var(--menu-text-color);
+    box-shadow: 10px 10px #e3d1c3;
     margin-top: 20px !important;
     margin-bottom: 30px !important;
 }
@@ -164,8 +67,6 @@ a.nav-link.menu-icon:hover {
 
 .row,
 .col-sm-1,
-.col-sm-2,
-.col-sm-10,
 .col-sm-11 {
     margin: 0 !important;
     padding-left: 0 !important;
@@ -176,10 +77,9 @@ a.nav-link.menu-icon:hover {
     margint-top: 2rem;
 }
 
-
-#taskBasket {
-    width: fit-content;
-}
+/*.table-custom-style {*/
+/*width: 85%;*/
+/*}*/
 
 #taskBasket_wrapper {
     background-color: var(--menu-text-color);
@@ -211,17 +111,3 @@ select[name=taskBasket_length] {
     filter: brightness(0.9);
     color: whitesmoke !important;
 }
-
-/*.tree {*/
-/*    margin-left: -5px;*/
-/*    position: fixed;*/
-/*    top: 0;*/
-/*}*/
-
-/*.bush {*/
-/*    position: fixed;*/
-/*    bottom: 0;*/
-/*    margin-bottom: -4px;*/
-/*    margin-left: -4px;*/
-/*    z-index: 10;*/
-/*}*/

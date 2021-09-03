@@ -51,10 +51,10 @@ public class DevicePlayParamSelectorService {
                 }
 
             case 0:
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("No playparam found for chipId: %s", chipId));
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
             default:
-                throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conflicting playParams: %s", playParamsForDevice));
+                throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conficting playParams: %s", playParamsForDevice));
 
         }
     }
