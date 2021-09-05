@@ -54,23 +54,24 @@ public class DevicePlayParamService {
         repository.deleteById(id);
     }
 
-    public String setToDeployable(Long playParamId) {
-        PlayParam playParam = playParamService.getOne(playParamId);
-        DevicePlayParam devicePlayParam = repository.findByPlayParam(playParam);
+    public String setToDeployable(Long deviceId) {
+        Device device = deviceService.GetById(deviceId);
+        DevicePlayParam devicePlayParam = repository.findByDevice(device);
         devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
+        repository.save(devicePlayParam);
         return "Set status to Deployable";
     }
 
-    public String setToDraft(Long playParamId) {
-        PlayParam playParam = playParamService.getOne(playParamId);
-        DevicePlayParam devicePlayParam = repository.findByPlayParam(playParam);
+    public String setToDraft(Long deviceId) {
+        Device device = deviceService.GetById(deviceId);
+        DevicePlayParam devicePlayParam = repository.findByDevice(device);
         devicePlayParam.setStatus(DPPStatus.DRAFT);
         return "Set status to Draft";
     }
 
-    public String setToDeleted(Long playParamId) {
-        PlayParam playParam = playParamService.getOne(playParamId);
-        DevicePlayParam devicePlayParam = repository.findByPlayParam(playParam);
+    public String setToDeleted(Long deviceId) {
+        Device device = deviceService.GetById(deviceId);
+        DevicePlayParam devicePlayParam = repository.findByDevice(device);
         devicePlayParam.setStatus(DPPStatus.DELETED);
         return "Set status to Deleted";
     }

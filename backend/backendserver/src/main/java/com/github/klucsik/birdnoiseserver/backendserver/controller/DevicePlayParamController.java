@@ -1,8 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
-import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamSlimDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.services.DevicePlayParamService;
@@ -50,8 +48,8 @@ public class DevicePlayParamController extends BaseController {
     }
 
     @GetMapping("/setToDeployable")
-    public ResponseEntity<String> setToDeployable(@RequestParam Long playParamId) {
-        return new ResponseEntity<>(service.setToDeployable(playParamId), HttpStatus.OK);
+    public ResponseEntity<String> setToDeployable(@RequestParam Long deviceId) {
+        return new ResponseEntity<>(service.setToDeployable(deviceId), HttpStatus.OK);
     }
 
     @GetMapping("/setToDraft")
