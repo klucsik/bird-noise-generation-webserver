@@ -99,9 +99,9 @@ public class DevicePlayParamController {
     }
 
     @GetMapping("/setToDeployable")
-    public String setToDeployable(@RequestParam Long playParamId, RedirectAttributes attributes) {
-        String answear = connector.setToDeployable(playParamId).getBody();
-        attributes.addFlashAttribute("message: ", answear);
-        return "devicePlayParam/page";
+    public String setToDeployable(@RequestParam Long deviceId, RedirectAttributes attributes) {
+        String answer = connector.setToDeployable(deviceId).getBody();
+        attributes.addFlashAttribute("message: ", answer);
+        return String.format("redirect:/devicePlayParam/page?id=%d", deviceId);
     }
 }
