@@ -13,6 +13,7 @@ public interface DevicePlayParamRepository extends JpaRepository<DevicePlayParam
     List<DevicePlayParam> findByDeviceAndStatusNotAndStatusNot(Device device, DPPStatus status1, DPPStatus status2);
 
     DevicePlayParam findByPlayParam(PlayParam playParam);
+    DevicePlayParam findByDevice(Device device);
 
     boolean existsByDevice(Device device);
 }
