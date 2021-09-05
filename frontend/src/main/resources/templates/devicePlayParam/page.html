@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>devicePlayParam</title>
 
@@ -14,9 +14,10 @@
         <div class="row justify-content-center">
             <div th:insert="fragments/_messages"></div>
             <div class="button-primary">
-                <a th:href='${#strings.concat("/devicePlayParam/new?id=", deviceId)}' >Create new devicePlayParam</a>
+                <a th:href='${#strings.concat("/devicePlayParam/new?id=", deviceId)}'>Create new devicePlayParam</a>
             </div>
-            <div class="mt-5 table-custom-style">
+            <div class=" mt-5 table-custom-style
+            ">
                 <table id="devicePlayParamTable" class="table table-striped">
                     <thead>
                     <tr>
@@ -31,43 +32,49 @@
                 </table>
             </div>
         </div>
-    </div>
 
-    <div th:insert="fragments/_foot_includes"></div>
+        <div th:insert="fragments/_foot_includes"></div>
 
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var tableData = /*[[${devicePlayParamDtos}]]*/;
-        console.log(tableData);
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var tableData = /*[[${devicePlayParamDtos}]]*/;
+            var deviceId = /*[[${deviceId}]]*/;
+            console.log(tableData);
 
-        $('#devicePlayParamTable').DataTable({
-            data: tableData,
-            // select: true,
+            $('#devicePlayParamTable').DataTable({
+                data: tableData,
+                // select: true
             columns: [
                 {data: 'id'},
-                {data: 'playParam',
+                {
+                    data: 'playParam',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<span><a href='/playParam/page'>"+ "["+ oData.playParam.name + "]" +"</a></span>");
-                    }},
+                        $(nTd).html("<span><a href='/playParam/page'>" + "[" + oData.playParam.name + "]" + "</a></span>");
+                    }
+                },
                 {data: 'startTime'},
                 {data: 'stopTime'},
                 {data: 'status'},
-                {data: 'id',
+                {
+                    data: 'id',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                         $(nTd).html("" +
                             "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " +
                             "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" +
-                            "<span><a href='/devicePlayParam/setDeployable?playParamId=" + oData.playParam.id + "'>Change to deployable</a></span>" //TODO Make devicePlayParam status frontend part
+                            "<span><a href='/devicePlayParam/setToDeployable?deviceId=" + deviceId +"'> Change to deployable</a></span>" //TODO Make devicePlayParam status frontend part
                         );
 
                     },
                     searchable: false
                 }
             ]
-        });
+            })
+            ;
 
-        /*]]>*/
-    </script>
+            /*]]>*/
+        </script>
+    </div>
+    </form>
 </body>
 
 </html>
