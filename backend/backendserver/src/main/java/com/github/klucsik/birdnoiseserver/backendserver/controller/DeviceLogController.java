@@ -20,9 +20,9 @@ public class DeviceLogController {
     private final DeviceLogService service;
 
     //NO FRONTEND - No frontend tichy touchy here, this is for devices.
-    @GetMapping("/save")
-    public ResponseEntity<Long> saveDeviceVolt(@RequestParam String chipId, @RequestParam String logLevel, @RequestParam String message ) throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(service.save(chipId, logLevel,message), HttpStatus.OK);
+    @PostMapping("/save")
+    public ResponseEntity<Long> saveDeviceVolt(@RequestParam String chipId, @RequestBody DeviceLogDto dto ) throws MethodArgumentNotValidException {
+        return new ResponseEntity<>(service.save(chipId, dto.getLogLevel(),dto.getMessage()), HttpStatus.OK);
     }
 
     @GetMapping("/page/{deviceId}")
