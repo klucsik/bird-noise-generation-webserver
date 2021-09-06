@@ -23,7 +23,6 @@ public class DeviceLog {
 
     private String message;
 
-    @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 }

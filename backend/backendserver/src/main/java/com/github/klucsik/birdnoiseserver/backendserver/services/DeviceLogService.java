@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,6 +22,7 @@ public class DeviceLogService {
         deviceLog.setLogLevel(loglevel);
         deviceLog.setMessage(message);
         deviceLog.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId)));
+        deviceLog.setCreatedAt(LocalDateTime.now());
 
         return repository.save(deviceLog).getId();
     }
