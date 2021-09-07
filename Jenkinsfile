@@ -16,17 +16,6 @@ pipeline {
                     }
                 }
             }
-            stage('kubectl container'){
-                when {
-                    expression {
-                        image_id = sh (script: "docker images -q ${IMAGEREPO}/kubectl", returnStdout: true).trim()
-                        if (image_id.isEmpty()) return true
-                    }
-                }
-                steps {
-                    sh 'docker build -t ${IMAGEREPO}/kubectl k8s/agents/kubectl/.'
-                }
-            }
         }
     }
 
