@@ -156,7 +156,6 @@ spec:
 
 ---
 #db
-#TODO: What if we would use only one db pod for all the instances with different db names?
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -200,8 +199,23 @@ spec:
             - mountPath: /var/lib/postgresql/data
               name: postgredb
       volumes:
-        - name: postgredb #TODO vhange this to NFS
-          emptyDir: {}
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgresql-db
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresql-db
+  namespace: BRANCHNAME
+spec:
+  storageClassName: local-precious #storage class with raid 0
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1G
 
 
 
