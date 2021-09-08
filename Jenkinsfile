@@ -81,8 +81,6 @@ pipeline {
         sh 'sed -i "s/BRANCHNAME/${TEST_BRANCNAME}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'cat api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
-        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=${TEST_BRANCNAME}'
-        sh 'kubectl rollout status deployment/birdnoise-be --namespace=${TEST_BRANCNAME}'
         sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
       }
     }
