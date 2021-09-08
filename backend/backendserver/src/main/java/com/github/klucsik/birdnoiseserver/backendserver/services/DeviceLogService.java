@@ -1,6 +1,5 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +26,8 @@ public class DeviceLogService {
         return repository.save(deviceLog).getId();
     }
 
-    public List<DeviceLog> getAllByDeviceById(Long id){
-       return repository.findAllByDevice(deviceService.GetById(id));
+    public List<DeviceLog> getAllByDeviceById(Long id) {
+        return repository.findAllByDevice(deviceService.GetById(id));
     }
 
 }
