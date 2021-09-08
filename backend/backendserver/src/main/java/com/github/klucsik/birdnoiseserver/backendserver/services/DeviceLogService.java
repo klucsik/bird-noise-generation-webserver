@@ -21,14 +21,14 @@ public class DeviceLogService {
 
         deviceLog.setLogLevel(loglevel);
         deviceLog.setMessage(message);
-        deviceLog.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipIdOrCreateUnregistered(chipId)));
+        deviceLog.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         deviceLog.setCreatedAt(LocalDateTime.now());
 
         return repository.save(deviceLog).getId();
     }
 
     public List<DeviceLog> getAllByDeviceById(Long id){
-       return repository.findAllByDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.GetById(id)));
+       return repository.findAllByDevice(deviceService.GetById(id));
     }
 
 }
