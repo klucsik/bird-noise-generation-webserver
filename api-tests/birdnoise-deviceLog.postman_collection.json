@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "3d71a56c-bf0d-49ee-9fb4-407ee7896cd8",
+		"name": "birdnoise-deviceLog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "makelog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"logLevel\":\"TST\",  \"message\":\"Making a log\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/deviceLog/save?chipId=99982341",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceLog",
+						"save"
+					],
+					"query": [
+						{
+							"key": "chipId",
+							"value": "99982341"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Logs by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"logLevel\":\"TST\",  \"message\":\"Making a log\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/deviceLog/page/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"deviceLog",
+						"page",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
