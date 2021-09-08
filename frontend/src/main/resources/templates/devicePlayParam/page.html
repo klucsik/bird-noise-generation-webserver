@@ -44,30 +44,46 @@
             $('#devicePlayParamTable').DataTable({
                 data: tableData,
                 // select: true
-            columns: [
-                {data: 'id'},
-                {
-                    data: 'playParam',
-                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<span><a href='/playParam/page'>" + "[" + oData.playParam.name + "]" + "</a></span>");
-                    }
-                },
-                {data: 'startTime'},
-                {data: 'stopTime'},
-                {data: 'status'},
-                {
-                    data: 'id',
-                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("" +
-                            "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " +
-                            "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" +
-                            "<span><a href='/devicePlayParam/setToDeployable?deviceId=" + deviceId +"'> Change to deployable</a></span>" //TODO Make devicePlayParam status frontend part
-                        );
-
+                columns: [
+                    {data: 'id'},
+                    {
+                        data: 'playParam',
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            $(nTd).html("<span><a href='/playParam/page'>" + "[" + oData.playParam.name + "]" + "</a></span>");
+                        }
                     },
-                    searchable: false
-                }
-            ]
+                    {data: 'startTime'},
+                    {data: 'stopTime'},
+                    {data: 'status'},
+                    {
+                        data: 'id',
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            var isDeployable = oData.status.toString() == "DRAFT" ? true:false;
+
+                            if (isDeployable) {
+                                $(nTd).html("" +
+                                    "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
+                                    "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" + " " +
+                                    "<span><a href='/devicePlayParam/setToDeployable?deviceId=" + deviceId + "'> Change to deployable</a></span>"
+                                );
+                            }
+                            else if (!isDeployable) {
+                                $(nTd).html("" +
+                                    "<span><a>smthHere</a></span> "
+                                );
+                            }
+
+                            /*$(nTd).html("" +
+                                "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
+                                "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" + " " +
+                                "<span><a th:if='isDeployable == true'} href='/devicePlayParam/setToDeployable?deviceId=" + deviceId + "'> Change to deployable</a></span>"
+                                //TODO Make devicePlayParam status frontend part whit if!!!!
+                             ); */
+
+                        },
+                        searchable: false
+                    }
+                ]
             })
             ;
 
