@@ -34,7 +34,7 @@ public class DeviceService {
         return DeviceMapper.MAPPER.devicetoDto(repository.save(device));
     }
 
-    public DeviceDto createUnregistered(String chipId) throws MethodArgumentNotValidException {
+    public DeviceDto findByChipIdOrCreateUnregistered(String chipId) throws MethodArgumentNotValidException {
 
         DeviceDto deviceDto = findByChipId(chipId);
 

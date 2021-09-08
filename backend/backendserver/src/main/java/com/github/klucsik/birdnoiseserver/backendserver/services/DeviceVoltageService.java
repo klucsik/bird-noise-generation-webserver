@@ -31,7 +31,7 @@ public class DeviceVoltageService {
 
         deviceVoltage.setVoltage(voltage);
         validator.validate(deviceVoltage);
-        deviceVoltage.setDevice( DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId)));
+        deviceVoltage.setDevice( DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipIdOrCreateUnregistered(chipId)));
         deviceVoltage.setCreatedAt(LocalDateTime.now());
 
 

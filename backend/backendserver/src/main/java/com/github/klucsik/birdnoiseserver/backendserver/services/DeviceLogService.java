@@ -21,7 +21,7 @@ public class DeviceLogService {
 
         deviceLog.setLogLevel(loglevel);
         deviceLog.setMessage(message);
-        deviceLog.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId)));
+        deviceLog.setDevice(DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipIdOrCreateUnregistered(chipId)));
         deviceLog.setCreatedAt(LocalDateTime.now());
 
         return repository.save(deviceLog).getId();
