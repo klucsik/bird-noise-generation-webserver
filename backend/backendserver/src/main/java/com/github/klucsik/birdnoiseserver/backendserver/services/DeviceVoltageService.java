@@ -31,11 +31,7 @@ public class DeviceVoltageService {
 
         deviceVoltage.setVoltage(voltage);
         validator.validate(deviceVoltage);
-        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
-        if (device == null) {
-            device = DeviceMapper.MAPPER.Dtotodevice(deviceService.createUnregistered(chipId));
-        }
-        deviceVoltage.setDevice(device);
+        deviceVoltage.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         deviceVoltage.setCreatedAt(LocalDateTime.now());
 
 
@@ -50,7 +46,7 @@ public class DeviceVoltageService {
     }
 
     public List<DeviceVoltageDto> readAllByChipId(String chipId) {
-        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
+        Device device = deviceService.findByChipId(chipId);
 
         return repository.findAllByDevice(device).stream().map(DeviceVoltageMapper.MAPPER::deviceVolttoDto).collect(Collectors.toList());
     }
@@ -71,7 +67,7 @@ public class DeviceVoltageService {
     }
 
     public BaseResponseDto deleteAllByChipId(String chipId) {
-        Device device = DeviceMapper.MAPPER.Dtotodevice(deviceService.findByChipId(chipId));
+        Device device = deviceService.findByChipId(chipId);
         List<DeviceVoltage> list = repository.findAllByDevice(device);
         repository.deleteAll(list);
         return new BaseResponseDto(String.format("Deleted %d DeviceVoltage", list.size()));

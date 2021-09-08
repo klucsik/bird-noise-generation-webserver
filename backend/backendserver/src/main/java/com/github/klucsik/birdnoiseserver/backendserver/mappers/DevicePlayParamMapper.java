@@ -6,12 +6,13 @@ import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Devic
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface DevicePlayParamMapper {
     DevicePlayParamMapper MAPPER = Mappers.getMapper(DevicePlayParamMapper.class);
 
     DevicePlayParam dtoToDevicePLayParam(DevicePlayParamDto devicePlayParamDto);
     DevicePlayParamDto devicePlayParamToDto(DevicePlayParam devicePlayParam);
-
-
+    List<DevicePlayParamDto> devicePlayParamListToDto(List<DevicePlayParam> devicePlayParams);
 }
