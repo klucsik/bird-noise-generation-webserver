@@ -84,6 +84,7 @@ pipeline {
         sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'newman run api-tests/birdnoise-deviceLog.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
         sh 'newman run api-tests/birdnoise-deviceCom.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
+        sh 'newman run api-tests/birdnoise-deviceVoltage.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
       }
     }
   }
