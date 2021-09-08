@@ -1,3 +1,4 @@
+# Properties for server deployment, before build, the server will overwrite application.properties with this
 server.error.include-message=always
 server.servlet.context-path=/api
 springdoc.api-docs.path=/api-docs
@@ -11,7 +12,3 @@ spring.jpa.show-sql=true
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
-
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-source=metadata

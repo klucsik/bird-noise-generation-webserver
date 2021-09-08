@@ -21,6 +21,7 @@ pipeline {
 
           }
           steps {
+            sh 'cp backend/backendserver/src/main/resources/prod_properties backend/backendserver/src/main/resources/application.properties' //use psql server
             sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/backendserver/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
