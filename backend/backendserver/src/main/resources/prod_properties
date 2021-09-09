@@ -1,0 +1,14 @@
+# Properties for server deployment, before build, the server will overwrite application.properties with this
+server.error.include-message=always
+server.servlet.context-path=/api
+springdoc.api-docs.path=/api-docs
+
+#persistent db
+spring.datasource.url=jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
+spring.datasource.username= ${POSTGRES_USER}
+spring.datasource.password= ${POSTGRES_PASSWORD}
+spring.datasource.driverClassName= org.postgresql.Driver
+spring.jpa.show-sql=true
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true

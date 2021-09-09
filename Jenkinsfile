@@ -11,7 +11,7 @@ pipeline {
         stage('backend') {
           when {
             anyOf {
-              changeset 'backend/backendserver/src/main/**'
+              changeset 'backend/backendserver/**'
               expression {
                 image_id = sh (script: "docker images -q ${IMAGEREPO}/${BE_IMAGETAG}", returnStdout: true).trim()
                 if (image_id.isEmpty()) return true
@@ -21,6 +21,7 @@ pipeline {
 
           }
           steps {
+            sh 'cp backend/backendserver/src/main/resources/prod_properties backend/backendserver/src/main/resources/application.properties' //use psql server
             sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
             sh 'docker build -t ${IMAGEREPO}/${BE_IMAGETAG} backend/backendserver/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
@@ -31,7 +32,7 @@ pipeline {
         stage('frontend') {
           when {
             anyOf {
-              changeset 'frontend/src/main/**'
+              changeset 'frontend/**'
               expression {
                 image_id = sh (script: "docker images -q ${IMAGEREPO}/${FE_IMAGETAG}", returnStdout: true).trim()
                 if (image_id.isEmpty()) return true
@@ -54,13 +55,13 @@ pipeline {
     stage('deploy ') {
       steps {
         sh '''
-        cp -i k8s/birdnoise_deployment.yaml k8s/${BRANCH_NAME_LC}_deployment.yaml
-        sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/${BRANCH_NAME_LC}_deployment.yaml
-        sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_deployment.yaml
-        sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_deployment.yaml
+        cp -i k8s/birdnoise_deployment.yaml k8s/deployment.yaml
+        sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/deployment.yaml
+        sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/deployment.yaml
+        sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/deployment.yaml
         '''
-        sh 'cat k8s/${BRANCH_NAME_LC}_deployment.yaml'
-        sh 'kubectl apply -f k8s/${BRANCH_NAME_LC}_deployment.yaml'
+        sh 'cat k8s/deployment.yaml'
+        sh 'kubectl apply -f k8s/deployment.yaml'
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
         sh 'kubectl rollout status deployment/birdnoise-fe --namespace=${BRANCH_NAME_LC}'
         sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that I am deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.birdnoise.klucsik.fun "}\'
@@ -70,25 +71,23 @@ pipeline {
 
     stage('api-tests') {
       steps {
-        sh 'cp k8s/apitest_deployment.yaml k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
-        sh 'sed -i "s/BRANCHNAME/${BRANCH_NAME_LC}/" k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
-        sh 'sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
-        sh 'sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
-        sh 'cat k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
-        sh 'kubectl apply -f k8s/${BRANCH_NAME_LC}_apitest_deployment.yaml'
-        sh 'kubectl rollout status deployment/birdnoise-be --namespace=apitest-${BRANCH_NAME_LC}'
-        sh 'sed -i "s/BRANCHNAME/apitest-${BRANCH_NAME_LC}/" api-tests/birdnoise-BE-remote.postman_environment.json'
+        sh 'cp k8s/birdnoise_deployment.yaml k8s/test_deployment.yaml'
+        sh 'sed -i "s/BRANCHNAME/${TEST_BRANCNAME}/" k8s/test_deployment.yaml'
+        sh 'sed -i "s/BE_IMAGETAG/${IMAGEREPO}\\/${BE_IMAGETAG}/" k8s/test_deployment.yaml'
+        sh 'sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/test_deployment.yaml'
+        sh 'cat k8s/test_deployment.yaml'
+        sh 'kubectl apply -f k8s/test_deployment.yaml'
+        sh 'kubectl rollout status deployment/birdnoise-be --namespace=${TEST_BRANCNAME}'
+        sh 'sed -i "s/BRANCHNAME/${TEST_BRANCNAME}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'cat api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
-        sh 'kubectl rollout restart deployment/birdnoise-be --namespace=apitest-${BRANCH_NAME_LC}'
-        sh 'kubectl rollout status deployment/birdnoise-be --namespace=apitest-${BRANCH_NAME_LC}'
         sh 'newman run api-tests/birdnoise-playUnits.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
       }
     }
   }
   post {
       always {
-      sh 'kubectl delete ns apitest-${BRANCH_NAME_LC}'
+      sh 'kubectl delete ns ${TEST_BRANCNAME}'
       }
       failure {
       sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\'
@@ -113,6 +112,11 @@ pipeline {
     FE_IMAGETAG = """${sh(
                           script:
                             "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') echo birdnoise_fe_$BRANCH_NAME_LC",
+                          returnStdout:true
+                          ).trim()}"""
+    TEST_BRANCNAME = """${sh(
+                          script:
+                            "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 's/\\(.*\\)/\\L\\1/') echo apitest-$BRANCH_NAME_LC",
                           returnStdout:true
                           ).trim()}"""
     IMAGEREPO = 'www.registry.klucsik.fun'

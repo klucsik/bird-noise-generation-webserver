@@ -1,4 +1,5 @@
-FEATURE: Added logging to devices
+* TECHNICAL FEATURE: Added postgreSQL database for k8s deployments
+* FEATURE: Added logging to devices
 
 # Version 1.0.0
 * FEATURE: Added Frontend
