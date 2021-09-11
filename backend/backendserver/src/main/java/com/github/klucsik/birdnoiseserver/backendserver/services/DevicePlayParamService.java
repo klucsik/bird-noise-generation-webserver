@@ -66,6 +66,7 @@ public class DevicePlayParamService {
         Device device = deviceService.GetById(deviceId);
         DevicePlayParam devicePlayParam = repository.findByDevice(device);
         devicePlayParam.setStatus(DPPStatus.DRAFT);
+        repository.save(devicePlayParam);
         return "Set status to Draft";
     }
 
@@ -73,6 +74,7 @@ public class DevicePlayParamService {
         Device device = deviceService.GetById(deviceId);
         DevicePlayParam devicePlayParam = repository.findByDevice(device);
         devicePlayParam.setStatus(DPPStatus.DELETED);
+        repository.save(devicePlayParam);
         return "Set status to Deleted";
     }
 }
