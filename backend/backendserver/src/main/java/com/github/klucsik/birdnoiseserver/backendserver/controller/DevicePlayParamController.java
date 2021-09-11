@@ -53,12 +53,12 @@ public class DevicePlayParamController extends BaseController {
     }
 
     @GetMapping("/setToDraft")
-    public ResponseEntity<String> setToDraft(@RequestParam Long playParamId) {
-        return new ResponseEntity<>(service.setToDraft(playParamId), HttpStatus.OK);
+    public ResponseEntity<String> setToDraft(@RequestParam Long deviceId) {
+        return new ResponseEntity<>(service.setToDraft(deviceId), HttpStatus.OK);
     }
 
     @GetMapping("/setToDeleted")
-    public ResponseEntity<String> setToDeleted(@RequestParam Long playParamId) {
-        return new ResponseEntity<>(service.setToDeleted(playParamId), HttpStatus.OK);
+    public ResponseEntity<String> setToDeleted(@RequestParam Long deviceId) {
+        return new ResponseEntity<>(service.setToDeleted(deviceId), HttpStatus.OK);
     }
 }
