@@ -104,4 +104,18 @@ public class DevicePlayParamController {
         attributes.addFlashAttribute("message: ", answer);
         return String.format("redirect:/devicePlayParam/page?id=%d", deviceId);
     }
+
+    @GetMapping("/setToDraft")
+    public String setToDraft(@RequestParam Long deviceId, RedirectAttributes attributes) {
+        String answer = connector.setToDraft(deviceId).getBody();
+        attributes.addFlashAttribute("message: ", answer);
+        return String.format("redirect:/devicePlayParam/page?id=%d", deviceId);
+    }
+
+    @GetMapping("/setToDeleted")
+    public String setToDeleted(@RequestParam Long deviceId, RedirectAttributes attributes) {
+        String answer = connector.setToDeleted(deviceId).getBody();
+        attributes.addFlashAttribute("message: ", answer);
+        return String.format("redirect:/devicePlayParam/page?id=%d", deviceId);
+    }
 }

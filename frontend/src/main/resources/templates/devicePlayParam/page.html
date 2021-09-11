@@ -58,18 +58,19 @@
                     {
                         data: 'id',
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            var isDeployable = oData.status.toString() == "DRAFT" ? true:false;
+                            var isDraft = oData.status.toString() == "DRAFT" ? true:false;
+                            var isDeployable = oData.status.toString() == "DEPLOYABLE" ? true:false;
 
-                            if (isDeployable) {
+                            if (isDraft) {
                                 $(nTd).html("" +
                                     "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
-                                    "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" + " " +
+                                    "<span><a href='/devicePlayParam/setToDeleted?deviceId=" + deviceId + "'> Delete</a></span>" + " " +
                                     "<span><a href='/devicePlayParam/setToDeployable?deviceId=" + deviceId + "'> Change to deployable</a></span>"
                                 );
                             }
-                            else if (!isDeployable) {
+                            if (isDeployable) {
                                 $(nTd).html("" +
-                                    "<span><a>smthHere</a></span> "
+                                    "<span><a href='/devicePlayParam/setToDraft?deviceId=" + deviceId + "'> Change to draft</a></span>"
                                 );
                             }
 
