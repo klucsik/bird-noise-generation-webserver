@@ -11,7 +11,7 @@ pipeline {
         stage('backend') {
           when {
             anyOf {
-              changeset 'backend/backendserver/**'
+              changeset 'backend/**'
               expression {
                 image_id = sh (script: "docker images -q ${IMAGEREPO}/${BE_IMAGETAG}", returnStdout: true).trim()
                 if (image_id.isEmpty()) return true
