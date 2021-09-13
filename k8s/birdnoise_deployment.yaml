@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: BRANCHNAME
+  name: birdnoise-BRANCHNAME
 
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: birdnoise-BRANCHNAME-fun
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
   annotations:
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
@@ -38,7 +38,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: birdnoise-be
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   replicas: 1
   selector:
@@ -101,7 +101,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: birdnoise-svc-be
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   ports:
     - port: 80
@@ -116,7 +116,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: birdnoise-fe
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   replicas: 1
   selector:
@@ -145,7 +145,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: birdnoise-svc-fe
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   ports:
     - port: 80
@@ -160,7 +160,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: birdnoise-db
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   replicas: 1
   selector:
@@ -208,7 +208,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: postgresql-db
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   storageClassName: local-precious #storage class with raid 0
   accessModes:
@@ -227,7 +227,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: birdnoise-svc-db
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 spec:
   ports:
     - port: 5432
@@ -241,7 +241,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-conf
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
   labels:
     type: database
     service: birdnoise
@@ -255,7 +255,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: postgres-credentials
-  namespace: BRANCHNAME
+  namespace: birdnoise-BRANCHNAME
 data:
   postgres_user: cG9zdGdyZXM= #TODO aurogenerate secrests with https://github.com/mittwald/kubernetes-secret-generator
   postgres_password: cG9zdGdyZXM=

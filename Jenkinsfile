@@ -62,8 +62,8 @@ pipeline {
         '''
         sh 'cat k8s/deployment.yaml'
         sh 'kubectl apply -f k8s/deployment.yaml'
-        sh 'kubectl rollout status deployment/birdnoise-be --namespace=${BRANCH_NAME_LC}'
-        sh 'kubectl rollout status deployment/birdnoise-fe --namespace=${BRANCH_NAME_LC}'
+        sh 'kubectl rollout status deployment/birdnoise-be --namespace=birdnoise-${BRANCH_NAME_LC}'
+        sh 'kubectl rollout status deployment/birdnoise-fe --namespace=birdnoise-${BRANCH_NAME_LC}'
         sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that I am deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.birdnoise.klucsik.fun "}\'
         '''
       }
@@ -77,7 +77,7 @@ pipeline {
         sh 'sed -i "s/FE_IMAGETAG/${IMAGEREPO}\\/${FE_IMAGETAG}/" k8s/test_deployment.yaml'
         sh 'cat k8s/test_deployment.yaml'
         sh 'kubectl apply -f k8s/test_deployment.yaml'
-        sh 'kubectl rollout status deployment/birdnoise-be --namespace=${TEST_BRANCNAME}'
+        sh 'kubectl rollout status deployment/birdnoise-be --namespace=birdnoise-${TEST_BRANCNAME}'
         sh 'sed -i "s/BRANCHNAME/${TEST_BRANCNAME}/" api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'cat api-tests/birdnoise-BE-remote.postman_environment.json'
         sh 'newman run api-tests/birdnoise-tracks.postman_collection.json -e api-tests/birdnoise-BE-remote.postman_environment.json '
@@ -90,7 +90,7 @@ pipeline {
   }
   post {
       always {
-      sh 'kubectl delete ns ${TEST_BRANCNAME}'
+      sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME}'
       }
       failure {
       sh '''curl --location --request POST \'https://discord.com/api/webhooks/827513686460989490/wWHavHLlBi1FCa_UkoPk8v0nqs9APg9bPWHf63RLhZejSOSPJk1Db57Tc7WXDGK7eU8g\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\'
