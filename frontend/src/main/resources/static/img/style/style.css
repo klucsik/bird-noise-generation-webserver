@@ -18,6 +18,7 @@ body {
     background-color: #298BA0;
     color: var(--menu-text-color);
     position: relative;
+    min-width: 145px;
 }
 
 .hamburger-menu {
@@ -152,7 +153,8 @@ a.nav-link.menu-icon:hover {
 .info-card {
     height: 13rem;
     width: 14rem;
-    background-color: #FCFBF8;
+    /*background-color: #FCFBF8;*/
+    background: linear-gradient(0deg, rgba(0, 128, 0, 0.1), transparent);
     box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
     margin-top: 20px !important;
     margin-bottom: 30px !important;
@@ -167,15 +169,48 @@ a.nav-link.menu-icon:hover {
 .col-sm-2,
 .col-sm-10,
 .col-sm-11 {
-    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+}
+
+.row {
+    width: 100% !important;
 }
 
 .card-container {
     margint-top: 2rem;
 }
 
+.card-content-text {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 0 10px 0 10px
+}
+
+.card-content-number-big {
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 600;
+    align-self: baseline
+}
+
+.card-content-number-small {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: baseline
+}
+
+.card-status-bar {
+    background-color: green;
+    width: calc(5 / 8 * 100%);
+    height: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0
+}
 
 #taskBasket {
     width: fit-content;
@@ -194,6 +229,10 @@ select[name=taskBasket_length] {
     border: none !important;
 }
 
+#svg10000 {
+    width: 250px;
+}
+
 .table.dataTable.no-footer {
     border-bottom: 1px solid #e3d1c3;
 }
@@ -210,6 +249,25 @@ select[name=taskBasket_length] {
     background: linear-gradient(to top, #298BA0, #298BA0);
     filter: brightness(0.9);
     color: whitesmoke !important;
+}
+
+.table-custom-style {
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(0deg, rgba(41, 139, 160, 0.1), transparent);
+}
+
+#deviceTable {
+    width: fit-content !important;
+}
+
+@media screen and (max-width: 517px) {
+    .nav-link .menu-icon {
+        display: flex;
+        flex-direction: column;
+    }
+    .menu-item-container {
+        width: -webkit-fill-available;
+    }
 }
 
 /*.tree {*/
