@@ -58,7 +58,7 @@ public class DevicePlayParamSelectorService {
                 else {
                     PlayParam oldPlayParam = playParamRepository.getOne(paramVersion);
                     DevicePlayParam oldDPP = repository.findByPlayParam(oldPlayParam);
-                    oldDPP.setStatus(DPPStatus.UNDEPLOYING);
+                    if( oldDPP.getId() != null){ oldDPP.setStatus(DPPStatus.UNDEPLOYING);}
 
                     PlayParam newPlayParam = playParamsForDevice.get(0).getPlayParam();
                     DevicePlayParam newDPP = repository.findByPlayParam(newPlayParam);
