@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.frontend.connectors;
 
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,14 @@ public interface DevicePlayParamConnector {
     ResponseEntity<DevicePlayParamDto> delete(@PathVariable Long id);
 
     @GetMapping("/setToDeployable")
-    ResponseEntity<String> setToDeployable(@RequestParam Long deviceId);
+    ResponseEntity<String> setToDeployable(@RequestParam Long DPPId);
 
     @GetMapping("/setToDraft")
-    ResponseEntity<String> setToDraft(@RequestParam Long deviceId);
+    ResponseEntity<String> setToDraft(@RequestParam Long DPPId);
 
     @GetMapping("/setToDeleted")
-    ResponseEntity<String> setToDeleted(@RequestParam Long deviceId);
+    ResponseEntity<String> setToDeleted(@RequestParam Long DPPId);
+
+    @GetMapping("/findDeviceByDPPId")
+    ResponseEntity<DeviceDto> findDeviceByDPPId(@RequestParam Long DPPId);
 }

@@ -1,7 +1,10 @@
 package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamDto;
+import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamMapper;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.services.DevicePlayParamService;
 import lombok.RequiredArgsConstructor;
@@ -48,17 +51,22 @@ public class DevicePlayParamController extends BaseController {
     }
 
     @GetMapping("/setToDeployable")
-    public ResponseEntity<String> setToDeployable(@RequestParam Long deviceId) {
-        return new ResponseEntity<>(service.setToDeployable(deviceId), HttpStatus.OK);
+    public ResponseEntity<String> setToDeployable(@RequestParam Long DPPId) {
+        return new ResponseEntity<>(service.setToDeployable(DPPId), HttpStatus.OK);
     }
 
     @GetMapping("/setToDraft")
-    public ResponseEntity<String> setToDraft(@RequestParam Long deviceId) {
-        return new ResponseEntity<>(service.setToDraft(deviceId), HttpStatus.OK);
+    public ResponseEntity<String> setToDraft(@RequestParam Long DPPId) {
+        return new ResponseEntity<>(service.setToDraft(DPPId), HttpStatus.OK);
     }
 
     @GetMapping("/setToDeleted")
-    public ResponseEntity<String> setToDeleted(@RequestParam Long deviceId) {
-        return new ResponseEntity<>(service.setToDeleted(deviceId), HttpStatus.OK);
+    public ResponseEntity<String> setToDeleted(@RequestParam Long DPPId) {
+        return new ResponseEntity<>(service.setToDeleted(DPPId), HttpStatus.OK);
+    }
+
+    @GetMapping("/findDeviceByDPPId")
+    public ResponseEntity<DeviceDto> findDeviceByDPPId(@RequestParam Long DPPId) {
+        return new ResponseEntity<>(DeviceMapper.MAPPER.devicetoDto(service.findDeviceByDPPId(DPPId)), HttpStatus.OK);
     }
 }

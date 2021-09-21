@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,27 +55,34 @@ public class DevicePlayParamService {
         repository.deleteById(id);
     }
 
-    public String setToDeployable(Long deviceId) {
-        Device device = deviceService.GetById(deviceId);
-        DevicePlayParam devicePlayParam = repository.findByDevice(device);
+    public String setToDeployable(Long DPPId) {
+        DevicePlayParam devicePlayParam = getById(DPPId);
         devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
         repository.save(devicePlayParam);
         return "Set status to Deployable";
     }
 
-    public String setToDraft(Long deviceId) {
-        Device device = deviceService.GetById(deviceId);
-        DevicePlayParam devicePlayParam = repository.findByDevice(device);
-        devicePlayParam.setStatus(DPPStatus.DRAFT);
+    public String setToDraft(Long DPPId) {
+        DevicePlayParam devicePlayParam = getById(DPPId);
+        devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
         repository.save(devicePlayParam);
         return "Set status to Draft";
     }
 
-    public String setToDeleted(Long deviceId) {
-        Device device = deviceService.GetById(deviceId);
-        DevicePlayParam devicePlayParam = repository.findByDevice(device);
-        devicePlayParam.setStatus(DPPStatus.DELETED);
+    /*
+    private List<DevicePlayParam> getAll(Long deviceId) { //I dont know what this is but I think its not needed
+        return getAllByDevice(deviceId);
+    }*/
+
+    public String setToDeleted(Long DPPId) {
+        DevicePlayParam devicePlayParam = getById(DPPId);
+        devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
         repository.save(devicePlayParam);
         return "Set status to Deleted";
+    }
+
+    public Device findDeviceByDPPId(Long DPPId) {
+        DevicePlayParam devicePlayParam = repository.getOne(DPPId);
+        return devicePlayParam.getDevice();
     }
 }
