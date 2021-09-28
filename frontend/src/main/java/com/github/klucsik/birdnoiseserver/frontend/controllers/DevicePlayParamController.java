@@ -101,7 +101,7 @@ public class DevicePlayParamController {
     @GetMapping("/setToDeployable")
     public String setToDeployable(@RequestParam Long DPPId, RedirectAttributes attributes) {
         String answer = connector.setToDeployable(DPPId).getBody();
-        attributes.addFlashAttribute(String.format("Message: %s", answer));
+        attributes.addFlashAttribute("message", String.format("On Device Play Param whit id: %d, %s", DPPId, answer));
         DeviceDto deviceDto = connector.findDeviceByDPPId(Long.parseLong(DPPId.toString())).getBody();
         String s = deviceDto.getId().toString();
         return String.format("redirect:/devicePlayParam/page?id=%s", s);
