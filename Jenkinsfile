@@ -3,6 +3,7 @@ pipeline {
     kubernetes {
       yamlFile 'k8s/agents/jenkins-agent-allinone.yaml'
       defaultContainer 'docker'
+      idleMinutes 60
     }
   }
 
@@ -63,7 +64,7 @@ pipeline {
               sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
             }
 
-            sh 'docker buildx build -t ${IMAGEREPO}/${FE_IMAGETAG} --platform linux/arm/v7,linux/arm64/v8,linux/amd64 frontend/.'
+            sh 'docker buildx build -t ${IMAGEREPO}/${FE_IMAGETAG} --platform linux/arm64,linux/amd64 frontend/.'
             sh 'docker push ${IMAGEREPO}/${FE_IMAGETAG}'
             sh 'sed -i "s/FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
