@@ -64,7 +64,7 @@ public class DevicePlayParamService {
 
     public String setToDraft(Long DPPId) {
         DevicePlayParam devicePlayParam = getById(DPPId);
-        devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
+        devicePlayParam.setStatus(DPPStatus.DRAFT);
         repository.save(devicePlayParam);
         return "Set status to Draft";
     }
@@ -76,7 +76,7 @@ public class DevicePlayParamService {
 
     public String setToDeleted(Long DPPId) {
         DevicePlayParam devicePlayParam = getById(DPPId);
-        devicePlayParam.setStatus(DPPStatus.DEPLOYABLE);
+        devicePlayParam.setStatus(DPPStatus.DELETED);
         repository.save(devicePlayParam);
         return "Set status to Deleted";
     }
