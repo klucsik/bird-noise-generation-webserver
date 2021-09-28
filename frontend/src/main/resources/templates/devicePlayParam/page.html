@@ -64,13 +64,13 @@
                             if (isDraft) {
                                 $(nTd).html("" +
                                     "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
-                                    "<span><a href='/devicePlayParam/setToDeleted?deviceId=" + deviceId + "'> Delete</a></span>" + " " +
+                                    "<span><a href='/devicePlayParam/setToDeleted?DPPId=" + oData.id + "'> Delete</a></span>" + " " +
                                     "<span><a href='/devicePlayParam/setToDeployable?DPPId=" + oData.id + "'> Change to deployable</a></span>"
                                 );
                             }
                             if (isDeployable) {
                                 $(nTd).html("" +
-                                    "<span><a href='/devicePlayParam/setToDraft?deviceId=" + deviceId + "'> Change to draft</a></span>"
+                                    "<span><a href='/devicePlayParam/setToDraft?DPPId=" + oData.id + "'> Change to draft</a></span>"
                                 );
                             }
                         },
