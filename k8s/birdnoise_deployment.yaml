@@ -202,7 +202,7 @@ spec:
         - name: postgredb
           persistentVolumeClaim:
             claimName: postgresql-db
-      nodeselector:
+      nodeSelector:
         persistence: "true"
 ---
 kind: PersistentVolumeClaim
