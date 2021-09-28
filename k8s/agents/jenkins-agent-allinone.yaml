@@ -47,6 +47,8 @@ spec:
           cpu: "300m"
         limits:
           memory: "2Gi"
+      nodeSelector:
+        kubernetes.io/arch: "amd64"
 
   volumes:
     - name: docker
