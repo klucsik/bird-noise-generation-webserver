@@ -12,21 +12,36 @@
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
         <div class="row justify-content-center">
-            <div th:insert="fragments/_messages"></div>
-            <a href='/playParam/new'>Create new playParam</a>
+            <div class="col-sm-10 d-flex justify-content-center">
+                <h3 class="mt-2 mb-5 p-4 box-shadow" style="background-color: rgba(255,228,196,0.5)">
+                    <span>Playing parameters</span>
+                    <span th:insert="fragments/svgs/play-params-icon" class="title-icon"></span>
+                </h3>
+            </div>
         </div>
-        <div class="mt-5 table-custom-style">
-            <table id="playParamTable" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>vol</th>
-                    <!--<th>playUnits</th> TODO: make some nice printout for playUnits-->
-                    <th>Actions</th>
-                </tr>
-                </thead>
-            </table>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div th:insert="fragments/_messages"></div>
+                <a href='/playParam/new' class="create-new-button box-shadow p-2">Create new playParam >> </a>
+            </div>
+        </div>
+
+        <div class="mt-5 row d-flex justify-content-center">
+            <div class="col-sm-10" style="position: relative">
+                <div class="table-custom-style p-4">
+                    <table id="playParamTable" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>vol</th>
+                            <!--<th>playUnits</th> TODO: make some nice printout for playUnits-->
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -45,11 +60,12 @@
             {data: 'id'},
             {data: 'name'},
             {data: 'vol'},
-          //  {data: 'playUnits'},
-            {data: 'id',
+            //  {data: 'playUnits'},
+            {
+                data: 'id',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<span><a href='/playParam/"+oData.id+"'><span>edit</span></a></span> " +
-                                "<span><a href='/playParam/"+oData.id+"/delete'><span>delete</span></a></span>");
+                    $(nTd).html("<span><a href='/playParam/" + oData.id + "'><span>edit</span></a></span> " +
+                        "<span><a href='/playParam/" + oData.id + "/delete'><span>delete</span></a></span>");
 
                 },
                 searchable: false

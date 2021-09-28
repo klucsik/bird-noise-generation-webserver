@@ -21,12 +21,8 @@ body {
     min-width: 145px;
 }
 
-.hamburger-menu {
-    align-self: center;
-    cursor: pointer;
-    z-index: 11;
-    padding-top: 5rem;
-    position: fixed
+.title-icon svg {
+    width: 2rem;
 }
 
 .tree-container {
@@ -238,6 +234,11 @@ select[name=taskBasket_length] {
     border-bottom: 1px solid #e3d1c3;
 }
 
+select[name="playParamTable_length"] {
+    background-color: whitesmoke !important;
+    border: none !important;
+}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     border: none;
@@ -252,9 +253,14 @@ select[name=taskBasket_length] {
     color: whitesmoke !important;
 }
 
+#deviceTable_length > label > select {
+    border: none;
+    background-color: whitesmoke;
+}
+
 .table-custom-style {
     box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
-    background: linear-gradient(0deg, rgba(41, 139, 160, 0.1), transparent);
+    background: linear-gradient(0deg, rgba(41, 139, 160, 0.1), rgba(255, 228, 196, 0.31));
 }
 
 #deviceTable {
@@ -269,6 +275,19 @@ select[name=taskBasket_length] {
     .menu-item-container {
         width: -webkit-fill-available;
     }
+}
+
+.box-shadow {
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.create-new-button {
+    border-radius: 0 !important;
+    text-decoration:  none !important;
+    color: whitesmoke !important;
+    height: 2rem;
+    width: 100%;
+    background-color: #53A86B;
 }
 
 /*.tree {*/

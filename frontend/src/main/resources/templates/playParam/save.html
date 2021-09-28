@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create/Edit playParam</title>
+    <title>Create/Edit play parameter</title>
 
     <div th:insert="fragments/_header_includes"></div>
 
@@ -12,52 +12,56 @@
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
         <div class="row justify-content-center">
-            <div th:insert="fragments/_messages"></div>
-            <form class="row g-1" th:action="@{save}" method="post" th:object="${playParamDto}">
-                <div class="row fs-1 p-3">Create new playParam</div>
-                <div>
-                    <input type="hidden"  id="id"
-                           th:field="*{id}" readonly>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="name" >name</label>
+            <div class="col-sm-10 d-flex justify-content-center">
+                <div th:insert="fragments/_messages"></div>
+                <form class="row g-1" th:action="@{save}" method="post" th:object="${playParamDto}">
+                    <h3 class="row p-3 box-shadow d-flex justify-content-center" style="background-color: rgba(255,228,196,0.5)">Create new play parameter</h3>
+                    <div>
+                        <input type="hidden" id="id"
+                               th:field="*{id}" readonly>
                     </div>
-                    <div class="col-8">
-                        <input type="text"  id="name"
-                               th:field="*{name}" required>
-                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="name">name</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" id="name"
+                                   th:field="*{name}" required>
+                        </div>
 
-                    <div class="col-4">
-                        <label for="vol" >volume</label>
-                    </div>
-                    <div class="col-8">
-                        <input type="number"  id="vol"
-                               th:field="*{vol}" required>
-                    </div>
+                        <div class="col-4">
+                            <label for="vol">volume</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="number" id="vol"
+                                   th:field="*{vol}" required>
+                        </div>
 
-                    <div class="col-4">
-                    <label for="playUnits" >playUnits</label>
-                  </div>
-                    <div class="col-4"></div> <!--Big frontend hack for more consistent view-->
-                    <div class="col-8" th:each="playUnit : *{playUnits}" id="playUnits">
-                    <label th:text="${playUnit.getKey()}"></label>
-                    <select th:field="*{playUnits[__${playUnit.getKey()}__]}" >
-                        <option value=""> -- </option>
-                        <option th:each="optionPlayUnit : ${playUnitList}"
-                                th:value="${optionPlayUnit}"
-                                th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackList() ) }"
-                        ></option>
-                    </select>
-                </div>
-                    <div class="row justify-content-sm-center">
-                        <div class="d-grid col-3">
-                            <button type="submit" class="btn btn-sm btn-primary">Save playParam</button>
+                        <div class="col-4">
+                            <label for="playUnits">playUnits</label>
+                        </div>
+                        <div class="col-4"></div> <!--Big frontend hack for more consistent view-->
+                        <div class="row mb-4">
+                            <div class="col-sm-6 g-1 d-flex" th:each="playUnit : *{playUnits}" id="playUnits"
+                                 style="min-width: 150px">
+                                <label class="d-flex align-items-center" th:text="${playUnit.getKey() + '. hour'}" style="min-width: 100px; max-width: 100px; box-shadow: 10px 10px rgba(0, 0, 0, 0.25); height: 35px; background-color: bisque; padding-left: 10px; padding-right: 10px"></label>
+                                <select style="min-width: 250px; background-color: azure; box-shadow: 10px 10px rgba(0, 0, 0, 0.25); border: none; height: 35px" th:field="*{playUnits[__${playUnit.getKey()}__]}">
+                                    <option value=""> --</option>
+                                    <option th:each="optionPlayUnit : ${playUnitList}"
+                                            th:value="${optionPlayUnit}"
+                                            th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackList() ) }"
+                                    ></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row justify-content-sm-start">
+                            <div class="d-grid col-3">
+                                <button type="submit" class="btn btn-sm btn-primary">Save playParam</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-
+                </form>
+            </div>
         </div>
     </div>
 </div>
