@@ -21,7 +21,6 @@ pipeline {
     }
 
     stage('build images') {
-      parallel {
         stage('backend') {
           when {
             anyOf {
@@ -69,7 +68,6 @@ pipeline {
           }
         }
 
-      }
     }
 
     stage('deploy ') {
