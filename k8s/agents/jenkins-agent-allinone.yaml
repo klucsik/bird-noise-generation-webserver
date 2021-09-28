@@ -29,7 +29,7 @@ spec:
           mountPath: /var/run/docker.sock # We use the k8s host docker engine
 
     - name: kubectl
-      image: www.registry.klucsik.fun/kubectl #TODO change this dynamically
+      image: registry.klucsik.fun/kubectl #TODO change this dynamically
       command: ["sleep", "1d"]
       resources:
         requests:
