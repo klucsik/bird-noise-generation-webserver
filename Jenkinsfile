@@ -141,9 +141,9 @@ pipeline {
   post {
           always {
             container(name: 'kubectl') {
-                sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME}'
                 sh 'kubectl delete deployment amd64node'
                 sh 'kubectl delete deployment arm64node'
+                sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME}'
             }
           }
 
