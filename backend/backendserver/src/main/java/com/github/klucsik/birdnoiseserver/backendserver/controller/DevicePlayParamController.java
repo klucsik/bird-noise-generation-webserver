@@ -24,9 +24,9 @@ public class DevicePlayParamController extends BaseController {
     @PostMapping("/save")
     public ResponseEntity<DevicePlayParamDto> save(@RequestBody DevicePlayParamDto devicePlayParamDto)
             throws MethodArgumentNotValidException {
-        DevicePlayParam saved = service.save(DevicePlayParamMapper.MAPPER.dtoToDevicePLayParam(devicePlayParamDto));
-        DevicePlayParamDto savedDto = DevicePlayParamMapper.MAPPER.devicePlayParamToDto(saved);
-        return new ResponseEntity<>(savedDto, HttpStatus.OK); //TODO: make a mapping in the controller everywhere
+            DevicePlayParam saved = service.save(DevicePlayParamMapper.MAPPER.dtoToDevicePLayParam(devicePlayParamDto));
+            DevicePlayParamDto savedDto = DevicePlayParamMapper.MAPPER.devicePlayParamToDto(saved);
+            return new ResponseEntity<>(savedDto, HttpStatus.OK); //TODO: make a mapping in the controller everywhere
     }
 
     @GetMapping("/{id}")

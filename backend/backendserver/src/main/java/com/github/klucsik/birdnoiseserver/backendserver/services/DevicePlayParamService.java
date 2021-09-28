@@ -29,10 +29,11 @@ public class DevicePlayParamService {
 
     public DevicePlayParam save(DevicePlayParam devicePlayParam) throws MethodArgumentNotValidException {
 
+        validator.validate(devicePlayParam);
         devicePlayParam.setDevice(deviceService.GetById(devicePlayParam.getDevice().getId()));
         devicePlayParam.setPlayParam(playParamService.getOne(devicePlayParam.getPlayParam().getId()));
 
-        validator.validate(devicePlayParam);
+
 
         return repository.save(devicePlayParam);
     }
