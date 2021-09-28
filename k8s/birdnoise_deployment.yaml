@@ -210,7 +210,6 @@ metadata:
   name: postgresql-db
   namespace: birdnoise-BRANCHNAME
 spec:
-  storageClassName: local-precious #storage class with raid 0
   accessModes:
     - ReadWriteOnce
   resources:
