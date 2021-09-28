@@ -16,7 +16,7 @@ spec:
           mountPath: /root/.m2
 
     - name: docker
-      image: docker:20.10.8
+      image: registry.klucsik.fun/buildx
       command: ["sleep", "1d"]
       resources:
         requests:
