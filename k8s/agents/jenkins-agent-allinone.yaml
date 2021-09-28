@@ -7,8 +7,8 @@ spec:
       command: ["sleep", "1d"]  # this or any command that is basically a noop is required, so the containers will not exit prematurely
       resources:  # limits the resources your build container
         requests:
-          memory: "1Gi"
-          cpu: "500m"
+          memory: "200Mi"
+          cpu: "300m"
         limits:
           memory: "2Gi"
       volumeMounts:
@@ -16,12 +16,12 @@ spec:
           mountPath: /root/.m2
 
     - name: docker
-      image: docker:20.10.8
+      image: registry.klucsik.fun/buildx
       command: ["sleep", "1d"]
       resources:
         requests:
-          memory: "1Gi"
-          cpu: "500m"
+          memory: "200Mi"
+          cpu: "200m"
         limits:
           memory: "2Gi"
       volumeMounts:
@@ -34,7 +34,7 @@ spec:
       resources:
         requests:
           memory: "200Mi"
-          cpu: "200m"
+          cpu: "100m"
         limits:
           memory: "1Gi"
 
@@ -43,10 +43,12 @@ spec:
       command: ["sleep", "1d"]
       resources:
         requests:
-          memory: "1Gi"
-          cpu: "500m"
+          memory: "300Mi"
+          cpu: "300m"
         limits:
           memory: "2Gi"
+      nodeSelector:
+        kubernetes.io/arch: "amd64"
 
   volumes:
     - name: docker
