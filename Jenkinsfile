@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
       yamlFile 'k8s/agents/jenkins-agent-allinone.yaml'
       defaultContainer 'docker'
-      idleMinutes 60
+      //idleMinutes 60
     }
   }
 
@@ -42,7 +42,7 @@ pipeline {
                 }
             sh 'docker buildx create  --driver kubernetes --name builder --node arm64node  --driver-opt replicas=1,nodeselector=kubernetes.io/arch=arm64 --use'
             sh 'docker buildx create --append --driver kubernetes --name builder --node amd64node  --driver-opt replicas=1,nodeselector=kubernetes.io/arch=amd64 --use'
-            sh 'docker buildx build -t ${IMAGEREPO}/${BE_IMAGETAG} --platform linux/arm64,linux/amd64 --push backend/backendserver/. '
+            sh 'docker buildx build -t ${IMAGEREPO}/${BE_IMAGETAG} --platform linux/arm64,linux/amd64 --push --output=type=registry,registry.insecure=true backend/backendserver/. '
             sh 'sed -i "s/BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
         }
@@ -64,7 +64,7 @@ pipeline {
               sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
             }
 
-            sh 'docker buildx build -t ${IMAGEREPO}/${FE_IMAGETAG} --platform linux/arm64,linux/amd64 --push frontend/.'
+            sh 'docker buildx build -t ${IMAGEREPO}/${FE_IMAGETAG} --platform linux/arm64,linux/amd64 --push --output=type=registry,registry.insecure=true frontend/.'
             sh 'sed -i "s/FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
         }
@@ -141,8 +141,8 @@ pipeline {
   post {
           always {
             container(name: 'kubectl') {
-                sh 'kubectl delete deployment amd64node'
-                sh 'kubectl delete deployment arm64node'
+               // sh 'kubectl delete deployment amd64node'
+               // sh 'kubectl delete deployment arm64node'
                 sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME}'
             }
           }
