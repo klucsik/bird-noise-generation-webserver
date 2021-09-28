@@ -40,8 +40,8 @@ pipeline {
                sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
 
                 }
-
-            sh 'docker buildx build -t ${IMAGEREPO}/${BE_IMAGETAG} --platform linux/arm/v7,linux/arm64/v8,linux/amd64 backend/backendserver/.'
+            sh 'docker buildx create  --driver kubernetes --name builder --node arm64node  --driver-opt replicas=1,nodeselector=kubernetes.io/arch=arm64 --use'
+            sh 'docker buildx build -t ${IMAGEREPO}/${BE_IMAGETAG} --platform linux/arm64,linux/amd64 backend/backendserver/.'
             sh 'docker push ${IMAGEREPO}/${BE_IMAGETAG}'
             sh 'sed -i "s/BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE/$(date)/" k8s/birdnoise_deployment.yaml'
           }
