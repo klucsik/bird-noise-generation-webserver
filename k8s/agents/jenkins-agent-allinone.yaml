@@ -4,6 +4,7 @@ spec:
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
     - name: maven
       image: maven:3.8.2-jdk-11-slim
+      imagePullPolicy:  IfNotPresent
       command: ["sleep", "1d"]  # this or any command that is basically a noop is required, so the containers will not exit prematurely
       resources:  # limits the resources your build container
         requests:
@@ -17,6 +18,7 @@ spec:
 
     - name: docker
       image: registry.klucsik.fun/buildx
+      imagePullPolicy:  IfNotPresent
       command: ["sleep", "1d"]
       resources:
         requests:
@@ -30,6 +32,7 @@ spec:
 
     - name: kubectl
       image: registry.klucsik.fun/kubectl #TODO change this dynamically
+      imagePullPolicy:  IfNotPresent
       command: ["sleep", "1d"]
       resources:
         requests:
@@ -40,6 +43,7 @@ spec:
 
     - name: newman
       image: postman/newman
+      imagePullPolicy:  IfNotPresent
       command: ["sleep", "1d"]
       resources:
         requests:
