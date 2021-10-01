@@ -285,10 +285,20 @@ select[name="playParamTable_length"] {
     border-radius: 0 !important;
     text-decoration:  none !important;
     color: whitesmoke !important;
-    height: 2rem;
     width: 100%;
     background-color: #53A86B;
 }
+
+.how-to {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.read-more {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 /*.tree {*/
 /*    margin-left: -5px;*/

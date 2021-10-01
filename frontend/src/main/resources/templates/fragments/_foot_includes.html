@@ -4,3 +4,40 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
+<!--todo kiszervezni külön fájlba, vmiért nem működik-->
+<!--<script th:src="@{/js/script.js}"></script>-->
+<script>
+    $(document).ready(() => {
+    });
+
+    let howToIsOpen = false;
+
+    const openHowTo = () => {
+        const howToText = $("span.how-to-text").text();
+        let short = howToText;
+        short = short.slice(0, 75);
+        if (howToIsOpen) {
+            $("span.how-to-text").text(short);
+            howToIsOpen = false;
+            console.debug("howToIsOpen", howToIsOpen)
+        } else {
+            $("span.how-to-text").text(howToText);
+            howToIsOpen = true;
+            console.debug("howToIsOpen", howToIsOpen)
+            console.debug("howToText", howToText)
+
+        }
+    };
+
+
+    $("a.nav-link.menu-icon").hover(
+        function () {
+            $(this).addClass("svg-hover")
+        },
+        function () {
+            $(this).removeClass("svg-hover")
+        }
+    )
+
+</script>
