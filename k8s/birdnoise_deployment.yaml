@@ -179,7 +179,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:10.4
+          image: postgres:14
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
@@ -202,12 +202,11 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgredb
+              subPath: postgres
       volumes:
         - name: postgredb
           persistentVolumeClaim:
             claimName: postgresql-db
-      nodeSelector:
-        persistence: "true"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -220,7 +219,7 @@ spec:
   resources:
     requests:
       storage: 1G
-
+  storageClassName: longhorn-2
 
 
 ---
