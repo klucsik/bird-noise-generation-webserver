@@ -61,5 +61,5 @@ spec:
       hostPath:
         path: /var/run/docker.sock
     - name: maven-repository
-      persistentVolumeClaim:
-        claimName: maven-repository
+      host-path:
+        path: /root/.m2
