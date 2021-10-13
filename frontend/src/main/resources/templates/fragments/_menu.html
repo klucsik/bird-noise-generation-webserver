@@ -1,13 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- side bar -->
-<div class="h-100 main-menu" id="wide-menu">
+<div class="h-100 main-menu" style="position: relative">
     <div class="nav d-flex align-items-start flex-column menu-height justify-items-center" id="opened-menu">
         <div class="tree-container">
             <div th:insert="fragments/svgs/tree"></div>
         </div>
 
         <div class="menu-item-container">
-            <div class="menu-item stripe first-item">
+            <div class="underline"></div>
+            <div class="underline background"></div>
+            <div class="first-item"></div>
+            <div class="menu-item">
                 <a class="nav-link menu-icon" th:href="@{/device/page}" title="PlayParams">
                     <div id="devices-icon">
                         <div th:insert="fragments/svgs/device-icon"></div>
@@ -15,7 +17,7 @@
                     <div id="devices">Devices</div>
                 </a>
             </div>
-            <div class="menu-item stripe">
+            <div class="menu-item ">
                 <a class="nav-link menu-icon" th:href="@{/playParam/page}" title="PlayParams">
                     <div id="play-params-icon">
                         <div th:insert="fragments/svgs/play-params-icon"></div>
@@ -23,7 +25,7 @@
                     <div id="play-params">Play params</div>
                 </a>
             </div>
-            <div class="menu-item stripe">
+            <div class="menu-item ">
                 <a class="nav-link menu-icon" th:href="@{/playUnit/page}" title="PlayUnits">
                     <div id="play-units-icon">
                         <div th:insert="fragments/svgs/play-unit-icon"></div>
@@ -40,11 +42,6 @@
                 </a>
             </div>
         </div>
-        <div class="mt-auto ms-4 version-container d-flex flex-column" >
-            <div>1.0.1</div>
-            <div>2021.08.29.</div>
-            <div><a href="mailto:klucsik.krisztian@gmail.com">support</a></div>
-        </div>
 
 
         <div class="bush-container">
@@ -52,22 +49,15 @@
             <div th:insert="fragments/svgs/bush"></div>
         </div>
 
-        <div style="position: relative">
-            <div class="d-flex flex-row align-items-center" style="height: 25px; width: 100px; position: absolute; bottom: 0; left: 0; background-color: #262c37">
-                <div>1.0.1</div>
-                <div>2021.08.29.</div>
-                <div><a href="mailto:klucsik.krisztian@gmail.com">support</a></div>
+    </div>
+    <div class="support-container">
+        <div class="d-flex flex-row flex-wrap align-items-center">
+            <div class="gear-icon" th:insert="fragments/svgs/gear-icon"></div>
+            <span class="support-text">Support</span>
         </div>
+        <div class='support-text col-sm-8' style="display: none">
+            <a href="mailto:klucsik.krisztian@gmail.com" class="support-mail">support mail address</a>
+            <span> | version: 1.0.1 2021.08.29.</span>
         </div>
-
-
     </div>
 </div>
-
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-
-
-    /*]]>*/
-</script>

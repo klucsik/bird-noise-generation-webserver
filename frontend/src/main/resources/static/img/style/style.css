@@ -44,13 +44,14 @@ body {
 
 .menu-item {
     width: -webkit-fill-available;
+    margin-top: 0.3rem;
 }
 
-.stripe {
-    border-bottom: 3px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);
-}
+/*.stripe {*/
+/*    border-bottom: 3px solid;*/
+/*    border-image-slice: 1;*/
+/*    border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);*/
+/*}*/
 
 .menu-item a {
     display: flex;
@@ -121,13 +122,15 @@ body {
 
 .narrow-menu-icon:hover,
 a.nav-link.menu-icon:hover {
-    background: linear-gradient(90deg, #084957 4%, transparent 4%, rgba(8, 73, 87, 0.12) 50%, transparent 100%)
+    /*//todo, ide vmi animációt tenni*/
+    /*background: linear-gradient(90deg, #084957 4%, transparent 4%, rgba(8, 73, 87, 0.12) 50%, transparent 100%)*/
+
 }
 
 
 .hamburger-menu svg,
 .menu-icon svg {
-    fill: whitesmoke;
+    fill: var(--menu-text-color);
     width: 20px;
 }
 
@@ -149,7 +152,6 @@ a.nav-link.menu-icon:hover {
 .info-card {
     height: 13rem;
     width: 14rem;
-    /*background-color: #FCFBF8;*/
     background: linear-gradient(0deg, rgba(0, 128, 0, 0.1), transparent);
     box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
     margin-top: 20px !important;
@@ -272,6 +274,7 @@ select[name="playParamTable_length"] {
         display: flex;
         flex-direction: column;
     }
+
     .menu-item-container {
         width: -webkit-fill-available;
     }
@@ -283,7 +286,7 @@ select[name="playParamTable_length"] {
 
 .create-new-button {
     border-radius: 0 !important;
-    text-decoration:  none !important;
+    text-decoration: none !important;
     color: whitesmoke !important;
     width: 100%;
     background-color: #53A86B;
@@ -299,17 +302,59 @@ select[name="playParamTable_length"] {
     cursor: pointer;
 }
 
+.underline {
+    z-index: -1;
+    position: absolute;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    transition: transform 0.5s cubic-bezier(0.33, 1.61, 0, 0.83);
+    cursor: pointer;
+}
 
-/*.tree {*/
-/*    margin-left: -5px;*/
-/*    position: fixed;*/
-/*    top: 0;*/
-/*}*/
+.underline.background {
+    background: #23687d;
+    z-index: -2;
+    cursor: pointer;
+}
 
-/*.bush {*/
-/*    position: fixed;*/
-/*    bottom: 0;*/
-/*    margin-bottom: -4px;*/
-/*    margin-left: -4px;*/
-/*    z-index: 10;*/
-/*}*/
+#gearIcon:hover {
+    animation: gear 1s infinite linear;
+}
+
+.support-container {
+    cursor: pointer;
+    justify-content: space-evenly;
+    width: 105px;
+    padding: 8px;
+    z-index: 100;
+    background-color: #333333;
+    position: fixed;
+    bottom: 0;
+    border-top-right-radius: 14px;
+}
+
+.gear-icon {
+    width: 20px;
+    height: auto;
+}
+
+.support-text {
+    font-size: .75rem;
+    padding: 0 10px;
+}
+
+.support-mail {
+    color: #e3d1c3 !important;
+}
+
+@keyframes gear {
+    from {
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+    to {
+        transform: rotate(60deg);
+        transform-origin: center;
+    }
+}

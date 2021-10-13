@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>devicePlayParam</title>
 
@@ -16,8 +16,7 @@
             <div class="button-primary">
                 <a th:href='${#strings.concat("/devicePlayParam/new?id=", deviceId)}'>Create new devicePlayParam</a>
             </div>
-            <div class=" mt-5 table-custom-style
-            ">
+            <div class="mt-5 table-custom-style">
                 <table id="devicePlayParamTable" class="table table-striped">
                     <thead>
                     <tr>
@@ -25,73 +24,48 @@
                         <th>playParam</th>
                         <th>startTime</th>
                         <th>stopTime</th>
-                        <th>status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                 </table>
             </div>
         </div>
-
-        <div th:insert="fragments/_foot_includes"></div>
-
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-            var tableData = /*[[${devicePlayParamDtos}]]*/;
-            var deviceId = /*[[${deviceId}]]*/;
-            console.log(tableData);
-
-            $('#devicePlayParamTable').DataTable({
-                data: tableData,
-                // select: true
-                columns: [
-                    {data: 'id'},
-                    {
-                        data: 'playParam',
-                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<span><a href='/playParam/page'>" + "[" + oData.playParam.name + "]" + "</a></span>");
-                        }
-                    },
-                    {data: 'startTime'},
-                    {data: 'stopTime'},
-                    {data: 'status'},
-                    {
-                        data: 'id',
-                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            var isDraft = oData.status.toString() == "DRAFT" ? true:false;
-                            var isDeployable = oData.status.toString() == "DEPLOYABLE" ? true:false;
-
-                            if (isDraft) {
-                                $(nTd).html("" +
-                                    "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
-                                    "<span><a href='/devicePlayParam/setToDeleted?DPPId=" + oData.id + "'> Delete</a></span>" + " " +
-                                    "<span><a href='/devicePlayParam/setToDeployable?DPPId=" + oData.id + "'> Change to deployable</a></span>"
-                                );
-                            }
-                            if (isDeployable) {
-                                $(nTd).html("" +
-                                    "<span><a href='/devicePlayParam/setToDraft?DPPId=" + oData.id + "'> Change to draft</a></span>"
-                                );
-                            }
-
-                            /*$(nTd).html("" +
-                                "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
-                                "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" + " " +
-                                "<span><a th:if='isDeployable == true'} href='/devicePlayParam/setToDeployable?deviceId=" + deviceId + "'> Change to deployable</a></span>"
-                                //TODO Make devicePlayParam status frontend part whit if!!!!
-                             ); */
-
-                        },
-                        searchable: false
-                    }
-                ]
-            })
-            ;
-
-            /*]]>*/
-        </script>
     </div>
-    </form>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var tableData = /*[[${devicePlayParamDtos}]]*/;
+    console.log(tableData);
+
+    $('#devicePlayParamTable').DataTable({
+        data: tableData,
+        // select: true,
+        columns: [
+            {data: 'id'},
+            {
+                data: 'playParam',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<span><a href='/playParam/page'>" + "[" + oData.playParam.name + "]" + "</a></span>");
+                }
+            },
+            {data: 'startTime'},
+            {data: 'stopTime'},
+            {
+                data: 'id',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> <span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>");
+
+                },
+                searchable: false
+            }
+        ]
+    });
+
+    /*]]>*/
+</script>
 </body>
 
 </html>
