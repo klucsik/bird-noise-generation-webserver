@@ -15,6 +15,7 @@
 
     const openHowTo = () => {
         const howToText = $("span.how-to-text").text();
+        console.debug("++ howToText ++ ", howToText)
         let short = howToText;
         short = short.slice(0, 75);
         if (howToIsOpen) {
@@ -30,14 +31,77 @@
         }
     };
 
+    $("div.menu-item").on({
+        mouseenter: function () {
+            const link = $(this)[0].getBoundingClientRect();
 
-    $("a.nav-link.menu-icon").hover(
-        function () {
-            $(this).addClass("svg-hover")
+            const xPos = link.width / 2 + link.left;
+            const yPos = link.top - 50;
+
+            const translate = "translate(" + xPos + "px," + yPos + "px)";
+            const scale = `scale(${link.width + 60},${link.height + 20})`;
+
+            $("div.underline").css({
+                transform: translate + " " + scale,
+                transformOrigin: "center"
+            });
         },
-        function () {
-            $(this).removeClass("svg-hover")
+        mousedown: function () {
+            // todo mi legyen az annimáció "lenyomáskor"
+            console.debug("down")
+            $(this).css()
         }
-    )
+    });
+
+    $("div.menu-item-container").on({
+        mouseleave: function () {
+            $("div.underline").css({
+                transform: "scale(0,0) translate(0px,0px)"
+            })
+        }
+    });
+
+    $("g#g1389").hover(
+        function () {
+            $(this).css({
+                transform: "translate(3px, 44px)",
+                transition: "all 150ms ease-in-out"
+            });
+            $("g#g1642").css({
+                transform: "rotate(11deg)",
+                transformOrigin: "top",
+                transition: "all 150ms ease-in-out"
+            });
+            $("path#path1200").animate()
+            setTimeout(function () {
+                $("g#g1389").css({
+                    transform: "translate(3px, 48px) ",
+                    transition: "all 150ms ease-in-out"
+                });
+                $("g#g1642").css({
+                    transform: "rotate(0deg)",
+                    transformOrigin: "top",
+                    transition: "all 150ms ease-in-out"
+                });
+            }, 350);
+        }, function () {
+        }
+    );
+
+    let toggleSupportDiv = false;
+
+    $("div.support-container").click(function () {
+        if (toggleSupportDiv) {
+            $(this).removeClass("row");
+            $("div.support-container div").removeClass("col-sm-4");
+            $("div.support-text.col-sm-8").hide();
+            toggleSupportDiv = false;
+        } else {
+            $(this).addClass("row");
+            $("div.support-container div").addClass("col-sm-4");
+            $("div.support-text.col-sm-8").toggle();
+            toggleSupportDiv = true;
+        }
+    })
 
 </script>
