@@ -13,20 +13,31 @@
 
     let howToIsOpen = false;
 
+    //ez jöhet be-ről is
+    const howTo = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has\n" +
+        " been the industry's standard dummy text ever since the 1500s, when an unknown printer took a\n" +
+        " galley of type and scrambled it to make a type specimen book. It has survived not only five\n" +
+        " centuries.";
+
+    const readMore =" read more >>";
+    const showLess =" << show less";
+
+    let short = howTo;
+    short = short.slice(0, 75);
+    $("span.how-to-text").text(short);
+    $("span.read-more").text(readMore);
+
+
     const openHowTo = () => {
-        const howToText = $("span.how-to-text").text();
-        console.debug("++ howToText ++ ", howToText)
-        let short = howToText;
-        short = short.slice(0, 75);
+        const howToText = howTo;
         if (howToIsOpen) {
             $("span.how-to-text").text(short);
+            $("span.read-more").text(readMore);
             howToIsOpen = false;
-            console.debug("howToIsOpen", howToIsOpen)
         } else {
             $("span.how-to-text").text(howToText);
+            $("span.read-more").text(showLess);
             howToIsOpen = true;
-            console.debug("howToIsOpen", howToIsOpen)
-            console.debug("howToText", howToText)
 
         }
     };
@@ -36,7 +47,8 @@
             const link = $(this)[0].getBoundingClientRect();
 
             const xPos = link.width / 2 + link.left;
-            const yPos = link.top - 50;
+            const yPos = (link.top + link.height / 2) - 80;
+            console.debug("yPos ", yPos)
 
             const translate = "translate(" + xPos + "px," + yPos + "px)";
             const scale = `scale(${link.width + 60},${link.height + 20})`;

@@ -13,21 +13,22 @@
     <div class="col-sm-11">
         <div class="row justify-content-center">
             <div class="col-sm-10 d-flex justify-content-center">
-                <h3 class="mt-2 mb-5 p-4 box-shadow" style="background-color: rgba(255,228,196,0.5)">
+                <h3 class="mb-2 p-4 page-title">
                     <span>Playing parameters</span>
-                    <span th:insert="fragments/svgs/play-params-icon" class="title-icon"></span>
                 </h3>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <div th:insert="fragments/_messages"></div>
-                <a href='/playParam/new' class="create-new-button box-shadow p-2">Create new playParam >> </a>
+                <div class="col-3 mt-3">
+                    <a href='/playParam/new' class="create-new-button">Create new play param</a>
+                </div>
             </div>
         </div>
 
-        <div class="mt-5 row d-flex justify-content-center">
-            <div class="col-sm-10" style="position: relative">
+        <div class="mt-3 row d-flex justify-content-center">
+            <div class="col-sm-10">
                 <div class="table-custom-style p-4">
                     <table id="playParamTable" class="table table-striped">
                         <thead>

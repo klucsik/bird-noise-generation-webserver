@@ -15,67 +15,100 @@
             <div class="col-sm-10 d-flex justify-content-center">
                 <div th:insert="fragments/_messages"></div>
                 <form class="row g-1" th:action="@{save}" method="post" th:object="${playParamDto}">
-                    <h3 class="row p-3 box-shadow d-flex justify-content-center"
-                        style="background-color: rgba(255,228,196,0.5)">Create new play parameter</h3>
+                    <div class="d-flex justify-content-center">
+                        <h3 class="mb-2 p-4 page-title">
+                            <span>Create new play parameter</span>
+                        </h3>
+                    </div>
                     <div>
                         <input type="hidden" id="id"
                                th:field="*{id}" readonly>
                     </div>
-                    <div class="row mt-4 mb-4"
-                         style="box-shadow: 10px 10px rgba(0, 0, 0, 0.25); background-color: rgba(255,218,44,0.5);">
-                        <div class="p-2 how-to-box">
+                    <div class="row mt-2 mb-2 how-to-box">
+                        <div class="p-2">
                             <span class="how-to">How to: </span>
-                            <span class="how-to-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries.
+                            <span class="how-to-text">
                             </span>
-                            <span class="read-more" onclick="openHowTo()">read more >></span>
+                            <span class="read-more" onclick="openHowTo()"> read more >></span>
                         </div>
                     </div>
-                    <div class="row mb-4"
-                         style="box-shadow: 10px 10px rgba(0, 0, 0, 0.25); background-color: rgba(255,228,196,0.5)">
+                    <div class="row mb-2 form-item-container">
                         <div class="row m-2">
                             <div class="col-1">
-                                <label for="name" style="font-weight: 600">Name</label>
+                                <label for="name" class="fw-600">Name</label>
                             </div>
                             <div class="col-11">
-                                <input type="text" id="name" style="border: none"
+                                <input type="text" id="name"
                                        th:field="*{name}" required>
                             </div>
                         </div>
                         <div class="row m-2">
                             <div class="col-1">
-                                <label for="vol" style="font-weight: 600">Volume</label>
+                                <label for="vol" class="fw-600">Volume</label>
                             </div>
                             <div class="col-11">
-                                <input type="number" id="vol" style="border: none"
+                                <input type="number" id="vol"
                                        th:field="*{vol}" required>
                             </div>
                         </div>
 
                     </div><!--Big frontend hack for more consistent view-->
-                    <div class="row mb-4"
-                         style="box-shadow: 10px 10px rgba(0, 0, 0, 0.25); background-color: rgba(255,228,196,0.5)">
+                    <div class="row mb-2 form-item-container">
                         <div class="row m-2">
-                            <div class="col-1">
-                                <label for="playUnits" style="font-weight: 600">Play Units</label>
+                            <div class="col-12">
+                                <label for="playUnitsCol1" class="fw-600">Play Units</label>
                             </div>
-                            <div class="col-11">
-                                <div class="row mb-4">
-                                    <div class="col-sm-6 g-1 d-flex" th:each="playUnit : *{playUnits}" id="playUnits"
-                                         style="min-width: 150px">
-                                        <label class="d-flex align-items-center"
-                                               th:text="${playUnit.getKey() + '. hour'}"
-                                               style="min-width: 100px; max-width: 100px; box-shadow: 10px 10px rgba(0, 0, 0, 0.25); height: 35px; background-color: bisque; padding-left: 10px; padding-right: 10px"></label>
-                                        <select style="min-width: 100px; background-color: azure; box-shadow: 10px 10px rgba(0, 0, 0, 0.25); border: none; height: 35px"
-                                                th:field="*{playUnits[__${playUnit.getKey()}__]}">
-                                            <option value=""> --</option>
-                                            <option th:each="optionPlayUnit : ${playUnitList}"
-                                                    th:value="${optionPlayUnit}"
-                                                    th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackList() ) }"
-                                            ></option>
-                                        </select>
+                            <div class="col-12">
+                                <div class="row mb-3 mt-4">
+                                    <div class="col-6">
+                                        <div class="d-flex justify-content-center position-relative">
+                                            <span class="am-pm-container">AM</span>
+                                        </div>
+                                        <div class="d-flex align-items-center flex-column pt-5 pb-3 column-container">
+                                            <div th:insert="fragments/svgs/moon-icon" class="day-icon-top"></div>
+                                            <div th:insert="fragments/svgs/sun-icon" class="day-icon-bottom"></div>
+                                            <div class="col-sm-6 g-1 d-flex justify-content-center"
+                                                 th:each="playUnit : *{playUnits}"
+                                                 id="playUnitsCol1">
+                                                <div th:if="${playUnit.getKey()<13}" class="d-flex m-1">
+                                                    <label class="d-flex align-items-center hour-container"
+                                                           th:text="${playUnit.getKey() + ':00'}"></label>
+                                                    <select class="hour-select"
+                                                            th:field="*{playUnits[__${playUnit.getKey()}__]}">
+                                                        <option value=""> --</option>
+                                                        <option th:each="optionPlayUnit : ${playUnitList}"
+                                                                th:value="${optionPlayUnit}"
+                                                                th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackList() ) }"
+                                                        ></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex justify-content-center position-relative">
+                                            <span class="am-pm-container">PM</span>
+                                        </div>
+                                        <div class="d-flex align-items-center flex-column pt-5 pb-3 column-container">
+                                            <div th:insert="fragments/svgs/sun-icon" class="day-icon-top"></div>
+                                            <div th:insert="fragments/svgs/moon-icon" class="day-icon-bottom"></div>
+                                            <div class="col-sm-6 g-1 d-flex justify-content-center"
+                                                 th:each="playUnit : *{playUnits}"
+                                                 id="playUnitsCol2">
+                                                <div th:if="${playUnit.getKey()>12}" class="d-flex m-1">
+                                                    <label class="d-flex align-items-center hour-container"
+                                                           th:text="${playUnit.getKey() + ':00'}"></label>
+                                                    <select class="hour-select"
+                                                            th:field="*{playUnits[__${playUnit.getKey()}__]}">
+                                                        <option value=""> --</option>
+                                                        <option th:each="optionPlayUnit : ${playUnitList}"
+                                                                th:value="${optionPlayUnit}"
+                                                                th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackList() ) }"
+                                                        ></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +116,8 @@
                     </div>
 
                     <div class="row m-4 justify-content-sm-start">
-                        <div class="d-grid col-3">
-                            <button type="submit" class="btn create-new-button box-shadow p-2">Save play param</button>
+                        <div class="col-3">
+                            <button type="submit" class="btn create-new-button p-2">Save play param</button>
                         </div>
                     </div>
                 </form>

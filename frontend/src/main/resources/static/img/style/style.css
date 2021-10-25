@@ -25,6 +25,11 @@ body {
     width: 2rem;
 }
 
+
+.page-title {
+    color: #23687d
+}
+
 .tree-container {
     margin-left: -5px;
     position: fixed;
@@ -47,12 +52,6 @@ body {
     margin-top: 0.3rem;
 }
 
-/*.stripe {*/
-/*    border-bottom: 3px solid;*/
-/*    border-image-slice: 1;*/
-/*    border-image-source: linear-gradient(to left, #298ba0, #084957, #298ba0);*/
-/*}*/
-
 .menu-item a {
     display: flex;
     align-items: center;
@@ -61,8 +60,7 @@ body {
 
 .menu-item a div {
     color: var(--menu-text-color);
-    font-variant: small-caps;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 .menu-icon div:last-child {
@@ -223,6 +221,8 @@ a.nav-link.menu-icon:hover {
 
 
 input[type=search],
+input[type=text],
+input[type=number],
 select[name=taskBasket_length] {
     background-color: ghostwhite !important;
     border: none !important;
@@ -261,9 +261,8 @@ select[name="playParamTable_length"] {
 }
 
 .table-custom-style {
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
-    background: linear-gradient(0deg, rgba(41, 139, 160, 0.1), rgba(255, 228, 196, 0.31));
-}
+    background-color: rgba(41, 139, 160, 0.2);
+  }
 
 #deviceTable {
     width: fit-content !important;
@@ -288,8 +287,15 @@ select[name="playParamTable_length"] {
     border-radius: 0 !important;
     text-decoration: none !important;
     color: whitesmoke !important;
+    min-width: 160px;
     width: 100%;
     background-color: #53A86B;
+    font-weight: 600;
+    padding: .5rem 2rem;
+}
+
+.how-to-box {
+    background-color: rgba(255,247,157,0.5);
 }
 
 .how-to {
@@ -300,6 +306,58 @@ select[name="playParamTable_length"] {
 .read-more {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.form-item-container {
+    background-color: rgba(41, 139, 160, 0.2);
+}
+
+.fw-600 {
+    font-weight: 600
+}
+
+.column-container {
+    background-color: whitesmoke;
+    position: relative
+}
+
+.am-pm-container {
+    background-color: #23687d;
+    color: whitesmoke;
+    font-size: 1.5rem;
+    padding: .7rem 1rem;
+    width: fit-content;
+    position: absolute;
+    top: -1.5rem; z-index: 1
+}
+
+.day-icon-top {
+    position: absolute;
+    top: 55px;
+    left: 40px
+}
+
+.day-icon-bottom {
+    position: absolute;
+    bottom: 25px;
+    left: 40px
+}
+
+.hour-container {
+    min-width: 65px;
+    max-width: 65px;
+    height: 35px;
+    background-color: #F1C59D;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 600
+}
+
+.hour-select {
+    min-width: 250px;
+    background-color: #E5E9EF;
+    border: none;
+    height: 35px
 }
 
 .underline {
