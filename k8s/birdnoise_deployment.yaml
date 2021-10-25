@@ -81,18 +81,22 @@ spec:
                   name: postgres-credentials
                   key: postgres_password
 
+          startupProbe:
+            httpGet:
+              path: /api/actuator/health/liveness
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /api/actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /api/actuator/health/readiness
               port: 8080
-            initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 10
 ---
@@ -175,7 +179,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:10.4
+          image: postgres:14
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
@@ -198,11 +202,11 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgredb
+              subPath: postgres
       volumes:
         - name: postgredb
           persistentVolumeClaim:
             claimName: postgresql-db
-
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -210,13 +214,12 @@ metadata:
   name: postgresql-db
   namespace: birdnoise-BRANCHNAME
 spec:
-  storageClassName: local-precious #storage class with raid 0
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1G
-
+  storageClassName: longhorn-2
 
 
 ---

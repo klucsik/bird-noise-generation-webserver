@@ -1,5 +1,6 @@
 * TECHNICAL FEATURE: Added postgreSQL database for k8s deployments
 * FEATURE: Added logging to devices
+* TECHNICAL_FEATURE: moved build agent into the k8s cluster
 
 # Version 1.0.0
 * FEATURE: Added Frontend
