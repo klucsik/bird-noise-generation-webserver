@@ -1,9 +1,11 @@
 :root {
-    --menu-text-color: #ffebdc;
+    --page-white: #F5F5F5;
+    --dark-blue: #23687d;
+    --lighter-blue: #298BA0;
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: var(--page-white);
 }
 
 .bird {
@@ -15,8 +17,8 @@ body {
 }
 
 .main-menu {
-    background-color: #298BA0;
-    color: var(--menu-text-color);
+    background-color: var(--lighter-blue);
+    color: var(--page-white);
     position: relative;
     min-width: 145px;
 }
@@ -27,7 +29,7 @@ body {
 
 
 .page-title {
-    color: #23687d
+    color: var(--dark-blue)
 }
 
 .tree-container {
@@ -59,7 +61,7 @@ body {
 }
 
 .menu-item a div {
-    color: var(--menu-text-color);
+    color: var(--page-white);
     font-size: 1rem;
 }
 
@@ -79,7 +81,7 @@ body {
 }
 
 .version-container a {
-    color: var(--menu-text-color);
+    color: var(--page-white);
     text-decoration: none;
 }
 
@@ -128,7 +130,7 @@ a.nav-link.menu-icon:hover {
 
 .hamburger-menu svg,
 .menu-icon svg {
-    fill: var(--menu-text-color);
+    fill: var(--page-white);
     width: 20px;
 }
 
@@ -214,7 +216,7 @@ a.nav-link.menu-icon:hover {
 }
 
 #taskBasket_wrapper {
-    background-color: var(--menu-text-color);
+    background-color: var(--page-white);
     box-shadow: 10px 10px #e3d1c3;
     padding: 10px;
 }
@@ -237,27 +239,27 @@ select[name=taskBasket_length] {
 }
 
 select[name="playParamTable_length"] {
-    background-color: whitesmoke !important;
+    background-color: var(--page-white) !important;
     border: none !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     border: none;
-    background: linear-gradient(to top, #298BA0, #298BA0);
-    color: whitesmoke !important;
+    background-color: var(--lighter-blue);
+    color: var(--page-white) !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     border: none;
-    background: linear-gradient(to top, #298BA0, #298BA0);
+    background-color: var(--lighter-blue);
     filter: brightness(0.9);
-    color: whitesmoke !important;
+    color: var(--page-white) !important;
 }
 
 #deviceTable_length > label > select {
     border: none;
-    background-color: whitesmoke;
+    background-color: var(--page-white);
 }
 
 .table-custom-style {
@@ -286,7 +288,7 @@ select[name="playParamTable_length"] {
 .create-new-button {
     border-radius: 0 !important;
     text-decoration: none !important;
-    color: whitesmoke !important;
+    color: var(--page-white) !important;
     min-width: 160px;
     width: 100%;
     background-color: #53A86B;
@@ -317,13 +319,13 @@ select[name="playParamTable_length"] {
 }
 
 .column-container {
-    background-color: whitesmoke;
+    background-color: var(--page-white);
     position: relative
 }
 
 .am-pm-container {
-    background-color: #23687d;
-    color: whitesmoke;
+    background-color: var(--dark-blue);
+    color: var(--page-white);
     font-size: 1.5rem;
     padding: .7rem 1rem;
     width: fit-content;
@@ -371,7 +373,7 @@ select[name="playParamTable_length"] {
 }
 
 .underline.background {
-    background: #23687d;
+    background: var(--dark-blue);
     z-index: -2;
     cursor: pointer;
 }
