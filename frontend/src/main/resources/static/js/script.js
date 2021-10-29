@@ -1,52 +1,58 @@
-$(document).ready(() => {
+let howToIsOpen = false;
+const readMore = " read more >>";
+const showLess = " << show less";
+let longText = '';
+let shortText = '';
 
-    let onLoaded = window.sessionStorage.getItem('onload');
-    console.debug(onLoaded)
-    if (onLoaded==null) {
+
+$(document).ready(() => {
+    let currentHowTo = $("div.how-to-container").attr('id');
+
+    let url = '/static/js/json/data.json';
+    const getJsonData = async () => {
+        let response = await fetch(url)
+            .then(r => r.json())
+            .then((data) => {
+                longText = data[currentHowTo] || "";
+                shortText = longText.slice(0, 75);
+                $("span.how-to-text").text(shortText);
+            })
+    };
+
+    $("div.how-to-container").length !=0 && getJsonData(url).then(r => {});
+
+    let onLoaded = sessionStorage.getItem('onload');
+    if (onLoaded == null) {
         onLoaded = 0;
-        window.sessionStorage.setItem('current', 'device');
+        sessionStorage.setItem('current', 'device');
     }
     onLoaded++;
-    window.sessionStorage.setItem('onload', `${onLoaded}`)
+    sessionStorage.setItem('onload', `${onLoaded}`)
 
-    let currentLocationFromSessionStorage = window.sessionStorage.getItem('current');
-    $(`a.nav-link[title=${currentLocationFromSessionStorage}]`).css({background: "linear-gradient(90deg, #194e5e 10%, transparent 10%)", zIndex:2});
+    let currentLocationFromSessionStorage = sessionStorage.getItem('current');
+    $(`a.nav-link[title=${currentLocationFromSessionStorage}]`).css({
+        background: "linear-gradient(90deg, #194e5e 10%, transparent 10%)",
+        zIndex: 2
+    });
+
 });
 
 
 const currentLocation = window.location.pathname.split(/\//g)[1];
 let selectedMenuitem = "";
-let myStorage = window.sessionStorage;
+let sessionStorage = window.sessionStorage;
 
 
-let howToIsOpen = false;
-
-//ez jöhet be-ről is
-const howTo = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has\n" +
-    " been the industry's standard dummy text ever since the 1500s, when an unknown printer took a\n" +
-    " galley of type and scrambled it to make a type specimen book. It has survived not only five\n" +
-    " centuries.";
-
-const readMore = " read more >>";
-const showLess = " << show less";
-
-let short = howTo;
-short = short.slice(0, 75);
-$("span.how-to-text").text(short);
-$("span.read-more").text(readMore);
-
-
+//kiválasztani a keyt és paramban odaadni
 const openHowTo = () => {
-    const howToText = howTo;
     if (howToIsOpen) {
-        $("span.how-to-text").text(short);
+        $("span.how-to-text").text(shortText);
         $("span.read-more").text(readMore);
         howToIsOpen = false;
     } else {
-        $("span.how-to-text").text(howToText);
+        $("span.how-to-text").text(longText);
         $("span.read-more").text(showLess);
         howToIsOpen = true;
-
     }
 };
 
@@ -69,7 +75,7 @@ $("div.menu-item").on({
     click: function () {
         // todo mi legyen az annimáció "lenyomáskor"
         selectedMenuitem = $(this).children('a.nav-link').attr('title');
-        myStorage.setItem("current", selectedMenuitem);
+        sessionStorage.setItem("current", selectedMenuitem);
     }
 });
 
@@ -92,7 +98,7 @@ $("g#g1389").hover(
             transformOrigin: "top",
             transition: "all 150ms ease-in-out"
         });
-        $("path#path1200").animate()
+        $("path#path1200").animate();
         setTimeout(function () {
             $("g#g1389").css({
                 transform: "translate(3px, 48px) ",

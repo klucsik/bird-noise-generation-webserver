@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>PlayUnit</title>
 
@@ -12,22 +12,38 @@
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
         <div class="row justify-content-center">
-            <div th:insert="fragments/_messages"></div>
-            <a href='/playUnit/new'>Create new playUnit</a>
+            <div class="col-sm-10 d-flex justify-content-center">
+                <h3 class="mb-2 p-4 page-title">
+                    <span>Playing units</span>
+                </h3>
+            </div>
         </div>
-        <div class="mt-5 table-custom-style">
-            <table id="playUnitTable" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>minPause</th>
-                    <th>maxPause</th>
-                    <th>trackList</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-            </table>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div th:insert="fragments/_messages"></div>
+                <div class="col-3 mt-3">
+                    <a href='/playUnit/new' class="create-new-button">Create new play unit</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3 row d-flex justify-content-center">
+            <div class="col-sm-10">
+                <div class="table-custom-style p-4">
+                    <table id="playUnitTable" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>minPause</th>
+                            <th>maxPause</th>
+                            <th>trackList</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -47,14 +63,16 @@
             {data: 'name'},
             {data: 'minPause'},
             {data: 'maxPause'},
-            {data: 'trackList',
+            {
+                data: 'trackList',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("["+ oData.trackList.map(track =>  track.trackNumber) + "]");
+                    $(nTd).html("[" + oData.trackList.map(track => track.trackNumber) + "]");
                 }
             },
-            {data: 'id',
+            {
+                data: 'id',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<span><a href='/playUnit/"+oData.id+"'><span>edit</span></a></span> <span><a href='/playUnit/"+oData.id+"/delete'><span>delete</span></a></span>");
+                    $(nTd).html("<span><a href='/playUnit/" + oData.id + "'><span>edit</span></a></span> <span><a href='/playUnit/" + oData.id + "/delete'><span>delete</span></a></span>");
 
                 },
                 searchable: false
