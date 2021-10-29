@@ -24,13 +24,8 @@
                         <input type="hidden" id="id"
                                th:field="*{id}" readonly>
                     </div>
-                    <div class="row mt-2 mb-2 how-to-box">
-                        <div class="p-2">
-                            <span class="how-to">How to: </span>
-                            <span class="how-to-text">
-                            </span>
-                            <span class="read-more" onclick="openHowTo()"> read more >></span>
-                        </div>
+                    <div class="how-to-container" id="howToTextInPlayParamSavePage">
+                        <div th:insert="fragments/_howto"></div>
                     </div>
                     <div class="row mb-2 form-item-container">
                         <div class="row m-2">

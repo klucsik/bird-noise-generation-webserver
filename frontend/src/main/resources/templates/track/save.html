@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create/Modify Track</title>
 
@@ -12,46 +12,57 @@
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
         <div class="row justify-content-center">
-            <div th:insert="fragments/_messages"></div>
-            <form class="row g-1" th:action="@{save}" method="post" th:object="${trackDto}">
-                <div class="row fs-1 p-3" th:text="${title}"></div>
-                <div class="row">
+            <div class="col-sm-10 d-flex justify-content-center">
+                <div th:insert="fragments/_messages"></div>
+                <form class="row g-1" th:action="@{save}" method="post" th:object="${trackDto}">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="mb-2 p-4 page-title">
+                            <span th:text="${title}">Create new play parameter</span>
+                        </h3>
+                    </div>
                     <div>
-                        <input type="hidden"  id="id"
+                        <input type="hidden" id="id"
                                th:field="*{id}" readonly>
                     </div>
-
-                    <div class="col-4">
-                        <label for="name" >Name</label>
+                    <div class="how-to-container" id="howToTextInTextSavePage">
+                        <div th:insert="fragments/_howto"></div>
                     </div>
-                    <div class="col-8">
-                        <input type="text"  id="name"
-                               th:field="*{name}" required>
-                    </div>
-
-                    <div class="col-4">
-                        <label for="trackNumber" >Tracknumber</label>
-                    </div>
-                    <div class="col-8">
-                        <input type="number"  id="trackNumber"
-                               th:field="*{trackNumber}" required>
-                    </div>
-
-                    <div class="col-4">
-                        <label for="length" >Length</label>
-                    </div>
-                    <div class="col-8">
-                        <input type="number"  id="length"
-                               th:field="*{length}" required>
-                    </div>
-                    <div class="row justify-content-sm-center">
-                        <div class="d-grid col-3">
-                            <button type="submit" class="btn btn-sm btn-primary">Save track</button>
+                    <div class="row mb-2 form-item-container">
+                        <div class="row m-2">
+                            <div class="col-1">
+                                <label for="name" class="fw-600">Name</label>
+                            </div>
+                            <div class="col-11">
+                                <input type="text" id="name"
+                                       th:field="*{name}" required>
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-1">
+                                <label for="trackNumber" class="fw-600">Track number</label>
+                            </div>
+                            <div class="col-11">
+                                <input type="number" id="trackNumber"
+                                       th:field="*{trackNumber}" required>
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-1">
+                                <label for="length" class="fw-600">Length</label>
+                            </div>
+                            <div class="col-11">
+                                <input type="number" id="length"
+                                       th:field="*{length}" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-
+                    <div class="row m-4 justify-content-sm-start">
+                        <div class="col-3">
+                            <button type="submit" class="btn create-new-button p-2">Save track</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
