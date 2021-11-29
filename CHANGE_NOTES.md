@@ -1,3 +1,9 @@
+# Version 1.0.2
+* FEATURE:playparam FE, menu FE upgrade
+* TECHNICAL FEATURE: multiarch build
+* TECHNICAL FEATURE: jenkins k8s agent
+# Version 1.0.1
+* FEATURE: Facelift
 * TECHNICAL FEATURE: Added postgreSQL database for k8s deployments
 * FEATURE: Added logging to devices
 * TECHNICAL_FEATURE: moved build agent into the k8s cluster
