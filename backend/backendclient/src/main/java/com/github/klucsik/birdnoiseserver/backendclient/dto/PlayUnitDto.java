@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Data
@@ -29,5 +30,9 @@ public class PlayUnitDto {
             return null;
         }
 
+    }
+
+    public List<Integer> getTrackNumberList(){
+        return this.getTrackList().stream().map(TrackDto::getTrackNumber).collect(Collectors.toList());
     }
 }
