@@ -15,7 +15,7 @@ public interface DevicePlayParamConnector {
     @GetMapping("/{id}")
     ResponseEntity<DevicePlayParamDto> getById(@PathVariable Long id);
 
-    @GetMapping("/page")
+    @GetMapping("/getAllByDevice")
     ResponseEntity<List<DevicePlayParamDto>> getAllByDevice(@RequestParam Long id);
 
     @DeleteMapping("/{id}")
