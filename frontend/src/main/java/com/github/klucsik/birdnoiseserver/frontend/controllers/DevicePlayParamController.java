@@ -99,9 +99,26 @@ public class DevicePlayParamController {
     }
 
     @GetMapping("/setToDeployable")
-    public String setToDeployable(@RequestParam Long playParamId, RedirectAttributes attributes) {
-        String answear = connector.setToDeployable(playParamId).getBody();
-        attributes.addFlashAttribute("message: ", answear);
-        return "devicePlayParam/page";
+    public String setToDeployable(@RequestParam Long DPPId, RedirectAttributes attributes) {
+        String answer = connector.setToDeployable(DPPId).getBody();
+        attributes.addFlashAttribute("message", answer);
+        DevicePlayParamDto DPP = connector.getById(DPPId).getBody();
+        return String.format("redirect:/devicePlayParam/page?id=%d", DPP.getDevice().getId());
+    }
+
+    @GetMapping("/setToDraft")
+    public String setToDraft(@RequestParam Long DPPId, RedirectAttributes attributes) {
+        String answer = connector.setToDraft(DPPId).getBody();
+        attributes.addFlashAttribute("message", answer);
+        DevicePlayParamDto DPP = connector.getById(DPPId).getBody();
+        return String.format("redirect:/devicePlayParam/page?id=%d", DPP.getDevice().getId());
+    }
+
+    @GetMapping("/setToDeleted")
+    public String setToDeleted(@RequestParam Long DPPId, RedirectAttributes attributes) {
+        String answer = connector.setToDeleted(DPPId).getBody();
+        attributes.addFlashAttribute("message", answer);
+        DevicePlayParamDto DPP = connector.getById(DPPId).getBody();
+        return String.format("redirect:/devicePlayParam/page?id=%d", DPP.getDevice().getId());
     }
 }

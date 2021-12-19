@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div th:insert="fragments/_messages"></div>
             <div class="button-primary">
-                <a th:href='${#strings.concat("/devicePlayParam/new?id=", deviceId)}' >Create new devicePlayParam</a>
+                <a th:href='${#strings.concat("/devicePlayParam/new?id=", deviceId)}'>Create new devicePlayParam</a>
             </div>
             <div class="mt-5 table-custom-style">
                 <table id="devicePlayParamTable" class="table table-striped">
@@ -45,21 +45,28 @@
             // select: true,
             columns: [
                 {data: 'id'},
-                {data: 'playParam',
+                {
+                    data: 'playParam',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<span><a href='/playParam/page'>"+ "["+ oData.playParam.name + "]" +"</a></span>");
-                    }},
+                        $(nTd).html("<span><a href='/playParam/page'>" + "[" + oData.playParam.name + "]" + "</a></span>");
+                    }
+                },
                 {data: 'startTime'},
                 {data: 'stopTime'},
                 {data: 'status'},
-                {data: 'id',
+                {
+                    data: 'id',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("" +
-                            "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " +
-                            "<span><a href='/devicePlayParam/" + oData.id + "/delete'><span>delete</span></a></span>" +
-                            "<span><a href='/devicePlayParam/setDeployable?playParamId=" + oData.playParam.id + "'>Change to deployable</a></span>" //TODO Make devicePlayParam status frontend part
-                        );
-
+                        if (oData.status == "DEPLOYABLE") {
+                            $(nTd).html("<span><a href='/devicePlayParam/setToDraft?DPPId=" + oData.id + "'>Change to draft</a></span>")
+                        }
+                        if (oData.status == "DRAFT") {
+                            $(nTd).html(
+                                "<span><a href='/devicePlayParam/" + oData.id + "'><span>edit</span></a></span> " + " " +
+                                "<span><a href='/devicePlayParam/setToDeleted?DPPId=" + oData.id + "'><span>delete</span></a></span>" + " " +
+                                "<span><a href='/devicePlayParam/setToDeployable?DPPId=" + oData.id + "'>Change to deployable</a></span>"
+                            );
+                        }
                     },
                     searchable: false
                 }

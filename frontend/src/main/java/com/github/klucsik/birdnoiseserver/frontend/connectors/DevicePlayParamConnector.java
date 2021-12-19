@@ -22,11 +22,11 @@ public interface DevicePlayParamConnector {
     ResponseEntity<DevicePlayParamDto> delete(@PathVariable Long id);
 
     @GetMapping("/setToDeployable")
-    ResponseEntity<String> setToDeployable(@RequestParam Long playParamId);
+    ResponseEntity<String> setToDeployable(@RequestParam Long DPPId);
 
     @GetMapping("/setToDraft")
-    ResponseEntity<String> setToDraft(@RequestParam Long playParamId);
+    ResponseEntity<String> setToDraft(@RequestParam Long DPPId);
 
     @GetMapping("/setToDeleted")
-    ResponseEntity<String> setToDeleted(@RequestParam Long playParamId);
+    ResponseEntity<String> setToDeleted(@RequestParam Long DPPId);
 }
