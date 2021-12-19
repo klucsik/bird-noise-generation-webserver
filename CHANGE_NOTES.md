@@ -1,3 +1,4 @@
+* BUG FIX: misleading tracklist display in playparam edit dropdown lists
 # Version 1.0.2
 * FEATURE:playparam FE, menu FE upgrade
 * TECHNICAL FEATURE: multiarch build
