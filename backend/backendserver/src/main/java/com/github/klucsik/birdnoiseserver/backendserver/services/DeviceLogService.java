@@ -1,6 +1,7 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDtoRaw;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,10 @@ public class DeviceLogService {
 
         DeviceLog log = new DeviceLog();
 
+
+
         log.setLoggedTime(data.getTimestamp());
-        log.setContentCode(data.getContentCode()); //TODO: say nice message whit enum
+        log.setContentCode(DeviceLogContentTypes.valueOfNumber(data.getContentCode())); //TODO: say nice message whit enum
         log.setMessage(data.getMessage()); //TODO: say nice message whit enum
         log.setDevice(deviceService.findByChipId(chipId));
         log.setCreatedAt(LocalDateTime.now());

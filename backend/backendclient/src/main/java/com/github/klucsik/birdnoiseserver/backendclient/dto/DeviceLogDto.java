@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendclient.dto;
 
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,7 +14,7 @@ public class DeviceLogDto {
 
     private DeviceDto device;
 
-    private String contentCode;
+    private DeviceLogContentTypes contentCode;
 
     private String message;
 

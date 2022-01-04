@@ -1,5 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendserver.persistence.entity;
 
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,7 +20,7 @@ public class DeviceLog {
     @ManyToOne
     private Device device; //the device who logged.
 
-    private String contentCode; //whats happenin' should be done with enum
+    private DeviceLogContentTypes contentCode; //whats happenin' should be done with enum
 
     private String message; //'Decoded' with *insert enum name here*
 
