@@ -19,12 +19,12 @@ public class DeviceLog {
     @ManyToOne
     private Device device; //the device who logged.
 
-    private String logLevel; //idk honestly probably something to do with contentcode
+    private String contentCode; //whats happenin' should be done with enum
 
-    private String message; //'Decoded' whit *insert enum name here*
+    private String message; //'Decoded' with *insert enum name here*
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt; //Time when created(saved)
 
-    private LocalDateTime loggedTime; //Time from log params form device
+    private String loggedTime; //Time from log params form device right now string should be localdatetime?
 }

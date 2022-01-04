@@ -13,10 +13,12 @@ public class DeviceLogDto {
 
     private DeviceDto device;
 
-    private String logLevel;
+    private String contentCode;
 
     private String message;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
+
+    private String loggedTime;
 }
