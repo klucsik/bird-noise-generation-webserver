@@ -20,9 +20,16 @@ public class DeviceLogController {
     private final DeviceLogService service;
 
     //NO FRONTEND - No frontend tichy touchy here, this is for devices.
+
+    /* OLD SAVE NOT USED JUST LEFT IN FOR A WHILE IF THE NEW ONE IS READY DELETE THIS
     @PostMapping("/save")
     public ResponseEntity<Long> saveDeviceVolt(@RequestParam String chipId, @RequestBody DeviceLogDto dto ) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(service.save(chipId, dto.getLogLevel(),dto.getMessage()), HttpStatus.OK);
+    }*/
+
+    @PostMapping("/save")
+    public ResponseEntity<Long> save(@RequestBody String data) throws MethodArgumentNotValidException {
+        return new ResponseEntity<>(service.save(data), HttpStatus.OK);
     }
 
     @GetMapping("/page/{deviceId}")

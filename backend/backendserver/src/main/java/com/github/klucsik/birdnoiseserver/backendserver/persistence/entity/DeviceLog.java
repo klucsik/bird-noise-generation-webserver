@@ -17,12 +17,14 @@ public class DeviceLog {
     private Long id;
 
     @ManyToOne
-    private Device device;
+    private Device device; //the device who logged.
 
-    private String logLevel;
+    private String logLevel; //idk honestly probably something to do with contentcode
 
-    private String message;
+    private String message; //'Decoded' whit *insert enum name here*
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt; //Time when created(saved)
+
+    private LocalDateTime loggedTime; //Time from log params form device
 }
