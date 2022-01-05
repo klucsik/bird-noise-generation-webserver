@@ -1,6 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendclient.dto;
 
-import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,12 +14,13 @@ public class DeviceLogDto {
 
     private DeviceDto device;
 
-    private DeviceLogContentTypes contentCode;
-
-    private String message;
+    private String contentTypeCode; //sent from device
+    private String contentType; //decoded at BE
+    private String messageCode; //sent from device
+    private String message; //decoded at BE
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
-
-    private String loggedTime;
+    private Long timestamp; //epoch from device
+    private LocalDateTime loggedTime; //time from the epoch timestamp
 }

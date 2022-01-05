@@ -1,9 +1,7 @@
 package com.github.klucsik.birdnoiseserver.backendserver.persistence.entity;
 
-import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,12 +18,13 @@ public class DeviceLog {
     @ManyToOne
     private Device device; //the device who logged.
 
-    private DeviceLogContentTypes contentCode; //whats happenin' should be done with enum
-
-    private String message; //'Decoded' with *insert enum name here*
+    private String contentTypeCode; //sent from device
+    private String contentType; //decoded at BE
+    private String messageCode; //sent from device
+    private String message; //decoded at BE
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt; //Time when created(saved)
-
-    private String loggedTime; //Time from log params form device right now string should be localdatetime?
+    private Long timestamp; //epoch from device
+    private LocalDateTime loggedTime; //time from the epoch timestamp
 }

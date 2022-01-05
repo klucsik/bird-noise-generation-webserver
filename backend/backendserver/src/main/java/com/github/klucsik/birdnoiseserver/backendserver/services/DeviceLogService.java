@@ -1,7 +1,8 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
-import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDtoRaw;
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDto;
 import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogMessageTypes;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -18,36 +19,22 @@ public class DeviceLogService {
     private final DeviceLogRepository repository;
     private final DeviceService deviceService;
 
-    public DeviceLog save(String chipId, DeviceLogDtoRaw data) throws MethodArgumentNotValidException { //TODO JSON_BE JÖN
+    public DeviceLog save(String chipId, DeviceLogDto dto) throws MethodArgumentNotValidException {
         //TODO: check if the data valid or not
 
         DeviceLog log = new DeviceLog();
-
-
-
-        log.setLoggedTime(data.getTimestamp());
-        log.setContentCode(DeviceLogContentTypes.valueOfNumber(data.getContentCode())); //TODO: say nice message whit enum
-        log.setMessage(data.getMessage()); //TODO: say nice message whit enum
-        log.setDevice(deviceService.findByChipId(chipId));
+        log.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         log.setCreatedAt(LocalDateTime.now());
+        log.setTimestamp(dto.getTimestamp());
+        //log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(),0, ZoneOffset.UTC)); //TODO finish this
 
-
+        log.setContentTypeCode(dto.getContentTypeCode());
+        log.setContentType(DeviceLogContentTypes.valueOfNumber(dto.getContentTypeCode()) == null ? dto.getContentTypeCode() : DeviceLogContentTypes.valueOfNumber(dto.getContentTypeCode()).label  ); //translate with enum, if available
+        log.setMessageCode(dto.getMessageCode());
+        log.setMessage(DeviceLogMessageTypes.valueOfNumber(dto.getMessageCode()) == null ? dto.getMessageCode() : DeviceLogMessageTypes.valueOfNumber(dto.getMessageCode()).label);
 
         return repository.save(log);
     }
-
-
-    /* OLD SAVE NOT USED JUST LEFT IN FOR A WHILE IF THE NEW ONE IS READY DELETE THIS
-    public Long save(String chipId, String loglevel, String message) throws MethodArgumentNotValidException {
-        DeviceLog deviceLog = new DeviceLog();
-
-        deviceLog.setLogLevel(loglevel);
-        deviceLog.setMessage(message);
-        deviceLog.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
-        deviceLog.setCreatedAt(LocalDateTime.now());
-
-        return repository.save(deviceLog).getId();
-    }*/
 
     public List<DeviceLog> getAllByDeviceById(Long id) {
         return repository.findAllByDevice(deviceService.GetById(id));
