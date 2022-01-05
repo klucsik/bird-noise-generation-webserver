@@ -26,7 +26,7 @@ public class DeviceLogService {
         log.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         log.setCreatedAt(LocalDateTime.now());
         log.setTimestamp(dto.getTimestamp());
-        //log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(),0, ZoneOffset.UTC)); //TODO finish this
+        log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, ZoneOffset.of("+01:00"))); //I've done it! Levi
 
         log.setContentTypeCode(dto.getContentTypeCode());
         log.setContentType(DeviceLogContentTypes.valueOfNumber(dto.getContentTypeCode()) == null ? dto.getContentTypeCode() : DeviceLogContentTypes.valueOfNumber(dto.getContentTypeCode()).label  ); //translate with enum, if available
