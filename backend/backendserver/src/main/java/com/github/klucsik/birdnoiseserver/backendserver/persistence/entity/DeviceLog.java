@@ -23,7 +23,7 @@ public class DeviceLog {
     private String messageCode; //sent from device
     private String message; //decoded at BE
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy MM dd HH:mm:ss")
     private LocalDateTime createdAt; //Time when created(saved)
     private Long timestamp; //epoch from device
     private LocalDateTime loggedTime; //time from the epoch timestamp
