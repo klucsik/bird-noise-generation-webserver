@@ -1,14 +1,19 @@
 package com.github.klucsik.birdnoiseserver.frontend.controllers;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDto;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.DeviceConnector;
 import com.github.klucsik.birdnoiseserver.frontend.connectors.DeviceLogConnector;
+import com.github.klucsik.birdnoiseserver.frontend.stupidDtos.FrontEndDeviceLogDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/device")
@@ -65,7 +70,29 @@ public class DeviceController {
 
     @GetMapping("{id}/log")
     public String logs(@PathVariable Long id, Model model){
-        model.addAttribute("logs",logConnector.pageByDeviceId(id).getBody());
+        List<DeviceLogDto> dto = logConnector.pageByDeviceId(id).getBody();
+        List<FrontEndDeviceLogDto> stupidDtoList = new ArrayList<>();
+
+        dto.forEach(deviceLogDto -> {
+            FrontEndDeviceLogDto stupidDto = new FrontEndDeviceLogDto();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            stupidDto.setDevice(deviceLogDto.getDevice());
+            stupidDto.setContentType(deviceLogDto.getContentType());
+            stupidDto.setContentTypeCode(deviceLogDto.getContentTypeCode());
+            stupidDto.setId(deviceLogDto.getId());
+            stupidDto.setMessageCode(deviceLogDto.getMessageCode());
+            stupidDto.setMessage(deviceLogDto.getMessage());
+            stupidDto.setTimestamp(deviceLogDto.getTimestamp());
+
+            stupidDto.setLoggedTime(deviceLogDto.getLoggedTime().format(formatter));
+            stupidDto.setCreatedAt(deviceLogDto.getCreatedAt().format(formatter));
+
+            stupidDtoList.add(stupidDto);
+        });
+
+        model.addAttribute("logs", stupidDtoList);
         model.addAttribute("title", String.format("Logs for device %s" ,connector.getById(id).getBody().getName()));
         return "device/logPage";
     }

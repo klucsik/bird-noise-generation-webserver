@@ -27,7 +27,7 @@ public class DeviceLogService {
 
         DeviceLog log = new DeviceLog();
         log.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
-        log.setCreatedAt(LocalDateTime.parse(LocalDateTime.now().format(formatter), formatter));
+        log.setCreatedAt(LocalDateTime.now());
         log.setTimestamp(dto.getTimestamp());
         log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, ZoneOffset.of("+01:00"))); //I've done it! Levi
 
