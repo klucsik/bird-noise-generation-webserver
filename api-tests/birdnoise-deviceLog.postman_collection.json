@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ef952f2d-ab1d-4518-9faa-df9fdfa58217",
+		"_postman_id": "06fdf3d9-f4af-4dd4-8cd4-57db40911585",
 		"name": "birdnoise-deviceLog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,9 +12,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -25,7 +23,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"timestamp\":1641381306, \"contentTypeCode\":\"2\", \"messageCode\":\"1641382527\"}",
+					"raw": "{\r\n    \"timestamp\": 1641390121,\r\n    \"contentTypeCode\": 1,\r\n    \"messageCode\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -33,7 +31,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseurl}}/deviceLog/save?chipId=tst1",
+					"raw": "{{baseurl}}/deviceLog/save?chipId=12345",
 					"host": [
 						"{{baseurl}}"
 					],
@@ -44,7 +42,7 @@
 					"query": [
 						{
 							"key": "chipId",
-							"value": "tst1"
+							"value": "12345"
 						}
 					]
 				}
@@ -74,7 +72,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\"logLevel\":\"TST\",  \"message\":\"Making a log\"}",
 					"options": {
 						"raw": {
 							"language": "json"
