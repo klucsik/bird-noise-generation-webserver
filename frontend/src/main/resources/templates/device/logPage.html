@@ -35,15 +35,16 @@
     console.log(tableData);
 
     $('#deviceTable').DataTable({
-        "pageLength": 100,
         data: tableData,
+        "order": [0, "desc"],
+        "pageLength": 100,
         // select: true,
         columns: [
             {data: 'id'},
             {data: 'createdAt'},
             {data: 'logLevel'},
             {data: 'message'},
-        ]
+        ],
     });
 
     /*]]>*/
