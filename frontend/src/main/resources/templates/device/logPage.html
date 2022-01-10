@@ -42,6 +42,7 @@
     console.log(tableData);
 
     $('#deviceTable').DataTable({
+        "pageLength": 100,
         data: tableData,
         "order": [0, "desc"],
         "pageLength": 100,
