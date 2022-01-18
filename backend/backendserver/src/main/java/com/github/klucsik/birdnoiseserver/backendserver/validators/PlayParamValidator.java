@@ -24,7 +24,7 @@ public class PlayParamValidator {
         if (repository.existsByName(playParam.getName())) {
             PlayParam existingPlayParam = repository.findByName(playParam.getName());
             if (playParam.getId() != null && existingPlayParam.getId() != playParam.getId()) {
-                errors.add(new FieldError("PlayParam", "Name", "Name must be unique"));
+                errors.add(new FieldError("PlayParam", "Name", "Name must be Único"));
             }
             else if (playParam.getId() == null) {
                 errors.add(new FieldError("PlayParam", "Name", "Name must be unique"));
@@ -32,7 +32,7 @@ public class PlayParamValidator {
         }
 
         playParam.getPlayUnits().forEach( (hour, playUnit) -> {
-                    if (hour <= 0 || hour >= 25) {
+                    if (hour <= 0 || hour > 25) {
                         errors.add(new FieldError("PlayParam", "Hour", "Hour must be between 0 and 24"));
 
                         Set<Integer> hourSet = new HashSet<>();
