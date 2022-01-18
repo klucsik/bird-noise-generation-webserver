@@ -28,7 +28,7 @@ public class PlayUnitService {
         PlayUnit playUnit = PlayUnitMapper.MAPPER.DtoToPlayUnit(dto);
 
         validator.validate(playUnit); //We only need to call the validator here.
-
+        playUnit.setName(playUnit.getName().concat("_"));
         //we expect to get the ids of the tracks, we find the tracks from the ids, and set them for the new entity. We wont accept nonexisting track-ids.
         List<Track> trackListFromDto = playUnit.getTrackList().stream().map(dtoTrack -> trackRepository.findById(dtoTrack.getId()).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("There is no track with id: %d", dtoTrack.getId())))).collect(Collectors.toList()); //FIXME: isn't this should be done on the dto tracklist?
         playUnit.setTrackList(trackListFromDto);
