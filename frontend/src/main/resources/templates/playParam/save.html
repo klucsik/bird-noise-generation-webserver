@@ -99,7 +99,7 @@
                                                         <option value=""> --</option>
                                                         <option th:each="optionPlayUnit : ${playUnitList}"
                                                                 th:value="${optionPlayUnit}"
-                                                                th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getName(),' - ',optionPlayUnit.getTrackNumberList() ) }"
+                                                                th:text="${#strings.concat(optionPlayUnit.getId(),' - ',optionPlayUnit.getTrackList(),' - ',optionPlayUnit.getTrackNumberList() ) }"
                                                         ></option>
                                                     </select>
                                                 </div>
