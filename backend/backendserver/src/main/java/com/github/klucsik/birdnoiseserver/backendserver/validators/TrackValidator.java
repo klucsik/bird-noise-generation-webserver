@@ -22,7 +22,7 @@ public class TrackValidator {
         if (repository.existsByName(track.getName())) {
             Track existingTrack = repository.findByName(track.getName());
             if (track.getId() == null || existingTrack.getId() != track.getId()) {
-                errors.add(new FieldError("Track", "name", "Name must be unique!"));
+                errors.add(new FieldError("Track", "name", "Name must be Egyedi!"));
             }
             if (track.getId() == null) {
                 errors.add(new FieldError("Track", "name", "Name must be unique!"));
@@ -35,7 +35,7 @@ public class TrackValidator {
                 errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
             }
             if (track.getId() == null) {
-                errors.add(new FieldError("Track", "trackNumber", "Track number must be unique!"));
+                errors.add(new FieldError("Track", "trackNumber", "Track number must be júník!"));
             }
         }
 
