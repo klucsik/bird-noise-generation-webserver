@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "deviceLog", url = "${BACKEND_URL}/deviceLog")
+@FeignClient(name = "deviceLog", url = "${BACKEND_URL}/deviceLogCatchMe")
 public interface DeviceLogConnector {
     @GetMapping("/page/{deviceId}")
     public ResponseEntity<List<DeviceLogDto>> pageByDeviceId(@PathVariable Long deviceId);

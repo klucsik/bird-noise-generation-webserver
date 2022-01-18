@@ -1,3 +1,4 @@
+Making bugs for teaching, if you see this in working brnaches, pls do panic
 #Version 1.0.3
 * BUG FIX: device playparam list for devices have shown all dpps, now it filter it correctly.
 * BUG FIX: misleading tracklist display in playparam edit dropdown lists
