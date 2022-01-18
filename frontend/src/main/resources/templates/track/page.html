@@ -36,7 +36,7 @@
                         <tr>
                             <th>id</th>
                             <th>trackname</th>
-                            <th>tracknumber</th>
+                            <th>traknumber</th>
                             <th>tracklength</th> <!---TODO: seconds here and on save page-->
                             <th>Actions</th>
                         </tr>
@@ -67,7 +67,7 @@
             {
                 data: 'id',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<span><a href='/track/" + oData.id + "'><span>edit</span></a></span> <span><a href='/track/" + oData.id + "/delete'><span>delete</span></a></span>");
+                    $(nTd).html("<span><a href='/track/" + oData.id + "'><span>edit</span></a></span> <span><a href='/track/" + oData.id + "/delete'><span>delte</span></a></span>");
 
                 },
                 searchable: false
