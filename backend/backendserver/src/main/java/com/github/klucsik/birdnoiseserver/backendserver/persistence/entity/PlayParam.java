@@ -16,11 +16,11 @@ public class PlayParam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    
     @Size(max = 255, message = "Name must be less characters than 255")
     private String name;
 
-    @Range(min = 1, max = 30, message = "Volume must be between 1 and 30")
+    @Range(min = 1, max = 50, message = "Volume must be between 1 and 30")
     @NotNull(message = "Volume can't be null")
     private Integer vol; //volume
 
