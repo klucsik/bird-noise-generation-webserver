@@ -86,7 +86,9 @@ public class DeviceController {
             stupidDto.setMessage(deviceLogDto.getMessage());
             stupidDto.setTimestamp(deviceLogDto.getTimestamp());
 
-            stupidDto.setLoggedTime(deviceLogDto.getLoggedTime().format(formatter));
+            if (deviceLogDto.getLoggedTime() != null ) {
+                stupidDto.setLoggedTime(deviceLogDto.getLoggedTime().format(formatter));
+            }
             stupidDto.setCreatedAt(deviceLogDto.getCreatedAt().format(formatter));
 
             stupidDtoList.add(stupidDto);
