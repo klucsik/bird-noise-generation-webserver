@@ -1,15 +1,14 @@
-package com.github.klucsik.birdnoiseserver.backendclient.dto;
+package com.github.klucsik.birdnoiseserver.frontend.stupidDtos;
 
-
-import lombok.AllArgsConstructor;
+import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-public class DeviceLogDto {
+@NoArgsConstructor
+public class FrontEndDeviceLogDto {
     private Long id;
 
     private DeviceDto device;
@@ -19,7 +18,7 @@ public class DeviceLogDto {
     private String messageCode; //sent from device
     private String message; //decoded at BE
 
-    private LocalDateTime createdAt;
+    private String createdAt;
     private Long timestamp; //epoch from device
-    private LocalDateTime loggedTime; //time from the epoch timestamp
+    private String loggedTime; //time from the epoch timestamp
 }
