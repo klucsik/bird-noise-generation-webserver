@@ -1,4 +1,6 @@
-#Version 1.0.3
+# Version 1.0.4
+* FEATURE: reworked logging for saving bits in device
+# Version 1.0.3
 * BUG FIX: device playparam list for devices have shown all dpps, now it filter it correctly.
 * BUG FIX: misleading tracklist display in playparam edit dropdown lists
 # Version 1.0.2

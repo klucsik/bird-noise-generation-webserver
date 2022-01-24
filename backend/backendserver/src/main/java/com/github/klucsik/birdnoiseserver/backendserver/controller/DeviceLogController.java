@@ -2,7 +2,6 @@ package com.github.klucsik.birdnoiseserver.backendserver.controller;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceLogMapper;
-import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.services.DeviceLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,10 +18,9 @@ import java.util.stream.Collectors;
 public class DeviceLogController {
     private final DeviceLogService service;
 
-    //NO FRONTEND - No frontend tichy touchy here, this is for devices.
     @PostMapping("/save")
-    public ResponseEntity<Long> saveDeviceVolt(@RequestParam String chipId, @RequestBody DeviceLogDto dto ) throws MethodArgumentNotValidException {
-        return new ResponseEntity<>(service.save(chipId, dto.getLogLevel(),dto.getMessage()), HttpStatus.OK);
+    public ResponseEntity<DeviceLogDto> save(@RequestBody DeviceLogDto deviceLogDto, @RequestParam String chipId) throws MethodArgumentNotValidException {
+        return new ResponseEntity<>(DeviceLogMapper.MAPPER.entityToDto(service.save(chipId, deviceLogDto)), HttpStatus.OK);
     }
 
     @GetMapping("/page/{deviceId}")

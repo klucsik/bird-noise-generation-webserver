@@ -11,14 +11,22 @@
 <div class="row">
     <div class="col-sm-1" th:insert="fragments/_menu"></div>
     <div class="col-sm-11">
+        <div class="row justify-content-center">
+            <h3 class="mb-2 p-4 page-title">
+                <span th:text="${title}"></span>
+            </h3>
+        </div>
         <div class="mt-5 table-custom-style">
             <table id="deviceTable" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>timestamp</th>
-                    <th>log level</th>
-                    <th>message</th>
+                    <th>Id</th>
+                    <th>Created at</th>
+                    <th>Logged time</th>
+                    <th>Content type code</th>
+                    <th>Content type</th>
+                    <th>Message code</th>
+                    <th>Message</th>
 
                 </tr>
                 </thead>
@@ -42,9 +50,12 @@
         columns: [
             {data: 'id'},
             {data: 'createdAt'},
-            {data: 'logLevel'},
-            {data: 'message'},
-        ],
+            {data: 'loggedTime'},
+            {data: 'contentTypeCode'},
+            {data: 'contentType'},
+            {data: 'messageCode'},
+            {data: 'message'}
+        ]
     });
 
     /*]]>*/

@@ -2,7 +2,6 @@ package com.github.klucsik.birdnoiseserver.backendserver.persistence.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,12 +16,15 @@ public class DeviceLog {
     private Long id;
 
     @ManyToOne
-    private Device device;
+    private Device device; //the device who logged.
 
-    private String logLevel;
+    private String contentTypeCode; //sent from device
+    private String contentType; //decoded at BE
+    private String messageCode; //sent from device
+    private String message; //decoded at BE
 
-    private String message;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
+    @DateTimeFormat(pattern = "yyyy MM dd HH:mm:ss")
+    private LocalDateTime createdAt; //Time when created(saved)
+    private Long timestamp; //epoch from device
+    private LocalDateTime loggedTime; //time from the epoch timestamp
 }
