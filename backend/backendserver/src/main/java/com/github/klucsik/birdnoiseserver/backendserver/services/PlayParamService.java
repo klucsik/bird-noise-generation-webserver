@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,7 +33,13 @@ public class PlayParamService {
         Map<Integer, PlayUnit> playUnits = new HashMap<>();
         playParam.getPlayUnits().forEach(
                 (hour, playUnitDto) -> {
-                    playUnits.put(hour, playUnitRepository.findById(playUnitDto.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no PlayUnit with id: %d", playUnitDto.getId()))));
+                    ZoneId zone = ZoneId.of("Europe/Budapest");
+                    ZoneOffset zoneOffSet = zone.getRules().getOffset(LocalDateTime.now());
+                    Integer UTCHour = hour - zoneOffSet.getTotalSeconds() / 3600; //Hour - UTC difference in hours (TotalSecond/3600)
+                    if (UTCHour == 0) {
+                        UTCHour = 24;
+                    }
+                    playUnits.put(UTCHour, playUnitRepository.findById(playUnitDto.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no PlayUnit with id: %d", playUnitDto.getId()))));
                 }
         );
         playParam.setPlayUnits(playUnits);
