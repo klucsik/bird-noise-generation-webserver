@@ -1,8 +1,7 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDto;
-import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogContentTypes;
-import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceLogMessageTypes;
+import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceMessages;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -21,20 +19,15 @@ public class DeviceLogService {
     private final DeviceService deviceService;
 
     public DeviceLog save(String chipId, DeviceLogDto dto) throws MethodArgumentNotValidException {
-        //TODO: check if the data valid or not
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
         DeviceLog log = new DeviceLog();
         log.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         log.setCreatedAt(LocalDateTime.now());
         log.setTimestamp(dto.getTimestamp());
-        log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, ZoneOffset.of("+01:00"))); //I've done it! Levi
+        log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, ZoneOffset.of("+01:00")));
 
-        log.setContentTypeCode(dto.getContentTypeCode());
-        log.setContentType(DeviceLogContentTypes.valueOfNumber(dto.getContentTypeCode()) == null ? dto.getContentTypeCode() : DeviceLogContentTypes.valueOfNumber(dto.getContentTypeCode()).label  ); //translate with enum, if available
         log.setMessageCode(dto.getMessageCode());
-        log.setMessage(DeviceLogMessageTypes.valueOfNumber(dto.getMessageCode()) == null ? dto.getMessageCode() : DeviceLogMessageTypes.valueOfNumber(dto.getMessageCode()).label);
+        log.setMessage(DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()) == null ? dto.getMessageCode() : DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()).label  ); //translate with enum, if available
+        log.setAdditional(dto.getAdditional());
 
         return repository.save(log);
     }

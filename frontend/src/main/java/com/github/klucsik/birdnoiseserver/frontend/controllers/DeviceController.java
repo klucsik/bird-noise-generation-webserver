@@ -79,12 +79,11 @@ public class DeviceController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
             stupidDto.setDevice(deviceLogDto.getDevice());
-            stupidDto.setContentType(deviceLogDto.getContentType());
-            stupidDto.setContentTypeCode(deviceLogDto.getContentTypeCode());
             stupidDto.setId(deviceLogDto.getId());
             stupidDto.setMessageCode(deviceLogDto.getMessageCode());
             stupidDto.setMessage(deviceLogDto.getMessage());
             stupidDto.setTimestamp(deviceLogDto.getTimestamp());
+            stupidDto.setAdditional(deviceLogDto.getAdditional());
 
             if (deviceLogDto.getLoggedTime() != null ) {
                 stupidDto.setLoggedTime(deviceLogDto.getLoggedTime().format(formatter));

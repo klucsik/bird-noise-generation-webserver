@@ -13,10 +13,9 @@ public class FrontEndDeviceLogDto {
 
     private DeviceDto device;
 
-    private String contentTypeCode; //sent from device
-    private String contentType; //decoded at BE
     private String messageCode; //sent from device
     private String message; //decoded at BE
+    private String additional;
 
     private String createdAt;
     private Long timestamp; //epoch from device
