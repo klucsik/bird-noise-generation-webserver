@@ -18,10 +18,9 @@ public class DeviceLog {
     @ManyToOne
     private Device device; //the device who logged.
 
-    private String contentTypeCode; //sent from device
-    private String contentType; //decoded at BE
     private String messageCode; //sent from device
     private String message; //decoded at BE
+    private String additional;
 
     @DateTimeFormat(pattern = "yyyy MM dd HH:mm:ss")
     private LocalDateTime createdAt; //Time when created(saved)
