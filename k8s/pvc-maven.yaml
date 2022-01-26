@@ -4,9 +4,9 @@ metadata:
   name: maven-repository
   namespace: jenkins #this should be the same as in jenkins settings
 spec:
-  storageClassName: openebs-hostpath
+  storageClassName: longhorn-2
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 5G
