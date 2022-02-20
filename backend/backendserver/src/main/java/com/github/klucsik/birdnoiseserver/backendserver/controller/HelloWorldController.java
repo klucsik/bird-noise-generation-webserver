@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class HelloWorldController {
 
     @GetMapping("/hello")
-    public String hello(@RequestParam(name="name", required = false, defaultValue = "Uram") String name){
+    public String hello(@RequestParam(name="name", required = false, defaultValue = "Uram") String name){ //What if the person is female? This is a serious issue and needs fixing imminently
 
         return "Szia " + name;
     }
