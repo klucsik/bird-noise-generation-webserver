@@ -23,10 +23,15 @@ public class DevicePlayParamController {
     private final DevicePlayParamConnector connector;
     private final DeviceConnector deviceConnector;
     private final PlayParamConnector playParamConnector;
+    private final TimeZoneChanger timeZoneChanger;
 
     @GetMapping("/page")
     public String getAllById(Model model, @RequestParam Long id) {
         List<DevicePlayParamDto> devicePlayParamDtos = connector.getAllByDevice(id).getBody();
+        devicePlayParamDtos.forEach(dto -> {
+            dto.setStartTime(timeZoneChanger.changeTimeZoneToHUN(dto.getStartTime()));
+            dto.setStopTime(timeZoneChanger.changeTimeZoneToHUN(dto.getStopTime()));
+        });
         model.addAttribute("devicePlayParamDtos", devicePlayParamDtos);
         model.addAttribute("deviceId", id);
         return "devicePlayParam/page";
