@@ -80,6 +80,8 @@ spec:
                 secretKeyRef:
                   name: postgres-credentials
                   key: postgres_password
+            - name: TZ
+              value: "Europe/Budapest"
 
           startupProbe:
             httpGet:
@@ -142,6 +144,8 @@ spec:
               value: "FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
             - name: BACKEND_URL
               value: birdnoise-svc-be/api
+            - name: TZ
+              value: "Europe/Budapest"
 
 ---
 
