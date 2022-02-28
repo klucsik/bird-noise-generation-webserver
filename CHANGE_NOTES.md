@@ -1,3 +1,6 @@
+# Version 1.0.5
+* TECHNICAL FEATURE: update dependencies
+* TECHNICAL FEATURE: set servers timezone to Budapest
 # Version 1.0.4
 * FEATURE: reworked logging for saving bits in device
 # Version 1.0.3
