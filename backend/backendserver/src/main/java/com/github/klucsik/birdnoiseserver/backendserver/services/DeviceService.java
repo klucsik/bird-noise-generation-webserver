@@ -4,6 +4,7 @@ import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceStatus;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
 import com.github.klucsik.birdnoiseserver.backendserver.validators.DeviceValidator;
 import lombok.RequiredArgsConstructor;
@@ -74,6 +75,15 @@ public class DeviceService {
     public Device findByChipId(String chipId) {
         Device device = repository.findByChipId(chipId);
         return device;
+    }
+
+    public void setVersionOfDevice(DeviceLog log, String chipId) {
+        Device device = findByChipId(chipId);
+        if (!device.getVersion().equals(log.getAdditional()) & log.getMessageCode().equals("7") & device.getVersionDate() < log.getTimestamp()) {
+            device.setVersion(log.getAdditional());
+            device.setVersionDate(log.getTimestamp());
+            log.setDevice(device);
+        }
     }
 
     //Delete
