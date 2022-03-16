@@ -43,6 +43,11 @@ public class DeviceController extends BaseController {
         return new ResponseEntity<>(service.getFreshVersion(), HttpStatus.OK);
     }
 
+    @GetMapping("/versionChecker")
+    public ResponseEntity<Integer> versionChecker(@RequestParam String version) {
+        return new ResponseEntity<>(service.versionChecker(version), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<DeviceDto> delete(@PathVariable Long id) {
         service.delete(id);
