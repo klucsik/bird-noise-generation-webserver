@@ -11,12 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.swing.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -103,7 +101,17 @@ public class DeviceService {
         }
 
     }
-
+    public Integer versionChecker(String version) {
+        List<Device> list = getAll();
+        if (list.isEmpty()) { return null; }
+        List<Device> rightVersion = new ArrayList<>();
+        list.forEach(device -> {
+            if (device.getVersion().equals(version)) {
+                rightVersion.add(device);
+            }
+        });
+        return rightVersion.size();
+    }
     //Delete
     public void delete(Long id) {
         Device device = repository.findById(id).orElseThrow(
