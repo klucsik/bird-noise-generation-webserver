@@ -21,6 +21,9 @@ public interface DeviceConnector {
     @GetMapping("/page")
     ResponseEntity<List<DeviceDto>> getPage();
 
+    @GetMapping("/freshVersion")
+    ResponseEntity<String> getFreshVersion();
+
     @DeleteMapping("/{id}")
     ResponseEntity<DeviceDto> delete(@PathVariable Long id);
 
