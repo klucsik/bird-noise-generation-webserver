@@ -26,6 +26,8 @@ public class DeviceController {
     @GetMapping("/page")
     public String getPage(Model model) {
         List<DeviceDto> deviceDtoList = connector.getPage().getBody();
+        String freshVersion = connector.getFreshVersion().getBody();
+        model.addAttribute("freshVersion", String.format("Newest device version: %s", freshVersion));
         model.addAttribute("deviceDtoList", deviceDtoList);
         return "device/page";
     }
