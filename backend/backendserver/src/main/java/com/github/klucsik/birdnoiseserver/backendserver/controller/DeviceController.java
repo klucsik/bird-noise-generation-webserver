@@ -38,6 +38,11 @@ public class DeviceController extends BaseController {
         return new ResponseEntity<>(DeviceMapper.MAPPER.deviceListToDo(service.getAll()), HttpStatus.OK);
     }
 
+    @GetMapping("/freshVersion")
+    public ResponseEntity<String> getFreshVersion() {
+        return new ResponseEntity<>(service.getFreshVersion(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<DeviceDto> delete(@PathVariable Long id) {
         service.delete(id);

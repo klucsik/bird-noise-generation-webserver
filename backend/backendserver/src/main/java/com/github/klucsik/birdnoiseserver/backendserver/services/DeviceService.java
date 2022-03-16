@@ -1,8 +1,6 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
-import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceStatus;
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
@@ -13,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
@@ -84,6 +84,24 @@ public class DeviceService {
             device.setVersionDate(log.getTimestamp());
             log.setDevice(device);
         }
+    }
+
+    public String getFreshVersion() {
+        List<Device> list = getAll();
+        if (list.isEmpty()) { return null; }
+        Device freshDevice = list.get(0);
+        list.forEach(device -> {
+            if (device.getVersionDate() > freshDevice.getVersionDate()) {
+                freshDevice.setVersion(device.getVersion());
+                freshDevice.setVersionDate(device.getVersionDate());
+            }
+        });
+        if (freshDevice.getVersion() != null) {
+            return freshDevice.getVersion();
+        } else {
+            return null;
+        }
+
     }
 
     //Delete
