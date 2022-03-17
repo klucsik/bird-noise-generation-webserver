@@ -1,3 +1,5 @@
+# Version 1.0.6
+* FEATURE: Show device versions, and outdated device number
 # Version 1.0.5
 * TECHNICAL FEATURE: update dependencies
 * TECHNICAL FEATURE: set servers timezone to Budapest
