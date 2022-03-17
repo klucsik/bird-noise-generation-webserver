@@ -77,7 +77,7 @@ public class DeviceService {
 
     public void setVersionOfDevice(DeviceLog log, String chipId) {
         Device device = findByChipId(chipId);
-        if (device.getVersion().equals(null) || !device.getVersion().equals(log.getAdditional()) & log.getMessageCode().equals("7") & device.getVersionDate() < log.getTimestamp()) {
+        if (!device.getVersion().equals(log.getAdditional()) & log.getMessageCode().equals("7") & device.getVersionDate() < log.getTimestamp()) {
             device.setVersion(log.getAdditional());
             device.setVersionDate(log.getTimestamp());
             log.setDevice(device);
@@ -90,8 +90,8 @@ public class DeviceService {
         Device freshDevice = list.get(0);
         list.forEach(device -> {
             if (device.getVersionDate() > freshDevice.getVersionDate()) {
-
-                freshDevice.setVersion(device.getVersion());freshDevice.setVersionDate(device.getVersionDate());
+                freshDevice.setVersion(device.getVersion());
+                freshDevice.setVersionDate(device.getVersionDate());
             }
         });
         if (freshDevice.getVersion() != null) {
