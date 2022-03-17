@@ -105,7 +105,7 @@ public class DeviceService {
         if (list.isEmpty()) { return 0; }
         List<Device> rightVersion = new ArrayList<>();
         list.forEach(device -> {
-            if (device.getVersion().equals(version)) {
+            if (device.getVersionDate() != null && device.getVersion().equals(version)) {
                 rightVersion.add(device);
             }
         });
@@ -113,7 +113,7 @@ public class DeviceService {
     }
     //Delete
     public void delete(Long id) {
-        Device device = repository.findById(id).orElseThrow(
+        repository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, String.format("There is no device with id: %d", id)));
         repository.deleteById(id);
