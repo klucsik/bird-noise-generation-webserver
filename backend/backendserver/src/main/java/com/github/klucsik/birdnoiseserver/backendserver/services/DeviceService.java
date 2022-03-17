@@ -97,7 +97,7 @@ public class DeviceService {
         if (freshDevice.getVersion() != null) {
             return freshDevice.getVersion();
         } else {
-            return null;
+            return "No version is available";
         }
 
     }
