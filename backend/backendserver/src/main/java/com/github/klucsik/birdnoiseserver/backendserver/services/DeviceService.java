@@ -1,9 +1,8 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
-import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceDto;
 import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceStatus;
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
+import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
 import com.github.klucsik.birdnoiseserver.backendserver.validators.DeviceValidator;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.swing.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,6 +75,43 @@ public class DeviceService {
         return device;
     }
 
+    public void setVersionOfDevice(DeviceLog log, String chipId) {
+        Device device = findByChipId(chipId);
+        if (!device.getVersion().equals(log.getAdditional()) & log.getMessageCode().equals("7") & device.getVersionDate() < log.getTimestamp()) {
+            device.setVersion(log.getAdditional());
+            device.setVersionDate(log.getTimestamp());
+            log.setDevice(device);
+        }
+    }
+
+    public String getFreshVersion() {
+        List<Device> list = getAll();
+        if (list.isEmpty()) { return "No version"; }
+        Device freshDevice = list.get(0);
+        list.forEach(device -> {
+            if (device.getVersionDate() > freshDevice.getVersionDate()) {
+                freshDevice.setVersion(device.getVersion());
+                freshDevice.setVersionDate(device.getVersionDate());
+            }
+        });
+        if (freshDevice.getVersion() != null) {
+            return freshDevice.getVersion();
+        } else {
+            return "No version is available";
+        }
+
+    }
+    public Integer versionChecker(String version) {
+        List<Device> list = getAll();
+        if (list.isEmpty()) { return 0; }
+        List<Device> rightVersion = new ArrayList<>();
+        list.forEach(device -> {
+            if (device.getVersion().equals(version)) {
+                rightVersion.add(device);
+            }
+        });
+        return rightVersion.size();
+    }
     //Delete
     public void delete(Long id) {
         Device device = repository.findById(id).orElseThrow(

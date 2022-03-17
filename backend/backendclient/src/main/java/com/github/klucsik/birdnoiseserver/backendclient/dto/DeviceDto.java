@@ -12,6 +12,8 @@ public class DeviceDto {
     private String name;
     private String location;
     private DeviceStatus status;
+    private String version;
+    private Long versionDate;//Dont show this in frontend, only for be purposes
 
     @Override
     public String toString(){

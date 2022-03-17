@@ -32,5 +32,6 @@ public class Device {
     @NotNull(message = "Status is mandatory")
     private DeviceStatus status; //TODO if there is no status do smth what is a custom error
 
-
+    private String version;
+    private Long versionDate;
 }
