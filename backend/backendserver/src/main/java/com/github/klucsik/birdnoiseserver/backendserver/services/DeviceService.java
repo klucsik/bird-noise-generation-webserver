@@ -86,7 +86,7 @@ public class DeviceService {
 
     public String getFreshVersion() {
         List<Device> list = getAll();
-        if (list.isEmpty()) { return null; }
+        if (list.isEmpty()) { return "No version"; }
         Device freshDevice = list.get(0);
         list.forEach(device -> {
             if (device.getVersionDate() > freshDevice.getVersionDate()) {
@@ -103,7 +103,7 @@ public class DeviceService {
     }
     public Integer versionChecker(String version) {
         List<Device> list = getAll();
-        if (list.isEmpty()) { return null; }
+        if (list.isEmpty()) { return 0; }
         List<Device> rightVersion = new ArrayList<>();
         list.forEach(device -> {
             if (device.getVersion().equals(version)) {
