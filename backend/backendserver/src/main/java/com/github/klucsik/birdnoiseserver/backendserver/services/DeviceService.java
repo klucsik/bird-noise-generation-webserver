@@ -67,24 +67,16 @@ public class DeviceService {
     }
 
     public List<Device> getAll() {
-        List<Device> list = repository.findAll().stream().collect(Collectors.toList());
-        list.forEach(device -> {
-            if (device.getVersion() == null | device.getVersionDate() == null) {
-                device.setVersion("0_0");
-                device.setVersionDate(0l);
-            }
-        });
-        return list;
+        return repository.findAll().stream().collect(Collectors.toList());
     }
 
     public Device findByChipId(String chipId) {
-        Device device = repository.findByChipId(chipId);
-        return device;
+        return repository.findByChipId(chipId);
     }
 
     public void setVersionOfDevice(DeviceLog log, String chipId) {
         Device device = findByChipId(chipId);
-        if (!device.getVersion().equals(log.getAdditional()) & log.getMessageCode().equals("7") & device.getVersionDate() < log.getTimestamp()) {
+        if (device.getVersion() != null || !Objects.equals(device.getVersion(), log.getAdditional()) & log.getMessageCode().equals("7") & device.getVersionDate() < log.getTimestamp()) {
             device.setVersion(log.getAdditional());
             device.setVersionDate(log.getTimestamp());
             log.setDevice(device);
@@ -96,9 +88,9 @@ public class DeviceService {
         if (list.isEmpty()) { return "No version"; }
         Device freshDevice = list.get(0);
         list.forEach(device -> {
-            if (device.getVersionDate() > freshDevice.getVersionDate()) {
-                freshDevice.setVersion(device.getVersion());
-                freshDevice.setVersionDate(device.getVersionDate());
+            if (device.getVersionDate() != null && device.getVersionDate() > freshDevice.getVersionDate()) {
+
+                freshDevice.setVersion(device.getVersion());freshDevice.setVersionDate(device.getVersionDate());
             }
         });
         if (freshDevice.getVersion() != null) {
