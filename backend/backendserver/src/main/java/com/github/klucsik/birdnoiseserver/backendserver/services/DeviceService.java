@@ -67,7 +67,14 @@ public class DeviceService {
     }
 
     public List<Device> getAll() {
-        return repository.findAll().stream().collect(Collectors.toList());
+        List<Device> list = repository.findAll().stream().collect(Collectors.toList());
+        list.forEach(device -> {
+            if (device.getVersion() == null | device.getVersionDate() == null) {
+                device.setVersion("0_0");
+                device.setVersionDate(0l);
+            }
+        });
+        return list;
     }
 
     public Device findByChipId(String chipId) {
