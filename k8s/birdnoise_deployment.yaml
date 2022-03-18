@@ -58,6 +58,8 @@ spec:
           env:
             - name: REDEPLOY_FLAG
               value: "BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
+            - name: WEBUPDATE_URL
+              value: http://arduino-webupdate.klucsik.fun
             - name: DB_URL
               value: birdnoise-svc-db:5432
             - name: DB_HOST   # Setting Database host address from configMap
