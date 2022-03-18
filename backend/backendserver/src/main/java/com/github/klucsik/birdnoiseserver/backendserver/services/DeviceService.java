@@ -1,6 +1,7 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.enums.DeviceStatus;
+import com.github.klucsik.birdnoiseserver.backendserver.connectors.WebupdateConnector;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DeviceLog;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
@@ -11,11 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +21,7 @@ import java.util.stream.Collectors;
 public class DeviceService {
     private final DeviceRepository repository;
     private final DeviceValidator validator;
+    private final WebupdateConnector webupdateConnector;
     private Set<Integer> autoNumSet = new HashSet<>();
 
 
@@ -84,20 +83,9 @@ public class DeviceService {
     }
 
     public String getFreshVersion() {
-        List<Device> list = getAll();
-        if (list.isEmpty()) { return "No version"; }
-        Device freshDevice = list.get(0);
-        list.forEach(device -> {
-            if (device.getVersionDate() != null && device.getVersionDate() > freshDevice.getVersionDate()) {
-
-                freshDevice.setVersion(device.getVersion());freshDevice.setVersionDate(device.getVersionDate());
-            }
-        });
-        if (freshDevice.getVersion() != null) {
-            return freshDevice.getVersion();
-        } else {
-            return "No version is available";
-        }
+        String update_url = webupdateConnector.checkVersion("bird_noise", "invalid").getBody();
+        String[] segments = update_url.split("/");
+        return segments[segments.length-1].replace(".bin","");
 
     }
     public Integer versionChecker(String version) {
