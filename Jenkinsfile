@@ -19,6 +19,11 @@ pipeline {
             }
         }
     }
+    stage('update version in frontend') {
+            steps {
+                    sh 'sed -i "s/JENKINS_WILL_CHANGE_THIS_VERSION_AND_DATE/$VERSION $(date)/" frontend/src/main/resources/templates/fragments/_menu.html'
+            }
+        }
 
     stage('build images') {
       parallel {
@@ -93,6 +98,9 @@ pipeline {
     }
 
     stage('api-tests') {
+      when {
+        changeset 'backend/**'
+      }
       steps {
         sh 'cp k8s/birdnoise_deployment.yaml k8s/test_deployment.yaml'
         sh 'sed -i "s/BRANCHNAME/${TEST_BRANCNAME}/" k8s/test_deployment.yaml'
@@ -116,6 +124,11 @@ pipeline {
     }
   }
   environment {
+    VERSION = """${sh(
+                                     script:
+                                        "cat version",
+                                     returnStdout:true
+                                     ).trim()}"""
     BRANCH_NAME_LC = """${sh(
                                    script:
                                       "echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'",
@@ -123,12 +136,12 @@ pipeline {
                                    ).trim()}"""
     BE_IMAGETAG = """${sh(
                                   script:
-                                    "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo birdnoise_be_$BRANCH_NAME_LC",
+                                    "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo birdnoise_be_$BRANCH_NAME_LC:$VERSION",
                                   returnStdout:true
                                   ).trim()}"""
     FE_IMAGETAG = """${sh(
                                     script:
-                                      "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo birdnoise_fe_$BRANCH_NAME_LC",
+                                      "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo birdnoise_fe_$BRANCH_NAME_LC:$VERSION",
                                     returnStdout:true
                                     ).trim()}"""
     TEST_BRANCNAME = """${sh(
