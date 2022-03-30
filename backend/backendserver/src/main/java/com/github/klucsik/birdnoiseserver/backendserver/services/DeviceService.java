@@ -83,7 +83,6 @@ public class DeviceService {
     }
 
     public String getFreshVersion() {
-        //TODO: circuit breaker
         String update_url = webupdateConnector.checkVersion("bird_noise", "invalid").getBody();
         String[] segments = update_url.split("/");
         return segments[segments.length-1].replace(".bin","");
