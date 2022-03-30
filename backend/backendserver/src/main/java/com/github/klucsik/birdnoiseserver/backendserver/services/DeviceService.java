@@ -75,7 +75,7 @@ public class DeviceService {
 
     public void setVersionOfDevice(DeviceLog log, String chipId) {
         Device device = findByChipId(chipId);
-        if (device.getVersionDate() == null || log.getMessageCode().equals("7") && device.getVersionDate() < log.getTimestamp()) {
+        if (device.getVersionDate() == null && log.getMessageCode().equals("7") || log.getMessageCode().equals("7") && device.getVersionDate() < log.getTimestamp()) {
             device.setVersion(log.getAdditional());
             device.setVersionDate(log.getTimestamp());
             log.setDevice(device);
