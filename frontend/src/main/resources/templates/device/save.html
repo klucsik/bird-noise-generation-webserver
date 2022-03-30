@@ -50,6 +50,16 @@
                         th:field="*{status}" readonly>
                     </div>
 
+                    <div>
+                        <input type="hidden" id="version"
+                               th:field="*{version}" readonly>
+                    </div>
+
+                    <div>
+                        <input type="hidden" id="versionDate"
+                               th:field="*{versionDate}" readonly>
+                    </div>
+
                     <div class="row justify-content-sm-center">
                         <div class="d-grid col-3">
                             <button type="submit" class="btn btn-sm btn-primary">Save device</button>
