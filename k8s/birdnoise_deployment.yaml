@@ -40,7 +40,7 @@ metadata:
   name: birdnoise-be
   namespace: birdnoise-BRANCHNAME
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       type: backend
@@ -126,7 +126,7 @@ metadata:
   name: birdnoise-fe
   namespace: birdnoise-BRANCHNAME
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       type: frontend
