@@ -12,6 +12,9 @@ spec:
         requests:
           memory: "50Mi"
           cpu: "30m"
+      env:
+        - name: TZ
+          value: "Europe/Budapest"
       volumeMounts:
         - name: maven-repository
           mountPath: /root/.m2

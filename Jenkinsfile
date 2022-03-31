@@ -19,6 +19,17 @@ pipeline {
             }
         }
     }
+    stage('maven tests') {
+        parallel {
+            stage('backend'){
+                steps {
+                    container(name: 'maven') {
+                        sh 'mvn -B  -f backend/pom.xml test'
+                    }
+                }
+            }
+        }
+    }
     stage('update version in frontend') {
             steps {
                     sh 'sed -i "s/JENKINS_WILL_CHANGE_THIS_VERSION_AND_DATE/$VERSION $(date)/" frontend/src/main/resources/templates/fragments/_menu.html'
@@ -91,7 +102,7 @@ pipeline {
         sh 'kubectl rollout status deployment/birdnoise-be --namespace=birdnoise-${BRANCH_NAME_LC}'
         sh 'kubectl rollout status deployment/birdnoise-fe --namespace=birdnoise-${BRANCH_NAME_LC}'
 
-        sh '''curl --location --request POST \'https://discord.com/api/webhooks/928219824298024990/guAafHP2kcWgwjqsDJXR1jZRLVOu2a7jMV4ukUKTS4eVTCNGhc1v5_9ik1wDCILlFcxN\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that I am deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.birdnoise.klucsik.fun "}\'
+        sh '''curl --location --request POST $DISCORD_URL         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that I am deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.birdnoise.klucsik.fun "}\'
         '''
         }
       }
@@ -150,25 +161,26 @@ pipeline {
                                   returnStdout:true
                                   ).trim()}"""
       IMAGEREPO = 'registry.klucsik.fun'
+      DISCORD_URL = credentials('discord-url')
         }
   post {
           always {
             container(name: 'kubectl') {
                // sh 'kubectl delete deployment amd64node'
                // sh 'kubectl delete deployment arm64node'
-                sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME}'
+                sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME} > /dev/null 2>&1 >/dev/null'  //make this silent so wont raise errors
             }
           }
 
       failure {
         container(name: 'kubectl') {
-            sh '''curl --location --request POST \'https://discord.com/api/webhooks/928219824298024990/guAafHP2kcWgwjqsDJXR1jZRLVOu2a7jMV4ukUKTS4eVTCNGhc1v5_9ik1wDCILlFcxN\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
+            sh '''curl --location --request POST $DISCORD_URL        --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
         }
       }
 
       success {
         container(name: 'kubectl') {
-            sh '''curl --location --request POST \'https://discord.com/api/webhooks/928219824298024990/guAafHP2kcWgwjqsDJXR1jZRLVOu2a7jMV4ukUKTS4eVTCNGhc1v5_9ik1wDCILlFcxN\'         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am pleased to report that the pipeline on branch ** \'${BRANCH_NAME_LC}\'** was a great success, everything is green!"}\''''
+            sh '''curl --location --request POST $DISCORD_URL         --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am pleased to report that the pipeline on branch ** \'${BRANCH_NAME_LC}\'** was a great success, everything is green!"}\''''
         }
       }
   }
