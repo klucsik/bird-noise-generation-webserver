@@ -1,7 +1,5 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
-import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayUnit;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.PlayParamRepository;
@@ -17,7 +15,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +22,6 @@ public class PlayParamService {
     private final PlayParamRepository repository;
     private final PlayUnitRepository playUnitRepository;
     private final PlayParamValidator validator;
-
-    private final TrackService trackService; //DELETEME
-    private final PlayUnitService playUnitService; //DELETEME
 
     public PlayParam save(PlayParam playParam) throws MethodArgumentNotValidException {
         Map<Integer, PlayUnit> playUnits = new HashMap<>();
@@ -50,10 +44,10 @@ public class PlayParamService {
         if (UTCHour == 0) {
             UTCHour = 24;
         }
-        if (UTCHour < 0){
+        if (UTCHour < 0) {
             UTCHour = 24 + UTCHour;
         }
-        if (UTCHour > 24){
+        if (UTCHour > 24) {
             UTCHour = UTCHour - 24;
         }
         return UTCHour;
@@ -68,11 +62,11 @@ public class PlayParamService {
     }
 
     public List<PlayParam> getAll() {
-        return repository.findAll().stream().collect(Collectors.toList());
+        return new ArrayList<>(repository.findAll());
     }
 
     public void delete(Long id) {
-        PlayParam playParam = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no playParam with id: %d", id)));
+        repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no playParam with id: %d", id)));
         repository.deleteById(id);
     }
 
