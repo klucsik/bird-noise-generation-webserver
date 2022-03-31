@@ -1,3 +1,5 @@
+# version 1.0.7
+* FEATURE: Send playparams to device converted to UTC
 * TECHNICAL FEATURE: Secrets to Jenkins Credentials
 * TECHNICAL FEATURE: version tag on docker images. Displayed version updated from version file in buildtime.
 * HOTFIX: Various problems with device version
