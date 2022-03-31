@@ -3,22 +3,20 @@ package com.github.klucsik.birdnoiseserver.backendserver.services;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SystemStubsExtension.class)
-class PlayParamServiceTest {
+class DevicePlayParamSlimServiceTest {
+
     private AutoCloseable closeable;
 
     @InjectMocks
-    private PlayParamService playParamService;
+    private DevicePlayParamSlimService service;
 
     @BeforeEach
     public void init() {
@@ -32,12 +30,11 @@ class PlayParamServiceTest {
 
     @Test
     void calcUtcHour() {
-
         Calendar calendar = Calendar.getInstance();
         assertEquals(calendar.getTimeZone(), TimeZone.getTimeZone("Europe/Budapest"));
-        assertEquals(22, playParamService.calcUtcHour(0));
-        assertEquals(23, playParamService.calcUtcHour(1));
-        assertEquals(8, playParamService.calcUtcHour(10));
-        assertEquals(22, playParamService.calcUtcHour(24));
+        assertEquals(22, service.calcUtcHour(0));
+        assertEquals(23, service.calcUtcHour(1));
+        assertEquals(8, service.calcUtcHour(10));
+        assertEquals(22, service.calcUtcHour(24));
     }
 }

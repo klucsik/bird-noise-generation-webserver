@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "97e7a5a9-0366-4bf3-8b77-dc15f1d6d7be",
+		"_postman_id": "35d81ce8-e667-4efe-809e-d5668623a49f",
 		"name": "birdnoise-playParams",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -94,6 +94,36 @@
 					],
 					"path": [
 						"playParam",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByID slim",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":3,\n    \"trackNumber\":2,\n    \"name\":\"PM-test modified\",\n    \"length\": 666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/PlayParamSlim/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"PlayParamSlim",
 						"1"
 					]
 				}
