@@ -33,18 +33,30 @@ public class PlayParamService {
         Map<Integer, PlayUnit> playUnits = new HashMap<>();
         playParam.getPlayUnits().forEach(
                 (hour, playUnitDto) -> {
-                    ZoneId zone = ZoneId.of("Europe/Budapest");
-                    ZoneOffset zoneOffSet = zone.getRules().getOffset(LocalDateTime.now());
-                    Integer UTCHour = hour - zoneOffSet.getTotalSeconds() / 3600; //Hour - UTC difference in hours (TotalSecond/3600)
-                    if (UTCHour == 0) {
-                        UTCHour = 24;
-                    }
+                    int UTCHour = calcUtcHour(hour);
                     playUnits.put(UTCHour, playUnitRepository.findById(playUnitDto.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no PlayUnit with id: %d", playUnitDto.getId()))));
                 }
         );
         playParam.setPlayUnits(playUnits);
         validator.validate(playParam);
         return repository.save(playParam);
+    }
+
+    public int calcUtcHour(Integer hour) {
+        Calendar calendar = Calendar.getInstance();
+        ZoneId zone = calendar.getTimeZone().toZoneId(); //Get the JVM timezone
+        ZoneOffset zoneOffSet = zone.getRules().getOffset(LocalDateTime.now());
+        int UTCHour = hour - zoneOffSet.getTotalSeconds() / 3600; //Hour - UTC difference in hours (TotalSecond/3600)
+        if (UTCHour == 0) {
+            UTCHour = 24;
+        }
+        if (UTCHour < 0){
+            UTCHour = 24 + UTCHour;
+        }
+        if (UTCHour > 24){
+            UTCHour = UTCHour - 24;
+        }
+        return UTCHour;
     }
 
     public PlayParam getOne(Long id) {
@@ -63,4 +75,6 @@ public class PlayParamService {
         PlayParam playParam = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("There is no playParam with id: %d", id)));
         repository.deleteById(id);
     }
+
+
 }

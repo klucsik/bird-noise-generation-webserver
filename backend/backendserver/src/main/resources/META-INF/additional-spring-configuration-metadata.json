@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "WEBUPDATE_URL",
+      "type": "java.lang.String",
+      "description": "The webservice where the devices check for update. Needed for Version checking"
+  }
+] }
