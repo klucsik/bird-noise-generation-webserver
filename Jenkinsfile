@@ -19,6 +19,17 @@ pipeline {
             }
         }
     }
+    stage('maven tests') {
+        parallel {
+            stage('backend'){
+                steps {
+                    container(name: 'maven') {
+                        sh 'mvn -B  -f backend/pom.xml test'
+                    }
+                }
+            }
+        }
+    }
     stage('update version in frontend') {
             steps {
                     sh 'sed -i "s/JENKINS_WILL_CHANGE_THIS_VERSION_AND_DATE/$VERSION $(date)/" frontend/src/main/resources/templates/fragments/_menu.html'
@@ -42,7 +53,7 @@ pipeline {
           steps {
             sh 'cp backend/backendserver/src/main/resources/prod_properties backend/backendserver/src/main/resources/application.properties' //use psql server
             container(name:'maven'){
-               sh 'mvn -B -f backend/pom.xml clean package install'
+               sh 'mvn -B -DskipTests -f backend/pom.xml clean package install'
 
                 }
             sh 'docker buildx create  --driver kubernetes --name builder --node arm64node  --driver-opt replicas=1,nodeselector=kubernetes.io/arch=arm64 --use'
@@ -66,7 +77,7 @@ pipeline {
           }
           steps {
             container(name: 'maven') {
-              sh 'mvn -B -f frontend/pom.xml clean package install'
+              sh 'mvn -B -DskipTests -f frontend/pom.xml clean package install'
             }
 
             sh 'docker buildx build -t ${IMAGEREPO}/${FE_IMAGETAG} --platform linux/arm64,linux/amd64 --push frontend/.'
