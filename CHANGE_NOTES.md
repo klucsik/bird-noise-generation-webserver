@@ -1,3 +1,6 @@
+* TECHNICAL FEATURE: Secrets to Jenkins Credentials
+* TECHNICAL FEATURE: version tag on docker images. Displayed version updated from version file in buildtime.
+* HOTFIX: Various problems with device version
 # Version 1.0.6
 * FEATURE: Show device versions, and outdated device number
 # Version 1.0.5
