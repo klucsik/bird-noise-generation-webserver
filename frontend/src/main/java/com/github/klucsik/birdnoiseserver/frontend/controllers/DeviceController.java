@@ -27,10 +27,14 @@ public class DeviceController {
     public String getPage(Model model) {
         List<DeviceDto> deviceDtoList = connector.getPage().getBody();
         String freshVersion = connector.getFreshVersion().getBody();
-        Integer updatedDevices = connector.versionChecker(freshVersion).getBody();
-        model.addAttribute("freshVersion", String.format("Newest device version: %s", freshVersion));
-        model.addAttribute("allDevices", "/" + deviceDtoList.size());
-        model.addAttribute("updatedDevices", updatedDevices);
+        if (freshVersion.equals("Error")){
+            model.addAttribute("freshVersion","Failed to retrieve Version information");
+        } else {
+            Integer updatedDevices = connector.versionChecker(freshVersion).getBody();
+            model.addAttribute("freshVersion", String.format("Newest device version: %s", freshVersion));
+            model.addAttribute("allDevices", "/" + deviceDtoList.size());
+            model.addAttribute("updatedDevices", updatedDevices);
+        }
         model.addAttribute("deviceDtoList", deviceDtoList);
         return "device/page";
     }
