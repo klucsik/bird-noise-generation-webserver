@@ -84,6 +84,7 @@ public class DeviceService {
 
     public String getFreshVersion() {
         String update_url = webupdateConnector.checkVersion("bird_noise", "invalid").getBody();
+        if (update_url.equals("Error")) return "Error";
         String[] segments = update_url.split("/");
         return segments[segments.length-1].replace(".bin","");
 

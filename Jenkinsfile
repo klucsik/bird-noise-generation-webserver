@@ -30,11 +30,14 @@ pipeline {
             }
         }
     }
-    stage('update version in frontend') {
+    stage('update version, docs in frontend') {
             steps {
                     sh 'sed -i "s/JENKINS_WILL_CHANGE_THIS_VERSION_AND_DATE/$VERSION $(date)/" frontend/src/main/resources/templates/fragments/_menu.html'
+                    sh 'cp CHANGE_NOTES.md frontend/src/main/resources/markdown/CHANGE_NOTES.md'
+                    sh 'cp README.md frontend/src/main/resources/markdown/README.md'
+                    sh 'cp USER_MANUAL.md frontend/src/main/resources/markdown/USER_MANUAL.md'
             }
-        }
+    }
 
     stage('build images') {
       parallel {

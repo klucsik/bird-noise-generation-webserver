@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Documentation</title>
+
+    <div th:insert="fragments/_header_includes"></div>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-1" th:insert="fragments/_menu"></div>
+    <div class="col-sm-11">
+
+        <div class="row justify-content-center">
+                <!--- FIXME: put these buttons to content center not absolute center. I hate CSS-->
+                <div th:insert="fragments/_messages"></div>
+                <div class="col-3 mt-3">
+                    <a href='/docs/readme' class="create-new-button">Dev Readme</a>
+                </div>
+                <div class="col-3 mt-3">
+                    <a href='/docs/changenotes' class="create-new-button">Change Notes</a>
+                </div>
+                <div class="col-3 mt-3">
+                    <a href='/docs/usermanual' class="create-new-button">User Manual</a>
+                </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-10 d-flex justify-content-center">
+                <h3 class="mb-2 p-4 page-title">
+                    <span th:text="${title}">Documentation</span>
+                </h3>
+            </div>
+        </div>
+        <div class="mt-3 row d-flex justify-content-center">
+            <div class="col-sm-10">
+                <div  th:utext="${htmlContent}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/_foot_includes"></div>
+</body>
+</html>
