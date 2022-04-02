@@ -1,0 +1,1 @@
+This will be overwritten by Jenkins pipeline from repository root
