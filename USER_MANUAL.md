@@ -1,6 +1,6 @@
-#Using the Webapplication
-#Using the mp3 player device
-#Using the logcollector device
+# Using the Webapplication
+# Using the mp3 player device
+# Using the logcollector device
 The logcollector device collects logs from devices without permanent internet access.
 It works by supplying WiFi connection to the mp3 player device, and save the logs to an SD card or to internal storage (if SD card is not present).
 The mp3 player devices will not try to access the server through the logcollector (so they will not update playparams, tracklist informations, and firmware).
