@@ -1,3 +1,4 @@
+# Version 1.0.8
 * FEATURE: Documentation available in server. Added user manual.
 * TECHNICAL FEATURE: Cleaned up unused code
 * TECHNICAL FEATURE: circuit breaker for fresh version checker (disturbances in webupdate server will not affect device page load)
