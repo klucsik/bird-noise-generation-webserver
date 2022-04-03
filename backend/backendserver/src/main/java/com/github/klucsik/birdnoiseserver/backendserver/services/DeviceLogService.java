@@ -40,6 +40,11 @@ public class DeviceLogService {
         return new ArrayList<>(repository.findAllByDevice(deviceService.GetById(id)));
     }
 
-
+    public List<DeviceLog> getAllErrorLogsLastDays( Integer day){
+        return new ArrayList<>(repository.findAllByLoggedTimeIsAfterAndMessageCodeGreaterThanEqual(LocalDateTime.now().minusDays(day),90));
+    }
+    public Integer getErrorNumber(Integer day){
+        return repository.countAllByLoggedTimeIsAfterAndMessageCodeGreaterThanEqual(LocalDateTime.now().minusDays(day),90);
+    }
 
 }

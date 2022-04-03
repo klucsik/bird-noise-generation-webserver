@@ -21,6 +21,7 @@
                 <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Device</th>
                     <th>Server accept time</th>
                     <th>Logged time</th>
                     <th>Message code</th>
@@ -49,6 +50,13 @@
         // select: true,
         columns: [
             {data: 'id'},
+            {data: 'device',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                console.log(oData);
+                        $(nTd).html("<span><a href='/device/" + oData.device.id + "'><span> " + oData.device.name + "</span></a></span>");
+                        },
+                    searchable: false
+            },
             {data: 'createdAt'},
             {data: 'loggedTime'},
             {data: 'messageCode'},

@@ -16,17 +16,6 @@
                 <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
                      style="position: relative">
                     <div class="d-flex flex-column justify-content-center">
-                        <span class="card-content-text">Running devices</span>
-                        <div class="d-flex justify-content-center">
-                            <span class="card-content-number-big">5</span>
-                            <span class="card-content-number-small">/8</span>
-                        </div>
-                    </div>
-                    <div class="card-status-bar"></div>
-                </div>
-                <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
-                     style="position: relative">
-                    <div class="d-flex flex-column justify-content-center">
                         <span class="card-content-text" th:text="${freshVersion}"></span>
                         <div class="d-flex justify-content-center">
                             <span class="card-content-number-big" th:text="${updatedDevices}"></span>
@@ -38,6 +27,17 @@
                 <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
                      style="position: relative">
                     <div class="d-flex flex-column justify-content-center">
+                        <span class="card-content-text">Errors in last 3 days</span>
+                        <div class="d-flex justify-content-center">
+                            <span class="card-content-number-big" th:text="${errorNumber}"></span>
+                            <a class="card-content-number-small" href='/device/errors?day=3'>show</a>
+                        </div>
+                    </div>
+                    <div class="card-status-bar"></div>
+                </div>
+                <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
+                     style="position: relative">
+                    <div class="d-flex flex-column justify-content-center">
                         <span class="card-content-text">Running devices</span>
                         <div class="d-flex justify-content-center">
                             <span class="card-content-number-big">5</span>
@@ -52,7 +52,7 @@
                         <span class="card-content-text">Running devices</span>
                         <div class="d-flex justify-content-center">
                             <span class="card-content-number-big">5</span>
-                            <span class="card-content-number-small">/8</span>
+                            <span class="card-content-number-small" >/8</span>
                         </div>
                     </div>
                     <div class="card-status-bar"></div>
