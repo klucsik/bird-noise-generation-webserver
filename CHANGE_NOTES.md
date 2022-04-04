@@ -1,3 +1,4 @@
+# Version 1.0.9
 * FEATURE: Basic authentication
 * FEATURE: Show Error counts for last 3 days, and show error logs.
 # Version 1.0.8
