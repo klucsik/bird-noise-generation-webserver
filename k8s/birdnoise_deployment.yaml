@@ -148,6 +148,11 @@ spec:
               value: birdnoise-svc-be/api
             - name: TZ
               value: "Europe/Budapest"
+            - name: USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-credentials
+                  key: user_password
 
 ---
 
@@ -269,3 +274,12 @@ data:
   postgres_user: cG9zdGdyZXM= #TODO aurogenerate secrests with https://github.com/mittwald/kubernetes-secret-generator
   postgres_password: cG9zdGdyZXM=
 
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: frontend-credentials
+  namespace: birdnoise-BRANCHNAME
+data:
+  user_password: UGFzd29yZDEx #override this incluster, and restart FE pod

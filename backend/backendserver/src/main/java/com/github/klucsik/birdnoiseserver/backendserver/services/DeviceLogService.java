@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class DeviceLogService {
         log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, ZoneOffset.of("+01:00")));
         log.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         log.setMessageCode(dto.getMessageCode());
-        log.setMessage(DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()) == null ? dto.getMessageCode() : DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()).label); //translate with enum, if available
+        log.setMessage(DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()) == null ? dto.getMessageCode().toString() : DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()).label); //translate with enum, if available
         log.setAdditional(dto.getAdditional());
         deviceService.setVersionOfDevice(log, chipId);
 
@@ -36,9 +37,14 @@ public class DeviceLogService {
     }
 
     public List<DeviceLog> getAllByDeviceById(Long id) {
-        return repository.findAllByDevice(deviceService.GetById(id)).stream().collect(Collectors.toList());
+        return new ArrayList<>(repository.findAllByDevice(deviceService.GetById(id)));
     }
 
-
+    public List<DeviceLog> getAllErrorLogsLastDays( Integer day){
+        return new ArrayList<>(repository.findAllByLoggedTimeIsAfterAndMessageCodeGreaterThanEqual(LocalDateTime.now().minusDays(day),90));
+    }
+    public Integer getErrorNumber(Integer day){
+        return repository.countAllByLoggedTimeIsAfterAndMessageCodeGreaterThanEqual(LocalDateTime.now().minusDays(day),90);
+    }
 
 }

@@ -4,6 +4,7 @@ import com.github.klucsik.birdnoiseserver.backendclient.dto.DeviceLogDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DeviceLogMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.services.DeviceLogService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,4 +32,19 @@ public class DeviceLogController {
                         .collect(Collectors.toList()),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/errors")
+    public ResponseEntity<List<DeviceLogDto>> pageByDeviceId(@RequestParam(defaultValue = "3") Integer day){
+        return  new ResponseEntity<>(
+                service.getAllErrorLogsLastDays(day).stream()
+                        .map(DeviceLogMapper.MAPPER::entityToDto)
+                        .collect(Collectors.toList()),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("errorNumber")
+    public ResponseEntity<Integer> errorNumber(@RequestParam(defaultValue = "3") Integer day){
+        return new ResponseEntity<>(service.getErrorNumber(day),HttpStatus.OK);
+    }
+
 }

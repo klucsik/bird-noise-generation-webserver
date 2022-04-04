@@ -35,6 +35,7 @@ public class DeviceController {
             model.addAttribute("allDevices", "/" + deviceDtoList.size());
             model.addAttribute("updatedDevices", updatedDevices);
         }
+        model.addAttribute("errorNumber", logConnector.getErrorNumber(3).getBody());
         model.addAttribute("deviceDtoList", deviceDtoList);
         return "device/page";
     }
@@ -79,7 +80,25 @@ public class DeviceController {
 
     @GetMapping("{id}/log")
     public String logs(@PathVariable Long id, Model model){
-        List<DeviceLogDto> dto = logConnector.pageByDeviceId(id).getBody();
+        List<DeviceLogDto> dtoList = logConnector.pageByDeviceId(id).getBody();
+        List<FrontEndDeviceLogDto> stupidDtoList = mapDeviceLogDtos(dtoList);
+        model.addAttribute("isErrorLogsPage", false);
+        model.addAttribute("logs", stupidDtoList);
+        model.addAttribute("title", String.format("Logs for device %s" ,connector.getById(id).getBody().getName()));
+        return "device/logPage";
+    }
+
+    @GetMapping("/errors")
+    public String editDeviceForm(@RequestParam(required = false, defaultValue = "3") Integer day, Model model){
+        List<DeviceLogDto> dtoList = logConnector.pageByErrorsInDays(day).getBody();
+        List<FrontEndDeviceLogDto> stupidDtoList = mapDeviceLogDtos(dtoList);
+        model.addAttribute("isErrorLogsPage", true);
+        model.addAttribute("logs", stupidDtoList);
+        model.addAttribute("title", String.format("Error logs in the last %d days", day));
+        return "device/logPage";
+    }
+
+    private List<FrontEndDeviceLogDto> mapDeviceLogDtos(List<DeviceLogDto> dto) {
         List<FrontEndDeviceLogDto> stupidDtoList = new ArrayList<>();
 
         dto.forEach(deviceLogDto -> {
@@ -101,9 +120,6 @@ public class DeviceController {
 
             stupidDtoList.add(stupidDto);
         });
-
-        model.addAttribute("logs", stupidDtoList);
-        model.addAttribute("title", String.format("Logs for device %s" ,connector.getById(id).getBody().getName()));
-        return "device/logPage";
+        return stupidDtoList;
     }
 }

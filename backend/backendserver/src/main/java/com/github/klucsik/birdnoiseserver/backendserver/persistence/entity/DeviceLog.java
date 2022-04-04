@@ -18,7 +18,7 @@ public class DeviceLog {
     @ManyToOne
     private Device device; //the device who logged.
 
-    private String messageCode; //sent from device
+    private Integer messageCode; //sent from device
     private String message; //decoded at BE
     private String additional;
 

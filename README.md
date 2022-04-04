@@ -16,3 +16,8 @@ A simple arduino http update server which returns the url of the  most recent de
 The url for the Backend part, with the /api basepath. Usually: localhost:8080/api
 * **SERVER_PORT**=8081
 
+## Migrating between versions
+### 1.0.8 -> 1.0.9
+The the messageCode column device_log table changed datatype. Apply the following command to the database:
+
+`ALTER TABLE device_log ALTER COLUMN message_code  TYPE integer USING (message_code::integer);`

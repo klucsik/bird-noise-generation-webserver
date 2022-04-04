@@ -16,11 +16,29 @@
                 <span th:text="${title}"></span>
             </h3>
         </div>
+        <div class="row justify-content-center  ">
+            <div class="col-sm-10 form-item-container"> <!--TODO: make it more aesthetic, its very elongated,  but i cant css-->
+                <div th:insert="fragments/_messages"></div>
+                <form th:if="${isErrorLogsPage}" class="row mb-2 " th:action="@{/device/errors}"
+                      method="get">
+                    <div class="col">
+                        <label for="day" class="fw-600">Generated days ago:</label>
+                    </div>
+                    <div class="col">
+                        <input type="number" id="day" th:name="day"/>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn create-new-button p-1">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="mt-5 table-custom-style">
             <table id="deviceTable" class="table table-striped">
                 <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Device</th>
                     <th>Server accept time</th>
                     <th>Logged time</th>
                     <th>Message code</th>
@@ -49,6 +67,14 @@
         // select: true,
         columns: [
             {data: 'id'},
+            {
+                data: 'device',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    console.log(oData);
+                    $(nTd).html("<span><a href='/device/" + oData.device.id + "'><span> " + oData.device.name + "</span></a></span>");
+                },
+                searchable: false
+            },
             {data: 'createdAt'},
             {data: 'loggedTime'},
             {data: 'messageCode'},
