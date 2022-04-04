@@ -54,7 +54,7 @@ spec:
       containers:
         - name: backend
           image: BE_IMAGETAG
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: REDEPLOY_FLAG
               value: "BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
@@ -140,7 +140,7 @@ spec:
       containers:
         - name: frontend
           image: FE_IMAGETAG
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: REDEPLOY_FLAG
               value: "FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
