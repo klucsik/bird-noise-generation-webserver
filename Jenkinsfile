@@ -171,7 +171,7 @@ pipeline {
             container(name: 'kubectl') {
                // sh 'kubectl delete deployment amd64node'
                // sh 'kubectl delete deployment arm64node'
-                sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME} > /dev/null 2>&1 >/dev/null'  //make this silent so wont raise errors
+                sh 'kubectl delete ns birdnoise-${TEST_BRANCNAME}  || exit 0'  //make this silent so wont raise errors
             }
           }
 
