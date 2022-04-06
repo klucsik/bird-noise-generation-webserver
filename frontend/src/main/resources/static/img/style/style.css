@@ -16,6 +16,11 @@ body {
     max-width: 260px;
 }
 
+.menu-column{
+    -ms-flex: 0 0 145px;
+    flex: 0 0 145px;
+}
+
 .main-menu {
     background-color: var(--lighter-blue);
     color: var(--page-white);
@@ -163,6 +168,7 @@ a.nav-link.menu-icon:hover {
 }
 
 .row,
+.col,
 .col-sm-1,
 .col-sm-2,
 .col-sm-10,
@@ -231,6 +237,12 @@ select[name=taskBasket_length] {
 
 #svg10000 {
     width: 250px;
+}
+
+.table{
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .table.dataTable.no-footer {
@@ -333,13 +345,11 @@ div.dataTables_length label select {
 }
 
 .day-icon-top {
-    position: absolute;
     top: 55px;
     left: 40px
 }
 
 .day-icon-bottom {
-    position: absolute;
     bottom: 25px;
     left: 40px
 }
@@ -355,7 +365,8 @@ div.dataTables_length label select {
 }
 
 .hour-select {
-    min-width: 250px;
+    min-width: 100px;
+    max-width: 300px;
     background-color: #E5E9EF;
     border: none;
     height: 35px

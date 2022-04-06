@@ -9,10 +9,10 @@
 <body>
 
 <div class="row">
-    <div class="col-sm-1" th:insert="fragments/_menu"></div>
-    <div class="col-sm-11">
+    <div class="col menu-column" th:insert="fragments/_menu"></div>
+    <div class="col">
         <div class="row justify-content-center">
-            <div class="col-sm-10 d-flex justify-content-center">
+            <div class="col d-flex justify-content-center">
                 <h3 class="mb-2 p-4 page-title">
                     <span>Tracks</span>
                 </h3>
@@ -20,16 +20,16 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-sm-10">
+            <div class="col">
                 <div th:insert="fragments/_messages"></div>
-                <div class="col-3 mt-3">
+                <div class="col mt-3">
                     <a href='/track/new' class="create-new-button">Create new track</a>
                 </div>
             </div>
         </div>
 
         <div class="mt-3 row d-flex justify-content-center">
-            <div class="col-sm-10">
+            <div class="col">
                 <div class="table-custom-style p-4">
                     <table id="trackTable" class="table table-striped">
                         <thead>
@@ -72,7 +72,8 @@
                 },
                 searchable: false
             }
-        ]
+        ],
+        autoWidth: false
     });
 
     /*]]>*/

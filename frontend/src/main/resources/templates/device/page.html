@@ -9,8 +9,8 @@
 <body>
 
 <div class="row">
-    <div class="col-sm-1" th:insert="fragments/_menu"></div>
-    <div class="col-sm-11">
+    <div class="col menu-column" th:insert="fragments/_menu"></div>
+    <div class="col">
         <div class="row  card-container d-flex justify-content-center">
             <div class="col-sm-10 d-flex justify-content-lg-around" style="flex-flow: wrap">
                 <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
@@ -30,29 +30,7 @@
                         <span class="card-content-text">Errors in last 3 days</span>
                         <div class="d-flex justify-content-center">
                             <span class="card-content-number-big" th:text="${errorNumber}"></span>
-                            <a class="card-content-number-small" href='/device/errors?day=3'>show</a>
-                        </div>
-                    </div>
-                    <div class="card-status-bar"></div>
-                </div>
-                <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
-                     style="position: relative">
-                    <div class="d-flex flex-column justify-content-center">
-                        <span class="card-content-text">Running devices</span>
-                        <div class="d-flex justify-content-center">
-                            <span class="card-content-number-big">5</span>
-                            <span class="card-content-number-small">/8</span>
-                        </div>
-                    </div>
-                    <div class="card-status-bar"></div>
-                </div>
-                <div class="m-2 info-card d-flex flex-column justify-content-center align-items-center"
-                     style="position: relative">
-                    <div class="d-flex flex-column justify-content-center">
-                        <span class="card-content-text">Running devices</span>
-                        <div class="d-flex justify-content-center">
-                            <span class="card-content-number-big">5</span>
-                            <span class="card-content-number-small" >/8</span>
+                            <a class="card-content-number-small" href='/device/errors?day=3'> show</a>
                         </div>
                     </div>
                     <div class="card-status-bar"></div>
@@ -63,7 +41,7 @@
         </div>
 
         <div class="row d-flex justify-content-center">
-            <div class="col-sm-10" style="position: relative">
+            <div class="col" style="position: relative">
                 <!--                <div class="">-->
                 <!--                    <div th:insert="fragments/svgs/table" style="position: absolute; right: -50px; top: -60px"></div>-->
                 <!--                </div>-->
@@ -107,7 +85,6 @@
                 data: 'id',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                     $(nTd).html("<span><a href='/device/" + oData.id + "'><span>edit </span></a></span>" +
-                        "<span><a href='/device/" + oData.id + "/delete'><span>delete </span></a></span>" +
                         "<span><a href='/devicePlayParam" + "/page?id=" + oData.id + "'> <span>PlayParam</span> </a> </span>" +
                         "<span><a href='/device" + "/" + oData.id + "/log'> <span>logs</span> </a> </span>"
                     );
@@ -115,7 +92,8 @@
                 },
                 searchable: false
             }
-        ]
+        ],
+        autoWidth: false
     });
 
     /*]]>*/
