@@ -1,3 +1,4 @@
+* TECHNICAL_FEATURE: Added USE_AUTH env variable to frontend.
 # Version 1.0.9
 * FEATURE: Basic authentication
 * FEATURE: Show Error counts for last 3 days, and show error logs.
