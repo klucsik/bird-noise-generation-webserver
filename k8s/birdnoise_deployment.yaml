@@ -154,7 +154,7 @@ spec:
                   name: frontend-credentials
                   key: user_password
             - name: USE_AUTH
-              value: true
+              value: "true" 
 
 ---
 
