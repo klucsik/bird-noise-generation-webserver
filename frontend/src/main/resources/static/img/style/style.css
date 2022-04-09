@@ -278,7 +278,7 @@ div.dataTables_length label select {
   }
 
 #deviceTable {
-    width: fit-content !important;
+    /*width: fit-content !important;*/
 }
 
 @media screen and (max-width: 517px) {
