@@ -39,7 +39,7 @@ public class PlayParamService {
     public PlayParam getOne(Long id) {
         Optional<PlayParam> playParam = repository.findById(id);
         if (playParam.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("PlayParam is empty, id: %d", id));
         }
         return playParam.get();
     }

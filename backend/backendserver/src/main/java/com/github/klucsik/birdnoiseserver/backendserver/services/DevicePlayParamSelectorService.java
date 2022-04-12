@@ -1,19 +1,13 @@
 package com.github.klucsik.birdnoiseserver.backendserver.services;
 
 import com.github.klucsik.birdnoiseserver.backendclient.dto.DevicePlayParamSlimDto;
-import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayParamDto;
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamSlimMapper;
-import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.Device;
 import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.DevicePlayParam;
-import com.github.klucsik.birdnoiseserver.backendserver.persistence.entity.PlayParam;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DevicePlayParamRepository;
 import com.github.klucsik.birdnoiseserver.backendserver.repository.DeviceRepository;
-import com.github.klucsik.birdnoiseserver.backendserver.repository.PlayParamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -25,10 +19,13 @@ import java.util.stream.Collectors;
 public class DevicePlayParamSelectorService {
     private final DevicePlayParamRepository repository;
     private final DeviceRepository deviceRepository;
-    private final PlayParamRepository playParamRepository;
+    private final DevicePlayParamSlimService devicePlayParamSlimService;
 
     public DevicePlayParamSlimDto selectSlimPlayParam(String chipId, Long paramVersion) {
         Device device = deviceRepository.findByChipId(chipId);
+        if (device == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("No device found for chipId: %s", chipId));
+        }
         List<DevicePlayParam> playParamsForDevice = repository.getAllByDevice(device);
 
 
@@ -44,14 +41,12 @@ public class DevicePlayParamSelectorService {
             case 1:
                 if (paramVersion == playParamsForDevice.get(0).getPlayParam().getId()) {
                     return null;
-                }
-                else {
-                    PlayParamDto dto = PlayParamMapper.MAPPER.playParamtoDto(playParamsForDevice.get(0).getPlayParam());
-                    return DevicePlayParamSlimMapper.MAPPER.playParamDtotoDevice(dto);
+                } else {
+                    return devicePlayParamSlimService.getOne(playParamsForDevice.get(0).getPlayParam().getId());
                 }
 
             case 0:
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("No playparam found for chipId: %s", chipId));
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("No playparam found for chipId: %s", chipId));
 
             default:
                 throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, String.format("Conflicting playParams: %s", playParamsForDevice));

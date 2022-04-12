@@ -6,7 +6,9 @@ import com.github.klucsik.birdnoiseserver.backendclient.dto.PlayUnitDto;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.DevicePlayParamSlimMapper;
 import com.github.klucsik.birdnoiseserver.backendserver.mappers.PlayParamMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -35,7 +37,7 @@ public class DevicePlayParamSlimService {
 
     public int calcUtcHour(Integer hour) {
         Calendar calendar = Calendar.getInstance();
-        ZoneId zone = calendar.getTimeZone().toZoneId(); //Get the JVM timezone
+        ZoneId zone = calendar.getTimeZone().toZoneId(); //Get the JVM timezone | question Why is this needed?Levi
         ZoneOffset zoneOffSet = zone.getRules().getOffset(LocalDateTime.now());
         int UTCHour = hour - zoneOffSet.getTotalSeconds() / 3600; //Hour - UTC difference in hours (TotalSecond/3600)
         if (UTCHour == 0) {
