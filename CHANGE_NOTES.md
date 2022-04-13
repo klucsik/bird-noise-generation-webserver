@@ -1,3 +1,4 @@
+* FEATURE: Fix timezone correction on playparam sending to device (slimPlayParamSelector)
 * FEATURE: Fix bootstrap responsiveness
 * TECHNICAL_FEATURE: Added USE_AUTH env variable to frontend.
 # Version 1.0.9

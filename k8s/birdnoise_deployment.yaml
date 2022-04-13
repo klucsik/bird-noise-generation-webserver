@@ -284,4 +284,4 @@ metadata:
   name: frontend-credentials
   namespace: birdnoise-BRANCHNAME
 data:
-  user_password: UGFzd29yZDEx #override this incluster, and restart FE pod
+  user_password: UGFzc3dvcmQxMQ== # Password11, override this incluster, and restart FE pod
