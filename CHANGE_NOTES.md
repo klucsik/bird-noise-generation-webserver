@@ -1,3 +1,6 @@
+# Version 1.0.10
+* FEATURE: Get played track info from DFPlayer midplaying
+* BUG FIX: Device Logged time is not corrected to timezone
 * FEATURE: Fix timezone correction on playparam sending to device (slimPlayParamSelector)
 * FEATURE: Fix bootstrap responsiveness
 * TECHNICAL_FEATURE: Added USE_AUTH env variable to frontend.

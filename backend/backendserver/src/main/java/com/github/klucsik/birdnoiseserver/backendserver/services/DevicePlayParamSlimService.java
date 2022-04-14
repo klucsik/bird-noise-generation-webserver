@@ -77,8 +77,7 @@ public class DevicePlayParamSlimService {
     }
 
     public int calcUtcHour(Integer hour) {
-        Calendar calendar = Calendar.getInstance();
-        ZoneId zone = calendar.getTimeZone().toZoneId(); //Get the JVM timezone
+        ZoneId zone = Calendar.getInstance().getTimeZone().toZoneId(); //Get the JVM timezone
         ZoneOffset zoneOffSet = zone.getRules().getOffset(LocalDateTime.now());
         int UTCHour = hour - zoneOffSet.getTotalSeconds() / 3600; //Hour - UTC difference in hours (TotalSecond/3600)
         if (UTCHour == 0) {

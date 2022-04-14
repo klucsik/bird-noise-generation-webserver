@@ -12,7 +12,7 @@ public enum DeviceMessages {
     START_UP("Device started or woke up with version",7, false),
     DEEP_SLEEP("Device going to sleep now to minutes",9, false),
     CURRENT_PLAYPARAM("Playparam for this hour", 10, false),
-    DF_PLAYER_MESSAGE("DFPlayer chip messagebytes", 11, false),
+    DF_PLAYER_MESSAGE("DFPlayer played track:", 11, false),
 
     //ERRORS
     DFPLAYER_START_ERROR("Error starting mp3 module", 91, true),

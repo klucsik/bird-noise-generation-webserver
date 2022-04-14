@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,10 @@ public class DeviceLogService {
 
         log.setCreatedAt(LocalDateTime.now());
         log.setTimestamp(dto.getTimestamp());
-        log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, ZoneOffset.of("+01:00")));
+
+        ZoneId zone = Calendar.getInstance().getTimeZone().toZoneId(); //Get the JVM timezone
+        ZoneOffset zoneOffSet = zone.getRules().getOffset(LocalDateTime.now());
+        log.setLoggedTime(LocalDateTime.ofEpochSecond(dto.getTimestamp(), 0, zoneOffSet)); //correct the logged time to the server timezone
         log.setDevice(deviceService.findByChipIdOrCreateUnregistered(chipId));
         log.setMessageCode(dto.getMessageCode());
         log.setMessage(DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()) == null ? dto.getMessageCode().toString() : DeviceMessages.MessageCodetoHumanReadable(dto.getMessageCode()).label); //translate with enum, if available
