@@ -1,0 +1,287 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: birdnoise-main
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: birdnoise-main-fun
+  namespace: birdnoise-main
+  annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  rules:
+    - host: www.main.birdnoise.klucsik.fun
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/api"
+            backend:
+              service:
+                name: birdnoise-svc-be
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: birdnoise-svc-fe
+                port:
+                  number: 80
+
+
+---
+#be
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birdnoise-be
+  namespace: birdnoise-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: backend
+      service: birdnoise
+  template:
+    metadata:
+      labels:
+        type: backend
+        service: birdnoise
+    spec:
+      containers:
+        - name: backend
+          image: registry.klucsik.fun/birdnoise_be_main:1.0.10
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REDEPLOY_FLAG
+              value: "BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
+            - name: WEBUPDATE_URL
+              value: http://arduino-webupdate.klucsik.fun
+            - name: DB_URL
+              value: birdnoise-svc-db:5432
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf  # name of configMap
+                  key: host
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: name
+            - name: POSTGRES_USER  # Setting Database username from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials # Secret Name
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD # Setting Database password from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_password
+            - name: TZ
+              value: "Europe/Budapest"
+
+          startupProbe:
+            httpGet:
+              path: /api/actuator/health/liveness
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/actuator/health/liveness
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /api/actuator/health/readiness
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 10
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: birdnoise-svc-be
+  namespace: birdnoise-main
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    type: backend
+    service: birdnoise
+
+---
+#fe
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birdnoise-fe
+  namespace: birdnoise-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: frontend
+      service: birdnoise
+  template:
+    metadata:
+      labels:
+        type: frontend
+        service: birdnoise
+    spec:
+      containers:
+        - name: frontend
+          image: registry.klucsik.fun/birdnoise_fe_main:1.0.10
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REDEPLOY_FLAG
+              value: "FE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
+            - name: BACKEND_URL
+              value: birdnoise-svc-be/api
+            - name: TZ
+              value: "Europe/Budapest"
+            - name: USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-credentials
+                  key: user_password
+            - name: USE_AUTH
+              value: "true" 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: birdnoise-svc-fe
+  namespace: birdnoise-main
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    type: frontend
+    service: birdnoise
+
+---
+#db
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birdnoise-db
+  namespace: birdnoise-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: database
+      service: birdnoise
+  template:
+    metadata:
+      labels:
+        type: database
+        service: birdnoise
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_password
+            - name: POSTGRES_DB # Setting Database Name from a 'ConfigMap'
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: name
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+              subPath: postgres
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgresql-db
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresql-db
+  namespace: birdnoise-main
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1G
+  storageClassName: longhorn-2
+
+
+---
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: birdnoise-svc-db
+  namespace: birdnoise-main
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    type: database
+    service: birdnoise
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-conf
+  namespace: birdnoise-main
+  labels:
+    type: database
+    service: birdnoise
+data:
+  host: birdnoise-svc-db #The db service name
+  name: birdnoisedb
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-credentials
+  namespace: birdnoise-main
+data:
+  postgres_user: cG9zdGdyZXM= #TODO aurogenerate secrests with https://github.com/mittwald/kubernetes-secret-generator
+  postgres_password: cG9zdGdyZXM=
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: frontend-credentials
+  namespace: birdnoise-main
+data:
+  user_password: UGFzc3dvcmQxMQ== # Password11, override this incluster, and restart FE pod
