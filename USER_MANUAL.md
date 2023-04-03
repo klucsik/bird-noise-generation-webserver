@@ -1,8 +1,9 @@
 # Using the Webapplication
 # Using the mp3 player device
 ## Device workflow on startup
-At startup the device enter setup mode (signaled by the *Started setup* voice message), if the preconfigured WiFi network is available, it will try to connect, if sucessfull, the *Connected* audio message will be palyed. After this, the device will connect to the webserver, and attempt to snychronize clock, tracklength data, playparams, and firmware. If Logcollector network is detected, instead of the snychronization, it wil send the logs to the logcollector, see about that in the logcollector section.
-NOTE: If the connection is not made, the device will not attempt to snychronize.
+At startup the device enter setup mode (signaled by the *Started setup* voice message), if the preconfigured WiFi network is available, it will try to connect, if sucessfull, the *Connected* audio message will be palyed. After this, the device will connect to the webserver, and attempt to synchronize clock, tracklength data, playparams, and firmware. If Logcollector network is detected, instead of the synchronization, it will send the logs to the logcollector, see about that in the logcollector section.
+
+NOTE: If the connection is not made, the device will not attempt to synchronize.
 
 At the end os setup the time settings will be checked, if the time isn't setted correctly, the *error* voice message will be played, and the device will restart after 15 seconds.
 If no error detected, *finished setup* voice message will be played, and the device will change into working mode.
