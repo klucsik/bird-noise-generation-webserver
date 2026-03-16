@@ -7,13 +7,13 @@ metadata:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: birdnoise-BRANCHNAME-fun
+  name: birdnoise-BRANCHNAME-hu
   namespace: birdnoise-BRANCHNAME
   annotations:
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   rules:
-    - host: www.BRANCHNAME.birdnoise.klucsik.fun
+    - host: www.BRANCHNAME.birdnoise.klucsik.hu
       http:
         paths:
           - pathType: Prefix

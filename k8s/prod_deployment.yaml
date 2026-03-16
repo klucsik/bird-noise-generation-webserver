@@ -30,7 +30,23 @@ spec:
                 name: birdnoise-svc-fe
                 port:
                   number: 80
-
+    - host: www.main.birdnoise.klucsik.hu
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/api"
+            backend:
+              service:
+                name: birdnoise-svc-be
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: birdnoise-svc-fe
+                port:
+                  number: 80
 
 ---
 #be
@@ -219,20 +235,8 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: postgresql-db
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: postgresql-db
-  namespace: birdnoise-main
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1G
-  storageClassName: longhorn-2
+            claimName: birdnoise-data
+
 
 
 ---
